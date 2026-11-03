@@ -1,0 +1,7 @@
+[Event "Illegal move"]
+[White "Alice"]
+[Black "Bob"]
+[Result "*"]
+
+1. e4 e5 2. Nf3 Nc6
+3. Ke3 Nf6 *

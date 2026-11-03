@@ -1,0 +1,6 @@
+[Event "Custom start, Black to move"]
+[SetUp "1"]
+[FEN "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq e3 0 1"]
+[Result "*"]
+
+1... e5 2. Nf3 Nc6 *

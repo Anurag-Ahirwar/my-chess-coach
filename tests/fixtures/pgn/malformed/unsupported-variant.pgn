@@ -1,0 +1,7 @@
+[Event "Chess960"]
+[Variant "Chess960"]
+[SetUp "1"]
+[FEN "bbqnnrkr/pppppppp/8/8/8/8/PPPPPPPP/BBQNNRKR w HFhf - 0 1"]
+[Result "*"]
+
+1. e4 e5 *

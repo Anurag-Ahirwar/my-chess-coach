@@ -1,0 +1,6 @@
+[Event "Castling through check"]
+[SetUp "1"]
+[FEN "4k3/8/8/8/8/8/5r2/4K2R w K - 0 1"]
+[Result "*"]
+
+1. O-O *

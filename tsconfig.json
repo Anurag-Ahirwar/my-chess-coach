@@ -1,0 +1,10 @@
+{
+  "//": "Editor configuration covering every file. `npm run typecheck` uses tsconfig.app.json (src, no Node types) and tsconfig.node.json (tests, scripts, configs).",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "types": ["node", "vite/client", "@testing-library/jest-dom/vitest"],
+    "allowJs": true,
+    "checkJs": false
+  },
+  "include": ["src", "tests", "scripts", "vite.config.ts", "playwright.config.ts", "eslint.config.js"]
+}

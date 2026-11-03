@@ -1,0 +1,55 @@
+[Event "Promote to queen"]
+[SetUp "1"]
+[FEN "8/P7/8/8/8/8/k7/4K3 w - - 0 1"]
+[Result "*"]
+
+1. a8=Q+ *
+
+[Event "Promote to rook"]
+[SetUp "1"]
+[FEN "8/P7/8/8/8/8/k7/4K3 w - - 0 1"]
+[Result "*"]
+
+1. a8=R+ *
+
+[Event "Promote to bishop"]
+[SetUp "1"]
+[FEN "8/P7/8/8/8/8/k7/4K3 w - - 0 1"]
+[Result "*"]
+
+1. a8=B *
+
+[Event "Promote to knight"]
+[SetUp "1"]
+[FEN "8/P7/8/8/8/8/k7/4K3 w - - 0 1"]
+[Result "*"]
+
+1. a8=N *
+
+[Event "Underpromotion with check"]
+[SetUp "1"]
+[FEN "8/P1k5/8/8/8/8/8/4K3 w - - 0 1"]
+[Result "*"]
+
+1. a8=N+ *
+
+[Event "Capture-promotion"]
+[SetUp "1"]
+[FEN "1r6/P7/8/8/8/8/k7/4K3 w - - 0 1"]
+[Result "*"]
+
+1. axb8=Q *
+
+[Event "Black promotes with check"]
+[SetUp "1"]
+[FEN "4k3/8/8/8/8/8/p7/4K3 b - - 0 1"]
+[Result "*"]
+
+1... a1=Q+ *
+
+[Event "Promotion written without ="]
+[SetUp "1"]
+[FEN "8/P7/8/8/8/8/k7/4K3 w - - 0 1"]
+[Result "*"]
+
+1. a8Q+ *

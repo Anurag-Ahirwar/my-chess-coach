@@ -1,0 +1,30 @@
+% An escape line that must be ignored
+[Event "Game one"]
+[White "A"]
+[Black "B"]
+[Result "1-0"]
+
+{Opening comment} 1. e4! e5 2. Nf3 $1 Nc6 (2... d6 3. d4 (3. Bc4) 3... exd4) 3. Bb5 a6?! ; line comment
+4. Ba4 Nf6 5. O-O 1-0
+
+[Event "Game two"]
+[White "C"]
+[Black "D"]
+[Result "0-1"]
+
+1.d4 d5 2.c4 dxc4 3.e3 {multi
+line comment with [brackets] inside} 3...b5 0-1
+
+[Event "Game three, broken"]
+[White "E"]
+[Black "F"]
+[Result "*"]
+
+1. e4 e5 2. Bb5 Qh4 3. Qh5 Qxe1 *
+
+[Event "Game four"]
+[White "G"]
+[Black "H"]
+[Result "1/2-1/2"]
+
+1. c4 c5 1/2-1/2
