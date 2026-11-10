@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | v0.4 — **Phase 1 conditionally accepted.** **Phase 2 implemented** on branch `phase-2`, with all stages approved; 15 of 16 acceptance items PASS (see §3, Phase 2 acceptance record). Firefox CI is blocked until the repository exists. Not merged to `main`. |
+| Status | v0.4 — **Phase 1 conditionally accepted.** **Phase 2 implemented** on branch `phase-2`, with all stages approved; **16 of 16 acceptance items PASS**, CI green in all jobs (see §3, Phase 2 acceptance record). Not merged to `main`. |
 | Date | 2026-11-03 |
 
 ---
@@ -113,7 +113,7 @@ Exit: the owner approves the docs. Open decisions are listed in §6.
 | 1a | Node 24.x, clean `npm ci` with `engine-strict` | PASS | Node 24.22.1, npm 11.19.1 |
 | 1b | `npm run check` green | PASS | typecheck, lint, licence check, **241 unit + integration tests passing**, coverage thresholds met |
 | 1c | E2E green in **Chromium** | PASS | **30/30** tests passing against the production build |
-| 1d | E2E green in **Firefox** | **BLOCKED — ENVIRONMENT** | See below. Follow-up F1. |
+| 1d | E2E green in **Firefox** | **BLOCKED — ENVIRONMENT** | See below. Follow-up F1. *Update 2026-11-11: F1 closed; the full Firefox suite (by then including the Phase 1 tests) passes in CI on Ubuntu and Windows. This record is kept as it was at sign-off.* |
 | 2 | Chess rules fixtures | PASS | All `pgn/rules/` tests |
 | 3 | PGN robustness | PASS | 9/9 malformed fixtures report located errors; round trip identical on all 37 valid fixture files; clocks hand-checked on 3 games |
 | 4 | Coverage of `core/` | PASS | Lines 99.72%, branches 95.95% (targets 90% / 85%) |
@@ -132,11 +132,11 @@ Exit: the owner approves the docs. Open decisions are listed in §6.
 - **Not a test failure:** no Firefox test ever started. Chromium runs the same suite 30/30 on the same machine.
 - **Not substituted:** WebKit is **not** an acceptable replacement for Firefox for this criterion.
 
-### 3.1 Phase 1 follow-ups (open)
+### 3.1 Phase 1 follow-ups (F1 closed, F2 open)
 
 | ID | Task | Done when | Owner |
 |---|---|---|---|
-| F1 | **Run the Firefox E2E suite on another machine or in CI.** Use any machine where Playwright's Firefox launches: a different Windows build, Linux, macOS, or a CI runner. Run `npx playwright install firefox`, then `npx playwright test --project=firefox`. | The Firefox project passes in full (30/30, or the full count at that time) and the result is recorded in the acceptance record above, replacing BLOCKED. If it fails, the failures are fixed or recorded. | Owner to provide the machine or CI; then Claude |
+| F1 | **Run the Firefox E2E suite on another machine or in CI.** Use any machine where Playwright's Firefox launches: a different Windows build, Linux, macOS, or a CI runner. Run `npx playwright install firefox`, then `npx playwright test --project=firefox`. | The Firefox project passes in full (30/30, or the full count at that time) and the result is recorded in the acceptance record above, replacing BLOCKED. If it fails, the failures are fixed or recorded. | **Closed 2026-11-11** in GitHub Actions: the full Firefox suite passes on Ubuntu and Windows (CI run [42877982497](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42877982497); Phase 2 item 14). |
 | F2 | **Validate with the owner's own Chess.com account.** Run `LIVE_CHESSCOM_USER=<owner's username> npm run test:live`. | All 10 most recent games import, every move replays, and final positions match Chess.com's. Criterion 6b recorded as PASS. | Owner to provide the username |
 
 ### Phase 2 — Stockfish integration
@@ -162,7 +162,7 @@ Implemented on branch `phase-2` in four commits (Stages 1–4). The approved Sta
 
 #### Phase 2 acceptance record (2026-11-11)
 
-**Overall: 15 of 16 items PASS. Phase 2 is not fully accepted:** item 14 (Firefox E2E) is PENDING a CI re-run after the fix for the bug that Firefox on Ubuntu found. All four stages are approved and committed on `phase-2`.
+**Overall: 16 of 16 items PASS.** CI run [42877982497](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42877982497) on `614874a` is green in all four jobs. All four stages are approved and committed on `phase-2`. Merging to `main` awaits the owner's approval.
 
 **Repository (D13, changed by the owner on 2026-11-11):** the CI repository `github.com/Anurag-Ahirwar/my-chess-coach` is **public**, not private as planned. The owner accepted that the commit history shows the author's email address and that the code has no licence yet (U1). Status meanings: [TESTING_STRATEGY §7](TESTING_STRATEGY.md#7-acceptance-status).
 
@@ -180,13 +180,13 @@ Implemented on branch `phase-2` in four commits (Stages 1–4). The approved Sta
 | 10 | A full game analyses with no main-thread long tasks over 50 ms | PASS | `analysis.spec.ts` (with a positive control) and every benchmark run, 1–4 engines and all presets: 0 long tasks (BENCHMARKS §2.4). |
 | 11 | Benchmarks recorded; node budgets and pool size adjusted from them | PASS | `docs/BENCHMARKS.md` plus raw JSON. Budgets and pool formula were **evaluated against explicit targets and kept** (§4, with reasons). The search time cap was **recalibrated** to `10 s + nodes/50 000`. |
 | 12 | Decision U4 made with evidence | PASS | **Decided by the owner on 2026-11-11: lite only, no full build.** Evidence in BENCHMARKS §3: the full build is 99 MB, uses about 2.8× the memory, has 1.8× fewer nodes/s, and gives the same best move in 73% of positions. |
-| 13 | All Phase 1 tests and all new tests pass; coverage thresholds met | PASS | `npm run check`: **508** unit and integration tests; coverage of `core/` and `infra/engine/` 99.23% lines, 94.77% branches. `test:engine` **25/25**. Chromium E2E **43/43**. The only changed Phase 1 test is the approved A10 heading change. |
-| 14 | Firefox E2E passes in CI, or is recorded as BLOCKED with evidence | **PENDING (CI re-run after a fix)** | CI run [42871893922](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42871893922) on `7160783`: check + engine tests ✅, Chromium/Ubuntu ✅, **Firefox/Windows ✅**, **Firefox/Ubuntu ❌**, with 41 passed, 1 skipped (the long-task test is Chromium-only by design) and 1 failed. The failure was a **real bug**: imports navigated before the IndexedDB save finished, so a page load right after an import could lose the game. It is fixed in `f05827f` (navigation now waits for the save; regression unit tests added). Re-run [42874613978](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42874613978) on `f05827f`: that test now **passes** on Firefox/Ubuntu, and the other three jobs pass again. One different test failed: "every review control can be reached with the Tab key". It pressed Tab before the review page appeared (focus only ever reached the Home page's game list), because the test never waited for the page and navigation is no longer instant. The test now waits for the review page; its checks are unchanged. Re-run [42876123384](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42876123384) on `200715e`: check + engine tests ✅, **Firefox/Ubuntu ✅** and **Firefox/Windows ✅** (all Firefox E2E tests pass on both), **Chromium/Ubuntu ❌**, with 42 passed and 1 failed. The failure was the same kind of test race: "an imported game survives a reload" read the page heading as soon as the URL changed, before the review page was drawn, so it captured the Home page's "Review a game". After the reload the review page correctly showed the saved game. The test now waits for the review page before reading the heading; its checks are unchanged. All other E2E tests were checked for reads that don't wait for the review page; none was found. The Firefox part of this criterion is met; it stays PENDING until one run is green in all jobs. |
+| 13 | All Phase 1 tests and all new tests pass; coverage thresholds met | PASS | `npm run check`: **510** unit and integration tests (508 at Stage 4, plus 2 regression tests in `f05827f`); coverage of `core/` and `infra/engine/` 99.23% lines, 94.77% branches. `test:engine` **25/25**. Chromium E2E **43/43**. The only changed Phase 1 test is the approved A10 heading change. |
+| 14 | Firefox E2E passes in CI, or is recorded as BLOCKED with evidence | **PASS** | **Green run [42877982497](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42877982497) on `614874a`: all four jobs succeeded: check + engine tests, Chromium/Ubuntu, Firefox/Ubuntu and Firefox/Windows.** How it got there: CI run [42871893922](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42871893922) on `7160783`: check + engine tests ✅, Chromium/Ubuntu ✅, **Firefox/Windows ✅**, **Firefox/Ubuntu ❌**, with 41 passed, 1 skipped (the long-task test is Chromium-only by design) and 1 failed. The failure was a **real bug**: imports navigated before the IndexedDB save finished, so a page load right after an import could lose the game. It is fixed in `f05827f` (navigation now waits for the save; regression unit tests added). Re-run [42874613978](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42874613978) on `f05827f`: that test now **passes** on Firefox/Ubuntu, and the other three jobs pass again. One different test failed: "every review control can be reached with the Tab key". It pressed Tab before the review page appeared (focus only ever reached the Home page's game list), because the test never waited for the page and navigation is no longer instant. The test now waits for the review page; its checks are unchanged. Re-run [42876123384](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42876123384) on `200715e`: check + engine tests ✅, **Firefox/Ubuntu ✅** and **Firefox/Windows ✅** (all Firefox E2E tests pass on both), **Chromium/Ubuntu ❌**, with 42 passed and 1 failed. The failure was the same kind of test race: "an imported game survives a reload" read the page heading as soon as the URL changed, before the review page was drawn, so it captured the Home page's "Review a game". After the reload the review page correctly showed the saved game. The test now waits for the review page before reading the heading; its checks are unchanged. All other E2E tests were checked for reads that don't wait for the review page; none was found. Fixed in `614874a`, which gave the green run above. |
 | 15 | Production build succeeds; licence check passes with stockfish (GPL-3.0) and dexie recorded | PASS | `npm run build` succeeds, with a bundle-size warning only. `npm run licenses`: 20/20 allowed, including `stockfish@19.0.1 GPL-3.0` and `dexie@4.4.7 Apache-2.0`. Both are in DEPENDENCIES.md. |
 | 16 | All deviations from the specs documented | PASS | D1–D16 recorded in DATA_MODELS (§4, §5, §9, §10, §11), methodology (§3, §5.1), architecture (D10, §6.1, §7, §11), TESTING_STRATEGY, DEPENDENCIES, BENCHMARKS and this roadmap. |
 
 **Phase 2 follow-ups:**
-- **F1** (Firefox E2E) now has a concrete path: push to the private repository and let `ci.yml` run.
+- **F1** (Firefox E2E): **closed 2026-11-11.** Firefox passes in CI on Ubuntu and Windows (item 14).
 - **F3:** add an E2E test for an analysis *in progress* across a reload with the real engine, i.e. a reload *during* a run rather than after Stop. Optional: the controller-level test covers the interrupted-save case.
 ### Phase 3 — Game review system → **M1**
 
@@ -306,7 +306,7 @@ M1 (a usable free reviewer) is about 12–19 days in.
 | R11 | Phase 6 never feels useful because too few games are analysed | Medium | Medium | Batch "analyse my last 50" at the Quick preset; clear progress toward the thresholds |
 | R12 | Toolchain drift: the TypeScript 7 / typescript-eslint gap, and Node 24 entering its final maintenance year in 2027 | Medium | Low | Exact lockfile; pinned TS 6.0; Node 26 re-evaluation after M2 (architecture D0) |
 | R13 | Lichess changes its accuracy code later | Low | Low | Our compatibility claim is tied to the source revision read on 2026-11-03. The constants are frozen in `LICHESS_ACCURACY_V1`. |
-| R14 | **Playwright's Firefox won't start on the owner's machine.** Windows build 26300 reports a side-by-side error: the `mozglue` assembly can't be bound, even after a clean reinstall. Chromium works. | Certain (on this machine) | Medium | Phase 1 E2E is verified in Chromium only, and Firefox is recorded as BLOCKED — ENVIRONMENT. Decided (U13): run the Firefox project on another machine or in CI (follow-up F1). WebKit is not a substitute. Retry locally after Windows or Playwright updates. Phase 2: `.github/workflows/ci.yml` runs Firefox on Ubuntu and Windows in GitHub Actions. On the first run Firefox/Windows passed, and Firefox/Ubuntu found an import-then-reload bug, now fixed and awaiting a re-run. |
+| R14 | **Playwright's Firefox won't start on the owner's machine.** Windows build 26300 reports a side-by-side error: the `mozglue` assembly can't be bound, even after a clean reinstall. Chromium works. | Certain (on this machine) | Medium | Phase 1 E2E is verified in Chromium only, and Firefox is recorded as BLOCKED — ENVIRONMENT. Decided (U13): run the Firefox project on another machine or in CI (follow-up F1). WebKit is not a substitute. Retry locally after Windows or Playwright updates. Phase 2: `.github/workflows/ci.yml` runs Firefox on Ubuntu and Windows in GitHub Actions. On the first run Firefox/Windows passed, and Firefox/Ubuntu found an import-then-reload bug, since fixed. **Mitigated 2026-11-11:** Firefox passes in CI on both systems (F1 closed). The local launch failure itself remains. |
 | R15 | **Memory on low-RAM devices**: each engine uses about 145–173 MB (BENCHMARKS §2.5), so the default 4 engines take about 0.6 GB | Medium | Medium | The engine count is user-configurable (1–4). Possible later improvement: cap "auto" by `navigator.deviceMemory` (Chromium only). |
 
 ## 6. Unresolved decisions
@@ -329,4 +329,4 @@ M1 (a usable free reviewer) is about 12–19 days in.
 
 ## 7. Immediate next step
 
-Phase 1 is conditionally accepted, with follow-ups F1 (Firefox E2E elsewhere) and F2 (the owner's own games) open. **Phase 2 does not start until the owner explicitly approves it.**
+Phase 1 is conditionally accepted; F1 (Firefox E2E) is closed and F2 (the owner's own games) is open. Phase 2 passes all 16 acceptance items on branch `phase-2`. **Next: the owner decides on merging `phase-2` into `main`. Phase 3 does not start until the owner explicitly approves it.**
