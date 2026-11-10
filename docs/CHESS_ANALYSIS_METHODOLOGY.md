@@ -82,6 +82,11 @@ Test invariant: mirroring the board and swapping colours must produce identical 
 | 50-move rule reached | `terminal 1/2-1/2` |
 | Game ended by resignation, timeout, or draw agreement | **Not** terminal. The final position is evaluated normally. |
 
+**Only the game's final position can be terminal (decision D6, Phase 2).**
+- Checkmate, stalemate and insufficient material end the game on the spot, so they can only occur at the end.
+- A threefold repetition or 50-move position is only a *claimable* draw. If the players continued, it wasn't the end of the game: later positions are real and are analysed by the engine as normal. The engine still receives the full move history, so it scores a repetition correctly.
+- Code: `terminalScore` in `src/core/engine/jobs.ts`.
+
 ## 4. From evaluation to Win%
 
 ### 4.1 Formula (v1)

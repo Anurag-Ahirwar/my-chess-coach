@@ -89,12 +89,14 @@ export interface GameRecord {
 
 ## 5. Engine analysis (raw, expensive)
 
+Implemented in Phase 2 (`src/core/engine/types.ts`, `src/core/engine/analysis.ts`), with decisions D3, D4 and D16 applied.
+
 ```ts
 export interface EngineIdentity {
   name: "stockfish";
-  version: string;            // "19.0.1"
+  version: string;            // "19.0.1" — the pinned npm package
   flavour: "lite-single" | "full-single";
-  nnue?: string;              // network file name if reported
+  nnue?: string;              // the engine's EvalFile default, e.g. "nn-61e7af4bb97d.nnue"
 }
 
 export interface AnalysisSettings {
@@ -103,28 +105,23 @@ export interface AnalysisSettings {
   maxDepth: number;
   multiPv: 1 | 2 | 3;
   hashMb: number;
-  freshHashPerPosition: boolean;
+  freshHashPerPosition: true; // always: ucinewgame before every position (spec D9)
 }
 
 export interface EngineLine {
   rank: number;               // multipv index, 1-based
-  score: Score;               // White POV
-  wdl?: [number, number, number]; // per-mille, White POV, if reported
-  depth: number;
+  score: Score;               // White POV; mate is never stored as centipawns
+  wdl?: [number, number, number]; // per-mille, White POV (converted from side to move), if reported
+  depth: number;              // depth of the iteration this line comes from; lines may differ
   selDepth?: number;
   nodes: number;
-  pv: Uci[];                  // full PV as reported
+  pv: Uci[];                  // capped at 24 plies (D4)
 }
 
-export interface PositionResult {
-  positionIndex: number;      // 0..n
-  status: "done" | "terminal" | "failed";
-  terminal?: Score & { kind: "terminal" };
-  lines: EngineLine[];        // empty when terminal/failed
-  bestMove?: Uci;
-  timeMs?: number;
-  error?: string;
-}
+export type PositionResult =
+  | { positionIndex: number; status: "done"; lines: EngineLine[]; bestMove: Uci; timeMs: number }
+  | { positionIndex: number; status: "terminal"; terminal: Score & { kind: "terminal" }; lines: [] }
+  | { positionIndex: number; status: "failed"; error: string; lines: [] };
 
 export interface RawAnalysis {
   id: string;                 // `${gameId}|${engineKey}|${settingsHash}`
@@ -132,14 +129,22 @@ export interface RawAnalysis {
   gameId: string;
   engine: EngineIdentity;
   settings: AnalysisSettings;
-  settingsHash: string;       // stable hash of settings + engine identity
-  positions: PositionResult[];   // index = positionIndex; may be partial
-  completedCount: number;
-  totalCount: number;
+  settingsHash: string;       // SHA-256 (first 16 hex) of the canonical settings JSON — settings only
+  positions: (PositionResult | null)[]; // length totalCount; null = not analysed yet
+  completedCount: number;     // positions that are done or terminal
+  totalCount: number;         // n + 1
   startedAt: number;
-  completedAt?: number;
+  completedAt?: number;       // set when completedCount === totalCount
 }
 ```
+
+- **Key (D3).** `engineKey` = `${name}-${version}-${flavour}`, e.g. `stockfish-19.0.1-lite-single`. The network is implied by version and flavour. The settings hash covers the settings only, so the engine no longer appears in the key twice. Different engines or settings for the same game get different ids and never overwrite each other.
+- **Positions (D3).** A dense array, with `null` for positions not analysed yet, never a sparse array with holes.
+- **Failed positions.** `failed` positions don't count as complete, so an analysis with a failure is never `completedAt`. The next run retries those positions.
+- **Stopped searches.** A search stopped before its budget is never stored: that position stays `null` and is resumed later. So no `cancelled` status is needed.
+- **`bestMove` (D16).** The engine's reported `bestmove`. It may differ from `lines[0].pv[0]` when a node-limited search is cut short (architecture §6.1 notes).
+- **Validation.** A position is `done` only if the best move and every PV replay legally from the analysed position, and the engine reported no anomaly (e.g. `mate 0`). Otherwise it is `failed`, with the reason in `error`.
+- **Terminal positions (D6).** Only the game's final position can be `terminal` (methodology §3).
 
 Size estimate: 81 positions × 2 lines × a PV of about 20 moves ≈ 40–80 KB per game in JSON. 1,000 games ≈ 40–80 MB, which is well within IndexedDB limits. PV length is capped at 24 plies.
 

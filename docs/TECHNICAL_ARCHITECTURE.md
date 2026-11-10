@@ -307,7 +307,15 @@ stateDiagram-v2
   - **Decision D16** (approved 2026-11-11): `PositionResult.bestMove` stores the engine's `bestmove` exactly as reported. `lines` stores the last exact line for each MultiPV.
   - A mismatch between the two is valid engine behaviour, not a failure. Only illegality marks a position `failed`: the best move and every PV must replay legally from the analysed position.
   - Phase 3 uses `lines[0].score` for the evaluation and `bestMove` for "was the played move the best move" (methodology §5.3, `best1`).
-- **Terminal positions** (checkmate, stalemate, insufficient material, 50-move rule, threefold repetition) are **never** sent to the engine. Their scores come from rules (see methodology §3).
+- **Terminal positions** (checkmate, stalemate, insufficient material, 50-move rule, threefold repetition) are **never** sent to the engine. Their scores come from rules (see methodology §3). Only a game's **final** position can be terminal (decision D6).
+- **Game analysis service (Phase 2, Stage 2).** `src/app/analysis/analyzeGame.ts` drives a whole game through the pool:
+  - a complete stored analysis is reused with no engine work, and a partial one is resumed (only empty and failed positions are queued);
+  - the final position is scored by rules when the game ended on the board;
+  - every result is validated (legal best move and PVs, no anomalies) before it is recorded;
+  - a cancelled run leaves unanalysed positions empty;
+  - if the engine can't run at all, the run reports an error without marking any position `failed`.
+
+  It reaches the pool through a small `PositionSearcher` interface, so it is tested both with a fake and with the real engine.
 
 ### 6.2 Whole-game analysis sequence
 
