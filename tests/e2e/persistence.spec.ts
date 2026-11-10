@@ -5,7 +5,11 @@ test.describe("persistence (IndexedDB)", () => {
   test("an imported game survives a reload of the review page and of the home page", async ({ page }) => {
     await pastePgn(page, fixtureText("pgn", "chesscom", "06-blitz.pgn"));
     await expect(page).toHaveURL(/\/review\/pgn%3A/);
+    // The URL changes before the review page is drawn: wait for the page itself before reading its
+    // heading, or this can read the home page's "Review a game" (seen on a slow CI machine).
+    await expect(page.getByRole("navigation", { name: "Moves" })).toBeVisible();
     const heading = await page.getByRole("heading", { level: 1 }).textContent();
+    expect(heading).not.toBe("Review a game");
 
     await page.reload();
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(heading!);
