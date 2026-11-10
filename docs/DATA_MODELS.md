@@ -57,17 +57,23 @@ export interface Ply {
 
 ## 4. Games
 
+Reconciled with the Phase 1 code in Phase 2 (decision D2). Code: `src/core/game/types.ts`.
+
 ```ts
 export type GameSource =
-  | { kind: "chesscom"; url: string; uuid?: string; timeClass: string; rules: string;
-      endTime: number; reportedAccuracy?: { white: number; black: number } }
-  | { kind: "pgn"; fileName?: string; importedAt: number };
+  | { kind: "chesscom"; url: string; uuid?: string; timeClass?: string; rules: string;
+      endTime?: number; reportedAccuracy?: { white: number; black: number } }
+  | { kind: "pgn"; fileName?: string };
+
+export type TimeControl =
+  | { kind: "live"; initialSeconds: number; incrementSeconds: number }
+  | { kind: "daily"; secondsPerMove: number }
+  | { kind: "unknown"; raw: string };
 
 export interface GameRecord {
-  id: string;                 // chesscom: "cc:" + uuid (or url hash); pgn: "pgn:" + sha256(normalised movetext + start FEN)
-  schemaVersion: 1;
+  id: string;                 // chesscom: "cc:" + uuid (or url hash); pgn: "pgn:" + sha256(start FEN + UCI moves)
   source: GameSource;
-  pgn: string;                // original text, kept verbatim for export
+  pgn: string;                // original text for Chess.com games; a normalised export for file imports
   headers: Record<string, string>;
   startFen: Fen;              // standard start or [FEN] header
   plies: Ply[];
@@ -75,26 +81,38 @@ export interface GameRecord {
   black: { name: string; rating?: number };
   result: "1-0" | "0-1" | "1/2-1/2" | "*";
   termination?: string;
-  playedAt?: number;          // epoch ms
-  timeControl?: { initial: number; increment: number } | { daily: number };
-  userColor?: Color;          // resolved from the configured username
-  opening?: { eco: string; name: string; bookPlies: number }; // derived, cached
-  tags: string[];             // user tags (future)
-  createdAt: number;
-  updatedAt: number;
+  playedAt?: number;          // epoch ms, from UTCDate/UTCTime (or Date)
+  timeControl?: TimeControl;
+  terminal: TerminalState | null; // rules-based state of the final position
+  warnings: string[];         // PGN parser warnings (duplicate tags, result mismatch)
+}
+
+/** What is stored in IndexedDB `games`. */
+export interface StoredGame extends GameRecord {
+  schemaVersion: 1;
+  createdAt: number;          // first import; kept on re-import
+  updatedAt: number;          // latest import
 }
 ```
 
-`id` makes imports idempotent: importing the same game twice updates the existing record instead of duplicating it.
+`id` makes imports idempotent: importing the same game twice updates the existing record instead of duplicating it. Its analyses stay linked through `gameId`.
+
+**Removed from the Phase 0 draft (D2):**
+- `userColor`: derived from the username preference at render time, because a stored copy would go stale when the preference changes.
+- `opening`: derived in Phase 3 from the opening dataset.
+- `tags`: added when a phase needs it.
+- `GameSource.pgn.importedAt`: covered by `createdAt`.
 
 ## 5. Engine analysis (raw, expensive)
+
+Implemented in Phase 2 (`src/core/engine/types.ts`, `src/core/engine/analysis.ts`), with decisions D3, D4 and D16 applied.
 
 ```ts
 export interface EngineIdentity {
   name: "stockfish";
-  version: string;            // "19.0.1"
+  version: string;            // "19.0.1" — the pinned npm package
   flavour: "lite-single" | "full-single";
-  nnue?: string;              // network file name if reported
+  nnue?: string;              // the engine's EvalFile default, e.g. "nn-61e7af4bb97d.nnue"
 }
 
 export interface AnalysisSettings {
@@ -103,28 +121,23 @@ export interface AnalysisSettings {
   maxDepth: number;
   multiPv: 1 | 2 | 3;
   hashMb: number;
-  freshHashPerPosition: boolean;
+  freshHashPerPosition: true; // always: ucinewgame before every position (spec D9)
 }
 
 export interface EngineLine {
   rank: number;               // multipv index, 1-based
-  score: Score;               // White POV
-  wdl?: [number, number, number]; // per-mille, White POV, if reported
-  depth: number;
+  score: Score;               // White POV; mate is never stored as centipawns
+  wdl?: [number, number, number]; // per-mille, White POV (converted from side to move), if reported
+  depth: number;              // depth of the iteration this line comes from; lines may differ
   selDepth?: number;
   nodes: number;
-  pv: Uci[];                  // full PV as reported
+  pv: Uci[];                  // capped at 24 plies (D4)
 }
 
-export interface PositionResult {
-  positionIndex: number;      // 0..n
-  status: "done" | "terminal" | "failed";
-  terminal?: Score & { kind: "terminal" };
-  lines: EngineLine[];        // empty when terminal/failed
-  bestMove?: Uci;
-  timeMs?: number;
-  error?: string;
-}
+export type PositionResult =
+  | { positionIndex: number; status: "done"; lines: EngineLine[]; bestMove: Uci; timeMs: number }
+  | { positionIndex: number; status: "terminal"; terminal: Score & { kind: "terminal" }; lines: [] }
+  | { positionIndex: number; status: "failed"; error: string; lines: [] };
 
 export interface RawAnalysis {
   id: string;                 // `${gameId}|${engineKey}|${settingsHash}`
@@ -132,14 +145,22 @@ export interface RawAnalysis {
   gameId: string;
   engine: EngineIdentity;
   settings: AnalysisSettings;
-  settingsHash: string;       // stable hash of settings + engine identity
-  positions: PositionResult[];   // index = positionIndex; may be partial
-  completedCount: number;
-  totalCount: number;
+  settingsHash: string;       // SHA-256 (first 16 hex) of the canonical settings JSON — settings only
+  positions: (PositionResult | null)[]; // length totalCount; null = not analysed yet
+  completedCount: number;     // positions that are done or terminal
+  totalCount: number;         // n + 1
   startedAt: number;
-  completedAt?: number;
+  completedAt?: number;       // set when completedCount === totalCount
 }
 ```
+
+- **Key (D3).** `engineKey` = `${name}-${version}-${flavour}`, e.g. `stockfish-19.0.1-lite-single`. The network is implied by version and flavour. The settings hash covers the settings only, so the engine no longer appears in the key twice. Different engines or settings for the same game get different ids and never overwrite each other.
+- **Positions (D3).** A dense array, with `null` for positions not analysed yet, never a sparse array with holes.
+- **Failed positions.** `failed` positions don't count as complete, so an analysis with a failure is never `completedAt`. The next run retries those positions.
+- **Stopped searches.** A search stopped before its budget is never stored: that position stays `null` and is resumed later. So no `cancelled` status is needed.
+- **`bestMove` (D16).** The engine's reported `bestmove`. It may differ from `lines[0].pv[0]` when a node-limited search is cut short (architecture §6.1 notes).
+- **Validation.** A position is `done` only if the best move and every PV replay legally from the analysed position, and the engine reported no anomaly (e.g. `mate 0`). Otherwise it is `failed`, with the reason in `error`.
+- **Terminal positions (D6).** Only the game's final position can be `terminal` (methodology §3).
 
 Size estimate: 81 positions × 2 lines × a PV of about 20 moves ≈ 40–80 KB per game in JSON. 1,000 games ≈ 40–80 MB, which is well within IndexedDB limits. PV length is capped at 24 plies.
 
@@ -312,14 +333,13 @@ export interface TrainingPlan {
 
 ## 9. Chess.com cache
 
+Changed in Phase 2 (decision D5): only past months are stored, because they never change. The archive list and the current month are always rechecked through the browser's HTTP cache. Scripts can't read `ETag` or send `If-None-Match` under Chess.com's CORS policy (architecture §7), so those fields are gone.
+
 ```ts
 export interface HttpCacheEntry {
-  url: string;                 // primary key
-  etag?: string;
-  lastModified?: string;
+  url: string;                 // primary key: the month's API URL
   fetchedAt: number;
-  immutable: boolean;          // true for past months
-  body: unknown;               // validated JSON
+  body: unknown;               // the raw response; validated by the Chess.com client on every read
 }
 ```
 
@@ -331,9 +351,9 @@ export interface Preferences {
   theme: "system" | "light" | "dark";
   boardOrientation: "auto" | "white" | "black";
   chesscomUsername?: string;
-  analysisPreset: "quick" | "standard" | "deep";
-  engineFlavour: "lite-single" | "full-single";
-  workerCount?: number;
+  analysisPreset: "quick" | "standard" | "deep"; // implemented in Phase 2; default "standard"
+  engineFlavour: "lite-single" | "full-single";  // not implemented: only lite-single ships (U4 decided: lite only)
+  workerCount: "auto" | 1 | 2 | 3 | 4;            // implemented in Phase 2; "auto" = spec D7 default
   coachLevel: CoachLevel | "auto";
   aiProvider?: "gemini" | "claude" | "openai"; // type is provider-independent; only "gemini" is selectable until Phase 4b
   aiModel?: string;
@@ -349,22 +369,31 @@ export interface StoredSecret {
 }
 ```
 
-## 11. Dexie schema v1
+## 11. Dexie schema
+
+**Version 1 (Phase 2)** declares only the tables in use (decision D1). Code: `src/infra/storage/db.ts`, database name `chess-coach`.
 
 ```ts
 db.version(1).stores({
-  games:        "id, playedAt, userColor, source.kind, [source.kind+playedAt]",
-  rawAnalyses:  "id, gameId, settingsHash, completedAt",
-  reviews:      "[rawAnalysisId+methodologyVersion], gameId",
-  explanations: "id, gameId, [gameId+plyIndex], task",
-  mistakes:     "id, gameId, srs.dueAt, label, *motifs, archived",
-  drillAttempts:"++id, mistakeId, at",
-  usage:        "++id, at, provider",
-  httpCache:    "url, fetchedAt",
-  profiles:     "id",
-  secrets:      "id",
+  games:       "id, playedAt, createdAt",
+  rawAnalyses: "id, gameId, completedAt",
+  httpCache:   "url, fetchedAt",
 });
 ```
+
+**Planned later versions.** Each phase adds its tables with a version bump. Adding a table needs no data migration, and the index design is settled by the phase that uses it.
+
+| Version | Phase | Adds (draft) |
+|---|---|---|
+| 2 | 3 | `reviews: "[rawAnalysisId+methodologyVersion], gameId"` |
+| 3 | 4 | `explanations: "id, gameId, [gameId+plyIndex], task"`, `usage: "++id, at, provider"`, `secrets: "id"` |
+| 4 | 5 | `mistakes: "id, gameId, srs.dueAt, label, *motifs, archived"`, `drillAttempts: "++id, mistakeId, at"` |
+| later | 6 | `profiles: "id"` |
+
+**Reading and writing (Phase 2):**
+- Every record is validated with Zod when read (`src/infra/storage/schemas.ts`). A record that fails is reported in the storage banner, skipped, and **never deleted or overwritten**. A write to its id is refused.
+- Analysis writes run read-modify-write inside one Dexie transaction and merge with the stored copy (`mergeAnalyses`): a `done` or `terminal` result is never replaced by `failed` or empty. This makes concurrent writers, such as two tabs, safe.
+- If IndexedDB can't be opened, in-memory repositories with the same behaviour are used, and the banner says so. If a write fails (e.g. quota), the data stays in memory for the tab.
 
 Migration rules:
 - Never drop user data in a migration. A schema version bump has an `upgrade()` that converts records.

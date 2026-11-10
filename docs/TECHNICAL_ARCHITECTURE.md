@@ -177,7 +177,7 @@ Each decision lists the recommendation, the reason, the alternatives, the trade-
 ### D6. Engine build: Stockfish.js "lite single-threaded" by default
 - **Recommend:** npm `stockfish` **19.0.1** (GPL-3.0, Stockfish 19), pinned exactly. Its README recommends the **lite, single-threaded** flavour for most projects, and we use it as the default for every preset:
   - Files: `bin/stockfish-19-lite-single.js` (28 KB) and `bin/stockfish-19-lite-single.wasm` (1,845,971 bytes ≈ 1.8 MB).
-  - **Optional, decided in Phase 2 (U4):** the **full single-threaded** build, `bin/stockfish-19-single.js` + `.wasm` (99,169,054 bytes ≈ 99 MB, which includes the large NNUE network). It would be a one-time download for Deep mode, cached in Cache Storage.
+  - **Not used (decision U4, 2026-11-11):** the **full single-threaded** build, `bin/stockfish-19-single.js` + `.wasm` (99,169,054 bytes ≈ 99 MB). Benchmarked in Phase 2: about 2.8× the memory per engine, 1.8× fewer nodes/s, and the same best move as lite in only 73% of positions (BENCHMARKS §3). Every preset, Deep included, uses the lite build.
   - File list checked against the published package on 2026-11-03.
 - **Why:** Lite is far stronger than any club player and loads instantly. The full network changes evaluations a little and costs a ≈99 MB download plus around 100 MB of memory per worker.
 - **Alternatives:** Multi-threaded builds (need COOP/COEP, see D7); the ASM-JS build (slow, last resort only).
@@ -222,6 +222,23 @@ Each decision lists the recommendation, the reason, the alternatives, the trade-
 - **Why:** Analyses run to hundreds of KB per game with PVs included, and IndexedDB handles that. Dexie gives typed tables, indexes and migrations.
 - **Alternatives:** Raw IndexedDB (verbose), `idb` (thin wrapper, no migrations), SQLite-WASM with OPFS (powerful, but heavier and has its own header requirements).
 - **Risk:** Users clearing browser data lose everything. Mitigation: JSON export/import (F6.4), and request `navigator.storage.persist()`.
+- **Implemented in Phase 2, Stage 3:**
+  - `src/infra/storage/`: Dexie v1, Zod read schemas, and Dexie and in-memory repositories with identical behaviour.
+  - `src/app/storage.ts`: opens the database, falls back to memory, shows the banner, and requests persistence.
+  - `src/app/analysis/analysisController.ts`: saves analyses while they run.
+- **Failure handling:**
+  - If IndexedDB can't be opened (missing, disabled, blocked), the app runs on in-memory repositories and a banner explains it.
+  - If a write fails (e.g. quota), the data stays in memory for the tab and the banner says so.
+  - **An import navigates to the review page only after the game is saved.** A page unload aborts unfinished IndexedDB transactions, so navigating first could lose the game. Firefox E2E on a CI runner found this. The `navigator.storage.persist()` request is not awaited, because Firefox may show a permission prompt.
+  - If another tab upgrades the schema, this tab closes its connection and asks for a reload.
+  - Invalid stored records are reported and never deleted or overwritten.
+- **Analysis saving** (decision D12):
+  - while running, at most one save per 250 ms, plus a save when the run ends or is cancelled;
+  - each save merges with the stored copy in one transaction (`mergeAnalyses`), so no analysed position is lost;
+  - a stopped search is never stored, and its position resumes on the next run;
+  - if the stored analysis can't be read, the run continues in memory without writing over it.
+- **Two tabs.** A Web Lock (`navigator.locks`, name `chess-coach:analysis:<id>`, `ifAvailable`) stops two tabs analysing the same game with the same settings at once. The second tab is told why. Without the Locks API, the transactional merge still prevents data loss.
+- **Persistence** (decision D7). `navigator.storage.persist()` is requested once, after the first successful game save. The answer is recorded, and a refusal is not an error.
 
 ### D11. LLM access: browser-direct, provider-agnostic, lazily loaded
 - **Recommend:** Call providers directly from the browser using the user's own key. The provider adapter code is loaded with dynamic `import()` only when used. Each adapter implements one small `LLMProvider` interface (see [AI_COACH_DESIGN](AI_COACH_DESIGN.md)).
@@ -292,7 +309,34 @@ stateDiagram-v2
   - converts scores from **side-to-move perspective → White perspective** at this single point. Nothing downstream ever sees side-to-move scores;
   - handles `bestmove (none)`. We never send terminal positions, but this guards against it.
 - **`EnginePool`** keeps a FIFO per priority level, assigns jobs to idle workers, respawns a worker that has failed and retries the job once, then marks that position `failed` (the UI shows a gap instead of a fabricated value).
-- **Terminal positions** (checkmate, stalemate, insufficient material, 50-move rule, threefold repetition) are **never** sent to the engine. Their scores come from rules (see methodology §3).
+
+**Implementation notes (Phase 2, Stage 1)** — code in `src/infra/engine/` and `src/core/engine/`:
+- **Transport.** `EngineTransport` is a line-based interface. The browser implementation (`workerTransportFactory`) loads `/engine/stockfish-19-lite-single.js` as a classic Worker, and the loader finds its `.wasm` next to it. The loader posts exactly one message per output line, so multi-line strings are split defensively and non-string messages (download progress) are ignored. A line split *across* messages can't occur with this loader and can't be detected over `postMessage`.
+- **Stale-output barrier.** Every search starts with `ucinewgame` + `isready`, and all output before that `readyok` is discarded. Output that arrives while the worker is idle is also ignored.
+- **Verified behaviour of the pinned build:**
+  - `stop` is honoured mid-search: 20 ms in Node, 53 ms in Chromium. Cancel therefore uses `stop` → `bestmove`, and killing the engine is only the fallback after the 2 s stop timeout.
+  - The engine reports `id name Stockfish 19 Lite WASM` and network `nn-61e7af4bb97d.nnue`.
+  - A mated root is reported as `info depth 0 score mate 0` **without** a `nodes` field. It is flagged as an anomaly.
+- **Watchdogs** (decision D10, calibrated in Stage 4 from [BENCHMARKS](BENCHMARKS.md) §4):
+  - initialisation 10 s (measured 0.12 s);
+  - 30 s with no output;
+  - an overall search cap of `10 s + nodes / 50 000`: Quick 13 s, Standard 22 s, Deep 60 s, at least 10× the slowest measured search;
+  - `stop` 2 s (measured 20–53 ms), then kill.
+- **Engine start failures.** After 3 consecutive failures with no running engine, the pool rejects queued jobs as `unavailable` instead of retrying in a loop.
+- **Worker CSP.** A page's `<meta>` CSP doesn't govern a dedicated worker, which gets its policy from its own response headers. The worker script is allowed by `worker-src 'self'`. The WASM fetch and compile happen inside the worker and were verified to load under the production build's CSP with no violations. If the app were ever hosted with header-based CSP, the worker response would need `'wasm-unsafe-eval'`.
+- **`bestmove` vs the last exact line.** When the node limit cuts the last iteration short, Stockfish's `bestmove` can differ from the first move of the last *exact* top line, because the newer choice only has a bound score. This is recorded in the golden transcript `equal-black-to-move.quick.uci`.
+  - **Decision D16** (approved 2026-11-11): `PositionResult.bestMove` stores the engine's `bestmove` exactly as reported. `lines` stores the last exact line for each MultiPV.
+  - A mismatch between the two is valid engine behaviour, not a failure. Only illegality marks a position `failed`: the best move and every PV must replay legally from the analysed position.
+  - Phase 3 uses `lines[0].score` for the evaluation and `bestMove` for "was the played move the best move" (methodology §5.3, `best1`).
+- **Terminal positions** (checkmate, stalemate, insufficient material, 50-move rule, threefold repetition) are **never** sent to the engine. Their scores come from rules (see methodology §3). Only a game's **final** position can be terminal (decision D6).
+- **Game analysis service (Phase 2, Stage 2).** `src/app/analysis/analyzeGame.ts` drives a whole game through the pool:
+  - a complete stored analysis is reused with no engine work, and a partial one is resumed (only empty and failed positions are queued);
+  - the final position is scored by rules when the game ended on the board;
+  - every result is validated (legal best move and PVs, no anomalies) before it is recorded;
+  - a cancelled run leaves unanalysed positions empty;
+  - if the engine can't run at all, the run reports an error without marking any position `failed`.
+
+  It reaches the pool through a small `PositionSearcher` interface, so it is tested both with a fake and with the real engine.
 
 ### 6.2 Whole-game analysis sequence
 
@@ -385,7 +429,12 @@ Full design: [AI_COACH_DESIGN](AI_COACH_DESIGN.md).
 
 - No engine work on the main thread. Engine `info` lines are throttled to ≤10 UI updates per second.
 - The eval graph renders progressively as positions finish.
-- Rough sizing (to verify): a 40-move game has 81 positions. With 3 workers and the Standard preset, wall time is roughly 27 × the single-position time. **The real number comes from the Phase 2 benchmark script** (`scripts/benchmark.ts`), which runs the presets over a fixed set of games and reports p50/p95 per-position time on the owner's machine.
+- **Measured in Phase 2** ([BENCHMARKS](BENCHMARKS.md); 6-core laptop, Chromium, default pool of 4 engines):
+  - a 77-position game takes **5.9 s** at Quick and **19.6 s** at Standard; Deep is estimated at about 87 s for 80 positions;
+  - per position with one engine (p50): 236 ms / 1.05 s / 4.34 s;
+  - no main-thread long task over 50 ms.
+
+  The benchmark runs as a Playwright spec (`npm run bench`) rather than `scripts/benchmark.ts` (decision D9), because a real browser is needed to measure Workers and long tasks.
 - Possible later optimisation: a two-pass review (Quick pass for an instant graph, then refine to the chosen preset).
 
 ## 12. Licence obligations (engineering view)

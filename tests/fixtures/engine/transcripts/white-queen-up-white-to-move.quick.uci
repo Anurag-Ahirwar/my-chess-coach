@@ -1,0 +1,22 @@
+# engine: Stockfish 19 Lite WASM | network: nn-61e7af4bb97d.nnue | npm stockfish 19.0.1 lite-single (Node child process)
+# position-id: white-queen-up-white-to-move
+# side-to-move: w
+# preset: quick (multipv 1)
+# command: setoption name MultiPV value 1
+# command: position fen 4k3/8/8/8/8/8/8/3QK3 w - - 0 1
+# command: go nodes 150000 depth 18
+info depth 1 seldepth 2 multipv 1 score cp 951 wdl 1000 0 0 nodes 26 nps 26000 hashfull 0 time 1 pv d1a1
+info depth 2 seldepth 5 multipv 1 score cp 721 wdl 1000 0 0 nodes 296 nps 296000 hashfull 0 time 1 pv d1d6 e8f7
+info depth 3 seldepth 4 multipv 1 score cp 839 wdl 1000 0 0 nodes 322 nps 322000 hashfull 0 time 1 pv d1d6 e8f7 e1d2
+info depth 4 seldepth 7 multipv 1 score cp 775 wdl 1000 0 0 nodes 505 nps 505000 hashfull 0 time 1 pv d1d6 e8f7 e1f1
+info depth 5 seldepth 9 multipv 1 score cp 734 wdl 1000 0 0 nodes 885 nps 442500 hashfull 0 time 2 pv d1d6 e8f7 d6d5 f7f8 e1e2
+info depth 6 seldepth 11 multipv 1 score cp 835 wdl 1000 0 0 nodes 1613 nps 537666 hashfull 0 time 3 pv d1d4 e8f7 e1f1
+info depth 7 seldepth 13 multipv 1 score cp 754 wdl 1000 0 0 nodes 3034 nps 758500 hashfull 1 time 4 pv d1d3
+info depth 8 seldepth 15 multipv 1 score cp 732 wdl 1000 0 0 nodes 5520 nps 788571 hashfull 1 time 7 pv d1d5 e8e7 d5a5
+info depth 9 seldepth 12 multipv 1 score cp 681 wdl 1000 0 0 nodes 12969 nps 926357 hashfull 3 time 14 pv d1d3 e8e7
+info depth 10 seldepth 17 multipv 1 score cp 641 wdl 1000 0 0 nodes 72231 nps 830241 hashfull 16 time 87 pv d1d5 e8e7 d5c6 e7d8 e1e2 d8e7 e2e3
+info depth 11 seldepth 15 multipv 1 score cp 669 wdl 1000 0 0 nodes 86480 nps 765309 hashfull 20 time 113 pv d1d6 e8f7 e1d2 f7g8 d2e2
+info depth 12 seldepth 17 multipv 1 score cp 723 wdl 1000 0 0 nodes 131098 nps 799378 hashfull 30 time 164 pv d1d6 e8f7 e1e2 f7g8 e2d3
+info depth 13 seldepth 23 multipv 1 score cp 745 wdl 1000 0 0 nodes 139158 nps 823420 hashfull 31 time 169 pv d1d6 e8f7 e1d2
+info depth 14 seldepth 23 multipv 1 score cp 745 wdl 1000 0 0 nodes 150101 nps 773716 hashfull 32 time 194 pv d1d6 e8f7 e1d2
+bestmove d1d6 ponder e8f7

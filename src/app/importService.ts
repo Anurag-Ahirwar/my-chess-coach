@@ -2,9 +2,16 @@ import { buildGameRecord } from "@/core/game/record";
 import type { Color } from "@/core/chess/types";
 import type { GameRecord } from "@/core/game/types";
 import { describePgnError, parsePgn, type PgnError } from "@/core/pgn";
-import { ChessComClient, type ChessComGame } from "@/infra/chesscom";
+import { ChessComClient, type ChessComGame, type PastMonthCache } from "@/infra/chesscom";
+import { getRepositories } from "./storage";
 
-export const chessComClient = new ChessComClient();
+/** Past months are kept in IndexedDB (decision D5), or in memory if storage is unavailable. */
+const storedPastMonths: PastMonthCache = {
+  get: async (url) => (await getRepositories()).pastMonths.get(url),
+  set: async (url, body) => (await getRepositories()).pastMonths.set(url, body),
+};
+
+export const chessComClient = new ChessComClient({ pastMonthCache: storedPastMonths });
 
 export interface PgnImportResult {
   records: GameRecord[];

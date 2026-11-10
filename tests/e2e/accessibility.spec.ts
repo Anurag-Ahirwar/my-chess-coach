@@ -30,6 +30,9 @@ for (const theme of ["light", "dark"] as const) {
 
 test("every review control can be reached with the Tab key", async ({ page }) => {
   await pastePgn(page, "1. e4 e5 2. Nf3 *");
+  // Wait until the review page is showing before pressing Tab. Since Phase 2 an import opens the
+  // review page only after the game is saved, which can take a moment on a slow machine (CI).
+  await expect(page.getByRole("navigation", { name: "Moves" })).toBeVisible();
   const reached = new Set<string>();
   for (let i = 0; i < 40; i++) {
     await page.keyboard.press("Tab");

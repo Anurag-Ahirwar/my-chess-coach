@@ -1,5 +1,23 @@
 import type { GameResult } from "@/core/chess/types";
+import type { Score } from "@/core/engine/types";
 import type { PlayerInfo } from "@/core/game/types";
+
+/**
+ * A raw engine score from White's perspective, for display only (docs/DATA_MODELS.md §12):
+ * "+1.24", "−0.30", "0.00", "M3" (White mates), "−M2" (Black mates), or a game result.
+ */
+export function formatScore(score: Score): string {
+  switch (score.kind) {
+    case "cp": {
+      const pawns = (Math.abs(score.value) / 100).toFixed(2);
+      return score.value > 0 ? `+${pawns}` : score.value < 0 ? `−${pawns}` : pawns;
+    }
+    case "mate":
+      return score.moves > 0 ? `M${score.moves}` : `−M${-score.moves}`;
+    case "terminal":
+      return score.result === "1/2-1/2" ? "½–½" : score.result.replace("-", "–");
+  }
+}
 
 export function formatPlayer(player: PlayerInfo): string {
   return player.rating ? `${player.name} (${player.rating})` : player.name;

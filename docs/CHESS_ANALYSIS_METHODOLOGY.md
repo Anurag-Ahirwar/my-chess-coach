@@ -82,6 +82,11 @@ Test invariant: mirroring the board and swapping colours must produce identical 
 | 50-move rule reached | `terminal 1/2-1/2` |
 | Game ended by resignation, timeout, or draw agreement | **Not** terminal. The final position is evaluated normally. |
 
+**Only the game's final position can be terminal (decision D6, Phase 2).**
+- Checkmate, stalemate and insufficient material end the game on the spot, so they can only occur at the end.
+- A threefold repetition or 50-move position is only a *claimable* draw. If the players continued, it wasn't the end of the game: later positions are real and are analysed by the engine as normal. The engine still receives the full move history, so it scores a repetition correctly.
+- Code: `terminalScore` in `src/core/engine/jobs.ts`.
+
 ## 4. From evaluation to Win%
 
 ### 4.1 Formula (v1)
@@ -142,7 +147,7 @@ For the move from position *P* (before) to *P′* (after), played by colour *c*:
 | `Wb` | Win% for *c* at *P*: engine eval of *P* (best play), from *c*'s POV |
 | `Wa` | Win% for *c* at *P′*: engine eval of *P′* after the **played** move, from *c*'s POV |
 | `L` | Win% loss = `max(0, Wb − Wa)` |
-| `best1`, `best2` | Top two engine moves at *P* (MultiPV 1 and 2) with their Win% for *c* |
+| `best1`, `best2` | Top two engine moves at *P* (MultiPV 1 and 2) with their Win% for *c*. **The move `best1` is the engine's reported `bestmove`** (decision D16). Its Win% comes from the last exact top line (`lines[0]`). When a node-limited search is cut short these two can name different moves. That is normal Stockfish behaviour (architecture §6.1 notes). |
 | `gap` | `Win%(best1) − Win%(best2)` (only when MultiPV ≥ 2 and ≥ 2 legal moves) |
 | `Wprev` | Win% for *c* at the position before the opponent's previous move |
 

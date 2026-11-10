@@ -1,6 +1,9 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 4173;
+// E2E normally runs against the production build, with its Content-Security-Policy.
+// E2E_TARGET=dev runs the same tests against the Vite dev server (used to check the engine loads in dev).
+const DEV = process.env["E2E_TARGET"] === "dev";
+const PORT = DEV ? 5174 : 4173;
 
 export default defineConfig({
   testDir: "tests/e2e",
@@ -16,9 +19,10 @@ export default defineConfig({
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
     { name: "firefox", use: { ...devices["Desktop Firefox"] } },
   ],
-  // E2E runs against the production build, with its Content-Security-Policy.
   webServer: {
-    command: `npm run build && npx vite preview --port ${PORT} --strictPort`,
+    command: DEV
+      ? `npx vite --port ${PORT} --strictPort`
+      : `npm run build && npx vite preview --port ${PORT} --strictPort`,
     url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env["CI"],
     timeout: 180_000,

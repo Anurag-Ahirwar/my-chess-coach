@@ -43,4 +43,17 @@ export interface GameRecord {
   warnings: string[];
 }
 
+/**
+ * A game as stored in IndexedDB (decision D2): the Phase 1 record plus a schema version and
+ * timestamps. `userColor`, `opening` and `tags` are not stored: the first is derived from the
+ * username preference at render time, the others belong to later phases.
+ */
+export interface StoredGame extends GameRecord {
+  schemaVersion: 1;
+  /** First import. Kept when the same game is imported again. */
+  createdAt: number;
+  /** Latest import. */
+  updatedAt: number;
+}
+
 export type { Color };

@@ -100,7 +100,8 @@ export function ChessComImport() {
     setError(undefined);
     try {
       const record = await importChessComGame(summary.game);
-      addGames([record]);
+      // Wait for the save before navigating (see PgnImport). addGames never throws.
+      await addGames([record]);
       void navigate(`/review/${encodeURIComponent(record.id)}`);
     } catch (e) {
       setError(errorText(e));

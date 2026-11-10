@@ -1,0 +1,62 @@
+# Continuous integration (docs/TESTING_STRATEGY.md). Closes follow-up F1: the E2E suite runs in
+# Firefox here, because Playwright's Firefox cannot start on the owner's Windows build (R14).
+name: CI
+
+on:
+  push:
+    branches: [main, phase-2]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Typecheck, lint, licences, unit + integration, engine
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run test:engine
+
+  e2e:
+    name: E2E (${{ matrix.browser }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { os: ubuntu-latest, browser: chromium }
+          - { os: ubuntu-latest, browser: firefox }
+          - { os: windows-latest, browser: firefox }
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npx playwright test --project=${{ matrix.browser }}
+        env:
+          CI: "true"
+      - if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report-${{ matrix.browser }}-${{ matrix.os }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14

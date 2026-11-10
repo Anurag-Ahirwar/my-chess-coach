@@ -22,6 +22,26 @@ export interface ChessComClientOptions {
   baseUrl?: string;
   /** Waits before retrying after HTTP 429. */
   backoffMs?: readonly number[];
+  /** Where past months are kept (they never change). Defaults to memory; the app passes IndexedDB. */
+  pastMonthCache?: PastMonthCache;
+}
+
+/** Storage for past months' raw response bodies, keyed by URL (decision D5). */
+export interface PastMonthCache {
+  get(url: string): Promise<unknown>;
+  set(url: string, body: unknown): Promise<void>;
+}
+
+/** The default cache: in memory, for the lifetime of the client. */
+export class MemoryPastMonthCache implements PastMonthCache {
+  private readonly entries = new Map<string, unknown>();
+  get(url: string): Promise<unknown> {
+    return Promise.resolve(this.entries.get(url));
+  }
+  set(url: string, body: unknown): Promise<void> {
+    this.entries.set(url, body);
+    return Promise.resolve();
+  }
 }
 
 const DEFAULT_BASE_URL = "https://api.chess.com/pub/player";
@@ -32,7 +52,8 @@ const ARCHIVE_URL_PATTERN = /\/games\/(\d{4})\/(\d{2})$/;
  * Client for the Chess.com Published-Data API.
  *
  * - Requests are strictly serial; parallel requests may be answered with 429.
- * - Past months never change, so they are cached for the client's lifetime.
+ * - Past months never change, so they are cached (in memory, or IndexedDB in the app).
+ *   A cache failure never fails a request: the month is simply fetched.
  * - Everything else is fetched with `cache: "no-cache"`: the browser's HTTP
  *   cache revalidates with its stored ETag (a 304 is served from cache). The
  *   API's CORS policy neither exposes `ETag` to scripts nor accepts
@@ -44,7 +65,7 @@ export class ChessComClient {
   private readonly now: () => Date;
   private readonly baseUrl: string;
   private readonly backoffMs: readonly number[];
-  private readonly immutableCache = new Map<string, unknown>();
+  private readonly pastMonths: PastMonthCache;
   private queue: Promise<unknown> = Promise.resolve();
 
   constructor(options: ChessComClientOptions = {}) {
@@ -53,6 +74,7 @@ export class ChessComClient {
     this.now = options.now ?? (() => new Date());
     this.baseUrl = options.baseUrl ?? DEFAULT_BASE_URL;
     this.backoffMs = options.backoffMs ?? DEFAULT_BACKOFF_MS;
+    this.pastMonths = options.pastMonthCache ?? new MemoryPastMonthCache();
   }
 
   async getProfile(username: string): Promise<ChessComProfile> {
@@ -95,17 +117,27 @@ export class ChessComClient {
     return year * 12 + (month - 1) < current;
   }
 
-  private getJson(url: string, { immutable = false } = {}): Promise<unknown> {
-    if (immutable && this.immutableCache.has(url)) return Promise.resolve(this.immutableCache.get(url));
+  private async getJson(url: string, { immutable = false } = {}): Promise<unknown> {
+    if (immutable) {
+      const cached = await this.readCache(url);
+      if (cached !== undefined) return cached;
+    }
     const task = this.queue.then(async () => {
-      if (immutable && this.immutableCache.has(url)) return this.immutableCache.get(url);
+      if (immutable) {
+        const cached = await this.readCache(url); // filled by an earlier request in the queue?
+        if (cached !== undefined) return cached;
+      }
       const body = await this.fetchWithBackoff(url);
-      if (immutable) this.immutableCache.set(url, body);
+      if (immutable) await this.pastMonths.set(url, body).catch(() => undefined);
       return body;
     });
     // Keep the queue alive after a failure; callers still see their own rejection.
     this.queue = task.catch(() => undefined);
     return task;
+  }
+
+  private readCache(url: string): Promise<unknown> {
+    return this.pastMonths.get(url).catch(() => undefined);
   }
 
   private async fetchWithBackoff(url: string): Promise<unknown> {

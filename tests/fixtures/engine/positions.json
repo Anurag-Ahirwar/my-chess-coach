@@ -1,0 +1,93 @@
+{
+  "comment": "Positions for golden engine transcripts (scripts/record-engine-fixtures.mjs) and @engine tests. startFen + moves is exactly what the app sends (spec D9). sideToMove is of the analysed position.",
+  "positions": [
+    {
+      "id": "equal-white-to-move",
+      "description": "Open game after 1.e4 e5, White to move: roughly equal",
+      "startFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "moves": ["e2e4", "e7e5"],
+      "sideToMove": "w"
+    },
+    {
+      "id": "equal-black-to-move",
+      "description": "After 1.e4, Black to move: roughly equal",
+      "startFen": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+      "moves": ["e2e4"],
+      "sideToMove": "b"
+    },
+    {
+      "id": "white-queen-up-white-to-move",
+      "description": "K+Q vs K, White to move: White is winning",
+      "startFen": "4k3/8/8/8/8/8/8/3QK3 w - - 0 1",
+      "moves": [],
+      "sideToMove": "w"
+    },
+    {
+      "id": "white-queen-up-black-to-move",
+      "description": "K+Q vs K, Black to move: White is still winning (sign must stay positive)",
+      "startFen": "4k3/8/8/8/8/8/8/3QK3 b - - 0 1",
+      "moves": [],
+      "sideToMove": "b"
+    },
+    {
+      "id": "white-mates-in-1",
+      "description": "White to move, Rd8# (back rank)",
+      "startFen": "6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "moves": [],
+      "sideToMove": "w"
+    },
+    {
+      "id": "black-gets-mated-in-1",
+      "description": "Black to move and in check: Kb8 is forced, then Qh8# or Qb7#",
+      "startFen": "k7/8/1K6/8/8/8/8/7Q b - - 0 1",
+      "moves": [],
+      "sideToMove": "b"
+    },
+    {
+      "id": "black-mates-in-1",
+      "description": "Black to move, Qh1# (back rank)",
+      "startFen": "8/7q/8/8/8/1k6/8/K7 b - - 0 1",
+      "moves": [],
+      "sideToMove": "b"
+    },
+    {
+      "id": "white-gets-mated-in-1",
+      "description": "White to move and in check: Kb8 is forced, then Qh8# or Qb7#",
+      "startFen": "K7/8/1k6/8/8/8/8/7q w - - 0 1",
+      "moves": [],
+      "sideToMove": "w"
+    },
+    {
+      "id": "forced-black",
+      "description": "Black's only legal move is Kg8",
+      "startFen": "7k/8/6K1/8/8/8/8/R7 b - - 0 1",
+      "moves": [],
+      "sideToMove": "b"
+    },
+    {
+      "id": "forced-white",
+      "description": "White's only legal move is Kg1",
+      "startFen": "r7/8/8/8/8/6k1/8/7K w - - 0 1",
+      "moves": [],
+      "sideToMove": "w"
+    },
+    {
+      "id": "repetition-with-history",
+      "description": "Black (a queen down) to move; the start position has occurred twice, so Ke8 repeats it a third time: a draw only if the engine sees the move history",
+      "startFen": "4k3/8/8/8/8/8/8/3QK3 w - - 0 1",
+      "moves": ["d1d2", "e8f8", "d2d1", "f8e8", "d1d2", "e8f8", "d2d1"],
+      "sideToMove": "b"
+    },
+    {
+      "id": "repetition-without-history",
+      "description": "The same position as repetition-with-history, sent as a bare FEN: no repetition is visible, so White is winning",
+      "startFen": "5k2/8/8/8/8/8/8/3QK3 b - - 7 4",
+      "moves": [],
+      "sideToMove": "b"
+    }
+  ],
+  "presets": {
+    "quick": { "nodes": 150000, "maxDepth": 18, "multiPv": 1 },
+    "standard": { "nodes": 600000, "maxDepth": 22, "multiPv": 2 }
+  }
+}

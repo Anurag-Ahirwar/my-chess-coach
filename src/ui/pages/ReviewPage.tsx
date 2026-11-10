@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router";
 import { useGames } from "@/app/games";
 import { usePreferences } from "@/app/prefs";
@@ -7,6 +7,7 @@ import { resolveUserColor } from "@/core/game/record";
 import type { GameRecord } from "@/core/game/types";
 import { exportPgn } from "@/core/pgn";
 import { Button, Card } from "../components/primitives";
+import { AnalysisDebugPanel } from "../components/review/AnalysisDebugPanel";
 import { GameHeader } from "../components/review/GameHeader";
 import { MoveList } from "../components/review/MoveList";
 import { NavControls } from "../components/review/NavControls";
@@ -16,17 +17,28 @@ import { useMoveKeys } from "../hooks/useMoveKeys";
 export function ReviewPage() {
   const { gameId = "" } = useParams();
   const game = useGames((state) => state.byId[gameId]);
+  const missing = useGames((state) => state.missing[gameId] === true);
+  const load = useGames((state) => state.load);
 
-  if (!game) {
+  useEffect(() => {
+    if (!game && !missing) void load(gameId);
+  }, [game, missing, gameId, load]);
+
+  if (!game && missing) {
     return (
-      <Card title="Game not loaded">
-        <p className="text-muted">
-          This game isn't loaded. Imported games are kept only until the page is reloaded (saving them is coming in the next phase).
-        </p>
+      <Card title="Game not found">
+        <p className="text-muted">This game isn't saved in this browser. It may have been imported in another browser or profile.</p>
         <Link to="/" className="mt-3 inline-block text-accent underline">
           Import a game
         </Link>
       </Card>
+    );
+  }
+  if (!game) {
+    return (
+      <p className="text-muted" role="status">
+        Loading game…
+      </p>
     );
   }
   return <Review key={game.id} game={game} />;
@@ -77,9 +89,7 @@ function Review({ game }: { game: GameRecord }) {
         </Card>
 
         <div className="flex min-w-0 flex-col gap-4">
-          <Card title="Engine analysis">
-            <p className="text-sm text-muted">Evaluation, best moves and move labels will appear here once the engine is added.</p>
-          </Card>
+          <AnalysisDebugPanel game={game} ply={ply} onSelect={go} />
           <Card title="Coach">
             <p className="text-sm text-muted">Explanations of key moments will appear here in a later phase.</p>
           </Card>
