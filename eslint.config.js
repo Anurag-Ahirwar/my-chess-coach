@@ -30,7 +30,7 @@ const browserGlobalsBannedInCore = [
 ].map((name) => ({ name, message: "core/ is pure: pass I/O in from infra/ or app/." }));
 
 export default tseslint.config(
-  { ignores: ["dist", "coverage", "playwright-report", "test-results", "node_modules"] },
+  { ignores: ["dist", "coverage", "playwright-report", "test-results", "node_modules", "public/engine"] },
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   {

@@ -18,7 +18,9 @@
 | Browser and end-to-end tests, real workers and WASM | **Playwright** (Chromium and Firefox) |
 | Type safety | `tsc --noEmit` in strict mode (TypeScript 6.0, pinned; architecture D0) |
 | Lint | ESLint with an import-boundary rule: `core/` may not import React, the DOM or `infra/` |
-| Coverage | Vitest V8 coverage. Thresholds enforced for `core/`: ≥ 90% lines and ≥ 85% branches. |
+| Coverage | Vitest V8 coverage. Thresholds enforced for `src/core/` and, from Phase 2 (decision D14), `src/infra/engine/`: ≥ 90% lines and ≥ 85% branches. |
+| Real engine | Vitest project `engine` (`npm run test:engine`) runs the pinned npm Stockfish build as a Node child process (`tests/engine/nodeTransport.ts`). The default `unit` project (`npm test`) never starts an engine. |
+| Engine test double | `tests/helpers/fakeEngine.ts` (`FakeEngine`): a scripted UCI engine for unit tests of `EngineWorker` and `EnginePool`. It is used in tests only. |
 | Dependency licences | A script checks every runtime dependency's licence against an allow-list (MIT, BSD, Apache-2.0, ISC, GPL-3.0, CC0) |
 
 CI-style command: `npm run check` runs typecheck, lint, licence check, unit tests (with coverage thresholds), then integration tests. `npm run test:e2e` and `npm run test:engine` are separate because they are slower. All of them run on Node 24 LTS.
@@ -44,7 +46,7 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
 | `pgn/chesscom/` | 23 real Chess.com PGNs (6 bullet, 8 blitz, 5 rapid, 4 daily), all with `%clk`. Endings: checkmate, resignation, timeout, abandonment, stalemate, insufficient material, repetition, the 50-move rule, agreement. | Public games recorded with `scripts/fetch-chesscom-fixtures.mjs`, then **pseudonymised** by `scripts/anonymise-fixtures.mjs`: every player except the public account `hikaru` becomes `player-NN`, and game links and UUIDs are replaced with synthetic values. Moves, clocks and results are unchanged. The owner's own games can be added the same way. |
 | `pgn/malformed/` | Illegal move, unreadable SAN, truncated movetext, unterminated comment, unsupported variant, invalid FEN tag, unbalanced `(`/`)`, malformed tag. Every file must produce exactly one located error. | Hand-built |
 | `pgn/edge-cases/` | Valid but awkward input: BOM + CRLF, a multi-game file with comments, NAGs, nested variations, an escape line and one broken game | Hand-built |
-| `engine/transcripts/` | Recorded UCI output for the above at each preset | `scripts/record-engine-fixtures.ts` |
+| `engine/positions.json` + `engine/transcripts/` | 12 positions (equal, material advantage, mate for and against each side, forced moves, repetition with and without move history), each with both sides to move where relevant. Every line from `go` to `bestmove` is recorded at Quick (MultiPV 1) and Standard (MultiPV 2): 24 `.uci` files, each with a header naming the engine and the exact commands. Expected values in the tests were read by hand from the raw files. | `npm run record:engine` (`scripts/record-engine-fixtures.mjs`, the npm build in Node, decision A13). `npm run record:engine -- --verify` re-runs every search and confirms identical output (ignoring `nps`/`time`). |
 | `lichess-evals/` | 50 games already analysed on Lichess, exported **with Lichess's evals and accuracies** | Lichess game export API (verify parameters when building) |
 | `classify/positions/` | Positions with known correct labels: an obvious blunder, a missed mate, a Great only-move, textbook Brilliant sacrifices (positive) and plain trades or desperado captures (negative) | Hand-curated |
 | `coach/golden/` | About 30 `CoachFacts` moments, plus adversarial model outputs | Hand-built |

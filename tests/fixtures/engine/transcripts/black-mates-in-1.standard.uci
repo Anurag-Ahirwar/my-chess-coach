@@ -1,0 +1,52 @@
+# engine: Stockfish 19 Lite WASM | network: nn-61e7af4bb97d.nnue | npm stockfish 19.0.1 lite-single (Node child process)
+# position-id: black-mates-in-1
+# side-to-move: b
+# preset: standard (multipv 2)
+# command: setoption name MultiPV value 2
+# command: position fen 8/7q/8/8/8/1k6/8/K7 b - - 0 1
+# command: go nodes 600000 depth 22
+info depth 1 seldepth 3 multipv 1 score mate 1 wdl 1000 0 0 nodes 114 nps 114000 hashfull 0 time 1 pv h7h1
+info depth 1 seldepth 3 multipv 2 score cp 949 wdl 1000 0 0 nodes 114 nps 114000 hashfull 0 time 1 pv h7h4
+info depth 2 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 203 nps 203000 hashfull 0 time 1 pv h7h1
+info depth 2 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 203 nps 203000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 3 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 277 nps 277000 hashfull 0 time 1 pv h7h1
+info depth 3 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 277 nps 277000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 4 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 343 nps 343000 hashfull 0 time 1 pv h7h1
+info depth 4 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 343 nps 343000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 5 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 404 nps 404000 hashfull 0 time 1 pv h7h1
+info depth 5 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 404 nps 404000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 6 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 476 nps 476000 hashfull 0 time 1 pv h7h1
+info depth 6 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 476 nps 476000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 7 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 548 nps 548000 hashfull 0 time 1 pv h7h1
+info depth 7 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 548 nps 548000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 8 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 620 nps 620000 hashfull 0 time 1 pv h7h1
+info depth 8 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 620 nps 620000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 9 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 690 nps 690000 hashfull 0 time 1 pv h7h1
+info depth 9 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 690 nps 690000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 10 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 759 nps 759000 hashfull 0 time 1 pv h7h1
+info depth 10 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 759 nps 759000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 11 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 829 nps 829000 hashfull 0 time 1 pv h7h1
+info depth 11 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 829 nps 829000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 12 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 902 nps 902000 hashfull 0 time 1 pv h7h1
+info depth 12 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 902 nps 902000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 13 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 976 nps 976000 hashfull 0 time 1 pv h7h1
+info depth 13 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 976 nps 976000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 14 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1047 nps 1047000 hashfull 0 time 1 pv h7h1
+info depth 14 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1047 nps 1047000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 15 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1120 nps 1120000 hashfull 0 time 1 pv h7h1
+info depth 15 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1120 nps 1120000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 16 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1189 nps 1189000 hashfull 0 time 1 pv h7h1
+info depth 16 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1189 nps 1189000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 17 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1263 nps 1263000 hashfull 0 time 1 pv h7h1
+info depth 17 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1263 nps 1263000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 18 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1334 nps 1334000 hashfull 0 time 1 pv h7h1
+info depth 18 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1334 nps 1334000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 19 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1405 nps 1405000 hashfull 0 time 1 pv h7h1
+info depth 19 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1405 nps 1405000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 20 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1473 nps 1473000 hashfull 0 time 1 pv h7h1
+info depth 20 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1473 nps 1473000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 21 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1539 nps 1539000 hashfull 0 time 1 pv h7h1
+info depth 21 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1539 nps 1539000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+info depth 22 seldepth 2 multipv 1 score mate 1 wdl 1000 0 0 nodes 1608 nps 1608000 hashfull 0 time 1 pv h7h1
+info depth 22 seldepth 4 multipv 2 score mate 2 wdl 1000 0 0 nodes 1608 nps 1608000 hashfull 0 time 1 pv h7h2 a1b1 h2h1
+bestmove h7h1

@@ -292,6 +292,21 @@ stateDiagram-v2
   - converts scores from **side-to-move perspective → White perspective** at this single point. Nothing downstream ever sees side-to-move scores;
   - handles `bestmove (none)`. We never send terminal positions, but this guards against it.
 - **`EnginePool`** keeps a FIFO per priority level, assigns jobs to idle workers, respawns a worker that has failed and retries the job once, then marks that position `failed` (the UI shows a gap instead of a fabricated value).
+
+**Implementation notes (Phase 2, Stage 1)** — code in `src/infra/engine/` and `src/core/engine/`:
+- **Transport.** `EngineTransport` is a line-based interface. The browser implementation (`workerTransportFactory`) loads `/engine/stockfish-19-lite-single.js` as a classic Worker, and the loader finds its `.wasm` next to it. The loader posts exactly one message per output line, so multi-line strings are split defensively and non-string messages (download progress) are ignored. A line split *across* messages can't occur with this loader and can't be detected over `postMessage`.
+- **Stale-output barrier.** Every search starts with `ucinewgame` + `isready`, and all output before that `readyok` is discarded. Output that arrives while the worker is idle is also ignored.
+- **Verified behaviour of the pinned build:**
+  - `stop` is honoured mid-search: 20 ms in Node, 53 ms in Chromium. Cancel therefore uses `stop` → `bestmove`, and killing the engine is only the fallback after the 2 s stop timeout.
+  - The engine reports `id name Stockfish 19 Lite WASM` and network `nn-61e7af4bb97d.nnue`.
+  - A mated root is reported as `info depth 0 score mate 0` **without** a `nodes` field. It is flagged as an anomaly.
+- **Watchdogs** (decision D10, provisional until the Stage 4 benchmark): initialisation 10 s; 30 s with no output; an overall search cap of `15 s + nodes / 20 000`; `stop` 2 s, then kill.
+- **Engine start failures.** After 3 consecutive failures with no running engine, the pool rejects queued jobs as `unavailable` instead of retrying in a loop.
+- **Worker CSP.** A page's `<meta>` CSP doesn't govern a dedicated worker, which gets its policy from its own response headers. The worker script is allowed by `worker-src 'self'`. The WASM fetch and compile happen inside the worker and were verified to load under the production build's CSP with no violations. If the app were ever hosted with header-based CSP, the worker response would need `'wasm-unsafe-eval'`.
+- **`bestmove` vs the last exact line.** When the node limit cuts the last iteration short, Stockfish's `bestmove` can differ from the first move of the last *exact* top line, because the newer choice only has a bound score. This is recorded in the golden transcript `equal-black-to-move.quick.uci`.
+  - **Decision D16** (approved 2026-11-11): `PositionResult.bestMove` stores the engine's `bestmove` exactly as reported. `lines` stores the last exact line for each MultiPV.
+  - A mismatch between the two is valid engine behaviour, not a failure. Only illegality marks a position `failed`: the best move and every PV must replay legally from the analysed position.
+  - Phase 3 uses `lines[0].score` for the evaluation and `bestMove` for "was the played move the best move" (methodology §5.3, `best1`).
 - **Terminal positions** (checkmate, stalemate, insufficient material, 50-move rule, threefold repetition) are **never** sent to the engine. Their scores come from rules (see methodology §3).
 
 ### 6.2 Whole-game analysis sequence

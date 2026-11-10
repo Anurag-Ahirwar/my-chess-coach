@@ -142,7 +142,7 @@ For the move from position *P* (before) to *P′* (after), played by colour *c*:
 | `Wb` | Win% for *c* at *P*: engine eval of *P* (best play), from *c*'s POV |
 | `Wa` | Win% for *c* at *P′*: engine eval of *P′* after the **played** move, from *c*'s POV |
 | `L` | Win% loss = `max(0, Wb − Wa)` |
-| `best1`, `best2` | Top two engine moves at *P* (MultiPV 1 and 2) with their Win% for *c* |
+| `best1`, `best2` | Top two engine moves at *P* (MultiPV 1 and 2) with their Win% for *c*. **The move `best1` is the engine's reported `bestmove`** (decision D16). Its Win% comes from the last exact top line (`lines[0]`). When a node-limited search is cut short these two can name different moves. That is normal Stockfish behaviour (architecture §6.1 notes). |
 | `gap` | `Win%(best1) − Win%(best2)` (only when MultiPV ≥ 2 and ≥ 2 legal moves) |
 | `Wprev` | Win% for *c* at the position before the opponent's previous move |
 

@@ -1,0 +1,25 @@
+# engine: Stockfish 19 Lite WASM | network: nn-61e7af4bb97d.nnue | npm stockfish 19.0.1 lite-single (Node child process)
+# position-id: equal-black-to-move
+# side-to-move: b
+# preset: quick (multipv 1)
+# command: setoption name MultiPV value 1
+# command: position startpos moves e2e4
+# command: go nodes 150000 depth 18
+info depth 1 seldepth 2 multipv 1 score cp -6 wdl 14 962 24 nodes 20 nps 20000 hashfull 0 time 1 pv e7e5
+info depth 2 seldepth 3 multipv 1 score cp -6 wdl 15 962 23 nodes 48 nps 48000 hashfull 0 time 1 pv e7e5 b2b3
+info depth 3 seldepth 4 multipv 1 score cp -6 wdl 15 962 23 nodes 124 nps 124000 hashfull 0 time 1 pv e7e5 b2b3 b7b6
+info depth 4 seldepth 9 multipv 1 score cp -34 wdl 5 928 67 nodes 1567 nps 783500 hashfull 0 time 2 pv e7e6 g1f3 c7c5 b1c3
+info depth 5 seldepth 8 multipv 1 score cp -32 wdl 5 931 64 nodes 2457 nps 819000 hashfull 0 time 3 pv e7e6 b1c3 d7d5 d2d4 d5e4 c3e4
+info depth 6 seldepth 12 multipv 1 score cp -32 wdl 5 931 64 nodes 4727 nps 787833 hashfull 0 time 6 pv c7c5 b1c3
+info depth 7 seldepth 12 multipv 1 score cp -36 wdl 4 923 73 nodes 7406 nps 740600 hashfull 3 time 10 pv c7c5 d2d4 c5d4
+info depth 8 seldepth 12 multipv 1 score cp -36 wdl 4 922 74 nodes 7548 nps 754800 hashfull 3 time 10 pv c7c5 g1f3 b8c6 d2d4 c5d4 f3d4 e7e6 c1e3 g8f6 b1c3
+info depth 9 seldepth 10 multipv 1 score cp -36 wdl 4 922 74 nodes 7734 nps 773400 hashfull 3 time 10 pv c7c5 g1f3 b8c6 d2d4 c5d4 f3d4 e7e6 c1e3 g8f6
+info depth 10 seldepth 16 multipv 1 score cp -38 wdl 4 917 79 nodes 14111 nps 705550 hashfull 6 time 20 pv e7e6 b1c3 d7d5 d2d4 f8b4 e4e5 c7c5 g1f3 c5d4 d1d4 b4a5
+info depth 11 seldepth 14 multipv 1 score cp -38 wdl 4 917 79 nodes 16324 nps 709739 hashfull 7 time 23 pv e7e5 g1f3 b8c6 f1c4 g8f6 e1g1 f8e7 f1e1
+info depth 12 seldepth 17 multipv 1 score cp -34 wdl 5 928 67 nodes 23297 nps 647138 hashfull 10 time 36 pv e7e5 g1f3 b8c6 d2d4 e5d4 f3d4 g8f6 d4c6 b7c6 e4e5 d8e7 d1d4 f6d5
+info depth 13 seldepth 24 multipv 1 score cp -32 wdl 5 933 62 nodes 38610 nps 665689 hashfull 15 time 58 pv e7e5 g1f3 b8c6 b1c3 g8f6 f1c4 f8c5 d2d3 e8g8
+info depth 14 seldepth 23 multipv 1 score cp -32 wdl 5 932 63 nodes 47992 nps 666555 hashfull 19 time 72 pv e7e5 g1f3 b8c6 d2d4 e5d4 f3d4 g8f6 d4c6 b7c6 f1d3 d7d5 b1d2 c8g4 f2f3 d5e4 d3e4
+info depth 15 seldepth 17 multipv 1 score cp -32 wdl 5 932 63 nodes 48872 nps 669479 hashfull 19 time 73 pv e7e5 g1f3 b8c6 d2d4 e5d4 f3d4 g8f6 d4c6 b7c6 f1d3 d7d5 b1d2 c8g4 f2f3 d5e4
+info depth 16 seldepth 24 multipv 1 score cp -30 wdl 6 936 58 nodes 72794 nps 582352 hashfull 28 time 125 pv e7e5 g1f3 b8c6 d2d4 e5d4 f3d4 g8f6 d4c6 d7c6 d1d8 e8d8 b1c3 c8e6 c1e3 f6d7 e1c1
+info depth 17 seldepth 24 multipv 1 score cp -28 upperbound wdl 6 941 53 nodes 150054 nps 593098 hashfull 58 time 253 pv e7e6 g1f3
+bestmove e7e6 ponder g1f3

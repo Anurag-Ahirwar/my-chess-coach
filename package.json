@@ -14,12 +14,14 @@
     "typecheck": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json",
     "lint": "eslint .",
     "licenses": "node scripts/check-licenses.mjs",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
+    "test": "vitest run --project unit",
+    "test:watch": "vitest --project unit",
+    "test:coverage": "vitest run --coverage --project unit",
     "test:e2e": "playwright test",
     "check": "npm run typecheck && npm run lint && npm run licenses && npm run test:coverage",
-    "test:live": "vitest run tests/live"
+    "test:live": "vitest run --project unit tests/live",
+    "test:engine": "vitest run --project engine",
+    "record:engine": "node scripts/record-engine-fixtures.mjs"
   },
   "dependencies": {
     "chess.js": "1.4.0",
@@ -27,6 +29,7 @@
     "react-chessboard": "5.12.1",
     "react-dom": "19.3.1",
     "react-router": "8.5.1",
+    "stockfish": "19.0.1",
     "zod": "4.6.7",
     "zustand": "5.0.16"
   },
