@@ -108,6 +108,25 @@ describe("games store (approved change A10)", () => {
     expect(await repos.games.get(game.id)).toMatchObject({ id: game.id, schemaVersion: 1 });
   });
 
+  it("resolves only once the game is stored, so navigating right after an import can't lose it", async () => {
+    const repos = await useDatabase();
+    const game = await gameFromUci(["e2e4", "c7c5"]);
+    await useGames.getState().add([game]);
+    // Read through a separate path: the record must already be committed.
+    expect(await repos.games.get(game.id)).toMatchObject({ id: game.id });
+  });
+
+  it("does not wait for a persistence prompt the user hasn't answered", async () => {
+    vi.stubGlobal("navigator", { storage: { persisted: () => Promise.resolve(false), persist: () => new Promise<boolean>(() => undefined) } });
+    await useDatabase();
+    const game = await gameFromUci(["d2d4", "d7d5"]);
+    const settled = await Promise.race([
+      useGames.getState().add([game]).then(() => "saved"),
+      new Promise((resolve) => setTimeout(() => resolve("blocked"), 1000)),
+    ]);
+    expect(settled).toBe("saved");
+  });
+
   it("loads saved games after a reload, and marks unknown ids as missing", async () => {
     const name = `games-reload-${Date.now()}`;
     await useDatabase(name);

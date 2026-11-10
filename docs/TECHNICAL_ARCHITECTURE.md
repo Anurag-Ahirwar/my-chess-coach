@@ -229,6 +229,7 @@ Each decision lists the recommendation, the reason, the alternatives, the trade-
 - **Failure handling:**
   - If IndexedDB can't be opened (missing, disabled, blocked), the app runs on in-memory repositories and a banner explains it.
   - If a write fails (e.g. quota), the data stays in memory for the tab and the banner says so.
+  - **An import navigates to the review page only after the game is saved.** A page unload aborts unfinished IndexedDB transactions, so navigating first could lose the game. Firefox E2E on a CI runner found this. The `navigator.storage.persist()` request is not awaited, because Firefox may show a permission prompt.
   - If another tab upgrades the schema, this tab closes its connection and asks for a reload.
   - Invalid stored records are reported and never deleted or overwritten.
 - **Analysis saving** (decision D12):

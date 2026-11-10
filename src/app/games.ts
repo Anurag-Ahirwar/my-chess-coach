@@ -14,7 +14,7 @@ interface GamesStore {
   listLoaded: boolean;
   /** Ids looked up in storage and not found. */
   missing: Record<string, true>;
-  /** Adds games in memory at once, then saves them. */
+  /** Adds games in memory at once, then saves them; resolves when saved (or the failure is reported). Never rejects. */
   add: (records: readonly GameRecord[]) => Promise<void>;
   /** Loads one game from storage if it isn't in memory. */
   load: (id: string) => Promise<void>;
@@ -43,7 +43,9 @@ export const useGames = create<GamesStore>((set, get) => ({
       const { games } = await getRepositories();
       const now = Date.now();
       for (const record of records) await games.put(record, now);
-      await requestPersistenceOnce();
+      // Not awaited: in Firefox persist() can show a permission prompt, which must not delay
+      // callers that wait for the save (e.g. navigation after an import).
+      void requestPersistenceOnce();
     } catch (error) {
       reportStorageError(error);
     }

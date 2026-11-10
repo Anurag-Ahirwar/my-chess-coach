@@ -31,7 +31,9 @@ export function PgnImport() {
         if (parseErrors.length === 0) setProblem("No games were found in that PGN.");
         return;
       }
-      void addGames(records); // in memory at once; saving reports its own problems
+      // Wait for the save before navigating: a reload or tab close right after an import must not
+      // lose the game (found by Firefox E2E in CI). addGames never throws; it reports storage problems.
+      await addGames(records);
       if (records.length === 1 && parseErrors.length === 0) void navigate(`/review/${encodeURIComponent(records[0]!.id)}`);
       else setChoices(records);
     } finally {
