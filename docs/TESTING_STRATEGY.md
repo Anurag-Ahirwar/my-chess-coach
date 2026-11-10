@@ -167,6 +167,40 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
 - **Privacy:** a snapshot of the outgoing request body contains no usernames (default setting), no PGN headers, and no API key.
 - **Live golden-set evaluation** (manual, uses a real key): `npm run eval:coach -- --provider gemini`. It reports the first-try validator pass rate, the rejection reasons, latency and tokens, and it produces a sheet for the owner's by-hand incorrect-claim rating. It is never part of the automated suite.
 
+### 4.8b Storage (Phase 2, Stage 3)
+- **Repositories:** run against both `fake-indexeddb` and the in-memory fallback, which must behave identically. Covered:
+  - save and read back;
+  - no duplicate on re-import (createdAt kept, analyses stay linked);
+  - newest-first listing;
+  - presets never colliding;
+  - merges that never lose or downgrade a result;
+  - returned copies that can't change stored data.
+- **IndexedDB only:**
+  - data survives a close and reopen (a reload);
+  - invalid records are reported, skipped and never overwritten;
+  - bad cached months are ignored and left in place;
+  - failures are classified (quota, unavailable, closed, blocked).
+- **Storage service and games store:**
+  - fallback to memory with the right banner message;
+  - `persist()` is asked once and its answer recorded;
+  - games are kept in memory when saving fails;
+  - games load after a reload, and unknown ids are marked missing.
+- **Analysis controller:**
+  - throttled saves (fewer than one per result, always a final one);
+  - resume after a reload, where only unanalysed positions are searched;
+  - reuse of a complete analysis;
+  - preset isolation;
+  - a new run cancels the old one;
+  - the cross-tab lock;
+  - saving failures continue in memory;
+  - an unreadable stored analysis is never written over.
+- **E2E** (`tests/e2e/persistence.spec.ts`, a real browser reload):
+  - an imported game survives a reload;
+  - no duplicate on re-import;
+  - a past Chess.com month is not refetched after a reload;
+  - with IndexedDB disabled, the banner appears and import and review still work.
+- **Resume after a reload with a real browser engine** needs the Stage 4 debug view to start an analysis. Until then it is tested at controller level with a reopened database.
+
 ### 4.9 UI and E2E (Playwright)
 1. Paste a PGN, analyse with Quick, and every move gets a label. The eval graph has n+1 points.
 2. Keyboard navigation (← → Home End) updates the board, the eval bar, the highlighted move and the coach panel.

@@ -222,6 +222,22 @@ Each decision lists the recommendation, the reason, the alternatives, the trade-
 - **Why:** Analyses run to hundreds of KB per game with PVs included, and IndexedDB handles that. Dexie gives typed tables, indexes and migrations.
 - **Alternatives:** Raw IndexedDB (verbose), `idb` (thin wrapper, no migrations), SQLite-WASM with OPFS (powerful, but heavier and has its own header requirements).
 - **Risk:** Users clearing browser data lose everything. Mitigation: JSON export/import (F6.4), and request `navigator.storage.persist()`.
+- **Implemented in Phase 2, Stage 3:**
+  - `src/infra/storage/`: Dexie v1, Zod read schemas, and Dexie and in-memory repositories with identical behaviour.
+  - `src/app/storage.ts`: opens the database, falls back to memory, shows the banner, and requests persistence.
+  - `src/app/analysis/analysisController.ts`: saves analyses while they run.
+- **Failure handling:**
+  - If IndexedDB can't be opened (missing, disabled, blocked), the app runs on in-memory repositories and a banner explains it.
+  - If a write fails (e.g. quota), the data stays in memory for the tab and the banner says so.
+  - If another tab upgrades the schema, this tab closes its connection and asks for a reload.
+  - Invalid stored records are reported and never deleted or overwritten.
+- **Analysis saving** (decision D12):
+  - while running, at most one save per 250 ms, plus a save when the run ends or is cancelled;
+  - each save merges with the stored copy in one transaction (`mergeAnalyses`), so no analysed position is lost;
+  - a stopped search is never stored, and its position resumes on the next run;
+  - if the stored analysis can't be read, the run continues in memory without writing over it.
+- **Two tabs.** A Web Lock (`navigator.locks`, name `chess-coach:analysis:<id>`, `ifAvailable`) stops two tabs analysing the same game with the same settings at once. The second tab is told why. Without the Locks API, the transactional merge still prevents data loss.
+- **Persistence** (decision D7). `navigator.storage.persist()` is requested once, after the first successful game save. The answer is recorded, and a refusal is not an error.
 
 ### D11. LLM access: browser-direct, provider-agnostic, lazily loaded
 - **Recommend:** Call providers directly from the browser using the user's own key. The provider adapter code is loaded with dynamic `import()` only when used. Each adapter implements one small `LLMProvider` interface (see [AI_COACH_DESIGN](AI_COACH_DESIGN.md)).

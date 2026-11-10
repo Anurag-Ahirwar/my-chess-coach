@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { useGames } from "@/app/games";
+import { useStorageStatus } from "@/app/storage";
 import { Card } from "../components/primitives";
 import { ChessComImport } from "../components/home/ChessComImport";
 import { GameList } from "../components/home/GameList";
@@ -7,7 +9,14 @@ import { PgnImport } from "../components/home/PgnImport";
 export function HomePage() {
   const order = useGames((state) => state.order);
   const byId = useGames((state) => state.byId);
+  const listLoaded = useGames((state) => state.listLoaded);
+  const loadAll = useGames((state) => state.loadAll);
+  const storageMode = useStorageStatus((state) => state.mode);
   const games = order.map((id) => byId[id]).filter((game) => game !== undefined);
+
+  useEffect(() => {
+    if (!listLoaded) void loadAll();
+  }, [listLoaded, loadAll]);
 
   return (
     <div className="flex flex-col gap-6">
@@ -20,9 +29,13 @@ export function HomePage() {
         <PgnImport />
       </div>
       {games.length > 0 && (
-        <Card title="Imported this session">
-          <GameList games={games} label="Imported this session" />
-          <p className="mt-2 text-sm text-muted">Games are kept until you reload the page.</p>
+        <Card title="Your games">
+          <GameList games={games} label="Your games" />
+          <p className="mt-2 text-sm text-muted">
+            {storageMode === "memory"
+              ? "Saving isn't available in this browser, so these games are kept until you close the tab."
+              : "Saved in this browser."}
+          </p>
         </Card>
       )}
     </div>

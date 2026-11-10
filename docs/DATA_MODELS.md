@@ -57,17 +57,23 @@ export interface Ply {
 
 ## 4. Games
 
+Reconciled with the Phase 1 code in Phase 2 (decision D2). Code: `src/core/game/types.ts`.
+
 ```ts
 export type GameSource =
-  | { kind: "chesscom"; url: string; uuid?: string; timeClass: string; rules: string;
-      endTime: number; reportedAccuracy?: { white: number; black: number } }
-  | { kind: "pgn"; fileName?: string; importedAt: number };
+  | { kind: "chesscom"; url: string; uuid?: string; timeClass?: string; rules: string;
+      endTime?: number; reportedAccuracy?: { white: number; black: number } }
+  | { kind: "pgn"; fileName?: string };
+
+export type TimeControl =
+  | { kind: "live"; initialSeconds: number; incrementSeconds: number }
+  | { kind: "daily"; secondsPerMove: number }
+  | { kind: "unknown"; raw: string };
 
 export interface GameRecord {
-  id: string;                 // chesscom: "cc:" + uuid (or url hash); pgn: "pgn:" + sha256(normalised movetext + start FEN)
-  schemaVersion: 1;
+  id: string;                 // chesscom: "cc:" + uuid (or url hash); pgn: "pgn:" + sha256(start FEN + UCI moves)
   source: GameSource;
-  pgn: string;                // original text, kept verbatim for export
+  pgn: string;                // original text for Chess.com games; a normalised export for file imports
   headers: Record<string, string>;
   startFen: Fen;              // standard start or [FEN] header
   plies: Ply[];
@@ -75,17 +81,27 @@ export interface GameRecord {
   black: { name: string; rating?: number };
   result: "1-0" | "0-1" | "1/2-1/2" | "*";
   termination?: string;
-  playedAt?: number;          // epoch ms
-  timeControl?: { initial: number; increment: number } | { daily: number };
-  userColor?: Color;          // resolved from the configured username
-  opening?: { eco: string; name: string; bookPlies: number }; // derived, cached
-  tags: string[];             // user tags (future)
-  createdAt: number;
-  updatedAt: number;
+  playedAt?: number;          // epoch ms, from UTCDate/UTCTime (or Date)
+  timeControl?: TimeControl;
+  terminal: TerminalState | null; // rules-based state of the final position
+  warnings: string[];         // PGN parser warnings (duplicate tags, result mismatch)
+}
+
+/** What is stored in IndexedDB `games`. */
+export interface StoredGame extends GameRecord {
+  schemaVersion: 1;
+  createdAt: number;          // first import; kept on re-import
+  updatedAt: number;          // latest import
 }
 ```
 
-`id` makes imports idempotent: importing the same game twice updates the existing record instead of duplicating it.
+`id` makes imports idempotent: importing the same game twice updates the existing record instead of duplicating it. Its analyses stay linked through `gameId`.
+
+**Removed from the Phase 0 draft (D2):**
+- `userColor`: derived from the username preference at render time, because a stored copy would go stale when the preference changes.
+- `opening`: derived in Phase 3 from the opening dataset.
+- `tags`: added when a phase needs it.
+- `GameSource.pgn.importedAt`: covered by `createdAt`.
 
 ## 5. Engine analysis (raw, expensive)
 
@@ -317,14 +333,13 @@ export interface TrainingPlan {
 
 ## 9. Chess.com cache
 
+Changed in Phase 2 (decision D5): only past months are stored, because they never change. The archive list and the current month are always rechecked through the browser's HTTP cache. Scripts can't read `ETag` or send `If-None-Match` under Chess.com's CORS policy (architecture §7), so those fields are gone.
+
 ```ts
 export interface HttpCacheEntry {
-  url: string;                 // primary key
-  etag?: string;
-  lastModified?: string;
+  url: string;                 // primary key: the month's API URL
   fetchedAt: number;
-  immutable: boolean;          // true for past months
-  body: unknown;               // validated JSON
+  body: unknown;               // the raw response; validated by the Chess.com client on every read
 }
 ```
 
@@ -354,22 +369,31 @@ export interface StoredSecret {
 }
 ```
 
-## 11. Dexie schema v1
+## 11. Dexie schema
+
+**Version 1 (Phase 2)** declares only the tables in use (decision D1). Code: `src/infra/storage/db.ts`, database name `chess-coach`.
 
 ```ts
 db.version(1).stores({
-  games:        "id, playedAt, userColor, source.kind, [source.kind+playedAt]",
-  rawAnalyses:  "id, gameId, settingsHash, completedAt",
-  reviews:      "[rawAnalysisId+methodologyVersion], gameId",
-  explanations: "id, gameId, [gameId+plyIndex], task",
-  mistakes:     "id, gameId, srs.dueAt, label, *motifs, archived",
-  drillAttempts:"++id, mistakeId, at",
-  usage:        "++id, at, provider",
-  httpCache:    "url, fetchedAt",
-  profiles:     "id",
-  secrets:      "id",
+  games:       "id, playedAt, createdAt",
+  rawAnalyses: "id, gameId, completedAt",
+  httpCache:   "url, fetchedAt",
 });
 ```
+
+**Planned later versions.** Each phase adds its tables with a version bump. Adding a table needs no data migration, and the index design is settled by the phase that uses it.
+
+| Version | Phase | Adds (draft) |
+|---|---|---|
+| 2 | 3 | `reviews: "[rawAnalysisId+methodologyVersion], gameId"` |
+| 3 | 4 | `explanations: "id, gameId, [gameId+plyIndex], task"`, `usage: "++id, at, provider"`, `secrets: "id"` |
+| 4 | 5 | `mistakes: "id, gameId, srs.dueAt, label, *motifs, archived"`, `drillAttempts: "++id, mistakeId, at"` |
+| later | 6 | `profiles: "id"` |
+
+**Reading and writing (Phase 2):**
+- Every record is validated with Zod when read (`src/infra/storage/schemas.ts`). A record that fails is reported in the storage banner, skipped, and **never deleted or overwritten**. A write to its id is refused.
+- Analysis writes run read-modify-write inside one Dexie transaction and merge with the stored copy (`mergeAnalyses`): a `done` or `terminal` result is never replaced by `failed` or empty. This makes concurrent writers, such as two tabs, safe.
+- If IndexedDB can't be opened, in-memory repositories with the same behaviour are used, and the banner says so. If a write fails (e.g. quota), the data stays in memory for the tab.
 
 Migration rules:
 - Never drop user data in a migration. A schema version bump has an `upgrade()` that converts records.

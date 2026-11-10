@@ -121,6 +121,37 @@ export function applyPositionResult(analysis: RawAnalysis, result: PositionResul
   return next;
 }
 
+/** done/terminal outrank failed, which outranks nothing. */
+const strength = (result: PositionResult | null): number =>
+  result === null ? 0 : result.status === "failed" ? 1 : 2;
+
+/**
+ * Combines two versions of the same analysis (e.g. stored by another tab and the one being
+ * written) without losing work: for each position the stronger result wins, and on a tie
+ * the incoming one. Pure; used inside the storage transaction.
+ */
+export function mergeAnalyses(stored: RawAnalysis, incoming: RawAnalysis, now: number): RawAnalysis {
+  if (stored.id !== incoming.id || stored.totalCount !== incoming.totalCount) {
+    throw new Error(`Cannot merge analysis ${incoming.id} into ${stored.id}.`);
+  }
+  const positions = incoming.positions.map((result, index) => {
+    const previous = stored.positions[index] ?? null;
+    return strength(previous) > strength(result) ? previous : result;
+  });
+  const completedCount = positions.filter(isComplete).length;
+  const nnue = incoming.engine.nnue ?? stored.engine.nnue;
+  const merged: RawAnalysis = {
+    ...incoming,
+    engine: nnue === undefined ? incoming.engine : { ...incoming.engine, nnue },
+    positions,
+    completedCount,
+    startedAt: Math.min(stored.startedAt, incoming.startedAt),
+  };
+  if (completedCount === merged.totalCount) merged.completedAt = stored.completedAt ?? incoming.completedAt ?? now;
+  else delete merged.completedAt;
+  return merged;
+}
+
 export function isAnalysisComplete(analysis: RawAnalysis): boolean {
   return analysis.completedCount === analysis.totalCount && analysis.completedAt !== undefined;
 }

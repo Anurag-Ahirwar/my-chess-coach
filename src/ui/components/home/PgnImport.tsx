@@ -31,7 +31,7 @@ export function PgnImport() {
         if (parseErrors.length === 0) setProblem("No games were found in that PGN.");
         return;
       }
-      addGames(records);
+      void addGames(records); // in memory at once; saving reports its own problems
       if (records.length === 1 && parseErrors.length === 0) void navigate(`/review/${encodeURIComponent(records[0]!.id)}`);
       else setChoices(records);
     } finally {

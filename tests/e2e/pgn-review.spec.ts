@@ -117,9 +117,11 @@ test.describe("PGN import and move navigation", () => {
     await expect(page.getByRole("alert")).toContainText("No games were found");
   });
 
-  test("an unknown game id explains that games are not saved yet", async ({ page }) => {
+  // Changed in Phase 2 (approved change A10): games are now saved, so an unknown id is "not found"
+  // instead of "not loaded (lost on reload)". Same intent: an unknown id shows an explanation.
+  test("an unknown game id explains that the game isn't saved here", async ({ page }) => {
     await page.goto("/review/pgn%3Adoesnotexist");
-    await expect(page.getByRole("heading", { name: "Game not loaded" })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Game not found" })).toBeVisible();
   });
 
   test("the downloaded PGN parses back to the same moves", async ({ page }) => {

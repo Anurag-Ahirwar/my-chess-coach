@@ -2,6 +2,7 @@ import { Link, Route, Routes } from "react-router";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ReviewPage } from "./pages/ReviewPage";
+import { StorageBanner } from "./components/StorageBanner";
 import { ThemeSelect } from "./components/ThemeSelect";
 import { useApplyTheme } from "./hooks/useApplyTheme";
 
@@ -24,6 +25,7 @@ export function App() {
           <ThemeSelect />
         </div>
       </header>
+      <StorageBanner />
       <main id="main" className="mx-auto w-full max-w-7xl flex-1 px-4 py-6">
         <Routes>
           <Route path="/" element={<HomePage />} />

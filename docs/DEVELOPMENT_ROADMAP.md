@@ -146,6 +146,7 @@ Exit: the owner approves the docs. Open decisions are listed in §6.
 - `UciParser` (pure), the `EngineWorker` state machine, `EnginePool`, a priority `AnalysisQueue`, and cancel/resume.
 - Presets (node budgets) and White-perspective normalisation. Terminal positions come from `core/chess` and are never sent to the engine.
 - Dexie schema v1: `games`, `rawAnalyses`, `httpCache`. Analyses resume after a reload.
+- `navigator.storage.persist()` is requested once, after the first successful write. This was moved here from Phase 5 by decision D7, because Phase 2 is when data is first stored.
 - `scripts/record-engine-fixtures.ts`, `scripts/benchmark.ts`, and `docs/BENCHMARKS.md`.
 - A temporary debug view showing the raw eval per ply.
 
@@ -168,6 +169,7 @@ Exit: the owner approves the docs. Open decisions are listed in §6.
   - accuracy, with the "N moves not included" note;
   - best line, refutation line and best-move arrow.
 - The "About this analysis" panel (F8.3): engine identity, preset, methodology version, and the compatibility statement (methodology §0).
+- The "About / Licences" screen (architecture §12): every dependency and its licence, with a link to the Stockfish GPL text (`/engine/Copying.txt`, shipped since Phase 2). Placed here by decision D8.
 - Optional "Reported by Chess.com" accuracy (F4.7), if U6 = yes.
 - The `reviews` cache, keyed by methodology version.
 - **Last:** Great and Brilliant behind experimental flags, with the curated fixture positions.
@@ -218,7 +220,7 @@ Exit: the owner approves the docs. Open decisions are listed in §6.
 - Mistakes captured automatically. "Retry this mistake" with engine verification of alternative good answers. Spaced repetition.
 - A variation explorer with live evaluation from the interactive worker (F2.5).
 - Full JSON backup export/import (secrets excluded). PGN export with `[%eval]` and labels (F1.8).
-- A `navigator.storage.persist()` request.
+- (The `navigator.storage.persist()` request moved to Phase 2, decision D7.)
 
 **Exit criteria:**
 - After reviewing 5 games, the owner can drill their own mistakes.

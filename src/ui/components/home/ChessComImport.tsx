@@ -100,7 +100,7 @@ export function ChessComImport() {
     setError(undefined);
     try {
       const record = await importChessComGame(summary.game);
-      addGames([record]);
+      void addGames([record]); // in memory at once; saving reports its own problems
       void navigate(`/review/${encodeURIComponent(record.id)}`);
     } catch (e) {
       setError(errorText(e));
