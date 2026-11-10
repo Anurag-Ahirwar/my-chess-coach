@@ -1,0 +1,991 @@
+{
+  "machine": {
+    "cpu": "11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz",
+    "logicalCores": 12,
+    "ramGB": 16,
+    "node": "v24.22.1",
+    "date": "2026-11-10T17:52:32.034Z"
+  },
+  "settings": {
+    "nodes": 2500000,
+    "maxDepth": 30,
+    "multiPv": 2
+  },
+  "builds": {
+    "lite": {
+      "flavour": "lite-single",
+      "loadMs": 158,
+      "idleMB": 154,
+      "peakMB": 156,
+      "results": [
+        {
+          "id": "02-blitz.pgn#0",
+          "bestMove": "e2e4",
+          "top": {
+            "kind": "cp",
+            "value": 24,
+            "nodes": 2146575,
+            "timeMs": 3768
+          },
+          "wallMs": 4456
+        },
+        {
+          "id": "02-blitz.pgn#8",
+          "bestMove": "d2d3",
+          "top": {
+            "kind": "cp",
+            "value": 6,
+            "nodes": 2174789,
+            "timeMs": 3768
+          },
+          "wallMs": 4437
+        },
+        {
+          "id": "02-blitz.pgn#16",
+          "bestMove": "c2c3",
+          "top": {
+            "kind": "cp",
+            "value": 17,
+            "nodes": 2500221,
+            "timeMs": 4946
+          },
+          "wallMs": 4947
+        },
+        {
+          "id": "02-blitz.pgn#24",
+          "bestMove": "d1d2",
+          "top": {
+            "kind": "cp",
+            "value": -23,
+            "nodes": 1624514,
+            "timeMs": 3062
+          },
+          "wallMs": 4733
+        },
+        {
+          "id": "02-blitz.pgn#32",
+          "bestMove": "g2f1",
+          "top": {
+            "kind": "cp",
+            "value": -277,
+            "nodes": 2500638,
+            "timeMs": 4978
+          },
+          "wallMs": 4979
+        },
+        {
+          "id": "02-blitz.pgn#40",
+          "bestMove": "a1c1",
+          "top": {
+            "kind": "cp",
+            "value": -206,
+            "nodes": 2500087,
+            "timeMs": 4747
+          },
+          "wallMs": 4747
+        },
+        {
+          "id": "02-blitz.pgn#48",
+          "bestMove": "e2c3",
+          "top": {
+            "kind": "cp",
+            "value": -529,
+            "nodes": 2500116,
+            "timeMs": 4537
+          },
+          "wallMs": 4537
+        },
+        {
+          "id": "02-blitz.pgn#56",
+          "bestMove": "g3f4",
+          "top": {
+            "kind": "cp",
+            "value": -453,
+            "nodes": 1821969,
+            "timeMs": 3305
+          },
+          "wallMs": 4484
+        },
+        {
+          "id": "02-blitz.pgn#64",
+          "bestMove": "d5f3",
+          "top": {
+            "kind": "cp",
+            "value": -593,
+            "nodes": 2500407,
+            "timeMs": 4310
+          },
+          "wallMs": 4310
+        },
+        {
+          "id": "02-blitz.pgn#72",
+          "bestMove": "c1f1",
+          "top": {
+            "kind": "mate",
+            "value": -9,
+            "nodes": 1198942,
+            "timeMs": 1513
+          },
+          "wallMs": 1514
+        },
+        {
+          "id": "21-daily.pgn#0",
+          "bestMove": "e2e4",
+          "top": {
+            "kind": "cp",
+            "value": 24,
+            "nodes": 2146575,
+            "timeMs": 3679
+          },
+          "wallMs": 4313
+        },
+        {
+          "id": "21-daily.pgn#8",
+          "bestMove": "d1d2",
+          "top": {
+            "kind": "cp",
+            "value": 32,
+            "nodes": 2132585,
+            "timeMs": 3820
+          },
+          "wallMs": 4527
+        },
+        {
+          "id": "21-daily.pgn#16",
+          "bestMove": "c3a4",
+          "top": {
+            "kind": "cp",
+            "value": -20,
+            "nodes": 2500028,
+            "timeMs": 4371
+          },
+          "wallMs": 4371
+        },
+        {
+          "id": "21-daily.pgn#24",
+          "bestMove": "c5a4",
+          "top": {
+            "kind": "cp",
+            "value": -33,
+            "nodes": 2500429,
+            "timeMs": 4717
+          },
+          "wallMs": 4718
+        },
+        {
+          "id": "21-daily.pgn#32",
+          "bestMove": "e3d4",
+          "top": {
+            "kind": "cp",
+            "value": -82,
+            "nodes": 2500437,
+            "timeMs": 4859
+          },
+          "wallMs": 4859
+        },
+        {
+          "id": "21-daily.pgn#40",
+          "bestMove": "d1d2",
+          "top": {
+            "kind": "cp",
+            "value": -126,
+            "nodes": 2425272,
+            "timeMs": 4444
+          },
+          "wallMs": 4575
+        },
+        {
+          "id": "21-daily.pgn#48",
+          "bestMove": "a3b4",
+          "top": {
+            "kind": "cp",
+            "value": -98,
+            "nodes": 2500201,
+            "timeMs": 4706
+          },
+          "wallMs": 4707
+        },
+        {
+          "id": "21-daily.pgn#56",
+          "bestMove": "h2h4",
+          "top": {
+            "kind": "cp",
+            "value": -428,
+            "nodes": 2500260,
+            "timeMs": 4712
+          },
+          "wallMs": 4712
+        },
+        {
+          "id": "21-daily.pgn#64",
+          "bestMove": "e2g1",
+          "top": {
+            "kind": "cp",
+            "value": -385,
+            "nodes": 2500476,
+            "timeMs": 4203
+          },
+          "wallMs": 4204
+        },
+        {
+          "id": "21-daily.pgn#72",
+          "bestMove": "d2d5",
+          "top": {
+            "kind": "cp",
+            "value": -647,
+            "nodes": 2500416,
+            "timeMs": 3763
+          },
+          "wallMs": 3764
+        },
+        {
+          "id": "21-daily.pgn#80",
+          "bestMove": "f4e5",
+          "top": {
+            "kind": "cp",
+            "value": -680,
+            "nodes": 2500366,
+            "timeMs": 3369
+          },
+          "wallMs": 3369
+        },
+        {
+          "id": "equal-white-to-move",
+          "bestMove": "g1f3",
+          "top": {
+            "kind": "cp",
+            "value": 42,
+            "nodes": 2500461,
+            "timeMs": 4449
+          },
+          "wallMs": 4450
+        },
+        {
+          "id": "equal-black-to-move",
+          "bestMove": "e7e5",
+          "top": {
+            "kind": "cp",
+            "value": -32,
+            "nodes": 2500217,
+            "timeMs": 4405
+          },
+          "wallMs": 4405
+        },
+        {
+          "id": "white-queen-up-white-to-move",
+          "bestMove": "d1d6",
+          "top": {
+            "kind": "mate",
+            "value": 8,
+            "nodes": 765767,
+            "timeMs": 537
+          },
+          "wallMs": 537
+        },
+        {
+          "id": "white-queen-up-black-to-move",
+          "bestMove": "e8e7",
+          "top": {
+            "kind": "mate",
+            "value": -9,
+            "nodes": 804831,
+            "timeMs": 603
+          },
+          "wallMs": 603
+        },
+        {
+          "id": "white-mates-in-1",
+          "bestMove": "d1d8",
+          "top": {
+            "kind": "mate",
+            "value": 1,
+            "nodes": 2500297,
+            "timeMs": 3048
+          },
+          "wallMs": 3048
+        },
+        {
+          "id": "black-gets-mated-in-1",
+          "bestMove": "a8b8",
+          "top": {
+            "kind": "mate",
+            "value": -1,
+            "nodes": 63,
+            "timeMs": 1
+          },
+          "wallMs": 1
+        },
+        {
+          "id": "black-mates-in-1",
+          "bestMove": "h7h1",
+          "top": {
+            "kind": "mate",
+            "value": 1,
+            "nodes": 2173,
+            "timeMs": 2
+          },
+          "wallMs": 2
+        },
+        {
+          "id": "white-gets-mated-in-1",
+          "bestMove": "a8b8",
+          "top": {
+            "kind": "mate",
+            "value": -1,
+            "nodes": 63,
+            "timeMs": 1
+          },
+          "wallMs": 1
+        },
+        {
+          "id": "forced-black",
+          "bestMove": "h8g8",
+          "top": {
+            "kind": "mate",
+            "value": -1,
+            "nodes": 61,
+            "timeMs": 1
+          },
+          "wallMs": 1
+        },
+        {
+          "id": "forced-white",
+          "bestMove": "h1g1",
+          "top": {
+            "kind": "mate",
+            "value": -1,
+            "nodes": 61,
+            "timeMs": 1
+          },
+          "wallMs": 1
+        },
+        {
+          "id": "repetition-with-history",
+          "bestMove": "f8e8",
+          "top": {
+            "kind": "cp",
+            "value": 0,
+            "nodes": 434187,
+            "timeMs": 331
+          },
+          "wallMs": 331
+        },
+        {
+          "id": "repetition-without-history",
+          "bestMove": "f8e7",
+          "top": {
+            "kind": "mate",
+            "value": -9,
+            "nodes": 729333,
+            "timeMs": 528
+          },
+          "wallMs": 528
+        }
+      ]
+    },
+    "full": {
+      "flavour": "single",
+      "loadMs": 526,
+      "idleMB": 438,
+      "peakMB": 440,
+      "results": [
+        {
+          "id": "02-blitz.pgn#0",
+          "bestMove": "d2d4",
+          "top": {
+            "kind": "cp",
+            "value": 24,
+            "nodes": 2102588,
+            "timeMs": 6726
+          },
+          "wallMs": 8052
+        },
+        {
+          "id": "02-blitz.pgn#8",
+          "bestMove": "d2d3",
+          "top": {
+            "kind": "cp",
+            "value": 2,
+            "nodes": 2500098,
+            "timeMs": 8661
+          },
+          "wallMs": 8662
+        },
+        {
+          "id": "02-blitz.pgn#16",
+          "bestMove": "c2c3",
+          "top": {
+            "kind": "cp",
+            "value": 16,
+            "nodes": 2500558,
+            "timeMs": 9681
+          },
+          "wallMs": 9682
+        },
+        {
+          "id": "02-blitz.pgn#24",
+          "bestMove": "f2f4",
+          "top": {
+            "kind": "cp",
+            "value": -23,
+            "nodes": 2500110,
+            "timeMs": 9024
+          },
+          "wallMs": 9024
+        },
+        {
+          "id": "02-blitz.pgn#32",
+          "bestMove": "g1f1",
+          "top": {
+            "kind": "cp",
+            "value": -298,
+            "nodes": 2500011,
+            "timeMs": 8905
+          },
+          "wallMs": 8906
+        },
+        {
+          "id": "02-blitz.pgn#40",
+          "bestMove": "a1b1",
+          "top": {
+            "kind": "cp",
+            "value": -229,
+            "nodes": 1684493,
+            "timeMs": 5537
+          },
+          "wallMs": 8497
+        },
+        {
+          "id": "02-blitz.pgn#48",
+          "bestMove": "e2c3",
+          "top": {
+            "kind": "cp",
+            "value": -694,
+            "nodes": 2500565,
+            "timeMs": 7565
+          },
+          "wallMs": 7566
+        },
+        {
+          "id": "02-blitz.pgn#56",
+          "bestMove": "g3f4",
+          "top": {
+            "kind": "cp",
+            "value": -518,
+            "nodes": 2500329,
+            "timeMs": 6876
+          },
+          "wallMs": 6877
+        },
+        {
+          "id": "02-blitz.pgn#64",
+          "bestMove": "d5f3",
+          "top": {
+            "kind": "cp",
+            "value": -614,
+            "nodes": 2500009,
+            "timeMs": 6710
+          },
+          "wallMs": 6710
+        },
+        {
+          "id": "02-blitz.pgn#72",
+          "bestMove": "c1f1",
+          "top": {
+            "kind": "mate",
+            "value": -9,
+            "nodes": 508397,
+            "timeMs": 965
+          },
+          "wallMs": 965
+        },
+        {
+          "id": "21-daily.pgn#0",
+          "bestMove": "d2d4",
+          "top": {
+            "kind": "cp",
+            "value": 24,
+            "nodes": 2102588,
+            "timeMs": 7113
+          },
+          "wallMs": 8484
+        },
+        {
+          "id": "21-daily.pgn#8",
+          "bestMove": "d1d2",
+          "top": {
+            "kind": "cp",
+            "value": 35,
+            "nodes": 2500678,
+            "timeMs": 10439
+          },
+          "wallMs": 10439
+        },
+        {
+          "id": "21-daily.pgn#16",
+          "bestMove": "h2h3",
+          "top": {
+            "kind": "cp",
+            "value": -17,
+            "nodes": 2026473,
+            "timeMs": 9894
+          },
+          "wallMs": 12004
+        },
+        {
+          "id": "21-daily.pgn#24",
+          "bestMove": "c5a4",
+          "top": {
+            "kind": "cp",
+            "value": -28,
+            "nodes": 2500642,
+            "timeMs": 9190
+          },
+          "wallMs": 9190
+        },
+        {
+          "id": "21-daily.pgn#32",
+          "bestMove": "e3d4",
+          "top": {
+            "kind": "cp",
+            "value": -81,
+            "nodes": 2500506,
+            "timeMs": 7852
+          },
+          "wallMs": 7852
+        },
+        {
+          "id": "21-daily.pgn#40",
+          "bestMove": "d1d2",
+          "top": {
+            "kind": "cp",
+            "value": -160,
+            "nodes": 2500173,
+            "timeMs": 8125
+          },
+          "wallMs": 8126
+        },
+        {
+          "id": "21-daily.pgn#48",
+          "bestMove": "a3b4",
+          "top": {
+            "kind": "cp",
+            "value": -117,
+            "nodes": 2136961,
+            "timeMs": 6481
+          },
+          "wallMs": 7635
+        },
+        {
+          "id": "21-daily.pgn#56",
+          "bestMove": "h1g1",
+          "top": {
+            "kind": "cp",
+            "value": -531,
+            "nodes": 2500319,
+            "timeMs": 7836
+          },
+          "wallMs": 7837
+        },
+        {
+          "id": "21-daily.pgn#64",
+          "bestMove": "e2g1",
+          "top": {
+            "kind": "cp",
+            "value": -483,
+            "nodes": 2500344,
+            "timeMs": 7770
+          },
+          "wallMs": 7770
+        },
+        {
+          "id": "21-daily.pgn#72",
+          "bestMove": "d2d5",
+          "top": {
+            "kind": "cp",
+            "value": -612,
+            "nodes": 2500163,
+            "timeMs": 6183
+          },
+          "wallMs": 6183
+        },
+        {
+          "id": "21-daily.pgn#80",
+          "bestMove": "f4f5",
+          "top": {
+            "kind": "cp",
+            "value": -650,
+            "nodes": 2500207,
+            "timeMs": 4172
+          },
+          "wallMs": 4172
+        },
+        {
+          "id": "equal-white-to-move",
+          "bestMove": "g1f3",
+          "top": {
+            "kind": "cp",
+            "value": 16,
+            "nodes": 2500614,
+            "timeMs": 8750
+          },
+          "wallMs": 8750
+        },
+        {
+          "id": "equal-black-to-move",
+          "bestMove": "e7e5",
+          "top": {
+            "kind": "cp",
+            "value": -26,
+            "nodes": 2117289,
+            "timeMs": 7593
+          },
+          "wallMs": 8836
+        },
+        {
+          "id": "white-queen-up-white-to-move",
+          "bestMove": "d1d6",
+          "top": {
+            "kind": "mate",
+            "value": 8,
+            "nodes": 309443,
+            "timeMs": 243
+          },
+          "wallMs": 242
+        },
+        {
+          "id": "white-queen-up-black-to-move",
+          "bestMove": "e8e7",
+          "top": {
+            "kind": "mate",
+            "value": -9,
+            "nodes": 291547,
+            "timeMs": 218
+          },
+          "wallMs": 219
+        },
+        {
+          "id": "white-mates-in-1",
+          "bestMove": "d1d8",
+          "top": {
+            "kind": "mate",
+            "value": 1,
+            "nodes": 2500034,
+            "timeMs": 4498
+          },
+          "wallMs": 4499
+        },
+        {
+          "id": "black-gets-mated-in-1",
+          "bestMove": "a8b8",
+          "top": {
+            "kind": "mate",
+            "value": -1,
+            "nodes": 63,
+            "timeMs": 1
+          },
+          "wallMs": 1
+        },
+        {
+          "id": "black-mates-in-1",
+          "bestMove": "h7h1",
+          "top": {
+            "kind": "mate",
+            "value": 1,
+            "nodes": 2113,
+            "timeMs": 1
+          },
+          "wallMs": 2
+        },
+        {
+          "id": "white-gets-mated-in-1",
+          "bestMove": "a8b8",
+          "top": {
+            "kind": "mate",
+            "value": -1,
+            "nodes": 63,
+            "timeMs": 1
+          },
+          "wallMs": 1
+        },
+        {
+          "id": "forced-black",
+          "bestMove": "h8g8",
+          "top": {
+            "kind": "mate",
+            "value": -1,
+            "nodes": 61,
+            "timeMs": 1
+          },
+          "wallMs": 1
+        },
+        {
+          "id": "forced-white",
+          "bestMove": "h1g1",
+          "top": {
+            "kind": "mate",
+            "value": -1,
+            "nodes": 61,
+            "timeMs": 1
+          },
+          "wallMs": 1
+        },
+        {
+          "id": "repetition-with-history",
+          "bestMove": "f8e8",
+          "top": {
+            "kind": "cp",
+            "value": 0,
+            "nodes": 190994,
+            "timeMs": 155
+          },
+          "wallMs": 155
+        },
+        {
+          "id": "repetition-without-history",
+          "bestMove": "f8g7",
+          "top": {
+            "kind": "mate",
+            "value": -8,
+            "nodes": 337777,
+            "timeMs": 247
+          },
+          "wallMs": 247
+        }
+      ]
+    }
+  },
+  "comparison": [
+    {
+      "id": "02-blitz.pgn#0",
+      "sameBestMove": false,
+      "cpDiff": 0,
+      "liteMs": 4456,
+      "fullMs": 8052
+    },
+    {
+      "id": "02-blitz.pgn#8",
+      "sameBestMove": true,
+      "cpDiff": 4,
+      "liteMs": 4437,
+      "fullMs": 8662
+    },
+    {
+      "id": "02-blitz.pgn#16",
+      "sameBestMove": true,
+      "cpDiff": 1,
+      "liteMs": 4947,
+      "fullMs": 9682
+    },
+    {
+      "id": "02-blitz.pgn#24",
+      "sameBestMove": false,
+      "cpDiff": 0,
+      "liteMs": 4733,
+      "fullMs": 9024
+    },
+    {
+      "id": "02-blitz.pgn#32",
+      "sameBestMove": false,
+      "cpDiff": 21,
+      "liteMs": 4979,
+      "fullMs": 8906
+    },
+    {
+      "id": "02-blitz.pgn#40",
+      "sameBestMove": false,
+      "cpDiff": 23,
+      "liteMs": 4747,
+      "fullMs": 8497
+    },
+    {
+      "id": "02-blitz.pgn#48",
+      "sameBestMove": true,
+      "cpDiff": 165,
+      "liteMs": 4537,
+      "fullMs": 7566
+    },
+    {
+      "id": "02-blitz.pgn#56",
+      "sameBestMove": true,
+      "cpDiff": 65,
+      "liteMs": 4484,
+      "fullMs": 6877
+    },
+    {
+      "id": "02-blitz.pgn#64",
+      "sameBestMove": true,
+      "cpDiff": 21,
+      "liteMs": 4310,
+      "fullMs": 6710
+    },
+    {
+      "id": "02-blitz.pgn#72",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 1514,
+      "fullMs": 965
+    },
+    {
+      "id": "21-daily.pgn#0",
+      "sameBestMove": false,
+      "cpDiff": 0,
+      "liteMs": 4313,
+      "fullMs": 8484
+    },
+    {
+      "id": "21-daily.pgn#8",
+      "sameBestMove": true,
+      "cpDiff": 3,
+      "liteMs": 4527,
+      "fullMs": 10439
+    },
+    {
+      "id": "21-daily.pgn#16",
+      "sameBestMove": false,
+      "cpDiff": 3,
+      "liteMs": 4371,
+      "fullMs": 12004
+    },
+    {
+      "id": "21-daily.pgn#24",
+      "sameBestMove": true,
+      "cpDiff": 5,
+      "liteMs": 4718,
+      "fullMs": 9190
+    },
+    {
+      "id": "21-daily.pgn#32",
+      "sameBestMove": true,
+      "cpDiff": 1,
+      "liteMs": 4859,
+      "fullMs": 7852
+    },
+    {
+      "id": "21-daily.pgn#40",
+      "sameBestMove": true,
+      "cpDiff": 34,
+      "liteMs": 4575,
+      "fullMs": 8126
+    },
+    {
+      "id": "21-daily.pgn#48",
+      "sameBestMove": true,
+      "cpDiff": 19,
+      "liteMs": 4707,
+      "fullMs": 7635
+    },
+    {
+      "id": "21-daily.pgn#56",
+      "sameBestMove": false,
+      "cpDiff": 103,
+      "liteMs": 4712,
+      "fullMs": 7837
+    },
+    {
+      "id": "21-daily.pgn#64",
+      "sameBestMove": true,
+      "cpDiff": 98,
+      "liteMs": 4204,
+      "fullMs": 7770
+    },
+    {
+      "id": "21-daily.pgn#72",
+      "sameBestMove": true,
+      "cpDiff": 35,
+      "liteMs": 3764,
+      "fullMs": 6183
+    },
+    {
+      "id": "21-daily.pgn#80",
+      "sameBestMove": false,
+      "cpDiff": 30,
+      "liteMs": 3369,
+      "fullMs": 4172
+    },
+    {
+      "id": "equal-white-to-move",
+      "sameBestMove": true,
+      "cpDiff": 26,
+      "liteMs": 4450,
+      "fullMs": 8750
+    },
+    {
+      "id": "equal-black-to-move",
+      "sameBestMove": true,
+      "cpDiff": 6,
+      "liteMs": 4405,
+      "fullMs": 8836
+    },
+    {
+      "id": "white-queen-up-white-to-move",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 537,
+      "fullMs": 242
+    },
+    {
+      "id": "white-queen-up-black-to-move",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 603,
+      "fullMs": 219
+    },
+    {
+      "id": "white-mates-in-1",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 3048,
+      "fullMs": 4499
+    },
+    {
+      "id": "black-gets-mated-in-1",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 1,
+      "fullMs": 1
+    },
+    {
+      "id": "black-mates-in-1",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 2,
+      "fullMs": 2
+    },
+    {
+      "id": "white-gets-mated-in-1",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 1,
+      "fullMs": 1
+    },
+    {
+      "id": "forced-black",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 1,
+      "fullMs": 1
+    },
+    {
+      "id": "forced-white",
+      "sameBestMove": true,
+      "cpDiff": null,
+      "liteMs": 1,
+      "fullMs": 1
+    },
+    {
+      "id": "repetition-with-history",
+      "sameBestMove": true,
+      "cpDiff": 0,
+      "liteMs": 331,
+      "fullMs": 155
+    },
+    {
+      "id": "repetition-without-history",
+      "sameBestMove": false,
+      "cpDiff": null,
+      "liteMs": 528,
+      "fullMs": 247
+    }
+  ]
+}

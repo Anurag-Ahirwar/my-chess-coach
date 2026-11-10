@@ -213,15 +213,29 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
 9. Accessibility smoke test (axe): no critical violations on Home and Review.
 10. Retry a mistake: a wrong move gives feedback, the correct move is accepted, and the SRS schedule updates.
 
+**Implemented in Phase 2** (`tests/e2e/analysis.spec.ts`, real engine in browser Workers), covering items 2, 5 and 6 for the debug view:
+- a whole game analysed with the raw evaluation per position, mate shown as `M1` and the final checkmate resolved by rules;
+- keyboard navigation while analysis runs;
+- stop, then a reload: the saved progress is shown, and resuming continues from it;
+- a complete saved analysis reused with no engine work;
+- presets kept apart;
+- analysis in memory when IndexedDB is unavailable;
+- **no main-thread long task over 50 ms** during a whole-game analysis. A deliberate 120 ms control task proves the observer works; a busy loop run directly by `page.evaluate` is not reported as a long task, so the control runs inside `setTimeout`.
+
 ## 5. Benchmarks (not tests, but tracked)
 
-`scripts/benchmark.ts` runs each preset × engine flavour × worker count over 10 fixed games and reports:
+Implemented in Phase 2 as a Playwright spec (decision D9), because Workers and long tasks need a real browser: `npm run bench` (`tests/benchmark/benchmark.spec.ts`, `playwright.bench.config.ts`). Each run uses a fresh browser context. It measures:
+- engine start time;
+- p50/p95/max time per position by preset;
+- whole-game wall time by engine count (1–4);
+- long tasks;
+- memory per engine (approximate, renderer private bytes);
+- IndexedDB read/write time;
+- a CPU-throttled run, which only slows the main thread, not workers (see BENCHMARKS §2.6).
 
-- p50 and p95 time per position;
-- total wall time per game;
-- peak memory (from the browser, via Playwright CDP).
+`npm run bench:builds` (`scripts/benchmark-engine-builds.mjs`) compares the lite and full engine builds in Node for decision U4.
 
-The results go into `docs/BENCHMARKS.md` and are the **only** source for any timing shown in the UI or the docs.
+Raw results are committed in `docs/benchmarks/*.json`. The summary is in `docs/BENCHMARKS.md`, which is the **only** source for any timing shown in the UI or the docs.
 
 ## 6. Definition of done for analysis features
 

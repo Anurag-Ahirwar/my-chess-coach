@@ -7,6 +7,7 @@ import { resolveUserColor } from "@/core/game/record";
 import type { GameRecord } from "@/core/game/types";
 import { exportPgn } from "@/core/pgn";
 import { Button, Card } from "../components/primitives";
+import { AnalysisDebugPanel } from "../components/review/AnalysisDebugPanel";
 import { GameHeader } from "../components/review/GameHeader";
 import { MoveList } from "../components/review/MoveList";
 import { NavControls } from "../components/review/NavControls";
@@ -88,9 +89,7 @@ function Review({ game }: { game: GameRecord }) {
         </Card>
 
         <div className="flex min-w-0 flex-col gap-4">
-          <Card title="Engine analysis">
-            <p className="text-sm text-muted">Evaluation, best moves and move labels will appear here once the engine is added.</p>
-          </Card>
+          <AnalysisDebugPanel game={game} ply={ply} onSelect={go} />
           <Card title="Coach">
             <p className="text-sm text-muted">Explanations of key moments will appear here in a later phase.</p>
           </Card>

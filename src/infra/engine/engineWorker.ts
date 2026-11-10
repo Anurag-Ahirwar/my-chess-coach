@@ -17,8 +17,13 @@ export interface EngineWorkerOptions {
   searchTimeoutMs?: (nodes: number) => number;
 }
 
-/** Assumes at least 20 000 nodes/s, plus 15 s of slack. Replaced by measured values in Stage 4. */
-export const defaultSearchTimeoutMs = (nodes: number): number => 15_000 + Math.ceil(nodes / 20);
+/**
+ * Overall cap for one search: 10 s plus the budget at 50 000 nodes/s (docs/BENCHMARKS.md).
+ * Measured in Chromium on the reference machine: p50 ≈ 565 000 nodes/s, slowest search 4.8 s
+ * (Deep). The cap is 13-28x the slowest measured search per preset, leaving room for much
+ * slower hardware without letting a hung engine block a position for minutes.
+ */
+export const defaultSearchTimeoutMs = (nodes: number): number => 10_000 + Math.ceil(nodes / 50);
 
 export interface SearchRequest {
   /** The game's start position; the engine also receives every move since (spec D9). */

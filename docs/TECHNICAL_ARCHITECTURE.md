@@ -177,7 +177,7 @@ Each decision lists the recommendation, the reason, the alternatives, the trade-
 ### D6. Engine build: Stockfish.js "lite single-threaded" by default
 - **Recommend:** npm `stockfish` **19.0.1** (GPL-3.0, Stockfish 19), pinned exactly. Its README recommends the **lite, single-threaded** flavour for most projects, and we use it as the default for every preset:
   - Files: `bin/stockfish-19-lite-single.js` (28 KB) and `bin/stockfish-19-lite-single.wasm` (1,845,971 bytes ≈ 1.8 MB).
-  - **Optional, decided in Phase 2 (U4):** the **full single-threaded** build, `bin/stockfish-19-single.js` + `.wasm` (99,169,054 bytes ≈ 99 MB, which includes the large NNUE network). It would be a one-time download for Deep mode, cached in Cache Storage.
+  - **Not used (decision U4, 2026-11-11):** the **full single-threaded** build, `bin/stockfish-19-single.js` + `.wasm` (99,169,054 bytes ≈ 99 MB). Benchmarked in Phase 2: about 2.8× the memory per engine, 1.8× fewer nodes/s, and the same best move as lite in only 73% of positions (BENCHMARKS §3). Every preset, Deep included, uses the lite build.
   - File list checked against the published package on 2026-11-03.
 - **Why:** Lite is far stronger than any club player and loads instantly. The full network changes evaluations a little and costs a ≈99 MB download plus around 100 MB of memory per worker.
 - **Alternatives:** Multi-threaded builds (need COOP/COEP, see D7); the ASM-JS build (slow, last resort only).
@@ -316,7 +316,11 @@ stateDiagram-v2
   - `stop` is honoured mid-search: 20 ms in Node, 53 ms in Chromium. Cancel therefore uses `stop` → `bestmove`, and killing the engine is only the fallback after the 2 s stop timeout.
   - The engine reports `id name Stockfish 19 Lite WASM` and network `nn-61e7af4bb97d.nnue`.
   - A mated root is reported as `info depth 0 score mate 0` **without** a `nodes` field. It is flagged as an anomaly.
-- **Watchdogs** (decision D10, provisional until the Stage 4 benchmark): initialisation 10 s; 30 s with no output; an overall search cap of `15 s + nodes / 20 000`; `stop` 2 s, then kill.
+- **Watchdogs** (decision D10, calibrated in Stage 4 from [BENCHMARKS](BENCHMARKS.md) §4):
+  - initialisation 10 s (measured 0.12 s);
+  - 30 s with no output;
+  - an overall search cap of `10 s + nodes / 50 000`: Quick 13 s, Standard 22 s, Deep 60 s, at least 10× the slowest measured search;
+  - `stop` 2 s (measured 20–53 ms), then kill.
 - **Engine start failures.** After 3 consecutive failures with no running engine, the pool rejects queued jobs as `unavailable` instead of retrying in a loop.
 - **Worker CSP.** A page's `<meta>` CSP doesn't govern a dedicated worker, which gets its policy from its own response headers. The worker script is allowed by `worker-src 'self'`. The WASM fetch and compile happen inside the worker and were verified to load under the production build's CSP with no violations. If the app were ever hosted with header-based CSP, the worker response would need `'wasm-unsafe-eval'`.
 - **`bestmove` vs the last exact line.** When the node limit cuts the last iteration short, Stockfish's `bestmove` can differ from the first move of the last *exact* top line, because the newer choice only has a bound score. This is recorded in the golden transcript `equal-black-to-move.quick.uci`.
@@ -424,7 +428,12 @@ Full design: [AI_COACH_DESIGN](AI_COACH_DESIGN.md).
 
 - No engine work on the main thread. Engine `info` lines are throttled to ≤10 UI updates per second.
 - The eval graph renders progressively as positions finish.
-- Rough sizing (to verify): a 40-move game has 81 positions. With 3 workers and the Standard preset, wall time is roughly 27 × the single-position time. **The real number comes from the Phase 2 benchmark script** (`scripts/benchmark.ts`), which runs the presets over a fixed set of games and reports p50/p95 per-position time on the owner's machine.
+- **Measured in Phase 2** ([BENCHMARKS](BENCHMARKS.md); 6-core laptop, Chromium, default pool of 4 engines):
+  - a 77-position game takes **5.9 s** at Quick and **19.6 s** at Standard; Deep is estimated at about 87 s for 80 positions;
+  - per position with one engine (p50): 236 ms / 1.05 s / 4.34 s;
+  - no main-thread long task over 50 ms.
+
+  The benchmark runs as a Playwright spec (`npm run bench`) rather than `scripts/benchmark.ts` (decision D9), because a real browser is needed to measure Workers and long tasks.
 - Possible later optimisation: a two-pass review (Quick pass for an instant graph, then refine to the chosen preset).
 
 ## 12. Licence obligations (engineering view)

@@ -21,7 +21,9 @@
     "check": "npm run typecheck && npm run lint && npm run licenses && npm run test:coverage",
     "test:live": "vitest run --project unit tests/live",
     "test:engine": "vitest run --project engine",
-    "record:engine": "node scripts/record-engine-fixtures.mjs"
+    "record:engine": "node scripts/record-engine-fixtures.mjs",
+    "bench": "playwright test -c playwright.bench.config.ts",
+    "bench:builds": "node scripts/benchmark-engine-builds.mjs"
   },
   "dependencies": {
     "chess.js": "1.4.0",

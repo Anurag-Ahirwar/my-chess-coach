@@ -351,9 +351,9 @@ export interface Preferences {
   theme: "system" | "light" | "dark";
   boardOrientation: "auto" | "white" | "black";
   chesscomUsername?: string;
-  analysisPreset: "quick" | "standard" | "deep";
-  engineFlavour: "lite-single" | "full-single";
-  workerCount?: number;
+  analysisPreset: "quick" | "standard" | "deep"; // implemented in Phase 2; default "standard"
+  engineFlavour: "lite-single" | "full-single";  // not implemented: only lite-single ships (U4 decided: lite only)
+  workerCount: "auto" | 1 | 2 | 3 | 4;            // implemented in Phase 2; "auto" = spec D7 default
   coachLevel: CoachLevel | "auto";
   aiProvider?: "gemini" | "claude" | "openai"; // type is provider-independent; only "gemini" is selectable until Phase 4b
   aiModel?: string;
