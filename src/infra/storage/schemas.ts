@@ -113,6 +113,92 @@ export const RawAnalysisSchema = z
   .refine((a) => a.positions.length === a.totalCount, "positions.length must equal totalCount")
   .refine((a) => a.positions.every((p, i) => p === null || p.positionIndex === i), "positionIndex must match its slot");
 
+// ---------------------------------------------------------------- Reviews (Phase 3, derived data)
+
+const label = z.enum(["book", "forced", "best", "excellent", "good", "inaccuracy", "mistake", "blunder", "miss", "great", "brilliant"]);
+const severity = z.enum(["best", "excellent", "good", "inaccuracy", "mistake", "blunder"]);
+const phase = z.enum(["opening", "middlegame", "endgame"]);
+const percent = z.number().min(0).max(100);
+const accuracyMode = z.enum(["default", "lichessCompat"]);
+const suggestion = z.object({ uci: z.string(), san: z.string(), winAfter: percent });
+
+const MoveAnalysisSchema = z.object({
+  plyIndex: z.number().int().positive(),
+  color,
+  san: z.string(),
+  uci: z.string(),
+  scoreBefore: ScoreSchema.optional(),
+  scoreAfter: ScoreSchema.optional(),
+  winBefore: percent.optional(),
+  winAfter: percent.optional(),
+  winLoss: z.number().min(0).max(100).optional(),
+  cpLoss: z.number().min(0).optional(),
+  bestMove: suggestion.optional(),
+  secondBest: suggestion.optional(),
+  bestLineSan: z.array(z.string()),
+  refutationSan: z.array(z.string()),
+  severity: severity.optional(),
+  label: label.optional(),
+  labelReasons: z.array(z.string()),
+  accuracy: percent.optional(),
+  volatilityWeight: z.number().optional(),
+  countsTowardAccuracy: z.boolean(),
+  phase,
+  motifs: z.array(z.never()),
+  clockSeconds: z.number().optional(),
+  graded: z.boolean(),
+});
+
+const PlayerSummarySchema = z.object({
+  accuracy: percent.optional(),
+  accuracyMode,
+  accuracyByPhase: z.object({ opening: percent.optional(), middlegame: percent.optional(), endgame: percent.optional() }),
+  acpl: z.number().int().min(0).optional(),
+  labelCounts: z.record(label, z.number().int().min(0)),
+  gradedMoves: z.number().int().min(0),
+  ungradedMoves: z.number().int().min(0),
+  countedMoves: z.number().int().min(0),
+  excludedForced: z.number().int().min(0),
+  excludedMissingWeight: z.number().int().min(0),
+});
+
+export const GameReviewSchema = z.object({
+  gameId: z.string().min(1),
+  rawAnalysisId: z.string().min(1),
+  methodologyVersion: z.string().min(1),
+  configHash: z.string().regex(/^[0-9a-f]{16}$/),
+  accuracyMode,
+  moves: z.array(MoveAnalysisSchema),
+  white: PlayerSummarySchema,
+  black: PlayerSummarySchema,
+  winSeries: z.array(percent.nullable()),
+  phaseBoundaries: z.object({ middlegameStartPly: z.number().int().optional(), endgameStartPly: z.number().int().optional() }),
+  opening: z.object({ eco: z.string(), name: z.string(), ply: z.number().int().min(0) }).optional(),
+  turningPoint: z.number().int().positive().optional(),
+  coverage: z.object({
+    total: z.number().int().positive(),
+    analysed: z.number().int().min(0),
+    failed: z.number().int().min(0),
+    pending: z.number().int().min(0),
+    complete: z.boolean(),
+  }),
+  keyMoments: z.array(z.number().int()),
+});
+
+export const ReviewRecordSchema = z
+  .object({
+    rawAnalysisId: z.string().min(1),
+    methodologyVersion: z.string().min(1),
+    gameId: z.string().min(1),
+    configHash: z.string().regex(/^[0-9a-f]{16}$/),
+    derivedAt: z.number(),
+    schemaVersion: z.literal(1),
+    review: GameReviewSchema,
+  })
+  .refine((r) => r.review.rawAnalysisId === r.rawAnalysisId && r.review.methodologyVersion === r.methodologyVersion, "record keys must match the review")
+  .refine((r) => r.review.gameId === r.gameId && r.review.configHash === r.configHash, "record fields must match the review")
+  .refine((r) => r.review.moves.length + 1 === r.review.winSeries.length, "one Win% per position");
+
 export const HttpCacheEntrySchema = z.object({
   url: z.string().url(),
   fetchedAt: z.number(),

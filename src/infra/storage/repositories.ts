@@ -1,9 +1,9 @@
 import { mergeAnalyses, type RawAnalysis } from "@/core/engine/analysis";
 import type { GameRecord, StoredGame } from "@/core/game/types";
 import type { PastMonthCache } from "@/infra/chesscom";
-import type { AppDatabase } from "./db";
+import type { AppDatabase, ReviewRecord } from "./db";
 import { StorageError, classifyStorageError, type StorageProblemKind } from "./errors";
-import { HttpCacheEntrySchema, RawAnalysisSchema, StoredGameSchema } from "./schemas";
+import { HttpCacheEntrySchema, RawAnalysisSchema, ReviewRecordSchema, StoredGameSchema } from "./schemas";
 
 export interface GameRepository {
   /** Saves a game by id: a re-import updates it (keeping createdAt), never duplicates it. */
@@ -20,10 +20,22 @@ export interface AnalysisRepository {
   listForGame(gameId: string): Promise<RawAnalysis[]>;
 }
 
+/**
+ * Cached reviews (Phase 3, docs/DATA_MODELS.md §11). Reviews are derived data and never
+ * authoritative (decision B6), so unlike games and analyses an unreadable stored review is
+ * reported and then replaced on the next save. Saving a review never touches rawAnalyses.
+ */
+export interface ReviewRepository {
+  get(rawAnalysisId: string, methodologyVersion: string): Promise<ReviewRecord | undefined>;
+  put(record: ReviewRecord): Promise<void>;
+  listForGame(gameId: string): Promise<ReviewRecord[]>;
+}
+
 export interface Repositories {
   games: GameRepository;
   analyses: AnalysisRepository;
   pastMonths: PastMonthCache;
+  reviews: ReviewRepository;
 }
 
 /** Called for problems found while reading (e.g. an invalid record that is skipped). */
@@ -113,6 +125,32 @@ export function dexieRepositories(db: AppDatabase, report: ProblemReporter): Rep
     }),
   };
 
+  const readReview = (row: unknown, key: string): ReviewRecord | undefined => {
+    const parsed = ReviewRecordSchema.safeParse(row);
+    if (parsed.success) return parsed.data;
+    report("invalid_record", `reviews/${key}: ${parsed.error.issues[0]?.message ?? "invalid"}`);
+    return undefined;
+  };
+
+  const reviews: ReviewRepository = {
+    get: (rawAnalysisId, methodologyVersion) =>
+      guard(async () => {
+        const row = await db.reviews.get([rawAnalysisId, methodologyVersion]);
+        return row === undefined ? undefined : readReview(row, `${rawAnalysisId}@${methodologyVersion}`);
+      }),
+    put: (record) =>
+      guard(async () => {
+        const parsed = ReviewRecordSchema.safeParse(record);
+        if (!parsed.success) throw new StorageError("invalid_record", `Refused to save an invalid review: ${parsed.error.issues[0]?.message ?? "invalid"}`);
+        await db.reviews.put(record);
+      }),
+    listForGame: (gameId) =>
+      guard(async () => {
+        const rows = await db.reviews.where("gameId").equals(gameId).toArray();
+        return rows.flatMap((row) => readReview(row, `${row.rawAnalysisId}@${row.methodologyVersion}`) ?? []);
+      }),
+  };
+
   const pastMonths: PastMonthCache = {
     get: async (url) => {
       const row = await db.httpCache.get(url);
@@ -129,7 +167,7 @@ export function dexieRepositories(db: AppDatabase, report: ProblemReporter): Rep
     },
   };
 
-  return { games, analyses, pastMonths };
+  return { games, analyses, pastMonths, reviews };
 }
 
 // ---------------------------------------------------------------- In memory (fallback)
@@ -139,6 +177,8 @@ export function memoryRepositories(): Repositories {
   const gameRows = new Map<string, StoredGame>();
   const analysisRows = new Map<string, RawAnalysis>();
   const monthRows = new Map<string, unknown>();
+  const reviewRows = new Map<string, ReviewRecord>();
+  const reviewKey = (rawAnalysisId: string, methodologyVersion: string) => JSON.stringify([rawAnalysisId, methodologyVersion]);
   const copy = <T>(value: T): T => structuredClone(value);
 
   return {
@@ -160,6 +200,19 @@ export function memoryRepositories(): Repositories {
         return Promise.resolve(next);
       },
       listForGame: (gameId) => Promise.resolve([...analysisRows.values()].filter((a) => a.gameId === gameId).map(copy)),
+    },
+    reviews: {
+      get: (rawAnalysisId, methodologyVersion) => {
+        const row = reviewRows.get(reviewKey(rawAnalysisId, methodologyVersion));
+        return Promise.resolve(row ? copy(row) : undefined);
+      },
+      put: (record) => {
+        const parsed = ReviewRecordSchema.safeParse(record);
+        if (!parsed.success) return Promise.reject(new StorageError("invalid_record", `Refused to save an invalid review: ${parsed.error.issues[0]?.message ?? "invalid"}`));
+        reviewRows.set(reviewKey(record.rawAnalysisId, record.methodologyVersion), copy(record));
+        return Promise.resolve();
+      },
+      listForGame: (gameId) => Promise.resolve([...reviewRows.values()].filter((r) => r.gameId === gameId).map(copy)),
     },
     pastMonths: {
       get: (url) => Promise.resolve(monthRows.get(url)),
