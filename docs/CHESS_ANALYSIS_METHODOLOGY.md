@@ -199,7 +199,7 @@ What the bands mean in practice (equal position, mover POV):
 | 0.00 → −2.00 (drops the exchange) | 17.6 | Mistake | 46 |
 | 0.00 → −3.00 (drops a piece) | 25.1 | Blunder | 32 |
 | +1.50 → −1.50 | 26.9 | Blunder | 30 |
-| +8.00 → +5.00 (still winning) | 8.7 | Inaccuracy | 69 |
+| +8.00 → +5.00 (still winning) | 8.7 | Inaccuracy | 68 |
 | −8.00 → −10.00 (already lost) | 2.5 | Good | 90 |
 | +10.00 → 0.00 (throws the win away) | 47.5 | Blunder | 11 |
 
@@ -510,3 +510,4 @@ All constants are in the config and tested on fixture games with known phase bou
   - §6.5–6.6: phase slices use the same mode; ACPL includes Forced moves.
   - §7: exact phase rules (M12).
   - Turning point (AI_COACH_DESIGN §10): exact definition (M13).
+  - Documentation fix found by the tests (no formula or constant changed): in the §5.3 example table, the move accuracy for +8.00 → +5.00 is 68 (68.47), not 69.
