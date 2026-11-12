@@ -2,8 +2,8 @@
 
 | | |
 |---|---|
-| Status | Draft — methodology **v1.0.0** (proposed) |
-| Date | 2026-11-03 |
+| Status | Methodology **v1.0.0** — clarified before implementation (2026-11-13, Phase 3 Stage 0); implemented in Phase 3 |
+| Date | 2026-11-03, revised 2026-11-13 |
 | Principle | Every number shown to the user is produced by the rules in this document, from Stockfish output. Nothing is estimated by an LLM. |
 
 This document is the contract for `core/eval`, `core/classify`, `core/accuracy` and `core/phases`. Every constant here lives in one versioned config object (`methodology.v1.ts`). Changing any value bumps `methodologyVersion`.
@@ -19,7 +19,7 @@ This methodology has three kinds of rules, and the app's "About this analysis" p
 | Win% curve, centipawn ceiling, mate → Win% mapping | **Lichess-compatible**: same formula and constants | §4 |
 | Move accuracy formula, including the +1 uncertainty bonus and clamping | **Lichess-compatible** | §6.1 |
 | Game accuracy: volatility weights, sliding windows, weighted mean, harmonic mean, missing-eval handling | **Lichess-compatible** in `lichessCompat` mode. The default mode differs in exactly one rule: Forced moves are excluded (§6.3). | §6.2–6.4 |
-| ACPL | **Lichess-compatible** | §6.6 |
+| ACPL | **Same definition as Lichess's ACPL**, verified in our tests against Lichess's reported ACPL (±1 on the 50 cross-check games). This is an internal validation, **not** part of the user-facing compatibility statement (decision B3, Phase 3). | §6.6 |
 | Move labels and their thresholds (bands, Miss, Great, Brilliant, Book, Forced) | **Our own.** The mate rules borrow Lichess's boundaries, but the labels are our design. | §5 |
 | Phase boundaries, and so phase accuracy | **Our own.** The divider differs from Lichess's, so phase accuracies are *not* comparable with Lichess's. | §7 |
 | Anything from Chess.com | **No relationship.** Chess.com's accuracy and classification are proprietary. We neither reproduce nor approximate them, and no formula is ever tuned to resemble Chess.com's numbers. | §6.7 |
@@ -172,6 +172,8 @@ flowchart TD
     UP -- no --> KEEP[keep severity label]
 ```
 
+**Missing evaluations come first (§6.4).** If the evaluation of *P* or *P′* is missing, the move gets **no label at all**, not even Forced or Book, and the reason `missing:eval` (decision M6). Forced and Book need no evaluation, but §6.4 leaves the move ungraded, and the UI says why.
+
 ### 5.3 Severity bands (base labels)
 
 | Label | Condition (mover's Win% loss `L`) | Notes |
@@ -217,6 +219,10 @@ The three rules are mutually exclusive:
 
 A move that **delivers** checkmate makes *P′* `terminal` (a win for the mover), so none of these rules apply, and the band gives Best.
 
+A **terminal draw** at *P′* (e.g. stalemating the opponent while having a forced mate) counts as `cp 0` for these rules, as in §4.1. So "Mate lost" applies with cp 0 ≤ +700 → Blunder (decision M7).
+
+`cp` in this table is the mover-POV centipawn score of `lines[0]`, not clamped.
+
 ### 5.5 Miss
 
 A **Miss** means the opponent's previous move gave the mover a clear opportunity, and the mover did not take it.
@@ -227,6 +233,10 @@ All of the following must hold:
 3. `Wb ≥ 60`, so there really was something to take.
 
 The label becomes **Miss**, and the underlying severity is kept in the data for statistics and accuracy.
+
+Clarified (decision M8):
+- Condition 1 uses the opponent's previous move's **severity**, so an opponent move that was itself labelled Miss still counts if its severity is Mistake or Blunder.
+- If the opponent's previous move has no severity (ungraded, Book or Forced) and `Wprev` is unavailable (the first move of the game, or a missing evaluation), condition 1 can't be checked and the move is not a Miss.
 
 ### 5.6 Great (experimental)
 
@@ -242,28 +252,53 @@ All of the following must hold:
 
 If MultiPV data is missing (Quick preset, or a failed search), Great is **not evaluated**. The move keeps its base label.
 
+Clarified (decision M9):
+- `best2` is `lines[1]`. If the engine's `bestMove` differs from `lines[0].pv[0]` (D16), `best1` and `best2` can't be told apart reliably, so Great is **not evaluated**.
+- An **obvious recapture** (condition 5) is a capture whose destination square is the destination square of the opponent's previous move, when that previous move was itself a capture.
+
 ### 5.7 Brilliant (experimental)
 
 A **Brilliant** move is a sound sacrifice that is also the best move. Losing material on its own is never enough. Like Great, it is evaluated only at the Standard and Deep presets. Quick-preset PVs are too shallow to check condition 3.
 
+Material, the balance, SEE and the null-move position *P\** are defined in §5.11. The PV is `lines[0].pv` of *P′* (the opponent moves first).
+
 All of the following must hold:
-1. The move qualifies as Best, and is `best1` or within 1.0 Win% of it.
-2. **There is a real sacrifice.** After the move, the opponent can win ≥ 2 points of material (piece values 1/3/3/5/9). This is checked by **static exchange evaluation (SEE)** on the moved piece's square, or on any of the mover's pieces that the move leaves undefended or newly exposed.
-3. **The sacrifice is not immediately recovered.** Along the engine PV from *P′*, the mover's material balance stays ≥ 2 points below its pre-move value for at least 4 plies. The exception is when the PV ends in a forced mate for the mover, which counts as justification.
+1. The move qualifies as Best, and is `best1` or within 1.0 Win% of it: `Win%(lines[0] at P) − Wa ≤ 1.0`, mover POV (decision M15).
+2. **There is a real sacrifice: the sacrificed set S is not empty.** A mover's piece on square *q* is in S when SEE at *P′* on *q* is **≥ 2** and SEE is certain (§5.11), and:
+   - for the **moved piece**: it was **not already lost before the move**, i.e. SEE at *P\** on its starting square is < 2. This excludes desperado moves. For a promotion, the moved piece is the new piece and its starting square is the pawn's (decision D3);
+   - for **any other piece**: it was **not already losing ≥ 2 before the move**, i.e. SEE at *P\** on *q* is < 2 ("left undefended or newly exposed").
+3. **The sacrifice is accepted and not immediately recovered** (decision D1):
+   - **accepted:** the **first PV ply** (the opponent's reply) captures a piece in S;
+   - **not recovered:** the mover's balance after **each** of PV plies 1, 2, 3 and 4 is ≤ (balance at *P*) − 2.
 4. **The position after the move is not losing:** `Wa ≥ 50`.
 5. **The position before wasn't already crushing:** `Wb < 90`. Sacrifices in won positions are cheap.
 6. The PV contains at least 4 plies. Otherwise condition 3 can't be checked, and the label is omitted.
 
-If any condition can't be checked, the move gets no Brilliant label. Brilliant takes precedence over Great.
+**Mate exception (decision D2).** If *P′*'s `lines[0]` score is a forced mate for the mover, condition 3 (acceptance **and** recovery) is waived, and so is condition 6. Conditions 1, 2, 4 and 5 must still hold, so S must contain a real sacrifice made by this move. A piece that was already hanging before the move never makes S non-empty, so an unrelated hanging piece can't create a Brilliant through this exception. Note that condition 5 normally blocks the exception: when the search at *P* already sees the mate, `Wb` = 97.5. The exception fires only when the search at *P′* finds a mate that the search at *P* did not.
+
+**Not evaluated** (no Brilliant label, the move keeps its other label):
+- the preset is Quick, or the analysis is not MultiPV ≥ 2;
+- the mover is **in check at *P*** (decision D4), because *P\** is then not a legal position;
+- *P′*'s engine `bestMove` differs from its `lines[0].pv[0]` (D16), so the PV is not certain;
+- any SEE needed for condition 2 is **uncertain** (§5.11);
+- any other condition can't be checked.
+
+Brilliant takes precedence over Great.
+
+**Known blind spots** (all lean towards no label): sacrifices accepted only after an in-between move; good sacrifices the engine's best reply declines (unless the mate exception applies); an attacked piece that sacrifices itself instead of retreating (excluded as a desperado); a sacrifice that gives check, so it can't be taken yet; deflection or interference sacrifices whose cost isn't visible on one square; material regained after PV ply 4 still counts as a sacrifice.
 
 ### 5.8 Book
 
 A move is **Book** when:
 
 - the position *after* the move (as an EPD: placement, side, castling, en-passant) appears in the bundled opening index; and
-- every earlier move in the game was also Book.
+- every earlier position in the game (after each earlier move) also appears in the index.
 
-The opening index is built from the Lichess `chess-openings` CC0 dataset (every position along every named line).
+The chain is about **positions**, not labels (decision M5): an in-book move that is the only legal move is labelled Forced (§5.2 order), but it doesn't break the chain.
+
+The opening index is built from the Lichess `chess-openings` CC0 dataset (every position along every named line), pinned to commit `3ba6b20d31b2e6125cb0e6a2e792f400717d9d39` (2026-11-05). EPDs are computed with chess.js both when the index is built and at runtime, so the en passant field always follows the same rule. The pinned commit is part of the methodology config: changing it bumps the version.
+
+**Opening name:** the name and ECO of the deepest position of the game, among positions 0..n, that is the end position of a named line. A game with no such position has no opening name. A name is never guessed.
 
 Book moves are still engine-evaluated, and they are included in accuracy (their loss is normally ≈ 0).
 
@@ -273,7 +308,7 @@ A **Forced** move is the only legal move. It is not graded. By default it is exc
 ### 5.10 Label configuration
 
 ```ts
-// Frozen: changing any value breaks Lichess compatibility (§0).
+// src/core/methodology/v1.ts. Frozen: changing any value breaks Lichess compatibility (§0).
 export const LICHESS_ACCURACY_V1 = {
   winPercentK: 0.00368208, cpCeiling: 1000,
   accA: 103.1668100711649, accK: 0.04354415386753951, accB: -3.166924740191411, uncertaintyBonus: 1,
@@ -283,17 +318,38 @@ export const LICHESS_ACCURACY_V1 = {
 
 export const METHODOLOGY_V1 = {
   version: "1.0.0",
-  accuracyMode: "default" as "default" | "lichessCompat",
+  accuracyMode: "default",                // "default" | "lichessCompat"; the app always uses "default"
   bands: { bestTolerance: 0.5, excellent: 2, good: 5, inaccuracy: 10, mistake: 20 },
   mate: { inaccuracyAtCp: 1000, mistakeBeyondCp: 700 },   // mirrored per rule, see §5.4
   miss: { opportunityGain: 10, minWinBefore: 60, minSeverity: "mistake" },
-  great: { minGap: 10, minWb: 5, maxWb: 95, enabled: true },
-  brilliant: { minSacrifice: 2, minPersistPlies: 4, minWa: 50, maxWb: 90, bestWithin: 1.0, enabled: true },
-  phases: { minMovesForPhaseAccuracy: 6 },
+  great: { minGap: 10, minWb: 5, maxWb: 95, enabled: true },        // experimental flag
+  brilliant: { minSacrifice: 2, minPersistPlies: 4, minWa: 50, maxWb: 90, bestWithin: 1.0, enabled: true }, // experimental flag
+  material: { p: 1, n: 3, b: 3, r: 5, q: 9 },                       // §5.11
+  phases: { minMovesForPhaseAccuracy: 6, openingMaxPieces: 10, backRankSparse: 4, bookGuardMoves: 12, endgameMaxPieces: 6 },
+  openings: { source: "lichess-org/chess-openings", commit: "3ba6b20d31b2e6125cb0e6a2e792f400717d9d39" },
 } as const;
 ```
 
+The experimental flags (`great.enabled`, `brilliant.enabled`) are part of the config, so turning one off is a methodology change too.
+
 The accuracy constants (`k`, `cpCeiling`, `uncertaintyBonus`, the window and weight limits in §6.2) are **Lichess-compatibility constants**. Changing any of them breaks the compatibility claim in §0, so they sit in a separate, frozen `LICHESS_ACCURACY_V1` object rather than in the label config.
+
+### 5.11 Material, balance and SEE (used by Brilliant)
+
+**Material.** Pawn 1, knight 3, bishop 3, rook 5, queen 9. Kings count 0. A promoted piece counts at its new value. The **balance** of a position is the mover's material minus the opponent's.
+
+**Null-move position *P\**.** The position *P* with the side to move switched to the opponent and the en passant field cleared. It is only built when the mover is not in check at *P* (otherwise it isn't legal, and Brilliant is not evaluated).
+
+**SEE is a deterministic least-valuable-attacker exchange estimate,** not an exact search. `see(position, square)` estimates the material, ≥ 0, that the side to move wins by starting a sequence of captures on the square, when either side may stop before any capture:
+
+1. List the **legal** captures on the current target square in the **actual position** (chess.js), so pins, checks, king safety, en passant and promotion follow the rules. For en passant, the captured pawn stands on the target; the exchange then continues on the en passant destination square. No legal capture → the sequence ends.
+2. Pick the **least valuable** capturer (pawn < knight = bishop < rook < queen < king). Ties are broken deterministically: knight before bishop, then the lowest starting square (a1, b1, …, h8).
+3. The gain is the captured piece's value, **+8** if the capture promotes (always to a queen). Play the capture on the board and switch sides.
+4. Fold the list of gains backwards so that each side stops when continuing would lose. The result is max(0, folded value). At most 32 captures are considered.
+
+**Equal-value capturers can give different results.** Pieces of the same value stand on different squares, so which one captures first changes what is revealed behind it, e.g. a discovered check that makes the opponent's recapture illegal. The tie-break keeps the estimate deterministic, but it may differ from the result of the best order. To stay conservative, SEE also reports whether it is **certain**: at every step where more than one least-valuable capturer exists, each alternative is also played out, and if any alternative order changes the result the SEE is **uncertain**. Brilliant (§5.7) treats an uncertain SEE as "can't be checked" and gives no label.
+
+**Limitations (documented, not bugs):** SEE is static. It looks only at captures on one square. It ignores in-between moves, checks elsewhere on the board, pins against non-king pieces, threats created by the exchange, and stalemate. It never replaces the engine: Brilliant always confirms acceptance and the material deficit along the engine's own PV (§5.7 condition 3).
 
 ## 6. Accuracy
 
@@ -365,10 +421,14 @@ Failed positions should be rare, because the pool retries once (architecture §6
 ### 6.5 Phase accuracy
 For each phase, take the positions where the position itself **or** the next position belongs to that phase (lila's slicing rule, which includes the boundary position). Then run §6.2 on that slice, with `startColor` = the side to move at the slice's first position. The result is shown only when the player has at least 6 counted moves in the phase.
 
+The slice is run with the same accuracy mode and the same Forced flags as the whole game.
+
 **Compatibility note:** the aggregation is Lichess's, but our phase **boundaries** (§7) are not, so phase accuracies are not comparable with Lichess's.
 
 ### 6.6 Secondary statistic: ACPL
 Lichess-compatible (lila `AccuracyCP`): for each of the player's moves, take the White-perspective scores before and after, convert mates to ±∞ and clamp everything to ±1000. The loss is `max(0, (after − before) × (White ? −1 : +1))`. ACPL is the mean of these losses, rounded to the nearest integer, over moves where both scores exist. It is shown in advanced views only.
+
+Clarified: ACPL counts **every** move with both scores, including Forced moves (Lichess has no Forced exclusion), and it is the same in both accuracy modes. A terminal win is ±1000 and a terminal draw is 0. ACPL is verified against Lichess (±1) as an internal validation, not a compatibility claim (§0).
 
 ### 6.7 What we deliberately do not compute
 - **"Game rating" / estimated performance Elo.** There is no defensible method without a large calibration dataset. Omitted.
@@ -386,6 +446,13 @@ The divider is inspired by Lichess's (published) approach, using material and de
 - A game may skip phases (e.g. a miniature has no endgame).
 
 All constants are in the config and tested on fixture games with known phase boundaries.
+
+**Exact rules (decision M12).** Each **position** *k* = 0..n gets a phase:
+- **Pieces** means knights, bishops, rooks and queens of both sides (not pawns or kings).
+- **Middlegame** starts at the first position *k* where any of these holds: pieces ≤ 10; **either** side has fewer than 4 of its own pieces (any type, including pawns and the king) on its first rank; or *k* ≥ (last Book position) + 24 plies. If the game has no Book position, the count starts at position 0, so the opening ends by ply 24 at the latest.
+- **Endgame** starts at the first position *k* where pieces ≤ 6, **or** where, **for each side**, there is no queen, at most one rook and at most one minor piece.
+- Once a phase has started it never goes back. If the endgame condition holds at or before the middlegame start, the middlegame is skipped.
+- A **move**'s phase is the phase of the position **before** it. Phase *accuracy* still uses the slicing rule of §6.5.
 
 ## 8. Edge cases checklist
 
@@ -430,3 +497,16 @@ All constants are in the config and tested on fixture games with known phase bou
   - Made the mate-rule boundaries exact and mutually exclusive (§5.4).
   - Specified ACPL exactly.
   - Split the frozen Lichess constants from our label config.
+- 1.0.0 (clarified before implementation, 2026-11-13, Phase 3 Stage 0, approved by the owner). Nothing had been implemented, so the version stays 1.0.0:
+  - §0: ACPL is verified against Lichess as an internal validation, not a compatibility claim (D5, B3).
+  - §5.2: a move next to a missing evaluation gets no label, including Forced and Book (M6).
+  - §5.4: a terminal draw after the move counts as cp 0 (M7).
+  - §5.5: Miss uses the opponent's severity; no Miss when that can't be checked (M8).
+  - §5.6: Great not evaluated when `bestMove` ≠ `lines[0].pv[0]`; "obvious recapture" defined (M9).
+  - §5.7: Brilliant re-specified: the sacrificed set S with the desperado exclusion (D3); acceptance on PV ply 1 and a deficit ≥ 2 after plies 1–4 (D1); the mate exception waives acceptance and recovery only when S is non-empty (D2); not evaluated when the mover is in check (D4), when *P′*'s best move and PV disagree, or when an SEE is uncertain; "within 1.0 Win%" defined (M15).
+  - §5.8: the Book chain follows index membership, not labels (M5); the dataset commit is pinned; opening-name rule.
+  - §5.10: config completed (material values, phase constants, dataset commit); experimental flags are part of it.
+  - §5.11 (new): material, balance, the null-move position, and SEE as a deterministic least-valuable-attacker estimate with a certainty flag.
+  - §6.5–6.6: phase slices use the same mode; ACPL includes Forced moves.
+  - §7: exact phase rules (M12).
+  - Turning point (AI_COACH_DESIGN §10): exact definition (M13).

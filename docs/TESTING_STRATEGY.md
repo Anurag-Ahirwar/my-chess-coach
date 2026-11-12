@@ -47,8 +47,10 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
 | `pgn/malformed/` | Illegal move, unreadable SAN, truncated movetext, unterminated comment, unsupported variant, invalid FEN tag, unbalanced `(`/`)`, malformed tag. Every file must produce exactly one located error. | Hand-built |
 | `pgn/edge-cases/` | Valid but awkward input: BOM + CRLF, a multi-game file with comments, NAGs, nested variations, an escape line and one broken game | Hand-built |
 | `engine/positions.json` + `engine/transcripts/` | 12 positions (equal, material advantage, mate for and against each side, forced moves, repetition with and without move history), each with both sides to move where relevant. Every line from `go` to `bestmove` is recorded at Quick (MultiPV 1) and Standard (MultiPV 2): 24 `.uci` files, each with a header naming the engine and the exact commands. Expected values in the tests were read by hand from the raw files. | `npm run record:engine` (`scripts/record-engine-fixtures.mjs`, the npm build in Node, decision A13). `npm run record:engine -- --verify` re-runs every search and confirms identical output (ignoring `nps`/`time`). |
-| `lichess-evals/` | 50 games already analysed on Lichess, exported **with Lichess's evals and accuracies** | Lichess game export API (verify parameters when building) |
-| `classify/positions/` | Positions with known correct labels: an obvious blunder, a missed mate, a Great only-move, textbook Brilliant sacrifices (positive) and plain trades or desperado captures (negative) | Hand-curated |
+| `lichess-evals/` | 50 games already analysed on Lichess, exported **with Lichess's evals and accuracies** | `scripts/fetch-lichess-evals.mjs`. Parameters confirmed against Lichess's API spec on 2026-11-13: `GET /api/games/user/{user}?analysed=true&evals=true&accuracy=true&division=true&opening=true&clocks=false` (`Accept: application/x-ndjson`). The export has per-ply `analysis` entries for positions 1..n only, so position 0 uses cp +15. Pseudonymised before commit: players become `player-NN`, game ids and links are synthetic, ratings and dates are dropped; moves, evals, judgments, accuracies, ACPL, division and phase accuracies are unchanged. |
+| `classify/positions/` | Positions with known correct labels: an obvious blunder, a missed mate, a Great only-move, textbook Brilliant sacrifices (positive) and plain trades or desperado captures (negative) | Hand-curated. Every position and line is checked legal with chess.js when the tests load it. |
+| `review/raw/` | `RawAnalysis` at the Standard preset for 10 `pgn/chesscom` games (06, 19, 10, 12, 14, 23, 07, 02, 16, 21), the input of the regression snapshots | Recorded with the real engine through the `engine` test project (`RECORD_REVIEW_FIXTURES=1`). The snapshots are built from the committed JSON, so they never need the engine. |
+| `phases/` | Games with hand-annotated phase boundaries, including a miniature with no endgame and a game that leaves the book early | Hand-annotated |
 | `coach/golden/` | About 30 `CoachFacts` moments, plus adversarial model outputs | Hand-built |
 | `chesscom/api/` | Recorded API responses: profile, archives, a month, 404, 410, 429, and an empty month | Recorded once with `curl`, then frozen |
 
@@ -122,7 +124,10 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
    3. where our per-player result is undefined, Lichess's must be undefined too. Lichess returns no accuracy for either player if one of them has no counted moves; the comparison accounts for that.
 
    This proves the formula and aggregation are implemented exactly, independent of engine differences. The export parameters (`evals`, `accuracy`) are to be confirmed against the Lichess API documentation when the fixtures are collected in Phase 3.
-- **ACPL:** checked against Lichess's reported ACPL for the same 50 games, ±1.
+- **ACPL (internal validation gate, decision D5):** for each of the 50 games and both players, |our rounded ACPL − Lichess's `acpl`| ≤ 1, from the same inputs as the accuracy cross-check. Our ACPL undefined while Lichess reports a value is a failure. This proves our §6.6 code computes the quantity it claims to; it is **not** a compatibility claim (methodology §0). Recorded separately from accuracy (Phase 3 DoD 5a accuracy, 5b ACPL).
+- **Lichess phase accuracy (decision D7, report first):** our §6.5 slicing fed with Lichess's own `division` boundaries, compared with Lichess's reported phase accuracies. Reported per game; it becomes a gate only if the results are reliable.
+- **SEE (methodology §5.11):** undefended and defended pieces, multi-piece exchanges with x-rays, a pinned attacker, a pinned piece capturing its pinner, the king and defended or undefended pieces, en passant with and without a recapture on the en passant square, promotion while capturing, captures limited by a double check, and **equal-value capturers whose order changes the result** (the tie-break value is asserted and the result is flagged uncertain).
+- **Brilliant mate exception (decision D2):** a sacrifice declined but leading to mate is labelled; a move giving mate-in-N with a piece that was already hanging (S empty) is not; a desperado into mate is not; the exception never waives conditions 1, 2, 4 or 5.
 - **Sanity correlation (report, not a gate).** For Chess.com games that include `accuracies`, compute the Pearson correlation between our accuracy (Standard preset) and Chess.com's. We expect a strong positive correlation, and the result is recorded in the docs. A weak correlation is investigated, but it is not "fixed" by tuning toward a proprietary number.
 - **Regression snapshots:** `GameReview` for 10 fixture games with recorded transcripts is snapshot-tested. Any methodology change must update the snapshots **and** bump the version.
 
@@ -236,6 +241,18 @@ Implemented in Phase 2 as a Playwright spec (decision D9), because Workers and l
 `npm run bench:builds` (`scripts/benchmark-engine-builds.mjs`) compares the lite and full engine builds in Node for decision U4.
 
 Raw results are committed in `docs/benchmarks/*.json`. The summary is in `docs/BENCHMARKS.md`, which is the **only** source for any timing shown in the UI or the docs.
+
+**Phase 3 (approved in Stage 0): review derivation runs in a dedicated Worker, and two things are measured separately.**
+- **Main-thread responsiveness (a gate).** Playwright on the production build, `PerformanceObserver` for long tasks with the 120 ms positive control:
+  1. a whole-game analysis with the review re-derived as positions finish;
+  2. opening the longest regression game (207 plies) with and without a cached review;
+  3. 40 clicks on graph points plus 60 arrow-key presses sent rapidly.
+
+  Pass means zero long tasks over 50 ms apart from the control. The Long Tasks API exists only in Chromium; Firefox records "not measurable". The Event Timing API's maximum and 95th-percentile interaction duration are recorded too, report-only, in both browsers.
+- **Total derivation time (report only).** The target is set from the numbers at the Phase 3 Stage 2 checkpoint, with the owner's approval.
+  - **Node** (`vitest bench`): `deriveReview` on the 10 regression games and a synthetic 300-ply game; 5 warm-up and 30 measured runs; median, 95th percentile and maximum; split into SAN conversion, classification, accuracy and phases.
+  - **Browser** (`npm run bench`): `performance.mark`/`measure` for worker start, opening-index load, the worker round trip, the cached-review read and the first paint; short, typical and long games; 10 runs each, cold and warm; plus a 4× CPU-throttled run (main thread only, BENCHMARKS §2.6).
+  - The marks are never sent anywhere.
 
 ## 6. Definition of done for analysis features
 

@@ -217,13 +217,17 @@ export interface GameReview {
   gameId: string;
   rawAnalysisId: string;
   methodologyVersion: string;
+  configHash: string;          // hash of the full methodology config (flags, dataset commit); Phase 3
+  accuracyMode: "default" | "lichessCompat"; // Phase 3
   moves: MoveAnalysis[];
   white: PlayerSummary;
   black: PlayerSummary;
-  winSeries: (number | null)[]; // White-POV Win% per position, null where analysis failed (graph shows a gap)
+  winSeries: (number | null)[]; // White-POV Win% per position, null where analysis failed or is pending (graph shows a gap)
   phaseBoundaries: { middlegameStartPly?: number; endgameStartPly?: number };
-  keyMoments: number[];        // ply indices
-  derivedAt: number;
+  opening?: { eco: string; name: string; ply: number }; // Phase 3: deepest named position (methodology §5.8)
+  turningPoint?: number;       // Phase 3: ply index (AI_COACH_DESIGN §10, decision M13)
+  coverage: { total: number; analysed: number; failed: number; pending: number; complete: boolean }; // Phase 3
+  keyMoments: number[];        // ply indices; empty until Phase 4
 }
 
 export interface MotifTag {
@@ -235,6 +239,13 @@ export interface MotifTag {
 ```
 
 `GameReview` is cached in the `reviews` table keyed by `[rawAnalysisId, methodologyVersion]`. On load: if the methodology version matches, the cached review is used. Otherwise it is re-derived from `RawAnalysis` in a few milliseconds.
+
+**Phase 3 decisions (Stage 0, approved 2026-11-13):**
+- `derivedAt` was dropped from `GameReview` so that the same raw analysis and config always give an identical object (determinism, regression snapshots). The cache record carries the time instead (§11).
+- **Fields added:** `configHash`, `accuracyMode`, `opening`, `turningPoint`, `coverage` (decision M14). `keyMoments` stays empty until Phase 4.
+- **Move fields:** `plyIndex` is the 1-based ply (the move from position `plyIndex − 1` to `plyIndex`). `phase` is the phase of the position before the move (methodology §7). Book and Forced moves have a `label` but no `severity`; `graded` is true when the move has a label. `labelReasons` always explains an ungraded move too (e.g. `missing:eval`, `pending:eval`).
+- **Best line (decision M9):** `bestLineSan` is the stored line at the position before whose first move is `bestMove`; if none starts with it, `bestLineSan` is empty and only `bestMove` is shown. Every SAN is converted from UCI that has been replayed legally with chess.js.
+- **Partial analyses:** positions not analysed yet count as `pending`, failed ones as `failed`. A review with `coverage.complete === false` is never cached and its summaries are not shown as final.
 
 ## 7. Coach outputs
 
@@ -383,9 +394,28 @@ db.version(1).stores({
 
 **Planned later versions.** Each phase adds its tables with a version bump. Adding a table needs no data migration, and the index design is settled by the phase that uses it.
 
+**Version 2 (Phase 3, decision Q1)** adds only `reviews`. The v1 tables are declared unchanged, so no data migration is needed and no v1 record is touched:
+
+```ts
+db.version(2).stores({ reviews: "[rawAnalysisId+methodologyVersion], gameId" });
+
+interface ReviewRecord {
+  rawAnalysisId: string;
+  methodologyVersion: string;
+  gameId: string;
+  configHash: string;         // a mismatch re-derives
+  derivedAt: number;
+  schemaVersion: 1;
+  review: GameReview;
+}
+```
+
+- Only reviews of **complete** analyses are cached. Partial reviews are derived again each time.
+- Reviews are derived data and never authoritative (B6), so an unreadable review record is reported and then **replaced**. This is the one exception to the "never overwrite" rule below; raw analyses and games keep it.
+
 | Version | Phase | Adds (draft) |
 |---|---|---|
-| 2 | 3 | `reviews: "[rawAnalysisId+methodologyVersion], gameId"` |
+| 2 | 3 | `reviews: "[rawAnalysisId+methodologyVersion], gameId"` (specified above; built in Phase 3 Stage 2) |
 | 3 | 4 | `explanations: "id, gameId, [gameId+plyIndex], task"`, `usage: "++id, at, provider"`, `secrets: "id"` |
 | 4 | 5 | `mistakes: "id, gameId, srs.dueAt, label, *motifs, archived"`, `drillAttempts: "++id, mistakeId, at"` |
 | later | 6 | `profiles: "id"` |

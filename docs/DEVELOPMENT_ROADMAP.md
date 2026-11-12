@@ -216,6 +216,21 @@ Implemented on branch `phase-2` in four commits (Stages 1–4). The approved Sta
 - The owner reviews 10 of their own games and finds the labels sensible.
 - Label thresholds (not the accuracy constants) are tuned at most once if needed (decision U2, with a methodology version bump).
 
+**Stage 0 decisions (approved by the owner on 2026-11-13).** Implemented on branch `phase-3`.
+
+| # | Decision |
+|---|---|
+| Q1 | Dexie v2 adds only `reviews`. Only complete analyses are cached, with a `configHash` check. An unreadable review record is replaced (derived data). |
+| Q2 | 50 public Lichess games with computer analysis, chosen by a recorded rule, pseudonymised before commit (TESTING_STRATEGY §3) |
+| Q3 | Regression snapshots: `pgn/chesscom` games 06, 19, 10, 12, 14, 23, 07, 02, 16 and 21 at Standard, recorded through the engine test project |
+| Q4 | Analysis starts with a button; the preset is remembered (default Standard); the raw debug panel only with `?debug=1` |
+| Q5 | Chess.com-reported accuracy: opt-in, labelled, never blended (U6 = yes) |
+| Q6 | Blunder threshold implemented at 20; decided in Stage 3 (U2) |
+| Q7 | Pinned dataset TSVs committed in `data/openings/`; the index is generated at build and test time and loaded lazily |
+| Q8 | Review derivation runs in a dedicated Worker |
+| M5–M15, D1–D7 | Methodology clarifications, recorded in the methodology changelog (1.0.0, clarified 2026-11-13). D5: ACPL is an internal validation gate, not a compatibility claim. D7: Lichess phase accuracy is reported first. |
+| Modules | `core/{methodology,eval,classify,accuracy,phases,openings,review}`, SEE and material in `core/chess`, `infra/openings`, `app/review`. Scripts: `build-openings.mjs`, `fetch-lichess-evals.mjs`. |
+
 ### Phase 4 — AI coach (Gemini) → **M2**
 
 **Build**

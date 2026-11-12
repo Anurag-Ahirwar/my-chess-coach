@@ -48,6 +48,7 @@ Transitive runtime packages (`scheduler`, `csstype`, `tslib`, `cookie-es`, `@rem
 | vitest, @vitest/coverage-v8 | 5.1.0 | Unit and integration tests, coverage |
 | jsdom, @testing-library/* | 30.1.3, … | DOM test environment (component tests) |
 | msw | 3.0.3 | Mocking the Chess.com API in integration tests |
+| fast-check | 4.10.2 (MIT; brings `pure-rand` 8.4.2, MIT) | Property-based tests (mirror property, determinism, no mutation). Added in Phase 3, the only new package of that phase. |
 | fake-indexeddb | 6.2.8 (Apache-2.0) | An in-memory IndexedDB for Node tests of the Dexie repositories (`tests/helpers/storage.ts`) |
 | @playwright/test, @axe-core/playwright | 1.64.1, 4.14.0 | End-to-end and accessibility tests |
 | eslint, @eslint/js, typescript-eslint, eslint-plugin-react-hooks, globals | 10.14.0, 10.0.1, 8.72.1, 7.1.1, 17.14.0 | Linting, including the layer-boundary rules |
