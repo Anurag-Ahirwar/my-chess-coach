@@ -31,7 +31,7 @@ describe("opening index build (scripts/build-openings.mjs)", () => {
 
   it("is deterministic", () => {
     expect(JSON.stringify(buildOpeningIndex(readDataset()))).toBe(JSON.stringify(json));
-  });
+  }, 60_000); // building the index takes seconds (more under coverage)
 
   it("refuses a dataset that differs from the pin", () => {
     const dir = mkdtempSync(join(tmpdir(), "openings-"));

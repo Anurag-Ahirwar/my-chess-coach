@@ -1,0 +1,3109 @@
+{
+ "gameId": "pgn:1bc78868a7217f980d512c49ea878377",
+ "rawAnalysisId": "pgn:1bc78868a7217f980d512c49ea878377|stockfish-19.0.1-lite-single|0491c897b49e09c6",
+ "methodologyVersion": "1.0.0",
+ "configHash": "91b605b2aa99fa98",
+ "accuracyMode": "default",
+ "moves": [
+  {
+   "plyIndex": 1,
+   "color": "w",
+   "san": "e4",
+   "uci": "e2e4",
+   "bestLineSan": [
+    "e4",
+    "e5",
+    "Nf3",
+    "Nc6",
+    "d4",
+    "exd4",
+    "Nxd4",
+    "Nf6",
+    "Nxc6",
+    "bxc6",
+    "Bd3",
+    "Bc5",
+    "O-O",
+    "O-O",
+    "e5",
+    "Nd5",
+    "c4"
+   ],
+   "refutationSan": [
+    "e5",
+    "Nf3",
+    "Nc6",
+    "d4",
+    "exd4",
+    "Nxd4",
+    "Nf6",
+    "Nxc6",
+    "bxc6",
+    "e5",
+    "Qe7",
+    "Qe2",
+    "Nd5",
+    "c4",
+    "Ba6",
+    "b3",
+    "g6",
+    "Ba3",
+    "Qg5",
+    "h4",
+    "Qf5",
+    "Bb2",
+    "Nf4"
+   ],
+   "labelReasons": [
+    "book"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 37
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 21
+   },
+   "winBefore": 53.400665785633464,
+   "winAfter": 51.9321294202434,
+   "winLoss": 1.4685363653900652,
+   "cpLoss": 16,
+   "bestMove": {
+    "uci": "e2e4",
+    "san": "e4",
+    "winAfter": 53.400665785633464
+   },
+   "secondBest": {
+    "uci": "d2d4",
+    "san": "d4",
+    "winAfter": 52.2078114090291
+   },
+   "label": "book",
+   "accuracy": 94.60926788012988,
+   "volatilityWeight": 1.4644746448199597,
+   "clockSeconds": 56.4
+  },
+  {
+   "plyIndex": 2,
+   "color": "b",
+   "san": "g6",
+   "uci": "g7g6",
+   "bestLineSan": [
+    "e5",
+    "Nf3",
+    "Nc6",
+    "d4",
+    "exd4",
+    "Nxd4",
+    "Nf6",
+    "Nxc6",
+    "bxc6",
+    "e5",
+    "Qe7",
+    "Qe2",
+    "Nd5",
+    "c4",
+    "Ba6",
+    "b3",
+    "g6",
+    "Ba3",
+    "Qg5",
+    "h4",
+    "Qf5",
+    "Bb2",
+    "Nf4"
+   ],
+   "refutationSan": [
+    "d4",
+    "d6",
+    "Be3",
+    "Nf6",
+    "Nc3",
+    "a6",
+    "h3",
+    "Bg7",
+    "g4",
+    "h5",
+    "g5",
+    "Nfd7",
+    "a4",
+    "Nb6"
+   ],
+   "labelReasons": [
+    "book"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 21
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 60
+   },
+   "winBefore": 48.0678705797566,
+   "winAfter": 44.49923515875464,
+   "winLoss": 3.5686354210019644,
+   "cpLoss": 39,
+   "bestMove": {
+    "uci": "e7e5",
+    "san": "e5",
+    "winAfter": 48.0678705797566
+   },
+   "secondBest": {
+    "uci": "e7e6",
+    "san": "e6",
+    "winAfter": 46.69097177008696
+   },
+   "label": "book",
+   "accuracy": 86.1519625306432,
+   "volatilityWeight": 1.4644746448199597,
+   "clockSeconds": 59.9
+  },
+  {
+   "plyIndex": 3,
+   "color": "w",
+   "san": "d4",
+   "uci": "d2d4",
+   "bestLineSan": [
+    "d4",
+    "d6",
+    "Be3",
+    "Nf6",
+    "Nc3",
+    "a6",
+    "h3",
+    "Bg7",
+    "g4",
+    "h5",
+    "g5",
+    "Nfd7",
+    "a4",
+    "Nb6"
+   ],
+   "refutationSan": [
+    "Bg7",
+    "Nc3",
+    "d5",
+    "Nxd5",
+    "c6",
+    "Ne3",
+    "Qxd4",
+    "Bd3",
+    "Nf6",
+    "Nf3",
+    "Qb6",
+    "O-O",
+    "O-O",
+    "e5",
+    "Ng4",
+    "Nc4",
+    "Qc7",
+    "Bf4",
+    "Nd7"
+   ],
+   "labelReasons": [
+    "book"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 60
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 61
+   },
+   "winBefore": 55.50076484124536,
+   "winAfter": 55.591684184482865,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "d2d4",
+    "san": "d4",
+    "winAfter": 55.50076484124536
+   },
+   "secondBest": {
+    "uci": "g1f3",
+    "san": "Nf3",
+    "winAfter": 54.04145195219514
+   },
+   "label": "book",
+   "accuracy": 100,
+   "volatilityWeight": 1.7041050491703973,
+   "clockSeconds": 55.7
+  },
+  {
+   "plyIndex": 4,
+   "color": "b",
+   "san": "Bg7",
+   "uci": "f8g7",
+   "bestLineSan": [
+    "Bg7",
+    "Nc3",
+    "d5",
+    "Nxd5",
+    "c6",
+    "Ne3",
+    "Qxd4",
+    "Bd3",
+    "Nf6",
+    "Nf3",
+    "Qb6",
+    "O-O",
+    "O-O",
+    "e5",
+    "Ng4",
+    "Nc4",
+    "Qc7",
+    "Bf4",
+    "Nd7"
+   ],
+   "refutationSan": [
+    "Nc3",
+    "d6",
+    "Be3",
+    "c6",
+    "Qd2",
+    "b5",
+    "Bd3",
+    "Nf6",
+    "Bh6",
+    "O-O",
+    "Bxg7",
+    "Kxg7",
+    "e5",
+    "dxe5",
+    "dxe5",
+    "Ng4",
+    "Nf3",
+    "b4"
+   ],
+   "labelReasons": [
+    "book"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 61
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 56
+   },
+   "winBefore": 44.408315815517135,
+   "winAfter": 44.86327495624493,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "f8g7",
+    "san": "Bg7",
+    "winAfter": 44.408315815517135
+   },
+   "secondBest": {
+    "uci": "d7d6",
+    "san": "d6",
+    "winAfter": 44.408315815517135
+   },
+   "label": "book",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 59.8
+  },
+  {
+   "plyIndex": 5,
+   "color": "w",
+   "san": "Nc3",
+   "uci": "b1c3",
+   "bestLineSan": [
+    "Nc3",
+    "d6",
+    "Be3",
+    "c6",
+    "Qd2",
+    "b5",
+    "Bd3",
+    "Nf6",
+    "Bh6",
+    "O-O",
+    "Bxg7",
+    "Kxg7",
+    "e5",
+    "dxe5",
+    "dxe5",
+    "Ng4",
+    "Nf3",
+    "b4"
+   ],
+   "refutationSan": [
+    "d6",
+    "f4",
+    "Nc6",
+    "Be3",
+    "Nf6",
+    "Nf3",
+    "O-O",
+    "Qd2",
+    "e5",
+    "fxe5",
+    "dxe5",
+    "d5",
+    "Nd4",
+    "Nxd4",
+    "exd4",
+    "Bxd4"
+   ],
+   "labelReasons": [
+    "book"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 56
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 71
+   },
+   "winBefore": 55.13672504375507,
+   "winAfter": 56.49872147270768,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "b1c3",
+    "san": "Nc3",
+    "winAfter": 55.13672504375507
+   },
+   "secondBest": {
+    "uci": "g1f3",
+    "san": "Nf3",
+    "winAfter": 54.68090461073719
+   },
+   "label": "book",
+   "accuracy": 100,
+   "volatilityWeight": 0.5661506213447731,
+   "clockSeconds": 55.3
+  },
+  {
+   "plyIndex": 6,
+   "color": "b",
+   "san": "c6",
+   "uci": "c7c6",
+   "bestLineSan": [
+    "d6",
+    "f4",
+    "Nc6",
+    "Be3",
+    "Nf6",
+    "Nf3",
+    "O-O",
+    "Qd2",
+    "e5",
+    "fxe5",
+    "dxe5",
+    "d5",
+    "Nd4",
+    "Nxd4",
+    "exd4",
+    "Bxd4"
+   ],
+   "refutationSan": [
+    "f4",
+    "h5",
+    "Nf3",
+    "d5",
+    "e5",
+    "Nh6",
+    "h3",
+    "Bf5",
+    "Bd3",
+    "e6",
+    "Ne2",
+    "Bxd3"
+   ],
+   "labelReasons": [
+    "book"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 71
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 85
+   },
+   "winBefore": 43.50127852729232,
+   "winAfter": 42.23883025523238,
+   "winLoss": 1.2624482720599417,
+   "cpLoss": 14,
+   "bestMove": {
+    "uci": "d7d6",
+    "san": "d6",
+    "winAfter": 43.50127852729232
+   },
+   "secondBest": {
+    "uci": "a7a6",
+    "san": "a6",
+    "winAfter": 43.22998523826144
+   },
+   "label": "book",
+   "accuracy": 95.48163926383477,
+   "volatilityWeight": 1.0716819543118863,
+   "clockSeconds": 59.5
+  },
+  {
+   "plyIndex": 7,
+   "color": "w",
+   "san": "h3",
+   "uci": "h2h3",
+   "bestLineSan": [
+    "f4",
+    "h5",
+    "Nf3",
+    "d5",
+    "e5",
+    "Nh6",
+    "h3",
+    "Bf5",
+    "Bd3",
+    "e6",
+    "Ne2",
+    "Bxd3"
+   ],
+   "refutationSan": [
+    "d6",
+    "Be3",
+    "Nf6",
+    "f4",
+    "O-O",
+    "Bd3",
+    "e5",
+    "Nf3",
+    "exd4",
+    "Bxd4",
+    "Re8",
+    "O-O",
+    "Nbd7",
+    "Qd2",
+    "Nc5",
+    "Bxc5",
+    "dxc5",
+    "e5"
+   ],
+   "labelReasons": [
+    "band:excellent"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 85
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 67
+   },
+   "winBefore": 57.76116974476763,
+   "winAfter": 56.13639348680176,
+   "winLoss": 1.6247762579658698,
+   "cpLoss": 18,
+   "bestMove": {
+    "uci": "f2f4",
+    "san": "f4",
+    "winAfter": 57.76116974476763
+   },
+   "secondBest": {
+    "uci": "h2h3",
+    "san": "h3",
+    "winAfter": 55.409808660514884
+   },
+   "severity": "excellent",
+   "label": "excellent",
+   "accuracy": 93.95310171564674,
+   "volatilityWeight": 0.6964158318328821,
+   "clockSeconds": 54.2
+  },
+  {
+   "plyIndex": 8,
+   "color": "b",
+   "san": "d5",
+   "uci": "d7d5",
+   "bestLineSan": [
+    "d6",
+    "Be3",
+    "Nf6",
+    "f4",
+    "O-O",
+    "Bd3",
+    "e5",
+    "Nf3",
+    "exd4",
+    "Bxd4",
+    "Re8",
+    "O-O",
+    "Nbd7",
+    "Qd2",
+    "Nc5",
+    "Bxc5",
+    "dxc5",
+    "e5"
+   ],
+   "refutationSan": [
+    "e5",
+    "f6",
+    "f4",
+    "e6",
+    "Nf3",
+    "Ne7",
+    "Bd3",
+    "Nd7",
+    "Ne2",
+    "O-O"
+   ],
+   "labelReasons": [
+    "band:good"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 67
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 111
+   },
+   "winBefore": 43.86360651319824,
+   "winAfter": 39.92212681882059,
+   "winLoss": 3.941479694377655,
+   "cpLoss": 44,
+   "bestMove": {
+    "uci": "d7d6",
+    "san": "d6",
+    "winAfter": 43.86360651319824
+   },
+   "secondBest": {
+    "uci": "g8f6",
+    "san": "Nf6",
+    "winAfter": 42.14902195015801
+   },
+   "severity": "good",
+   "label": "good",
+   "accuracy": 84.72966562565801,
+   "volatilityWeight": 1.6173460731128884,
+   "clockSeconds": 59
+  },
+  {
+   "plyIndex": 9,
+   "color": "w",
+   "san": "e5",
+   "uci": "e4e5",
+   "bestLineSan": [
+    "e5",
+    "f6",
+    "f4",
+    "e6",
+    "Nf3",
+    "Ne7",
+    "Bd3",
+    "Nd7",
+    "Ne2",
+    "O-O"
+   ],
+   "refutationSan": [
+    "Nh6",
+    "g4",
+    "O-O",
+    "f4",
+    "f6",
+    "Nf3",
+    "Nf7",
+    "Qe2",
+    "Qb6",
+    "Bg2",
+    "fxe5",
+    "fxe5",
+    "Nd8",
+    "O-O",
+    "Ne6",
+    "Qd3",
+    "Na6",
+    "Na4"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 111
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 106
+   },
+   "winBefore": 60.07787318117941,
+   "winAfter": 59.63550316463675,
+   "winLoss": 0.44237001654266095,
+   "cpLoss": 5,
+   "bestMove": {
+    "uci": "e4e5",
+    "san": "e5",
+    "winAfter": 60.07787318117941
+   },
+   "secondBest": {
+    "uci": "g1f3",
+    "san": "Nf3",
+    "winAfter": 53.21736834106171
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 99.03163909656843,
+   "volatilityWeight": 1.7630378438695538,
+   "clockSeconds": 54
+  },
+  {
+   "plyIndex": 10,
+   "color": "b",
+   "san": "f6",
+   "uci": "f7f6",
+   "bestLineSan": [
+    "Nh6",
+    "g4",
+    "O-O",
+    "f4",
+    "f6",
+    "Nf3",
+    "Nf7",
+    "Qe2",
+    "Qb6",
+    "Bg2",
+    "fxe5",
+    "fxe5",
+    "Nd8",
+    "O-O",
+    "Ne6",
+    "Qd3",
+    "Na6",
+    "Na4"
+   ],
+   "refutationSan": [
+    "f4",
+    "Nh6",
+    "g4",
+    "Nf7",
+    "Nf3",
+    "O-O",
+    "Qe2",
+    "b5",
+    "e6",
+    "Nd6",
+    "f5",
+    "gxf5",
+    "gxf5",
+    "Nxf5",
+    "Bf4",
+    "Kh8"
+   ],
+   "labelReasons": [
+    "band:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 106
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 105
+   },
+   "winBefore": 40.364496835363255,
+   "winAfter": 40.453161641669574,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "g8h6",
+    "san": "Nh6",
+    "winAfter": 40.364496835363255
+   },
+   "secondBest": {
+    "uci": "g8h6",
+    "san": "Nh6",
+    "winAfter": 39.745633901469425
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 58.2
+  },
+  {
+   "plyIndex": 11,
+   "color": "w",
+   "san": "f4",
+   "uci": "f2f4",
+   "bestLineSan": [
+    "f4",
+    "Nh6",
+    "g4",
+    "Nf7",
+    "Nf3",
+    "O-O",
+    "Qe2",
+    "b5",
+    "e6",
+    "Nd6",
+    "f5",
+    "gxf5",
+    "gxf5",
+    "Nxf5",
+    "Bf4",
+    "Kh8"
+   ],
+   "refutationSan": [
+    "Nh6",
+    "g4",
+    "Nf7",
+    "Nf3",
+    "O-O",
+    "Qe2",
+    "Qb6",
+    "Bg2",
+    "a5",
+    "Qf2",
+    "Be6",
+    "O-O",
+    "a4",
+    "Ne2",
+    "Nd7",
+    "c3",
+    "fxe5",
+    "fxe5",
+    "Bh6",
+    "Bxh6",
+    "Nxh6"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 105
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 112
+   },
+   "winBefore": 59.546838358330426,
+   "winAfter": 60.16615267275047,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "f2f4",
+    "san": "f4",
+    "winAfter": 59.546838358330426
+   },
+   "secondBest": {
+    "uci": "c1f4",
+    "san": "Bf4",
+    "winAfter": 56.13639348680176
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 53.4
+  },
+  {
+   "plyIndex": 12,
+   "color": "b",
+   "san": "Nh6",
+   "uci": "g8h6",
+   "bestLineSan": [
+    "Nh6",
+    "g4",
+    "Nf7",
+    "Nf3",
+    "O-O",
+    "Qe2",
+    "Qb6",
+    "Bg2",
+    "a5",
+    "Qf2",
+    "Be6",
+    "O-O",
+    "a4",
+    "Ne2",
+    "Nd7",
+    "c3",
+    "fxe5",
+    "fxe5",
+    "Bh6",
+    "Bxh6",
+    "Nxh6"
+   ],
+   "refutationSan": [
+    "Be3",
+    "Qb6",
+    "Qd2",
+    "Qxb2",
+    "Rb1",
+    "Qa3",
+    "g4",
+    "O-O",
+    "Bd3",
+    "Na6",
+    "Rb3",
+    "Qa5",
+    "Nf3",
+    "Nb4",
+    "Be2",
+    "Nf7"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 112
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 110
+   },
+   "winBefore": 39.83384732724953,
+   "winAfter": 40.010471851325185,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "g8h6",
+    "san": "Nh6",
+    "winAfter": 39.83384732724953
+   },
+   "secondBest": {
+    "uci": "e7e6",
+    "san": "e6",
+    "winAfter": 39.2177699072727
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 57.9
+  },
+  {
+   "plyIndex": 13,
+   "color": "w",
+   "san": "Nf3",
+   "uci": "g1f3",
+   "bestLineSan": [
+    "Be3",
+    "Qb6",
+    "Qd2",
+    "Qxb2",
+    "Rb1",
+    "Qa3",
+    "g4",
+    "O-O",
+    "Bd3",
+    "Na6",
+    "Rb3",
+    "Qa5",
+    "Nf3",
+    "Nb4",
+    "Be2",
+    "Nf7"
+   ],
+   "refutationSan": [
+    "Nf5",
+    "Ne2",
+    "h5",
+    "Rg1",
+    "h4",
+    "g4",
+    "hxg3",
+    "Nxg3",
+    "Be6",
+    "Qe2",
+    "Qd7",
+    "Be3",
+    "c5",
+    "dxc5",
+    "Nc6",
+    "Nxf5",
+    "Bxf5",
+    "O-O-O",
+    "O-O-O",
+    "Kb1",
+    "Kb8",
+    "Bf2"
+   ],
+   "labelReasons": [
+    "band:good"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 110
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 67
+   },
+   "winBefore": 59.989528148674815,
+   "winAfter": 56.13639348680176,
+   "winLoss": 3.8531346618730566,
+   "cpLoss": 43,
+   "bestMove": {
+    "uci": "c1e3",
+    "san": "Be3",
+    "winAfter": 59.989528148674815
+   },
+   "secondBest": {
+    "uci": "g2g4",
+    "san": "g4",
+    "winAfter": 59.36932221056322
+   },
+   "severity": "good",
+   "label": "good",
+   "accuracy": 85.06459276524956,
+   "volatilityWeight": 1.859414544711754,
+   "clockSeconds": 53.1
+  },
+  {
+   "plyIndex": 14,
+   "color": "b",
+   "san": "Nf5",
+   "uci": "h6f5",
+   "bestLineSan": [
+    "Nf5",
+    "Ne2",
+    "h5",
+    "Rg1",
+    "h4",
+    "g4",
+    "hxg3",
+    "Nxg3",
+    "Be6",
+    "Qe2",
+    "Qd7",
+    "Be3",
+    "c5",
+    "dxc5",
+    "Nc6",
+    "Nxf5",
+    "Bxf5",
+    "O-O-O",
+    "O-O-O",
+    "Kb1",
+    "Kb8",
+    "Bf2"
+   ],
+   "refutationSan": [
+    "g4",
+    "Ng3",
+    "Rg1",
+    "Nxf1",
+    "Rxf1",
+    "fxe5",
+    "fxe5",
+    "O-O",
+    "Bg5",
+    "Be6",
+    "Qd2",
+    "c5",
+    "O-O-O",
+    "Nc6",
+    "Ne2",
+    "b6",
+    "Nf4",
+    "Qd7",
+    "dxc5",
+    "bxc5",
+    "Nxe6"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 67
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 98
+   },
+   "winBefore": 43.86360651319824,
+   "winAfter": 41.0755311431655,
+   "winLoss": 2.788075370032743,
+   "cpLoss": 31,
+   "bestMove": {
+    "uci": "h6f5",
+    "san": "Nf5",
+    "winAfter": 43.86360651319824
+   },
+   "secondBest": {
+    "uci": "e8g8",
+    "san": "O-O",
+    "winAfter": 40.54188880512549
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 89.20541560125945,
+   "volatilityWeight": 1.624614904340452,
+   "clockSeconds": 57.6
+  },
+  {
+   "plyIndex": 15,
+   "color": "w",
+   "san": "g4",
+   "uci": "g2g4",
+   "bestLineSan": [
+    "g4",
+    "Ng3",
+    "Rg1",
+    "Nxf1",
+    "Rxf1",
+    "fxe5",
+    "fxe5",
+    "O-O",
+    "Bg5",
+    "Be6",
+    "Qd2",
+    "c5",
+    "O-O-O",
+    "Nc6",
+    "Ne2",
+    "b6",
+    "Nf4",
+    "Qd7",
+    "dxc5",
+    "bxc5",
+    "Nxe6"
+   ],
+   "refutationSan": [
+    "Ng3",
+    "Rg1",
+    "Nxf1",
+    "Rxf1",
+    "Na6",
+    "Be3",
+    "Qb6",
+    "b3",
+    "Bd7",
+    "Qd2",
+    "h5",
+    "Rg1",
+    "O-O-O",
+    "O-O-O",
+    "hxg4",
+    "hxg4",
+    "Rh3",
+    "Na4"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 98
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 108
+   },
+   "winBefore": 58.92446885683451,
+   "winAfter": 59.81264356862744,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "g2g4",
+    "san": "g4",
+    "winAfter": 58.92446885683451
+   },
+   "secondBest": {
+    "uci": "c3e2",
+    "san": "Ne2",
+    "winAfter": 58.030438371931574
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 1.566206785402769,
+   "clockSeconds": 52
+  },
+  {
+   "plyIndex": 16,
+   "color": "b",
+   "san": "Ng3",
+   "uci": "f5g3",
+   "bestLineSan": [
+    "Ng3",
+    "Rg1",
+    "Nxf1",
+    "Rxf1",
+    "Na6",
+    "Be3",
+    "Qb6",
+    "b3",
+    "Bd7",
+    "Qd2",
+    "h5",
+    "Rg1",
+    "O-O-O",
+    "O-O-O",
+    "hxg4",
+    "hxg4",
+    "Rh3",
+    "Na4"
+   ],
+   "refutationSan": [
+    "Rg1",
+    "Nxf1",
+    "Rxf1",
+    "Na6",
+    "Qe2",
+    "Nc7",
+    "Bd2",
+    "b6",
+    "Qf2"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best",
+    "great",
+    "great:gap:10.6"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 108
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 84
+   },
+   "winBefore": 40.187356431372564,
+   "winAfter": 42.328689904405394,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "f5g3",
+    "san": "Ng3",
+    "winAfter": 40.187356431372564
+   },
+   "secondBest": {
+    "uci": "f5h6",
+    "san": "Nh6",
+    "winAfter": 29.546848557860635
+   },
+   "severity": "best",
+   "label": "great",
+   "accuracy": 100,
+   "volatilityWeight": 0.8784184172750295,
+   "clockSeconds": 56.7
+  },
+  {
+   "plyIndex": 17,
+   "color": "w",
+   "san": "Rg1",
+   "uci": "h1g1",
+   "bestLineSan": [
+    "Rg1",
+    "Nxf1",
+    "Rxf1",
+    "Na6",
+    "Qe2",
+    "Nc7",
+    "Bd2",
+    "b6",
+    "Qf2"
+   ],
+   "refutationSan": [
+    "Nxf1",
+    "Rxf1",
+    "Qb6",
+    "b3",
+    "Na6",
+    "Qd2",
+    "Bd7",
+    "Bb2",
+    "h5",
+    "Rg1",
+    "hxg4",
+    "hxg4",
+    "O-O-O",
+    "O-O-O",
+    "Rh3",
+    "Na4",
+    "Qc7",
+    "Qg2",
+    "Rdh8",
+    "Kb1",
+    "Qd8",
+    "Rde1"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 84
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 100
+   },
+   "winBefore": 57.6713100955946,
+   "winAfter": 59.102589719161294,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "h1g1",
+    "san": "Rg1",
+    "winAfter": 57.6713100955946
+   },
+   "secondBest": {
+    "uci": "h1h2",
+    "san": "Rh2",
+    "winAfter": 53.30902822991305
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.8905707828072849,
+   "clockSeconds": 51.8
+  },
+  {
+   "plyIndex": 18,
+   "color": "b",
+   "san": "Nxf1",
+   "uci": "g3f1",
+   "bestLineSan": [
+    "Nxf1",
+    "Rxf1",
+    "Qb6",
+    "b3",
+    "Na6",
+    "Qd2",
+    "Bd7",
+    "Bb2",
+    "h5",
+    "Rg1",
+    "hxg4",
+    "hxg4",
+    "O-O-O",
+    "O-O-O",
+    "Rh3",
+    "Na4",
+    "Qc7",
+    "Qg2",
+    "Rdh8",
+    "Kb1",
+    "Qd8",
+    "Rde1"
+   ],
+   "refutationSan": [
+    "Rxf1",
+    "b5",
+    "Be3",
+    "O-O",
+    "Qd2",
+    "Nd7",
+    "b3",
+    "Nb6",
+    "Ne2",
+    "a5",
+    "f5",
+    "gxf5",
+    "Bh6",
+    "fxg4",
+    "Bxg7",
+    "Kxg7",
+    "hxg4",
+    "Bxg4"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 100
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 105
+   },
+   "winBefore": 40.897410280838706,
+   "winAfter": 40.453161641669574,
+   "winLoss": 0.4442486391691318,
+   "cpLoss": 5,
+   "bestMove": {
+    "uci": "g3f1",
+    "san": "Nxf1",
+    "winAfter": 40.897410280838706
+   },
+   "secondBest": {
+    "uci": "g3f1",
+    "san": "Nxf1",
+    "winAfter": 39.3055760111882
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 99.0233610857289,
+   "volatilityWeight": 0.8002447180263543,
+   "clockSeconds": 56.6
+  },
+  {
+   "plyIndex": 19,
+   "color": "w",
+   "san": "Rxf1",
+   "uci": "g1f1",
+   "bestLineSan": [
+    "Rxf1",
+    "b5",
+    "Be3",
+    "O-O",
+    "Qd2",
+    "Nd7",
+    "b3",
+    "Nb6",
+    "Ne2",
+    "a5",
+    "f5",
+    "gxf5",
+    "Bh6",
+    "fxg4",
+    "Bxg7",
+    "Kxg7",
+    "hxg4",
+    "Bxg4"
+   ],
+   "refutationSan": [
+    "Qb6",
+    "b3",
+    "Na6",
+    "Be3",
+    "Bd7",
+    "Qd2",
+    "O-O-O",
+    "Rg1",
+    "fxe5",
+    "Nxe5",
+    "Bxe5"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 105
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 113
+   },
+   "winBefore": 59.546838358330426,
+   "winAfter": 60.254366098530575,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "g1f1",
+    "san": "Rxf1",
+    "winAfter": 59.546838358330426
+   },
+   "secondBest": {
+    "uci": "e1f1",
+    "san": "Kxf1",
+    "winAfter": 51.56437324214209
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 51.7
+  },
+  {
+   "plyIndex": 20,
+   "color": "b",
+   "san": "O-O",
+   "uci": "e8g8",
+   "bestLineSan": [
+    "Qb6",
+    "b3",
+    "Na6",
+    "Be3",
+    "Bd7",
+    "Qd2",
+    "O-O-O",
+    "Rg1",
+    "fxe5",
+    "Nxe5",
+    "Bxe5"
+   ],
+   "refutationSan": [
+    "Be3",
+    "Qb6",
+    "b3",
+    "fxe5",
+    "fxe5",
+    "Qb4",
+    "Qd2",
+    "Na6",
+    "O-O-O",
+    "Nc7",
+    "Kb2",
+    "Nb5",
+    "Nxb5",
+    "Qxd2",
+    "Bxd2",
+    "cxb5",
+    "Bb4",
+    "Rf7",
+    "Rde1",
+    "b6",
+    "Ng5",
+    "Rxf1",
+    "Rxf1",
+    "h6"
+   ],
+   "labelReasons": [
+    "band:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 113
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 101
+   },
+   "winBefore": 39.745633901469425,
+   "winAfter": 40.8084390675291,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "d8b6",
+    "san": "Qb6",
+    "winAfter": 39.745633901469425
+   },
+   "secondBest": {
+    "uci": "e8g8",
+    "san": "O-O",
+    "winAfter": 39.3055760111882
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 56
+  },
+  {
+   "plyIndex": 21,
+   "color": "w",
+   "san": "Be3",
+   "uci": "c1e3",
+   "bestLineSan": [
+    "Be3",
+    "Qb6",
+    "b3",
+    "fxe5",
+    "fxe5",
+    "Qb4",
+    "Qd2",
+    "Na6",
+    "O-O-O",
+    "Nc7",
+    "Kb2",
+    "Nb5",
+    "Nxb5",
+    "Qxd2",
+    "Bxd2",
+    "cxb5",
+    "Bb4",
+    "Rf7",
+    "Rde1",
+    "b6",
+    "Ng5",
+    "Rxf1",
+    "Rxf1",
+    "h6"
+   ],
+   "refutationSan": [
+    "Qb6",
+    "b3",
+    "fxe5",
+    "fxe5",
+    "Na6",
+    "Qd2",
+    "Qa5",
+    "O-O-O",
+    "Nc7",
+    "Kb2",
+    "Bd7",
+    "Qg2",
+    "b6",
+    "a3",
+    "c5",
+    "Ng5",
+    "Rxf1",
+    "Rxf1"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 101
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 94
+   },
+   "winBefore": 59.1915609324709,
+   "winAfter": 58.56752867735589,
+   "winLoss": 0.6240322551150115,
+   "cpLoss": 7,
+   "bestMove": {
+    "uci": "c1e3",
+    "san": "Be3",
+    "winAfter": 59.1915609324709
+   },
+   "secondBest": {
+    "uci": "f1f2",
+    "san": "Rf2",
+    "winAfter": 52.48335896523929
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 98.23428304798509,
+   "volatilityWeight": 0.6963708751569995,
+   "clockSeconds": 51.4
+  },
+  {
+   "plyIndex": 22,
+   "color": "b",
+   "san": "b6",
+   "uci": "b7b6",
+   "bestLineSan": [
+    "Qb6",
+    "b3",
+    "fxe5",
+    "fxe5",
+    "Na6",
+    "Qd2",
+    "Qa5",
+    "O-O-O",
+    "Nc7",
+    "Kb2",
+    "Bd7",
+    "Qg2",
+    "b6",
+    "a3",
+    "c5",
+    "Ng5",
+    "Rxf1",
+    "Rxf1"
+   ],
+   "refutationSan": [
+    "Qd2",
+    "fxe5",
+    "dxe5",
+    "Na6",
+    "O-O-O",
+    "Nc7",
+    "f5",
+    "gxf5",
+    "Bh6",
+    "Ne6",
+    "Bxg7",
+    "Nxg7",
+    "Nd4",
+    "Qe8",
+    "Qg5",
+    "fxg4",
+    "hxg4",
+    "Qg6",
+    "Qxg6",
+    "hxg6"
+   ],
+   "labelReasons": [
+    "band:good"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 94
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 150
+   },
+   "winBefore": 41.432471322644105,
+   "winAfter": 36.532817385496536,
+   "winLoss": 4.899653937147569,
+   "cpLoss": 56,
+   "bestMove": {
+    "uci": "d8b6",
+    "san": "Qb6",
+    "winAfter": 41.432471322644105
+   },
+   "secondBest": {
+    "uci": "b7b5",
+    "san": "b5",
+    "winAfter": 39.65748706465739
+   },
+   "severity": "good",
+   "label": "good",
+   "accuracy": 81.17868277632286,
+   "volatilityWeight": 2.1775869858144627,
+   "clockSeconds": 55
+  },
+  {
+   "plyIndex": 23,
+   "color": "w",
+   "san": "Qd2",
+   "uci": "d1d2",
+   "bestLineSan": [
+    "Qd2",
+    "fxe5",
+    "dxe5",
+    "Na6",
+    "O-O-O",
+    "Nc7",
+    "f5",
+    "gxf5",
+    "Bh6",
+    "Ne6",
+    "Bxg7",
+    "Nxg7",
+    "Nd4",
+    "Qe8",
+    "Qg5",
+    "fxg4",
+    "hxg4",
+    "Qg6",
+    "Qxg6",
+    "hxg6"
+   ],
+   "refutationSan": [
+    "fxe5",
+    "dxe5",
+    "Na6",
+    "O-O-O",
+    "Nc7",
+    "f5",
+    "gxf5",
+    "Bh6",
+    "f4",
+    "Bxg7",
+    "Kxg7",
+    "Ng5",
+    "h6",
+    "Nf3",
+    "Ne6",
+    "Nh4",
+    "Ba6"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "opening",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 150
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 150
+   },
+   "winBefore": 63.467182614503464,
+   "winAfter": 63.467182614503464,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "d1d2",
+    "san": "Qd2",
+    "winAfter": 63.467182614503464
+   },
+   "secondBest": {
+    "uci": "f1f2",
+    "san": "Rf2",
+    "winAfter": 56.13639348680176
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 2.309719016282945,
+   "clockSeconds": 50.9
+  },
+  {
+   "plyIndex": 24,
+   "color": "b",
+   "san": "a5",
+   "uci": "a7a5",
+   "bestLineSan": [
+    "fxe5",
+    "dxe5",
+    "Na6",
+    "O-O-O",
+    "Nc7",
+    "f5",
+    "gxf5",
+    "Bh6",
+    "f4",
+    "Bxg7",
+    "Kxg7",
+    "Ng5",
+    "h6",
+    "Nf3",
+    "Ne6",
+    "Nh4",
+    "Ba6"
+   ],
+   "refutationSan": [
+    "O-O-O",
+    "f5",
+    "Rg1",
+    "Na6",
+    "Kb1",
+    "b5",
+    "Qe1",
+    "a4",
+    "Rg2",
+    "Qa5"
+   ],
+   "labelReasons": [
+    "band:inaccuracy"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 150
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 224
+   },
+   "winBefore": 36.532817385496536,
+   "winAfter": 30.47486873684638,
+   "winLoss": 6.057948648650157,
+   "cpLoss": 74,
+   "bestMove": {
+    "uci": "f6e5",
+    "san": "fxe5",
+    "winAfter": 36.532817385496536
+   },
+   "secondBest": {
+    "uci": "e7e6",
+    "san": "e6",
+    "winAfter": 35.59892510877808
+   },
+   "severity": "inaccuracy",
+   "label": "inaccuracy",
+   "accuracy": 77.07923431517666,
+   "volatilityWeight": 2.8557443796936073,
+   "clockSeconds": 53.9
+  },
+  {
+   "plyIndex": 25,
+   "color": "w",
+   "san": "a4",
+   "uci": "a2a4",
+   "bestLineSan": [
+    "O-O-O",
+    "f5",
+    "Rg1",
+    "Na6",
+    "Kb1",
+    "b5",
+    "Qe1",
+    "a4",
+    "Rg2",
+    "Qa5"
+   ],
+   "refutationSan": [
+    "Qe8",
+    "O-O-O",
+    "f5",
+    "Rg1",
+    "Na6",
+    "Qf2",
+    "b5",
+    "Qh4",
+    "bxa4",
+    "Nxa4",
+    "Rb8",
+    "b3"
+   ],
+   "labelReasons": [
+    "band:inaccuracy"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 224
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 126
+   },
+   "winBefore": 69.52513126315363,
+   "winAfter": 61.39489294360486,
+   "winLoss": 8.130238319548766,
+   "cpLoss": 98,
+   "bestMove": {
+    "uci": "e1c1",
+    "san": "O-O-O",
+    "winAfter": 69.52513126315363
+   },
+   "secondBest": {
+    "uci": "f1g1",
+    "san": "Rg1",
+    "winAfter": 66.4824067524339
+   },
+   "severity": "inaccuracy",
+   "label": "inaccuracy",
+   "accuracy": 70.24151366203002,
+   "volatilityWeight": 3.4495394449831918,
+   "clockSeconds": 50
+  },
+  {
+   "plyIndex": 26,
+   "color": "b",
+   "san": "f5",
+   "uci": "f6f5",
+   "bestLineSan": [
+    "f5",
+    "Rg1",
+    "Na6",
+    "Qf2",
+    "Nc7",
+    "O-O-O",
+    "Rb8",
+    "Qh4",
+    "Ne6",
+    "Qg3",
+    "Nc7",
+    "b3",
+    "b5",
+    "Kb2",
+    "Qe8"
+   ],
+   "refutationSan": [
+    "Rh1",
+    "fxg4",
+    "hxg4",
+    "Bxg4",
+    "Qg2",
+    "Bxf3",
+    "Qxf3",
+    "Qd7",
+    "O-O-O",
+    "Rf7",
+    "Qg2",
+    "Bf8",
+    "Rdg1",
+    "Na6",
+    "Qh2",
+    "Rg7",
+    "f5",
+    "Qxf5",
+    "Rf1",
+    "Qg4",
+    "Qf2",
+    "Qe6",
+    "Ne2",
+    "Nc7"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 126
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 144
+   },
+   "winBefore": 38.60510705639514,
+   "winAfter": 37.04656899332343,
+   "winLoss": 1.5585380630717083,
+   "cpLoss": 18,
+   "bestMove": {
+    "uci": "f6f5",
+    "san": "f5",
+    "winAfter": 38.60510705639514
+   },
+   "secondBest": {
+    "uci": "f6f5",
+    "san": "f5",
+    "winAfter": 37.99603223030577
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 94.23073957777281,
+   "volatilityWeight": 3.523209715391841,
+   "clockSeconds": 52.5
+  },
+  {
+   "plyIndex": 27,
+   "color": "w",
+   "san": "gxf5",
+   "uci": "g4f5",
+   "bestLineSan": [
+    "Rh1",
+    "fxg4",
+    "hxg4",
+    "Bxg4",
+    "Qg2",
+    "Bxf3",
+    "Qxf3",
+    "Qd7",
+    "O-O-O",
+    "Rf7",
+    "Qg2",
+    "Bf8",
+    "Rdg1",
+    "Na6",
+    "Qh2",
+    "Rg7",
+    "f5",
+    "Qxf5",
+    "Rf1",
+    "Qg4",
+    "Qf2",
+    "Qe6",
+    "Ne2",
+    "Nc7"
+   ],
+   "refutationSan": [
+    "Bxf5",
+    "Nh4",
+    "e6",
+    "Nxf5",
+    "Rxf5",
+    "O-O-O",
+    "Nd7",
+    "Qg2",
+    "b5",
+    "axb5",
+    "cxb5",
+    "Nxb5",
+    "Bf8",
+    "Nd6",
+    "Bxd6",
+    "exd6"
+   ],
+   "labelReasons": [
+    "band:inaccuracy"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 144
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 46
+   },
+   "winBefore": 62.95343100667657,
+   "winAfter": 54.22429789460686,
+   "winLoss": 8.729133112069704,
+   "cpLoss": 98,
+   "bestMove": {
+    "uci": "f1h1",
+    "san": "Rh1",
+    "winAfter": 62.95343100667657
+   },
+   "secondBest": {
+    "uci": "f1h1",
+    "san": "Rh1",
+    "winAfter": 62.95343100667657
+   },
+   "severity": "inaccuracy",
+   "label": "inaccuracy",
+   "accuracy": 68.3776289974797,
+   "volatilityWeight": 3.8012313668510336,
+   "clockSeconds": 48.9
+  },
+  {
+   "plyIndex": 28,
+   "color": "b",
+   "san": "Bxf5",
+   "uci": "c8f5",
+   "bestLineSan": [
+    "Bxf5",
+    "Nh4",
+    "e6",
+    "Nxf5",
+    "Rxf5",
+    "O-O-O",
+    "Nd7",
+    "Qg2",
+    "b5",
+    "axb5",
+    "cxb5",
+    "Nxb5",
+    "Bf8",
+    "Nd6",
+    "Bxd6",
+    "exd6"
+   ],
+   "refutationSan": [
+    "Nh4",
+    "e6",
+    "Nxf5",
+    "Rxf5",
+    "O-O-O",
+    "b5",
+    "h4",
+    "bxa4",
+    "Nxa4",
+    "Na6",
+    "Kb1",
+    "Rb8",
+    "Qd3"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 46
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 30
+   },
+   "winBefore": 45.775702105393144,
+   "winAfter": 47.24124461074959,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "c8f5",
+    "san": "Bxf5",
+    "winAfter": 45.775702105393144
+   },
+   "secondBest": {
+    "uci": "f8f5",
+    "san": "Rxf5",
+    "winAfter": 34.92650061117305
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 4.500333205784528,
+   "clockSeconds": 51.6
+  },
+  {
+   "plyIndex": 29,
+   "color": "w",
+   "san": "h4",
+   "uci": "h3h4",
+   "bestLineSan": [
+    "Nh4",
+    "e6",
+    "Nxf5",
+    "Rxf5",
+    "O-O-O",
+    "b5",
+    "h4",
+    "bxa4",
+    "Nxa4",
+    "Na6",
+    "Kb1",
+    "Rb8",
+    "Qd3"
+   ],
+   "refutationSan": [
+    "Na6",
+    "h5",
+    "Nb4",
+    "Rc1",
+    "gxh5",
+    "Nh4",
+    "Qd7",
+    "Rg1",
+    "Kh8",
+    "Ne2",
+    "Be4",
+    "f5",
+    "Bxf5",
+    "Bh6",
+    "Bxh6",
+    "Qxh6",
+    "Rg8",
+    "Kd2",
+    "Raf8"
+   ],
+   "labelReasons": [
+    "band:excellent"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 30
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 18
+   },
+   "winBefore": 52.75875538925041,
+   "winAfter": 51.656329731214406,
+   "winLoss": 1.1024256580360046,
+   "cpLoss": 12,
+   "bestMove": {
+    "uci": "f3h4",
+    "san": "Nh4",
+    "winAfter": 52.75875538925041
+   },
+   "secondBest": {
+    "uci": "c3e2",
+    "san": "Ne2",
+    "winAfter": 52.2078114090291
+   },
+   "severity": "excellent",
+   "label": "excellent",
+   "accuracy": 96.16443539041617,
+   "volatilityWeight": 1.0518564358472657,
+   "clockSeconds": 48.1
+  },
+  {
+   "plyIndex": 30,
+   "color": "b",
+   "san": "Na6",
+   "uci": "b8a6",
+   "bestLineSan": [
+    "Na6",
+    "h5",
+    "Nb4",
+    "Rc1",
+    "gxh5",
+    "Nh4",
+    "Qd7",
+    "Rg1",
+    "Kh8",
+    "Ne2",
+    "Be4",
+    "f5",
+    "Bxf5",
+    "Bh6",
+    "Bxh6",
+    "Qxh6",
+    "Rg8",
+    "Kd2",
+    "Raf8"
+   ],
+   "refutationSan": [
+    "h5",
+    "Nb4",
+    "O-O-O",
+    "Bxc2",
+    "Qh2",
+    "gxh5",
+    "Rd2",
+    "Bf5",
+    "Rg2",
+    "e6",
+    "Qxh5",
+    "Qe8",
+    "Qh4",
+    "Nd3+",
+    "Kd1",
+    "Kh8"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 18
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 10
+   },
+   "winBefore": 48.343670268785594,
+   "winAfter": 49.079583987119136,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "b8a6",
+    "san": "Na6",
+    "winAfter": 48.343670268785594
+   },
+   "secondBest": {
+    "uci": "h7h5",
+    "san": "h5",
+    "winAfter": 46.7826316589383
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.7554544618262298,
+   "clockSeconds": 51.1
+  },
+  {
+   "plyIndex": 31,
+   "color": "w",
+   "san": "h5",
+   "uci": "h4h5",
+   "bestLineSan": [
+    "h5",
+    "Nb4",
+    "O-O-O",
+    "Bxc2",
+    "Qh2",
+    "gxh5",
+    "Rd2",
+    "Bf5",
+    "Rg2",
+    "e6",
+    "Qxh5",
+    "Qe8",
+    "Qh4",
+    "Nd3+",
+    "Kd1",
+    "Kh8"
+   ],
+   "refutationSan": [
+    "Nb4",
+    "O-O-O",
+    "Bxc2",
+    "hxg6",
+    "Bxg6",
+    "Qe2",
+    "e6",
+    "Rh1",
+    "Qe8",
+    "Rdg1",
+    "Nd3+",
+    "Kd1",
+    "Nxf4",
+    "Qh2",
+    "Qf7",
+    "Nh4",
+    "Bh5+",
+    "Kc1",
+    "c5",
+    "Kb1",
+    "cxd4",
+    "Bxd4",
+    "Rac8",
+    "Nb5"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 10
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 17
+   },
+   "winBefore": 50.92041601288086,
+   "winAfter": 51.56437324214209,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "h4h5",
+    "san": "h5",
+    "winAfter": 50.92041601288086
+   },
+   "secondBest": {
+    "uci": "c3e2",
+    "san": "Ne2",
+    "winAfter": 50
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 47.6
+  },
+  {
+   "plyIndex": 32,
+   "color": "b",
+   "san": "Nb4",
+   "uci": "a6b4",
+   "bestLineSan": [
+    "Nb4",
+    "O-O-O",
+    "Bxc2",
+    "hxg6",
+    "Bxg6",
+    "Qe2",
+    "e6",
+    "Rh1",
+    "Qe8",
+    "Rdg1",
+    "Nd3+",
+    "Kd1",
+    "Nxf4",
+    "Qh2",
+    "Qf7",
+    "Nh4",
+    "Bh5+",
+    "Kc1",
+    "c5",
+    "Kb1",
+    "cxd4",
+    "Bxd4",
+    "Rac8",
+    "Nb5"
+   ],
+   "refutationSan": [
+    "O-O-O",
+    "Bxc2",
+    "hxg6",
+    "Bxg6",
+    "Qe2",
+    "e6",
+    "Rh1",
+    "Qe8",
+    "Rdg1",
+    "c5",
+    "Qh2",
+    "cxd4",
+    "Nxd4",
+    "Rc8",
+    "Kd2",
+    "Nc6",
+    "Ncb5",
+    "Nxd4",
+    "Nxd4",
+    "Qxa4",
+    "Rxg6",
+    "hxg6"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 17
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 5
+   },
+   "winBefore": 48.43562675785791,
+   "winAfter": 49.53975299971157,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "a6b4",
+    "san": "Nb4",
+    "winAfter": 48.43562675785791
+   },
+   "secondBest": {
+    "uci": "g6h5",
+    "san": "gxh5",
+    "winAfter": 43.13964347189121
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 50.7
+  },
+  {
+   "plyIndex": 33,
+   "color": "w",
+   "san": "Rc1",
+   "uci": "a1c1",
+   "bestLineSan": [
+    "O-O-O",
+    "Bxc2",
+    "hxg6",
+    "Bxg6",
+    "Qe2",
+    "e6",
+    "Rh1",
+    "Qe8",
+    "Rdg1",
+    "c5",
+    "Qh2",
+    "cxd4",
+    "Nxd4",
+    "Rc8",
+    "Kd2",
+    "Nc6",
+    "Ncb5",
+    "Nxd4",
+    "Nxd4",
+    "Qxa4",
+    "Rxg6",
+    "hxg6"
+   ],
+   "refutationSan": [
+    "gxh5",
+    "Nh4",
+    "Qd7",
+    "Nxf5",
+    "Qxf5",
+    "Qg2",
+    "Kh8",
+    "Kd2",
+    "Bh6",
+    "Ne2",
+    "Rg8",
+    "Qh2",
+    "Rg4",
+    "Rh1",
+    "h4",
+    "Qf2",
+    "Qe4",
+    "Rxh4",
+    "Rg2",
+    "Qf1",
+    "c5",
+    "Rxh6",
+    "cxd4",
+    "Bf2"
+   ],
+   "labelReasons": [
+    "band:best"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 5
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 10
+   },
+   "winBefore": 50.46024700028845,
+   "winAfter": 50.92041601288086,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "e1c1",
+    "san": "O-O-O",
+    "winAfter": 50.46024700028845
+   },
+   "secondBest": {
+    "uci": "a1c1",
+    "san": "Rc1",
+    "winAfter": 50
+   },
+   "severity": "best",
+   "label": "best",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 45.5
+  },
+  {
+   "plyIndex": 34,
+   "color": "b",
+   "san": "gxh5",
+   "uci": "g6h5",
+   "bestLineSan": [
+    "gxh5",
+    "Nh4",
+    "Qd7",
+    "Nxf5",
+    "Qxf5",
+    "Qg2",
+    "Kh8",
+    "Kd2",
+    "Bh6",
+    "Ne2",
+    "Rg8",
+    "Qh2",
+    "Rg4",
+    "Rh1",
+    "h4",
+    "Qf2",
+    "Qe4",
+    "Rxh4",
+    "Rg2",
+    "Qf1",
+    "c5",
+    "Rxh6",
+    "cxd4",
+    "Bf2"
+   ],
+   "refutationSan": [
+    "Nh4",
+    "Qd7",
+    "Ne2",
+    "Na2",
+    "Ra1",
+    "Nb4"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best",
+    "great",
+    "great:gap:11.1"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 10
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": 0
+   },
+   "winBefore": 49.079583987119136,
+   "winAfter": 50,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "g6h5",
+    "san": "gxh5",
+    "winAfter": 49.079583987119136
+   },
+   "secondBest": {
+    "uci": "e7e6",
+    "san": "e6",
+    "winAfter": 37.99603223030577
+   },
+   "severity": "best",
+   "label": "great",
+   "accuracy": 100,
+   "volatilityWeight": 0.5,
+   "clockSeconds": 49.4
+  },
+  {
+   "plyIndex": 35,
+   "color": "w",
+   "san": "Rg1",
+   "uci": "f1g1",
+   "bestLineSan": [
+    "Nh4",
+    "Qd7",
+    "Ne2",
+    "Na2",
+    "Ra1",
+    "Nb4"
+   ],
+   "refutationSan": [
+    "Qd7",
+    "Nh4",
+    "Kh8",
+    "Ne2",
+    "Bh6",
+    "b3",
+    "c5",
+    "dxc5",
+    "bxc5",
+    "Nxf5",
+    "Qxf5",
+    "Bxc5",
+    "Qe4"
+   ],
+   "labelReasons": [
+    "band:good"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": 0
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": -40
+   },
+   "winBefore": 50,
+   "winAfter": 46.324561670946,
+   "winLoss": 3.6754383290540034,
+   "cpLoss": 40,
+   "bestMove": {
+    "uci": "f3h4",
+    "san": "Nh4",
+    "winAfter": 50
+   },
+   "secondBest": {
+    "uci": "c3e2",
+    "san": "Ne2",
+    "winAfter": 50
+   },
+   "severity": "good",
+   "label": "good",
+   "accuracy": 85.74217660345586,
+   "volatilityWeight": 1.985443966016677,
+   "clockSeconds": 44.5
+  },
+  {
+   "plyIndex": 36,
+   "color": "b",
+   "san": "e6",
+   "uci": "e7e6",
+   "bestLineSan": [
+    "Qd7",
+    "Nh4",
+    "Kh8",
+    "Ne2",
+    "Bh6",
+    "b3",
+    "c5",
+    "dxc5",
+    "bxc5",
+    "Nxf5",
+    "Qxf5",
+    "Bxc5",
+    "Qe4"
+   ],
+   "refutationSan": [
+    "Ne2",
+    "Rc8",
+    "Ng3",
+    "Bg4",
+    "Nh2",
+    "c5",
+    "Nxg4",
+    "hxg4",
+    "c3",
+    "Nc6",
+    "Rh1",
+    "cxd4",
+    "Qh2",
+    "dxe3",
+    "Qxh7+",
+    "Kf7",
+    "Qh5+",
+    "Ke7",
+    "Qg5+",
+    "Kd7",
+    "Qxg7+",
+    "Ne7"
+   ],
+   "labelReasons": [
+    "band:good"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": -40
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": -7
+   },
+   "winBefore": 53.675438329054,
+   "winAfter": 50.644328329952096,
+   "winLoss": 3.0311099991019077,
+   "cpLoss": 33,
+   "bestMove": {
+    "uci": "d8d7",
+    "san": "Qd7",
+    "winAfter": 53.675438329054
+   },
+   "secondBest": {
+    "uci": "d8d7",
+    "san": "Qd7",
+    "winAfter": 53.675438329054
+   },
+   "severity": "good",
+   "label": "good",
+   "accuracy": 88.2435447188776,
+   "volatilityWeight": 1.6024853521297522,
+   "clockSeconds": 48.6
+  },
+  {
+   "plyIndex": 37,
+   "color": "w",
+   "san": "Nh4",
+   "uci": "f3h4",
+   "bestLineSan": [
+    "Ne2",
+    "Rc8",
+    "Ng3",
+    "Bg4",
+    "Nh2",
+    "c5",
+    "Nxg4",
+    "hxg4",
+    "c3",
+    "Nc6",
+    "Rh1",
+    "cxd4",
+    "Qh2",
+    "dxe3",
+    "Qxh7+",
+    "Kf7",
+    "Qh5+",
+    "Ke7",
+    "Qg5+",
+    "Kd7",
+    "Qxg7+",
+    "Ne7"
+   ],
+   "refutationSan": [
+    "Qxh4+",
+    "Qf2",
+    "Qxf2+",
+    "Bxf2",
+    "h6",
+    "Bh4",
+    "Bg4",
+    "Nd1",
+    "Rxf4",
+    "Nf2",
+    "Rxd4",
+    "c3"
+   ],
+   "labelReasons": [
+    "band:blunder"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": -7
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": -564
+   },
+   "winBefore": 49.35567167004791,
+   "winAfter": 11.138285043817637,
+   "winLoss": 38.21738662623027,
+   "cpLoss": 557,
+   "bestMove": {
+    "uci": "c3e2",
+    "san": "Ne2",
+    "winAfter": 49.35567167004791
+   },
+   "secondBest": {
+    "uci": "d2h2",
+    "san": "Qh2",
+    "winAfter": 46.69097177008696
+   },
+   "severity": "blunder",
+   "label": "blunder",
+   "accuracy": 17.367991285044184,
+   "volatilityWeight": 12,
+   "clockSeconds": 44.1
+  },
+  {
+   "plyIndex": 38,
+   "color": "b",
+   "san": "Qxh4+",
+   "uci": "d8h4",
+   "bestLineSan": [
+    "Qxh4+",
+    "Qf2",
+    "Qxf2+",
+    "Bxf2",
+    "h6",
+    "Bh4",
+    "Bg4",
+    "Nd1",
+    "Rxf4",
+    "Nf2",
+    "Rxd4",
+    "c3"
+   ],
+   "refutationSan": [
+    "Qf2",
+    "Qxf2+",
+    "Bxf2",
+    "Bxc2",
+    "Be3",
+    "Kh8",
+    "Kd2",
+    "Bf5",
+    "Ne2",
+    "Bg4",
+    "Ng3"
+   ],
+   "labelReasons": [
+    "band:best",
+    "engine:best",
+    "great",
+    "great:gap:10.0"
+   ],
+   "countsTowardAccuracy": true,
+   "phase": "middlegame",
+   "motifs": [],
+   "graded": true,
+   "scoreBefore": {
+    "kind": "cp",
+    "value": -564
+   },
+   "scoreAfter": {
+    "kind": "cp",
+    "value": -591
+   },
+   "winBefore": 88.86171495618235,
+   "winAfter": 89.80835075224127,
+   "winLoss": 0,
+   "cpLoss": 0,
+   "bestMove": {
+    "uci": "d8h4",
+    "san": "Qxh4+",
+    "winAfter": 88.86171495618235
+   },
+   "secondBest": {
+    "uci": "b4c2",
+    "san": "Nxc2+",
+    "winAfter": 78.82656217191823
+   },
+   "severity": "best",
+   "label": "great",
+   "accuracy": 100,
+   "volatilityWeight": 12,
+   "clockSeconds": 47.1
+  }
+ ],
+ "white": {
+  "accuracyMode": "default",
+  "accuracyByPhase": {
+   "opening": 96.08798188177337,
+   "middlegame": 52.586369153113786
+  },
+  "labelCounts": {
+   "brilliant": 0,
+   "great": 0,
+   "best": 9,
+   "excellent": 2,
+   "good": 2,
+   "book": 3,
+   "forced": 0,
+   "inaccuracy": 2,
+   "mistake": 0,
+   "miss": 0,
+   "blunder": 1
+  },
+  "gradedMoves": 19,
+  "ungradedMoves": 0,
+  "countedMoves": 19,
+  "excludedForced": 0,
+  "excludedMissingWeight": 0,
+  "accuracy": 70.68019898157132,
+  "acpl": 47
+ },
+ "black": {
+  "accuracyMode": "default",
+  "accuracyByPhase": {
+   "opening": 91.76315281528424,
+   "middlegame": 91.44724291000924
+  },
+  "labelCounts": {
+   "brilliant": 0,
+   "great": 3,
+   "best": 9,
+   "excellent": 0,
+   "good": 3,
+   "book": 3,
+   "forced": 0,
+   "inaccuracy": 1,
+   "mistake": 0,
+   "miss": 0,
+   "blunder": 0
+  },
+  "gradedMoves": 19,
+  "ungradedMoves": 0,
+  "countedMoves": 19,
+  "excludedForced": 0,
+  "excludedMissingWeight": 0,
+  "accuracy": 94.10823606454126,
+  "acpl": 17
+ },
+ "winSeries": [
+  53.400665785633464,
+  51.9321294202434,
+  55.50076484124536,
+  55.591684184482865,
+  55.13672504375507,
+  56.49872147270768,
+  57.76116974476763,
+  56.13639348680176,
+  60.07787318117941,
+  59.63550316463675,
+  59.546838358330426,
+  60.16615267275047,
+  59.989528148674815,
+  56.13639348680176,
+  58.92446885683451,
+  59.81264356862744,
+  57.6713100955946,
+  59.102589719161294,
+  59.546838358330426,
+  60.254366098530575,
+  59.1915609324709,
+  58.56752867735589,
+  63.467182614503464,
+  63.467182614503464,
+  69.52513126315363,
+  61.39489294360486,
+  62.95343100667657,
+  54.22429789460686,
+  52.75875538925041,
+  51.656329731214406,
+  50.92041601288086,
+  51.56437324214209,
+  50.46024700028845,
+  50.92041601288086,
+  50,
+  46.324561670946,
+  49.35567167004791,
+  11.138285043817637,
+  10.191649247758734
+ ],
+ "phaseBoundaries": {
+  "middlegameStartPly": 23
+ },
+ "coverage": {
+  "total": 39,
+  "analysed": 39,
+  "failed": 0,
+  "pending": 0,
+  "complete": true
+ },
+ "keyMoments": [],
+ "opening": {
+  "eco": "B06",
+  "name": "Modern Defense: Standard Line",
+  "ply": 5
+ }
+}

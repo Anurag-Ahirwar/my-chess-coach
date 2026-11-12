@@ -36,7 +36,7 @@ describe("deriveReview", () => {
     expect(review.configHash).toBe(configHash(C));
     expect(review.white.accuracy).toBeDefined();
     expect(review.keyMoments).toEqual([]);
-  });
+  }, 60_000); // the first use builds the real opening index
 
   it("leaves moves next to a failed position unlabelled and counts them as not included", async () => {
     const game = await gameFromUci(["d2d4", "d7d5", "c2c4", "e7e6", "b1c3", "g8f6"]);

@@ -86,9 +86,42 @@ export const BRILLIANT_RULE: SpecialLabelRule = {
     const pStar = nullMoveFen(input.fenBefore);
     if (pStar === undefined) return undefined;
 
-    // 2. The sacrificed set S.
+    // Every condition must hold, so checking the cheap ones first never changes the result.
+    const replyScore = povScore(reply.score, color);
+    const mateException = replyScore.kind === "mate" && replyScore.moves > 0; // D2
+
+    // 6. A PV of at least 4 plies; 3. a capture on ply 1 and no recovery through ply 4 (D1).
+    // (Whether the captured piece is in S is checked once S is known.)
+    let capturedOn: string | undefined;
+    if (!mateException) {
+      if (reply.pv.length < b.minPersistPlies) return undefined;
+      const chess = new Chess(played.fenAfter);
+      const balanceBefore = materialBalance(input.fenBefore, color, config.material);
+      for (let ply = 0; ply < b.minPersistPlies; ply++) {
+        const parts = parseUci(reply.pv[ply]!);
+        if (!parts) return undefined;
+        let move;
+        try {
+          move = chess.move(parts);
+        } catch {
+          return undefined;
+        }
+        if (ply === 0) {
+          if (move.captured === undefined) return undefined; // not accepted
+          capturedOn = move.isEnPassant() ? `${move.to[0]}${move.from[1]}` : move.to;
+        }
+        if (materialBalance(chess.fen(), color, config.material) > balanceBefore - b.minSacrifice) return undefined; // recovered
+      }
+    }
+
+    // 2. The sacrificed set S. Pawns are never in S (a pawn's SEE is at most 1, below the
+    // threshold of 2), and a piece nothing attacks has no capture, so its SEE is a certain 0.
+    const board = new Chess(played.fenAfter);
+    const opponent = color === "w" ? "b" : "w";
     const sacrificed: string[] = [];
     for (const square of pieceSquares(played.fenAfter, color)) {
+      if (board.get(square as Parameters<Chess["get"]>[0])?.type === "p") continue;
+      if (!board.isAttacked(square as Parameters<Chess["isAttacked"]>[0], opponent)) continue;
       const now = see(played.fenAfter, square, config.material);
       if (!now.certain) return undefined; // an uncertain SEE can't be checked
       if (now.value < b.minSacrifice) continue;
@@ -97,32 +130,8 @@ export const BRILLIANT_RULE: SpecialLabelRule = {
       if (earlier.value < b.minSacrifice) sacrificed.push(square); // not already lost before the move (D3)
     }
     if (sacrificed.length === 0) return undefined;
-
-    // Mate exception (D2): P′'s top line is a forced mate for the mover.
-    const replyScore = povScore(reply.score, color);
-    if (replyScore.kind === "mate" && replyScore.moves > 0) {
-      return ["brilliant", `brilliant:sacrifice:${sacrificed.join(",")}`, "brilliant:mate-exception"];
-    }
-
-    // 6. A PV of at least 4 plies; 3. accepted on ply 1 and not recovered through ply 4 (D1).
-    if (reply.pv.length < b.minPersistPlies) return undefined;
-    const chess = new Chess(played.fenAfter);
-    const balanceBefore = materialBalance(input.fenBefore, color, config.material);
-    for (let ply = 0; ply < b.minPersistPlies; ply++) {
-      const parts = parseUci(reply.pv[ply]!);
-      if (!parts) return undefined;
-      let move;
-      try {
-        move = chess.move(parts);
-      } catch {
-        return undefined;
-      }
-      if (ply === 0) {
-        const capturedOn = move.isEnPassant() ? `${move.to[0]}${move.from[1]}` : move.to;
-        if (move.captured === undefined || !sacrificed.includes(capturedOn)) return undefined; // not accepted
-      }
-      if (materialBalance(chess.fen(), color, config.material) > balanceBefore - b.minSacrifice) return undefined; // recovered
-    }
+    if (mateException) return ["brilliant", `brilliant:sacrifice:${sacrificed.join(",")}`, "brilliant:mate-exception"];
+    if (capturedOn === undefined || !sacrificed.includes(capturedOn)) return undefined; // accepted = captures a piece in S
     return ["brilliant", `brilliant:sacrifice:${sacrificed.join(",")}`];
   },
 };

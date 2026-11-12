@@ -143,6 +143,18 @@ export function deriveReview({ game, raw, index, config }: DeriveInput): GameRev
   const accuracy = gameAccuracy({ scores, startColor, forced, mode: config.accuracyMode });
   const allowsSpecialLabels = raw.settings.preset !== "quick";
 
+  // SAN of each stored line, converted once: a move's refutation is the next move's best line.
+  const sanCache = new Map<string, San[]>();
+  const lineSan = (k: number, line: EngineLine): San[] => {
+    const key = `${k}:${line.rank}`;
+    let san = sanCache.get(key);
+    if (!san) {
+      san = sanLine(fens[k]!, line.pv);
+      sanCache.set(key, san);
+    }
+    return [...san]; // a copy: two moves never share one array
+  };
+
   const verdicts: MoveVerdict[] = [];
   const moves: MoveAnalysis[] = game.plies.map((ply, i) => {
     const before = evals[i];
@@ -196,10 +208,10 @@ export function deriveReview({ game, raw, index, config }: DeriveInput): GameRev
     if (verdict.winLoss !== undefined) analysis.winLoss = verdict.winLoss;
     if (before && after) analysis.cpLoss = Math.max(0, (whiteCp(before.score) - whiteCp(after.score)) * sign);
     if (before?.bestMove) {
-      const [san] = sanLine(fens[i]!, [before.bestMove]);
-      if (san) analysis.bestMove = { uci: before.bestMove, san, winAfter: winPercent(before.score, ply.color) };
       const line = bestLine(before);
-      if (line) analysis.bestLineSan = sanLine(fens[i]!, line.pv);
+      if (line) analysis.bestLineSan = lineSan(i, line);
+      const san = line ? analysis.bestLineSan[0] : sanLine(fens[i]!, [before.bestMove])[0];
+      if (san) analysis.bestMove = { uci: before.bestMove, san, winAfter: winPercent(before.score, ply.color) };
       const second = before.lines[1];
       const secondUci = second?.pv[0];
       if (second && secondUci) {
@@ -208,7 +220,7 @@ export function deriveReview({ game, raw, index, config }: DeriveInput): GameRev
       }
     }
     const reply = after?.lines[0];
-    if (reply) analysis.refutationSan = sanLine(fens[i + 1]!, reply.pv);
+    if (reply) analysis.refutationSan = lineSan(i + 1, reply);
     if (verdict.severity) analysis.severity = verdict.severity;
     if (verdict.label) analysis.label = verdict.label;
     if (acc.accuracy !== undefined) analysis.accuracy = acc.accuracy;
