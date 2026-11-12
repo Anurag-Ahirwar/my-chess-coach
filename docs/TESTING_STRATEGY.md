@@ -261,13 +261,13 @@ A phase is **fully accepted** only when every criterion is PASS. With any BLOCKE
 
 A substitute check doesn't change a status unless the owner agrees in advance. For example, a WebKit run does not stand in for Firefox, and a test on another player's account does not stand in for a test on the owner's account.
 
-### Phase 1 (2026-11-03): conditionally accepted
+### Phase 1 (2026-11-03): conditionally accepted; all items PASS since 2026-11-13
 
 | Check | Status | Result |
 |---|---|---|
 | `npm run check`: typecheck, lint, licences, unit + integration tests with coverage | PASS | **241 tests passing** in 7 files. Coverage of `core/`: lines 99.72%, branches 95.95%. |
 | E2E, Chromium | PASS | **30/30** |
 | E2E, Firefox | **BLOCKED — ENVIRONMENT** | Playwright Firefox can't launch on Windows build 10.0.26300: a side-by-side error, *dependent assembly `mozglue` could not be found*, and the same after `npx playwright install --force firefox`. No Firefox test ran. Follow-up F1 (another machine or CI). *Update 2026-11-11: F1 closed; Firefox passes in CI on Ubuntu and Windows.* |
-| Live check, owner's 10 most recent Chess.com games | **PENDING** | Needs the owner's username. A run on the public account `hikaru` passed 10/10. That shows the import works on real data, but it doesn't satisfy this criterion. Follow-up F2. |
+| Live check, owner's 10 most recent Chess.com games | **PENDING** | Needs the owner's username. A run on the public account `hikaru` passed 10/10. That shows the import works on real data, but it doesn't satisfy this criterion. Follow-up F2. *Update 2026-11-13: F2 closed; the owner's 10 most recent games passed 10/10.* |
 
 The full criterion-by-criterion record is in [DEVELOPMENT_ROADMAP §3](DEVELOPMENT_ROADMAP.md#phase-1-acceptance-record-2026-11-03).

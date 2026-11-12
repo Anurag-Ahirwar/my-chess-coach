@@ -3,8 +3,8 @@
 A local-first web app for reviewing your chess games. Import games from Chess.com or paste a PGN, step through them move by move, and analyse them with Stockfish running in your browser. Move labels, accuracy and AI coaching come in later phases.
 
 **Current status:**
-- **Phase 1 is conditionally accepted.** Import and move-by-move review.
-- **Phase 2 is implemented on branch `phase-2` and awaiting acceptance.** It adds Stockfish 19 (lite) in browser Workers, games and analyses saved in IndexedDB with resume after reload, and a temporary debug view of the raw engine output.
+- **Phase 1 is accepted.** Import and move-by-move review.
+- **Phase 2 is accepted and merged into `main`.** It adds Stockfish 19 (lite) in browser Workers, games and analyses saved in IndexedDB with resume after reload, and a temporary debug view of the raw engine output.
 
 See [docs/DEVELOPMENT_ROADMAP.md](docs/DEVELOPMENT_ROADMAP.md) and [docs/BENCHMARKS.md](docs/BENCHMARKS.md).
 

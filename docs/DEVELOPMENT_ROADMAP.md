@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | v0.4 — **Phase 1 conditionally accepted.** **Phase 2 implemented** on branch `phase-2`, with all stages approved; **16 of 16 acceptance items PASS**, CI green in all jobs (see §3, Phase 2 acceptance record). Not merged to `main`. |
+| Status | v0.5 — **Phase 1 accepted**: follow-ups F1 and F2 are both closed. **Phase 2 accepted**: 16 of 16 acceptance items PASS, CI green in all jobs, merged into `main` on 2026-11-11 (`4b3fcbb`). Phase 3 not started; it waits for the owner's explicit approval. |
 | Date | 2026-11-03 |
 
 ---
@@ -106,7 +106,7 @@ Exit: the owner approves the docs. Open decisions are listed in §6.
 
 #### Phase 1 acceptance record (2026-11-03)
 
-**Overall: CONDITIONALLY ACCEPTED by the owner.** Phase 1 is *not* fully passed. Two items stay open and are tracked as follow-ups F1 and F2 (§3.1). Status meanings are defined in [TESTING_STRATEGY §7](TESTING_STRATEGY.md#7-acceptance-status).
+**Overall: CONDITIONALLY ACCEPTED by the owner.** Phase 1 is *not* fully passed. Two items stay open and are tracked as follow-ups F1 and F2 (§3.1). *Update 2026-11-13: F1 and F2 are both closed, so every Phase 1 criterion now passes. This record is kept as it was at sign-off.* Status meanings are defined in [TESTING_STRATEGY §7](TESTING_STRATEGY.md#7-acceptance-status).
 
 | # | Criterion | Status | Evidence |
 |---|---|---|---|
@@ -119,7 +119,7 @@ Exit: the owner approves the docs. Open decisions are listed in §6.
 | 4 | Coverage of `core/` | PASS | Lines 99.72%, branches 95.95% (targets 90% / 85%) |
 | 5 | Board and navigation | PASS (Chromium) | FEN text and rendered pieces checked at every ply of 3 games |
 | 6a | Chess.com import: validation, 404/410/429/offline, serial requests, past-month cache | PASS (Chromium + integration) | |
-| 6b | **The owner's own 10 most recent games** import and step through correctly | **PENDING** | Not yet run: the owner's username hasn't been provided. The same check passed on the public account `hikaru` (10/10 games, every move replayed, final positions match Chess.com's), which shows the import works against real data. **It does not satisfy this criterion.** Follow-up F2. |
+| 6b | **The owner's own 10 most recent games** import and step through correctly | **PENDING** | Not yet run: the owner's username hasn't been provided. The same check passed on the public account `hikaru` (10/10 games, every move replayed, final positions match Chess.com's), which shows the import works against real data. **It does not satisfy this criterion.** Follow-up F2. *Update 2026-11-13: F2 closed, criterion PASS. `npm run test:live` with the owner's username, 2026-11-13: **10/10** most recent games imported, every move replayed, and every final position matches Chess.com's `CurrentPosition`. The username isn't recorded here because the repository is public.* |
 | 7 | Responsive and accessible | PASS (Chromium) | No horizontal scroll at 375 px; axe: no serious or critical violations (light and dark); every control reachable by Tab |
 | 8 | Licensing | PASS | All 18 runtime dependencies on the allow-list |
 
@@ -132,12 +132,12 @@ Exit: the owner approves the docs. Open decisions are listed in §6.
 - **Not a test failure:** no Firefox test ever started. Chromium runs the same suite 30/30 on the same machine.
 - **Not substituted:** WebKit is **not** an acceptable replacement for Firefox for this criterion.
 
-### 3.1 Phase 1 follow-ups (F1 closed, F2 open)
+### 3.1 Phase 1 follow-ups (both closed)
 
 | ID | Task | Done when | Owner |
 |---|---|---|---|
 | F1 | **Run the Firefox E2E suite on another machine or in CI.** Use any machine where Playwright's Firefox launches: a different Windows build, Linux, macOS, or a CI runner. Run `npx playwright install firefox`, then `npx playwright test --project=firefox`. | The Firefox project passes in full (30/30, or the full count at that time) and the result is recorded in the acceptance record above, replacing BLOCKED. If it fails, the failures are fixed or recorded. | **Closed 2026-11-11** in GitHub Actions: the full Firefox suite passes on Ubuntu and Windows (CI run [42877982497](https://github.com/Anurag-Ahirwar/my-chess-coach/actions/runs/42877982497); Phase 2 item 14). |
-| F2 | **Validate with the owner's own Chess.com account.** Run `LIVE_CHESSCOM_USER=<owner's username> npm run test:live`. | All 10 most recent games import, every move replays, and final positions match Chess.com's. Criterion 6b recorded as PASS. | Owner to provide the username |
+| F2 | **Validate with the owner's own Chess.com account.** Run `LIVE_CHESSCOM_USER=<owner's username> npm run test:live`. | All 10 most recent games import, every move replays, and final positions match Chess.com's. Criterion 6b recorded as PASS. | **Closed 2026-11-13.** `npm run test:live` with the owner's username, 2026-11-13: **10/10** most recent games imported, every move replayed, and every final position matches Chess.com's `CurrentPosition`. The username isn't recorded here because the repository is public. |
 
 ### Phase 2 — Stockfish integration
 
@@ -323,10 +323,10 @@ M1 (a usable free reviewer) is about 12–19 days in.
 | U8 | Send player names to the LLM | Off / On | Off by default | Phase 4 |
 | U9 | Package manager | npm / pnpm | npm (installed with Node) | Phase 1 |
 | U10 | Desktop wrapper | None / Tauri | None for now; revisit if key security matters | Post-M2 |
-| U11 | Chess.com username(s) to configure as "me" | — | Owner to provide. **Still open; blocks follow-up F2.** | Phase 1 follow-up |
+| U11 | Chess.com username(s) to configure as "me" | — | **Provided by the owner on 2026-11-13** and used for F2 (not recorded here because the repository is public). The owner sets it as "me" in the app's preferences. | Phase 1 follow-up |
 | U12 | Move to Node 26 LTS | Now / after M2 | After M2, or Q2 2027 | Post-M2 |
 | U13 | ~~Second E2E browser, given R14~~ **Decided 2026-11-03:** run Firefox on another machine or in CI (F1). WebKit is not a replacement. | — | — | Resolved |
 
 ## 7. Immediate next step
 
-Phase 1 is conditionally accepted; F1 (Firefox E2E) is closed and F2 (the owner's own games) is open. Phase 2 passes all 16 acceptance items on branch `phase-2`. **Next: the owner decides on merging `phase-2` into `main`. Phase 3 does not start until the owner explicitly approves it.**
+Phase 1 is accepted: F1 (Firefox E2E) closed on 2026-11-11 and F2 (the owner's own games) on 2026-11-13. Phase 2 passes all 16 acceptance items and was merged into `main` on 2026-11-11. **Next: Phase 3. It does not start until the owner explicitly approves it.**
