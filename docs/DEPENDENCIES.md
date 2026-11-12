@@ -38,6 +38,16 @@ Transitive runtime packages (`scheduler`, `csstype`, `tslib`, `cookie-es`, `@rem
 - **Install footprint:** the npm package contains all five engine flavours, about **205 MB** unpacked in `node_modules`. Only the 1.9 MB above is served.
 - **Licence:** GPL-3.0, so if the app is ever distributed it must be under GPL-3.0 too (PRODUCT_REQUIREMENTS §10, decision U1). `Copying.txt` is served next to the engine.
 
+### Opening names dataset (added in Phase 3)
+
+Not an npm package: data committed in `data/openings/` (see `data/openings/SOURCE.md`).
+
+| Data | Version | Licence | Purpose |
+|---|---|---|---|
+| Lichess `chess-openings` (`a.tsv`–`e.tsv`) | commit `3ba6b20d31b2e6125cb0e6a2e792f400717d9d39` (2026-11-05), SHA-256 checked | **CC0-1.0** | Book label and opening names (methodology §5.8). 3,865 named lines. |
+
+The EPD index is generated from it by `scripts/build-openings.mjs` (plain Node + chess.js) at build and test time and is not committed (decision Q7): 7,982 positions, about 0.97 MB of JSON, 129 KB gzipped, built in about 2.5 s. It is loaded lazily, outside the main bundle.
+
 ## Development
 
 | Package | Version | Purpose |
