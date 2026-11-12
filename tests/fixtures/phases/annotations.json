@@ -1,0 +1,40 @@
+{
+  "comment": "Hand-annotated phase boundaries (methodology §7, M12). Position k = after ply k. lastBookPosition is an input here (null = no Book position, so the 12-move guard is position 24). Each boundary names the move that causes it.",
+  "games": [
+    {
+      "pgn": "chesscom/06-blitz.pgn",
+      "lastBookPosition": 12,
+      "middlegameStart": 35,
+      "endgameStart": 48,
+      "notes": "Guard = 12 + 24 = 36. Ply 35 (18.Rxe2) leaves 10 pieces and White 3 pieces on rank 1. Ply 48 (24...Kxf8) leaves 6 pieces."
+    },
+    {
+      "pgn": "chesscom/06-blitz.pgn",
+      "lastBookPosition": null,
+      "middlegameStart": 24,
+      "endgameStart": 48,
+      "notes": "No Book position: the guard (position 24) comes before any material or back-rank trigger (ply 35)."
+    },
+    {
+      "pgn": "chesscom/14-blitz.pgn",
+      "lastBookPosition": null,
+      "middlegameStart": 17,
+      "endgameStart": 41,
+      "notes": "Ply 17 (9.Qxd3) leaves White 3 pieces on rank 1 (sparse). Ply 41 (21.Nxe4) leaves 6 pieces. Ply 85 (each side down to one rook) is already in the endgame."
+    },
+    {
+      "pgn": "chesscom/02-blitz.pgn",
+      "lastBookPosition": null,
+      "middlegameStart": 22,
+      "endgameStart": 66,
+      "notes": "Ply 22 (11...Qd7) leaves Black 3 pieces on rank 8 (sparse), before the guard at 24. Ply 66 (33...Rxf3) leaves 6 pieces."
+    },
+    {
+      "pgn": "chesscom/23-daily.pgn",
+      "lastBookPosition": null,
+      "middlegameStart": null,
+      "endgameStart": null,
+      "notes": "A 20-ply game: never fewer than 12 pieces, never fewer than 4 pieces on either first rank, and the guard (24) is never reached. The whole game is the opening; no middlegame and no endgame."
+    }
+  ]
+}
