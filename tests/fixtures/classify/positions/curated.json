@@ -1,0 +1,243 @@
+{
+  "comment": "Curated classification positions (docs/TESTING_STRATEGY.md §3 classify/positions). Real, legal positions with hand-written engine data (White-POV scores, UCI lines), so each case isolates one rule of methodology §5. The test replays every move and line with chess.js before using it. preset: standard = MultiPV 2, quick = MultiPV 1.",
+  "cases": [
+    {
+      "id": "blunder-obvious",
+      "rule": "§5.3",
+      "fen": "rnbqkbnr/pppppppp/8/8/4P3/8/PPPP1PPP/RNBQKBNR b KQkq - 0 1",
+      "uci": "f7f6",
+      "before": { "score": { "kind": "cp", "value": 30 }, "bestMove": "e7e5", "lines": [{ "score": { "kind": "cp", "value": 30 }, "pv": ["e7e5", "g1f3"] }, { "score": { "kind": "cp", "value": 40 }, "pv": ["c7c5", "g1f3"] }] },
+      "after": { "score": { "kind": "cp", "value": 420 }, "bestMove": "d2d4", "lines": [{ "score": { "kind": "cp", "value": 420 }, "pv": ["d2d4", "e7e6"] }] },
+      "expect": { "label": "blunder" }
+    },
+    {
+      "id": "missed-mate-after-opponent-blunder",
+      "rule": "§5.4 mate lost, §5.5 Miss",
+      "fen": "6k1/5ppp/8/8/8/8/5PPP/3R2K1 w - - 0 1",
+      "uci": "g2g3",
+      "previousSeverity": "blunder",
+      "before": { "score": { "kind": "mate", "moves": 1 }, "bestMove": "d1d8", "lines": [{ "score": { "kind": "mate", "moves": 1 }, "pv": ["d1d8"] }, { "score": { "kind": "cp", "value": 500 }, "pv": ["g1f1", "g8f8"] }] },
+      "after": { "score": { "kind": "cp", "value": 500 }, "bestMove": "g8f8", "lines": [{ "score": { "kind": "cp", "value": 500 }, "pv": ["g8f8", "d1d7"] }] },
+      "expect": { "label": "miss", "severity": "blunder", "reasons": ["mate:lost", "miss"] }
+    },
+    {
+      "id": "brilliant-accepted-greek-gift",
+      "rule": "§5.7 accepted, deficit 2 through ply 4",
+      "fen": "r1bq1rk1/pp1nbppp/2n1p3/2ppP3/3P4/2PB1N2/PP3PPP/RNBQK2R w KQ - 0 8",
+      "uci": "d3h7",
+      "before": { "score": { "kind": "cp", "value": 80 }, "bestMove": "d3h7", "lines": [{ "score": { "kind": "cp", "value": 80 }, "pv": ["d3h7", "g8h7", "f3g5"] }, { "score": { "kind": "cp", "value": 20 }, "pv": ["e1g1", "f7f6"] }] },
+      "after": { "score": { "kind": "cp", "value": 90 }, "bestMove": "g8h7", "lines": [{ "score": { "kind": "cp", "value": 90 }, "pv": ["g8h7", "f3g5", "h7g8", "d1h5"] }] },
+      "expect": { "label": "brilliant", "reasons": ["brilliant", "brilliant:sacrifice:h7"] }
+    },
+    {
+      "id": "not-brilliant-declined",
+      "rule": "§5.7 not accepted (D1)",
+      "fen": "r1bq1rk1/pp1nbppp/2n1p3/2ppP3/3P4/2PB1N2/PP3PPP/RNBQK2R w KQ - 0 8",
+      "uci": "d3h7",
+      "before": { "score": { "kind": "cp", "value": 80 }, "bestMove": "d3h7", "lines": [{ "score": { "kind": "cp", "value": 80 }, "pv": ["d3h7", "g8h8"] }, { "score": { "kind": "cp", "value": 20 }, "pv": ["e1g1", "f7f6"] }] },
+      "after": { "score": { "kind": "cp", "value": 90 }, "bestMove": "g8h8", "lines": [{ "score": { "kind": "cp", "value": 90 }, "pv": ["g8h8", "h7d3", "f7f6", "e1g1"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "brilliant-declined-mate-exception",
+      "rule": "§5.7 mate exception waives acceptance and recovery (D2)",
+      "fen": "r1bq1rk1/pp1nbppp/2n1p3/2ppP3/3P4/2PB1N2/PP3PPP/RNBQK2R w KQ - 0 8",
+      "uci": "d3h7",
+      "before": { "score": { "kind": "cp", "value": 80 }, "bestMove": "d3h7", "lines": [{ "score": { "kind": "cp", "value": 80 }, "pv": ["d3h7", "g8h8"] }, { "score": { "kind": "cp", "value": 20 }, "pv": ["e1g1", "f7f6"] }] },
+      "after": { "score": { "kind": "mate", "moves": 6 }, "bestMove": "g8h8", "lines": [{ "score": { "kind": "mate", "moves": 6 }, "pv": ["g8h8", "h7d3"] }] },
+      "expect": { "label": "brilliant", "reasons": ["brilliant", "brilliant:sacrifice:h7", "brilliant:mate-exception"] }
+    },
+    {
+      "id": "not-brilliant-mate-with-unrelated-hanging-piece",
+      "rule": "§5.7 mate exception needs a sacrifice made by this move: a piece hanging before the move is not one",
+      "fen": "4n1k1/5ppp/8/3p4/4N3/8/5PPP/2R3K1 w - - 0 1",
+      "uci": "g2g3",
+      "before": { "score": { "kind": "cp", "value": 100 }, "bestMove": "g2g3", "lines": [{ "score": { "kind": "cp", "value": 100 }, "pv": ["g2g3", "d5e4"] }, { "score": { "kind": "cp", "value": 60 }, "pv": ["e4c3", "e8d6"] }] },
+      "after": { "score": { "kind": "mate", "moves": 5 }, "bestMove": "d5e4", "lines": [{ "score": { "kind": "mate", "moves": 5 }, "pv": ["d5e4", "c1c8"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-brilliant-declined-other-piece-taken",
+      "rule": "§5.7 accepted means capturing a piece in S (case C)",
+      "fen": "4n1k1/5ppp/8/3p4/4N3/8/5PPP/2R3K1 w - - 0 1",
+      "uci": "c1c7",
+      "before": { "score": { "kind": "cp", "value": 60 }, "bestMove": "c1c7", "lines": [{ "score": { "kind": "cp", "value": 60 }, "pv": ["c1c7", "d5e4"] }, { "score": { "kind": "cp", "value": 40 }, "pv": ["e4c3", "e8d6"] }] },
+      "after": { "score": { "kind": "cp", "value": 70 }, "bestMove": "d5e4", "lines": [{ "score": { "kind": "cp", "value": 70 }, "pv": ["d5e4", "c7c4", "f7f5", "g2g4"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-brilliant-desperado",
+      "rule": "§5.7 desperado exclusion (D3, case E)",
+      "fen": "6k1/5ppp/4p3/3p4/1p6/2N5/P4PPP/6K1 w - - 0 1",
+      "uci": "c3d5",
+      "before": { "score": { "kind": "cp", "value": 30 }, "bestMove": "c3d5", "lines": [{ "score": { "kind": "cp", "value": 30 }, "pv": ["c3d5", "e6d5"] }, { "score": { "kind": "cp", "value": -200 }, "pv": ["c3e2", "g8f8"] }] },
+      "after": { "score": { "kind": "cp", "value": 40 }, "bestMove": "e6d5", "lines": [{ "score": { "kind": "cp", "value": 40 }, "pv": ["e6d5", "g2g3", "g8f8", "g1g2"] }] },
+      "expect": { "notLabel": "brilliant" }
+    },
+    {
+      "id": "not-brilliant-desperado-into-mate",
+      "rule": "§5.7 the mate exception never rescues a desperado (S is empty)",
+      "fen": "6k1/5ppp/4p3/3p4/1p6/2N5/P4PPP/6K1 w - - 0 1",
+      "uci": "c3d5",
+      "before": { "score": { "kind": "cp", "value": 30 }, "bestMove": "c3d5", "lines": [{ "score": { "kind": "cp", "value": 30 }, "pv": ["c3d5", "e6d5"] }, { "score": { "kind": "cp", "value": -200 }, "pv": ["c3e2", "g8f8"] }] },
+      "after": { "score": { "kind": "mate", "moves": 7 }, "bestMove": "e6d5", "lines": [{ "score": { "kind": "mate", "moves": 7 }, "pv": ["e6d5", "g2g3"] }] },
+      "expect": { "notLabel": "brilliant" }
+    },
+    {
+      "id": "not-brilliant-plain-trade",
+      "rule": "§5.7 accepted but no deficit (case D, Black moves)",
+      "fen": "r1bqkbnr/pppp1ppp/2n5/8/3NP3/8/PPP2PPP/RNBQKB1R b KQkq - 0 4",
+      "uci": "c6d4",
+      "before": { "score": { "kind": "cp", "value": -20 }, "bestMove": "c6d4", "lines": [{ "score": { "kind": "cp", "value": -20 }, "pv": ["c6d4", "d1d4"] }, { "score": { "kind": "cp", "value": 40 }, "pv": ["g8f6", "d4c6"] }] },
+      "after": { "score": { "kind": "cp", "value": -25 }, "bestMove": "d1d4", "lines": [{ "score": { "kind": "cp", "value": -25 }, "pv": ["d1d4", "g8f6", "b1c3", "f8c5"] }] },
+      "expect": { "notLabel": "brilliant" }
+    },
+    {
+      "id": "not-brilliant-recovered",
+      "rule": "§5.7 material won back by PV ply 4 (case G, fork trick, Black moves)",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 5 4",
+      "uci": "f6e4",
+      "before": { "score": { "kind": "cp", "value": -10 }, "bestMove": "f6e4", "lines": [{ "score": { "kind": "cp", "value": -10 }, "pv": ["f6e4", "c3e4"] }, { "score": { "kind": "cp", "value": 30 }, "pv": ["f8c5", "e1g1"] }] },
+      "after": { "score": { "kind": "cp", "value": -15 }, "bestMove": "c3e4", "lines": [{ "score": { "kind": "cp", "value": -15 }, "pv": ["c3e4", "d7d5", "c4d3", "d5e4"] }] },
+      "expect": { "notLabel": "brilliant" }
+    },
+    {
+      "id": "brilliant-exchange-sacrifice",
+      "rule": "§5.7 rook for knight: net −2, exactly the threshold (case F, Black moves)",
+      "fen": "2r3k1/5ppp/8/8/8/2N5/1P3PPP/6K1 b - - 0 1",
+      "uci": "c8c3",
+      "before": { "score": { "kind": "cp", "value": -100 }, "bestMove": "c8c3", "lines": [{ "score": { "kind": "cp", "value": -100 }, "pv": ["c8c3", "b2c3"] }, { "score": { "kind": "cp", "value": -60 }, "pv": ["g8f8", "g1f1"] }] },
+      "after": { "score": { "kind": "cp", "value": -110 }, "bestMove": "b2c3", "lines": [{ "score": { "kind": "cp", "value": -110 }, "pv": ["b2c3", "g8f8", "g1f1", "f8e7"] }] },
+      "expect": { "label": "brilliant", "reasons": ["brilliant", "brilliant:sacrifice:c3"] }
+    },
+    {
+      "id": "not-brilliant-already-crushing",
+      "rule": "§5.7 condition 5: Wb < 90",
+      "fen": "r1bq1rk1/pp1nbppp/2n1p3/2ppP3/3P4/2PB1N2/PP3PPP/RNBQK2R w KQ - 0 8",
+      "uci": "d3h7",
+      "before": { "score": { "kind": "cp", "value": 700 }, "bestMove": "d3h7", "lines": [{ "score": { "kind": "cp", "value": 700 }, "pv": ["d3h7", "g8h7"] }, { "score": { "kind": "cp", "value": 650 }, "pv": ["e1g1", "f7f6"] }] },
+      "after": { "score": { "kind": "cp", "value": 700 }, "bestMove": "g8h7", "lines": [{ "score": { "kind": "cp", "value": 700 }, "pv": ["g8h7", "f3g5", "h7g8", "d1h5"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-brilliant-losing-after",
+      "rule": "§5.7 condition 4: Wa ≥ 50",
+      "fen": "r1bq1rk1/pp1nbppp/2n1p3/2ppP3/3P4/2PB1N2/PP3PPP/RNBQK2R w KQ - 0 8",
+      "uci": "d3h7",
+      "before": { "score": { "kind": "cp", "value": -50 }, "bestMove": "d3h7", "lines": [{ "score": { "kind": "cp", "value": -50 }, "pv": ["d3h7", "g8h7"] }, { "score": { "kind": "cp", "value": -60 }, "pv": ["e1g1", "f7f6"] }] },
+      "after": { "score": { "kind": "cp", "value": -50 }, "bestMove": "g8h7", "lines": [{ "score": { "kind": "cp", "value": -50 }, "pv": ["g8h7", "f3g5", "h7g8", "d1h5"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-brilliant-quick-preset",
+      "rule": "§5.7 never evaluated at Quick (B4)",
+      "preset": "quick",
+      "fen": "r1bq1rk1/pp1nbppp/2n1p3/2ppP3/3P4/2PB1N2/PP3PPP/RNBQK2R w KQ - 0 8",
+      "uci": "d3h7",
+      "before": { "score": { "kind": "cp", "value": 80 }, "bestMove": "d3h7", "lines": [{ "score": { "kind": "cp", "value": 80 }, "pv": ["d3h7", "g8h7", "f3g5"] }] },
+      "after": { "score": { "kind": "cp", "value": 90 }, "bestMove": "g8h7", "lines": [{ "score": { "kind": "cp", "value": 90 }, "pv": ["g8h7", "f3g5", "h7g8", "d1h5"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-brilliant-pv-too-short",
+      "rule": "§5.7 condition 6: omit when the PV is shorter than 4 plies",
+      "fen": "r1bq1rk1/pp1nbppp/2n1p3/2ppP3/3P4/2PB1N2/PP3PPP/RNBQK2R w KQ - 0 8",
+      "uci": "d3h7",
+      "before": { "score": { "kind": "cp", "value": 80 }, "bestMove": "d3h7", "lines": [{ "score": { "kind": "cp", "value": 80 }, "pv": ["d3h7", "g8h7", "f3g5"] }, { "score": { "kind": "cp", "value": 20 }, "pv": ["e1g1", "f7f6"] }] },
+      "after": { "score": { "kind": "cp", "value": 90 }, "bestMove": "g8h7", "lines": [{ "score": { "kind": "cp", "value": 90 }, "pv": ["g8h7", "f3g5", "h7g8"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-brilliant-reply-pv-uncertain",
+      "rule": "§5.7 not evaluated when P′'s bestmove differs from its PV (D16)",
+      "fen": "r1bq1rk1/pp1nbppp/2n1p3/2ppP3/3P4/2PB1N2/PP3PPP/RNBQK2R w KQ - 0 8",
+      "uci": "d3h7",
+      "before": { "score": { "kind": "cp", "value": 80 }, "bestMove": "d3h7", "lines": [{ "score": { "kind": "cp", "value": 80 }, "pv": ["d3h7", "g8h7", "f3g5"] }, { "score": { "kind": "cp", "value": 20 }, "pv": ["e1g1", "f7f6"] }] },
+      "after": { "score": { "kind": "cp", "value": 90 }, "bestMove": "g8h8", "lines": [{ "score": { "kind": "cp", "value": 90 }, "pv": ["g8h7", "f3g5", "h7g8", "d1h5"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-brilliant-mover-in-check",
+      "rule": "§5.7 not evaluated when the mover is in check (D4): an interposition",
+      "fen": "4r1k1/8/8/8/8/8/3B4/4K3 w - - 0 1",
+      "uci": "d2e3",
+      "before": { "score": { "kind": "cp", "value": -20 }, "bestMove": "d2e3", "lines": [{ "score": { "kind": "cp", "value": -20 }, "pv": ["d2e3", "e8e3"] }, { "score": { "kind": "cp", "value": -60 }, "pv": ["e1f2", "e8f8"] }] },
+      "after": { "score": { "kind": "cp", "value": -10 }, "bestMove": "e8e3", "lines": [{ "score": { "kind": "cp", "value": -10 }, "pv": ["e8e3", "e1d2", "e3e8", "d2d3"] }] },
+      "expect": { "notLabel": "brilliant" }
+    },
+    {
+      "id": "not-brilliant-uncertain-see",
+      "rule": "§5.7 not evaluated when an SEE is uncertain (§5.11 tie case; Black moves). Every other condition holds: the PV accepts the knight and Black stays 3 down through ply 4, so only the uncertain SEE blocks the label",
+      "fen": "8/7k/4pn2/1R6/8/3R4/8/1B4K1 b - - 0 1",
+      "uci": "f6d5",
+      "before": { "score": { "kind": "cp", "value": -50 }, "bestMove": "f6d5", "lines": [{ "score": { "kind": "cp", "value": -50 }, "pv": ["f6d5", "b5d5"] }, { "score": { "kind": "cp", "value": 20 }, "pv": ["h7g8", "d3d8"] }] },
+      "after": { "score": { "kind": "cp", "value": -60 }, "bestMove": "b5d5", "lines": [{ "score": { "kind": "cp", "value": -60 }, "pv": ["b5d5", "h7g8", "d5d8", "g8h7"] }] },
+      "expect": { "notLabel": "brilliant" }
+    },
+    {
+      "id": "great-only-move",
+      "rule": "§5.6 the only move that keeps the evaluation",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 5 4",
+      "uci": "f8c5",
+      "before": { "score": { "kind": "cp", "value": 30 }, "bestMove": "f8c5", "lines": [{ "score": { "kind": "cp", "value": 30 }, "pv": ["f8c5", "e1g1"] }, { "score": { "kind": "cp", "value": 350 }, "pv": ["h7h6", "f3e5"] }] },
+      "after": { "score": { "kind": "cp", "value": 25 }, "bestMove": "e1g1", "lines": [{ "score": { "kind": "cp", "value": 25 }, "pv": ["e1g1", "d7d6"] }] },
+      "expect": { "label": "great", "reasons": ["great"] }
+    },
+    {
+      "id": "not-great-obvious-recapture",
+      "rule": "§5.6 condition 5 (M9 definition)",
+      "fen": "rnbqkbnr/ppp1pppp/8/3P4/8/8/PPPP1PPP/RNBQKBNR b KQkq - 0 2",
+      "uci": "d8d5",
+      "previousMove": { "uci": "e4d5", "capture": true },
+      "before": { "score": { "kind": "cp", "value": 20 }, "bestMove": "d8d5", "lines": [{ "score": { "kind": "cp", "value": 20 }, "pv": ["d8d5", "b1c3"] }, { "score": { "kind": "cp", "value": 300 }, "pv": ["g8f6", "c2c4"] }] },
+      "after": { "score": { "kind": "cp", "value": 25 }, "bestMove": "b1c3", "lines": [{ "score": { "kind": "cp", "value": 25 }, "pv": ["b1c3", "d5a5"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-great-king-out-of-check",
+      "rule": "§5.6 condition 6: a king move out of check with two legal moves",
+      "fen": "6k1/8/8/8/8/8/6P1/r5K1 w - - 0 1",
+      "uci": "g1h2",
+      "before": { "score": { "kind": "cp", "value": -50 }, "bestMove": "g1h2", "lines": [{ "score": { "kind": "cp", "value": -50 }, "pv": ["g1h2", "a1a2"] }, { "score": { "kind": "cp", "value": -600 }, "pv": ["g1f2", "a1a2"] }] },
+      "after": { "score": { "kind": "cp", "value": -55 }, "bestMove": "a1a2", "lines": [{ "score": { "kind": "cp", "value": -55 }, "pv": ["a1a2", "h2h3"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-great-decided",
+      "rule": "§5.6 condition 4: 5 ≤ Wb ≤ 95",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 5 4",
+      "uci": "f8c5",
+      "before": { "score": { "kind": "cp", "value": -900 }, "bestMove": "f8c5", "lines": [{ "score": { "kind": "cp", "value": -900 }, "pv": ["f8c5", "e1g1"] }, { "score": { "kind": "cp", "value": -100 }, "pv": ["h7h6", "f3e5"] }] },
+      "after": { "score": { "kind": "cp", "value": -900 }, "bestMove": "e1g1", "lines": [{ "score": { "kind": "cp", "value": -900 }, "pv": ["e1g1", "d7d6"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-great-small-gap",
+      "rule": "§5.6 condition 3: gap ≥ 10",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 5 4",
+      "uci": "f8c5",
+      "before": { "score": { "kind": "cp", "value": 30 }, "bestMove": "f8c5", "lines": [{ "score": { "kind": "cp", "value": 30 }, "pv": ["f8c5", "e1g1"] }, { "score": { "kind": "cp", "value": 80 }, "pv": ["h7h6", "f3e5"] }] },
+      "after": { "score": { "kind": "cp", "value": 25 }, "bestMove": "e1g1", "lines": [{ "score": { "kind": "cp", "value": 25 }, "pv": ["e1g1", "d7d6"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-great-no-multipv",
+      "rule": "§5.6 not evaluated without MultiPV (Quick)",
+      "preset": "quick",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 5 4",
+      "uci": "f8c5",
+      "before": { "score": { "kind": "cp", "value": 30 }, "bestMove": "f8c5", "lines": [{ "score": { "kind": "cp", "value": 30 }, "pv": ["f8c5", "e1g1"] }] },
+      "after": { "score": { "kind": "cp", "value": 25 }, "bestMove": "e1g1", "lines": [{ "score": { "kind": "cp", "value": 25 }, "pv": ["e1g1", "d7d6"] }] },
+      "expect": { "label": "best" }
+    },
+    {
+      "id": "not-great-bestmove-disagrees",
+      "rule": "§5.6 not evaluated when bestMove ≠ lines[0].pv[0] (M9)",
+      "fen": "r1bqkb1r/pppp1ppp/2n2n2/4p3/2B1P3/2N2N2/PPPP1PPP/R1BQK2R b KQkq - 5 4",
+      "uci": "f8c5",
+      "before": { "score": { "kind": "cp", "value": 30 }, "bestMove": "f8c5", "lines": [{ "score": { "kind": "cp", "value": 30 }, "pv": ["h7h6", "f3e5"] }, { "score": { "kind": "cp", "value": 350 }, "pv": ["f8c5", "e1g1"] }] },
+      "after": { "score": { "kind": "cp", "value": 25 }, "bestMove": "e1g1", "lines": [{ "score": { "kind": "cp", "value": 25 }, "pv": ["e1g1", "d7d6"] }] },
+      "expect": { "label": "best" }
+    }
+  ]
+}

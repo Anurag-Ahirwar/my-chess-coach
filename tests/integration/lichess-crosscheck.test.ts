@@ -69,7 +69,6 @@ function phasesOf(game: LichessGame, positions: number): Phase[] {
 interface Row {
   id: string;
   status: string;
-  winner: "white" | "black" | null;
   plies: number;
   windowSize: number;
   accuracy: { ours: [number | null, number | null]; lichess: [number | null, number | null] };
