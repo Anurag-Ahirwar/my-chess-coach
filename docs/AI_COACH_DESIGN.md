@@ -342,7 +342,7 @@ This guarantees the coach panel is useful offline and for free. The AI layer the
 The selection is automatic and deterministic, for the summary and for proactive per-move explanations:
 
 1. Candidates are the player's moves labelled Blunder, Miss, Mistake, Brilliant or Great, plus the **turning point**: the ply with the largest single Win% swing that crosses 50 (the result changing hands).
-   Exact rule (decision M13, implemented in Phase 3 in `core/review`): over the moves where both White-POV Win% values exist, a move crosses 50 when `(w[i] − 50) × (w[i+1] − 50) < 0`; exactly 50 is not a crossing. The turning point is the crossing move with the largest `|w[i+1] − w[i]|`, the earliest on a tie. There is none if no move crosses 50. It is shown only for complete analyses.
+   Exact rule (decision M13, implemented in Phase 3 in `core/review`): over the moves where both White-POV Win% values exist, a move crosses 50 when `(w[i] − 50) × (w[i+1] − 50) < 0`; exactly 50 is not a crossing. The turning point is the crossing move with the largest `|w[i+1] − w[i]|`, the earliest on a tie. There is none if no move crosses 50. It is shown only for complete analyses. The owner kept this definition after Stage 1 (no minimum swing); the UI shows the actual Win% swing next to it, so a small swing is visible as small.
 2. Rank them by Win% swing (Brilliant and Great are ranked by `gap`).
 3. Take up to 6 for the player and up to 2 for the opponent (critical opponent errors the player failed to punish are already covered by Miss).
 4. Make sure each phase that has a candidate is represented at least once.
