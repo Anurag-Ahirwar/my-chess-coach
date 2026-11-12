@@ -1,0 +1,11634 @@
+{
+ "comment": "Lichess cross-check fixtures (docs/TESTING_STRATEGY.md §3, decision Q2). Public analysed games, pseudonymised; selection rule in scripts/fetch-lichess-evals.mjs. analysis[i] is Lichess's evaluation of the position after ply i + 1 (White POV); position 0 has none.",
+ "fetched": "2026-11-12",
+ "pool": 450,
+ "games": [
+  {
+   "id": "lichess-01",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "black",
+   "windowSize": 2,
+   "opening": {
+    "eco": "B20",
+    "name": "Sicilian Defense: Bowdler Attack",
+    "ply": 3
+   },
+   "division": {},
+   "players": {
+    "white": {
+     "name": "player-01",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 2,
+      "blunder": 1,
+      "acpl": 95,
+      "accuracy": 72
+     }
+    },
+    "black": {
+     "name": "player-02",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 15,
+      "accuracy": 93
+     }
+    }
+   },
+   "moves": "e4 c5 Bc4 Nc6 Qe2 Nf6 Nc3 e6 Nf3 g5 Bb3 g4 Ng5 Nd4 Qd3 h6 e5 hxg5 exf6 Qxf6 Ne4 Qe5 O-O Qxh2#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -36
+    },
+    {
+     "eval": -8
+    },
+    {
+     "eval": -54
+    },
+    {
+     "eval": -13
+    },
+    {
+     "eval": -20
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": -103,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -104
+    },
+    {
+     "eval": -235,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -238
+    },
+    {
+     "eval": -256
+    },
+    {
+     "eval": -239
+    },
+    {
+     "eval": -313,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -297
+    },
+    {
+     "eval": -302
+    },
+    {
+     "eval": -304
+    },
+    {
+     "eval": -354
+    },
+    {
+     "eval": -389
+    },
+    {
+     "mate": -1,
+     "judgment": "Blunder"
+    }
+   ]
+  },
+  {
+   "id": "lichess-02",
+   "speed": "blitz",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 2,
+   "opening": {
+    "eco": "E11",
+    "name": "Bogo-Indian Defense: Retreat Variation",
+    "ply": 8
+   },
+   "division": {
+    "middle": 27
+   },
+   "players": {
+    "white": {
+     "name": "player-03",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 8,
+      "accuracy": 97,
+      "phases": {
+       "opening": 98,
+       "middlegame": 93
+      }
+     }
+    },
+    "black": {
+     "name": "player-04",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 6,
+      "accuracy": 97,
+      "phases": {
+       "opening": 97,
+       "middlegame": 97
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 e6 Nf3 Bb4+ Bd2 Be7 Nc3 d5 Bg5 O-O e3 h6 Bh4 b6 cxd5 Nxd5 Bg3 Bb7 Be2 c5 O-O Nxc3 bxc3 Nc6 a4 Rc8 h3",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 54
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 13
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": -4
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": -8
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -7
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": -21
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -29
+    }
+   ]
+  },
+  {
+   "id": "lichess-03",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 2,
+   "opening": {
+    "eco": "C00",
+    "name": "French Defense: Normal Variation",
+    "ply": 3
+   },
+   "division": {},
+   "players": {
+    "white": {
+     "name": "player-05",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 5,
+      "accuracy": 99
+     }
+    },
+    "black": {
+     "name": "player-06",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 126,
+      "accuracy": 60
+     }
+    }
+   },
+   "moves": "d4 e6 e4 e5 dxe5 Bb4+ Bd2 Bxd2+ Qxd2 Nf6 exf6 gxf6 Nc3 Nc6 Nd5",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 42
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 147,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 140
+    },
+    {
+     "eval": 210,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 206
+    },
+    {
+     "eval": 210
+    },
+    {
+     "eval": 213
+    },
+    {
+     "eval": 809,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 800
+    },
+    {
+     "eval": 839
+    },
+    {
+     "eval": 849
+    },
+    {
+     "eval": 874
+    },
+    {
+     "eval": 890
+    }
+   ]
+  },
+  {
+   "id": "lichess-04",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "black",
+   "windowSize": 2,
+   "opening": {
+    "eco": "B21",
+    "name": "Sicilian Defense: McDonnell Attack",
+    "ply": 3
+   },
+   "division": {
+    "middle": 18
+   },
+   "players": {
+    "white": {
+     "name": "player-07",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 67,
+      "accuracy": 68,
+      "phases": {
+       "opening": 96,
+       "middlegame": 53
+      }
+     }
+    },
+    "black": {
+     "name": "player-08",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 8,
+      "accuracy": 97,
+      "phases": {
+       "opening": 98,
+       "middlegame": 95
+      }
+     }
+    }
+   },
+   "moves": "e4 c5 f4 d6 Bb5+ Bd7 Bxd7+ Qxd7 Nf3 Nc6 O-O g6 d3 Bg7 Nc3 f5 Bd2 Nh6 Qe1 O-O Qh4 Nd4 Ne1 e6 Nd1 Ng4 h3 Bf6",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": -8
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": -16
+    },
+    {
+     "eval": -4
+    },
+    {
+     "eval": -24
+    },
+    {
+     "eval": -18
+    },
+    {
+     "eval": -37
+    },
+    {
+     "eval": -32
+    },
+    {
+     "eval": -144,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -101
+    },
+    {
+     "eval": -182,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -189
+    },
+    {
+     "eval": -820,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -823
+    }
+   ]
+  },
+  {
+   "id": "lichess-05",
+   "speed": "bullet",
+   "status": "mate",
+   "winner": "white",
+   "windowSize": 2,
+   "opening": {
+    "eco": "C23",
+    "name": "Bishop's Opening: Boi Variation",
+    "ply": 4
+   },
+   "division": {
+    "middle": 19
+   },
+   "players": {
+    "white": {
+     "name": "player-09",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 32,
+      "accuracy": 79,
+      "phases": {
+       "opening": 74,
+       "middlegame": 99
+      }
+     }
+    },
+    "black": {
+     "name": "player-10",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 4,
+      "acpl": 103,
+      "accuracy": 56,
+      "phases": {
+       "opening": 49,
+       "middlegame": 71
+      }
+     }
+    }
+   },
+   "moves": "e4 e5 Bc4 Bc5 Qh5 Qf6 d4 Bxd4 Nf3 g6 Qg4 h5 Qh3 Nh6 Nc3 Ng4 Rf1 Bxf2+ Rxf2 Nxf2 Kxf2 d5 Qxc8+ Ke7 Nxd5+ Kd6 Qxc7+ Ke6 Nf4#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 13
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": 4
+    },
+    {
+     "eval": -38
+    },
+    {
+     "eval": -42
+    },
+    {
+     "eval": -35
+    },
+    {
+     "eval": -35
+    },
+    {
+     "eval": -71
+    },
+    {
+     "eval": -74
+    },
+    {
+     "eval": -101
+    },
+    {
+     "eval": 105,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -87,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -45
+    },
+    {
+     "eval": -128,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 336,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 322
+    },
+    {
+     "eval": 317
+    },
+    {
+     "eval": 319
+    },
+    {
+     "eval": 686,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 669
+    },
+    {
+     "mate": 3,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": 2
+    },
+    {
+     "mate": 2
+    },
+    {
+     "mate": 1
+    },
+    {
+     "mate": 1
+    }
+   ]
+  },
+  {
+   "id": "lichess-06",
+   "speed": "blitz",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 2,
+   "opening": {
+    "eco": "A36",
+    "name": "English Opening: Symmetrical Variation, Ultra-Symmetrical Variation",
+    "ply": 8
+   },
+   "division": {
+    "middle": 21
+   },
+   "players": {
+    "white": {
+     "name": "player-11",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 10,
+      "accuracy": 95,
+      "phases": {
+       "opening": 94,
+       "middlegame": 99
+      }
+     }
+    },
+    "black": {
+     "name": "player-12",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 18,
+      "accuracy": 87,
+      "phases": {
+       "opening": 86,
+       "middlegame": 95
+      }
+     }
+    }
+   },
+   "moves": "g3 g6 Bg2 Bg7 c4 c5 Nc3 Nc6 b3 Nf6 Ba3 Qa5 Bb2 O-O e3 Qd8 Nge2 b6 O-O Bb7 d4 cxd4 exd4",
+   "analysis": [
+    {
+     "eval": 10
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -53
+    },
+    {
+     "eval": 58,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 112
+    },
+    {
+     "eval": 108
+    },
+    {
+     "eval": 110
+    },
+    {
+     "eval": 109
+    },
+    {
+     "eval": 126
+    },
+    {
+     "eval": 117
+    }
+   ]
+  },
+  {
+   "id": "lichess-07",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "black",
+   "windowSize": 2,
+   "opening": {
+    "eco": "B50",
+    "name": "Sicilian Defense: Modern Variations, Anti-Qxd4 Move Order",
+    "ply": 6
+   },
+   "division": {
+    "middle": 19
+   },
+   "players": {
+    "white": {
+     "name": "player-13",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 58,
+      "accuracy": 63,
+      "phases": {
+       "opening": 60,
+       "middlegame": 78
+      }
+     }
+    },
+    "black": {
+     "name": "player-14",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 12,
+      "accuracy": 95,
+      "phases": {
+       "opening": 98,
+       "middlegame": 90
+      }
+     }
+    }
+   },
+   "moves": "e4 c5 Nf3 d6 d4 Nf6 Nc3 cxd4 Nxd4 Nc6 Be3 Ng4 Nxc6 bxc6 Bf4 Qb6 Be3 Nxe3 fxe3 Qxb2 Na4 Qb4+",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": -399,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -421
+    },
+    {
+     "eval": -415
+    },
+    {
+     "eval": -347
+    },
+    {
+     "eval": -503,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -497
+    }
+   ]
+  },
+  {
+   "id": "lichess-08",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "black",
+   "windowSize": 3,
+   "opening": {
+    "eco": "B50",
+    "name": "Sicilian Defense: Modern Variations, Anti-Qxd4 Move Order",
+    "ply": 6
+   },
+   "division": {
+    "middle": 24
+   },
+   "players": {
+    "white": {
+     "name": "player-15",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 68,
+      "accuracy": 61,
+      "phases": {
+       "opening": 95,
+       "middlegame": 37
+      }
+     }
+    },
+    "black": {
+     "name": "player-16",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 11,
+      "accuracy": 97,
+      "phases": {
+       "opening": 97,
+       "middlegame": 94
+      }
+     }
+    }
+   },
+   "moves": "e4 c5 Nf3 d6 d4 Nf6 Nc3 cxd4 Nxd4 Nc6 Nb3 g6 Bd3 Bg7 O-O O-O f4 a5 Nd2 a4 a3 Ng4 Qf3 Nd4 Qg3 Qb6 Nc4 Ne2+ Kh1 Nxg3+ hxg3 Qc5 Be2 Qh5+ Kg1 Qh2#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -8
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": -33
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -34
+    },
+    {
+     "eval": -18
+    },
+    {
+     "eval": -25
+    },
+    {
+     "eval": -24
+    },
+    {
+     "eval": -57
+    },
+    {
+     "eval": -49
+    },
+    {
+     "eval": -45
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": -845,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -855
+    },
+    {
+     "eval": -850
+    },
+    {
+     "eval": -834
+    },
+    {
+     "eval": -821
+    },
+    {
+     "eval": -778
+    },
+    {
+     "mate": -2,
+     "judgment": "Mistake"
+    },
+    {
+     "mate": -1
+    },
+    {
+     "mate": -1
+    },
+    {
+     "mate": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-09",
+   "speed": "blitz",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 3,
+   "opening": {
+    "eco": "A60",
+    "name": "Benoni Defense: Modern Variation",
+    "ply": 6
+   },
+   "division": {
+    "middle": 20
+   },
+   "players": {
+    "white": {
+     "name": "player-17",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 19,
+      "accuracy": 91,
+      "phases": {
+       "opening": 95,
+       "middlegame": 85
+      }
+     }
+    },
+    "black": {
+     "name": "player-18",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 20,
+      "accuracy": 91,
+      "phases": {
+       "opening": 94,
+       "middlegame": 85
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 c5 d5 e6 Nc3 exd5 cxd5 d6 e4 g6 Bb5+ Bd7 a4 Bg7 Nf3 O-O Nd2 Bxb5 axb5 Nbd7 Nc4 Nb6 Na5 Qd7 O-O Rfe8 Qc2 h6 h3 Qe7 f3",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 56
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 82
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 70
+    },
+    {
+     "eval": 90
+    },
+    {
+     "eval": 61
+    },
+    {
+     "eval": 68
+    },
+    {
+     "eval": 64
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 44
+    },
+    {
+     "eval": 51
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 42
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 4
+    },
+    {
+     "eval": 13
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": -45,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -56
+    },
+    {
+     "eval": -128,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -90
+    },
+    {
+     "eval": -94
+    },
+    {
+     "eval": -40
+    },
+    {
+     "eval": -71
+    },
+    {
+     "eval": 0,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -60,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -2,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -6
+    }
+   ]
+  },
+  {
+   "id": "lichess-10",
+   "speed": "bullet",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 3,
+   "opening": {
+    "eco": "C23",
+    "name": "Bishop's Opening",
+    "ply": 3
+   },
+   "division": {
+    "middle": 17
+   },
+   "players": {
+    "white": {
+     "name": "player-19",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 29,
+      "accuracy": 95,
+      "phases": {
+       "opening": 89,
+       "middlegame": 94
+      }
+     }
+    },
+    "black": {
+     "name": "player-20",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 3,
+      "blunder": 2,
+      "acpl": 85,
+      "accuracy": 72,
+      "phases": {
+       "opening": 62,
+       "middlegame": 86
+      }
+     }
+    }
+   },
+   "moves": "e4 e5 Bc4 Qf6 Qh5 c6 d4 b5 dxe5 Qxf2+ Kxf2 bxc4 Nf3 g6 Qh4 h5 Bd2 f6 Ba5 fxe5 Qd8+ Kf7 Rf1 Bc5+ Ke2 Bb4 Nxe5+ Ke6 Nxg6 Bxa5 Nf8+ Ke5 Qg5+ Kd4 Rd1+ Kxe4 Ng6",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 97,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 12,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 170,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 152
+    },
+    {
+     "eval": 536,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 533
+    },
+    {
+     "eval": 550
+    },
+    {
+     "eval": 529
+    },
+    {
+     "eval": 547
+    },
+    {
+     "eval": 563
+    },
+    {
+     "eval": 550
+    },
+    {
+     "eval": 541
+    },
+    {
+     "eval": 672
+    },
+    {
+     "eval": 511,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": 10,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": 9
+    },
+    {
+     "eval": 1044
+    },
+    {
+     "eval": 816
+    },
+    {
+     "eval": 1011
+    },
+    {
+     "eval": 977
+    },
+    {
+     "mate": 4,
+     "judgment": "Mistake"
+    },
+    {
+     "mate": 5
+    },
+    {
+     "mate": 5
+    },
+    {
+     "mate": 5
+    },
+    {
+     "mate": 2
+    },
+    {
+     "mate": 4
+    },
+    {
+     "mate": 4
+    },
+    {
+     "eval": 988,
+     "judgment": "Mistake"
+    },
+    {
+     "mate": 3,
+     "judgment": "Mistake"
+    },
+    {
+     "mate": 2
+    },
+    {
+     "mate": 2
+    },
+    {
+     "mate": 1
+    }
+   ]
+  },
+  {
+   "id": "lichess-11",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "black",
+   "windowSize": 3,
+   "opening": {
+    "eco": "D01",
+    "name": "Rapport-Jobava System",
+    "ply": 5
+   },
+   "division": {
+    "middle": 25
+   },
+   "players": {
+    "white": {
+     "name": "player-21",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 69,
+      "accuracy": 68,
+      "phases": {
+       "opening": 62,
+       "middlegame": 80
+      }
+     }
+    },
+    "black": {
+     "name": "player-22",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 25,
+      "accuracy": 95,
+      "phases": {
+       "opening": 96,
+       "middlegame": 89
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 Nc3 d5 Bf4 c5 e3 cxd4 exd4 a6 Nf3 Nc6 Ne5 e6 h4 Qb6 Rb1 Qxd4 Nxc6 Qxf4 g3 Qc7 Nd4 Bb4 Qd3 e5 Nb3 O-O Bg2 d4 O-O dxc3 bxc3 Bxc3",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -19
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": -86,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -81
+    },
+    {
+     "eval": -630,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -592
+    },
+    {
+     "eval": -636
+    },
+    {
+     "eval": -656
+    },
+    {
+     "eval": -636
+    },
+    {
+     "eval": -526
+    },
+    {
+     "eval": -568
+    },
+    {
+     "eval": -581
+    },
+    {
+     "eval": -635
+    },
+    {
+     "eval": -481,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -501
+    },
+    {
+     "eval": -428
+    },
+    {
+     "eval": -734,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -730
+    },
+    {
+     "eval": -736
+    },
+    {
+     "eval": -747
+    }
+   ]
+  },
+  {
+   "id": "lichess-12",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "white",
+   "windowSize": 3,
+   "opening": {
+    "eco": "E70",
+    "name": "King's Indian Defense: Normal Variation",
+    "ply": 8
+   },
+   "division": {
+    "middle": 19
+   },
+   "players": {
+    "white": {
+     "name": "player-23",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 2,
+      "acpl": 38,
+      "accuracy": 82,
+      "phases": {
+       "opening": 95,
+       "middlegame": 67
+      }
+     }
+    },
+    "black": {
+     "name": "player-24",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 1,
+      "blunder": 3,
+      "acpl": 95,
+      "accuracy": 67,
+      "phases": {
+       "opening": 86,
+       "middlegame": 58
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 g6 Nc3 Bg7 e4 d6 f3 O-O Nge2 Nbd7 Be3 e5 Qd2 b6 d5 Bb7 g4 h5 h3 Nc5 Bg5 Ncd7 Ng3 Qc8 Bd3 Re8 gxh5 gxh5 Nf5 Nc5 Rg1 Kh8 Bxf6 Bxf6 Qh6#",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 55
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 33
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 42
+    },
+    {
+     "eval": 90
+    },
+    {
+     "eval": 65
+    },
+    {
+     "eval": 113
+    },
+    {
+     "eval": 80
+    },
+    {
+     "eval": 173,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 168
+    },
+    {
+     "eval": 157
+    },
+    {
+     "eval": 161
+    },
+    {
+     "eval": 168
+    },
+    {
+     "eval": 165
+    },
+    {
+     "eval": 457,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 174,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 507,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 222,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 460,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 447
+    },
+    {
+     "eval": 843,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 846
+    },
+    {
+     "eval": 866
+    },
+    {
+     "eval": 854
+    },
+    {
+     "eval": 1516
+    },
+    {
+     "eval": 1371
+    },
+    {
+     "mate": 1,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-13",
+   "speed": "blitz",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 3,
+   "opening": {
+    "eco": "C43",
+    "name": "Petrov's Defense: Modern Attack, Center Variation",
+    "ply": 7
+   },
+   "division": {},
+   "players": {
+    "white": {
+     "name": "player-25",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 33,
+      "accuracy": 81
+     }
+    },
+    "black": {
+     "name": "player-26",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 36,
+      "accuracy": 77
+     }
+    }
+   },
+   "moves": "e4 e5 Nf3 Nf6 d4 Nxe4 Bd3 d5 Nxe5 Bd6 Nc3 Nxc3 bxc3 O-O O-O Nd7 f4 Re8 Bxh7+ Kxh7 Qh5+ Kg8 Qxf7+ Kh7 Qh5+ Kg8 Qf7+ Kh7 Qh5+ Kg8 Qf7+",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": -30,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 278,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 299
+    },
+    {
+     "eval": 319
+    },
+    {
+     "eval": 181
+    },
+    {
+     "eval": 357
+    },
+    {
+     "eval": 330
+    },
+    {
+     "eval": 302
+    },
+    {
+     "eval": 291
+    },
+    {
+     "eval": 268
+    },
+    {
+     "eval": 312
+    },
+    {
+     "eval": 269
+    },
+    {
+     "eval": 0,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-14",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 3,
+   "opening": {
+    "eco": "D06",
+    "name": "Queen's Gambit Declined: Marshall Defense",
+    "ply": 4
+   },
+   "division": {
+    "middle": 19
+   },
+   "players": {
+    "white": {
+     "name": "player-27",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 42,
+      "accuracy": 91,
+      "phases": {
+       "opening": 88,
+       "middlegame": 87
+      }
+     }
+    },
+    "black": {
+     "name": "player-28",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 97,
+      "accuracy": 73,
+      "phases": {
+       "opening": 65,
+       "middlegame": 83
+      }
+     }
+    }
+   },
+   "moves": "d4 d5 c4 Nf6 cxd5 Nxd5 e4 Nb6 Nc3 e6 Nf3 Bb4 Bd3 O-O e5 f6 O-O fxe5 Bxh7+ Kxh7 Ng5+ Kg8 Qh5 Qxg5 Bxg5 Rf5 g4 Rf7 dxe5 Be7 Bxe7 Rxe7 Ne4 Nc6 Ng5",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 80
+    },
+    {
+     "eval": 57
+    },
+    {
+     "eval": 64
+    },
+    {
+     "eval": 55
+    },
+    {
+     "eval": 107
+    },
+    {
+     "eval": 99
+    },
+    {
+     "eval": 134
+    },
+    {
+     "eval": 129
+    },
+    {
+     "eval": 173
+    },
+    {
+     "eval": 251
+    },
+    {
+     "eval": 238
+    },
+    {
+     "eval": 117,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 548,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 501
+    },
+    {
+     "eval": 467
+    },
+    {
+     "eval": 486
+    },
+    {
+     "eval": 572
+    },
+    {
+     "eval": 387
+    },
+    {
+     "eval": 608,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 611
+    },
+    {
+     "eval": 668
+    },
+    {
+     "eval": 647
+    },
+    {
+     "eval": 806
+    },
+    {
+     "eval": 608
+    },
+    {
+     "eval": 854,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 887
+    },
+    {
+     "eval": 990
+    },
+    {
+     "eval": 878
+    },
+    {
+     "eval": 1081
+    },
+    {
+     "eval": 1089
+    }
+   ]
+  },
+  {
+   "id": "lichess-15",
+   "speed": "bullet",
+   "status": "mate",
+   "winner": "white",
+   "windowSize": 4,
+   "opening": {
+    "eco": "A13",
+    "name": "English Opening: Neo-Catalan Declined",
+    "ply": 8
+   },
+   "division": {
+    "middle": 19,
+    "end": 43
+   },
+   "players": {
+    "white": {
+     "name": "player-29",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 14,
+      "accuracy": 95,
+      "phases": {
+       "opening": 96,
+       "middlegame": 92,
+       "endgame": 93
+      }
+     }
+    },
+    "black": {
+     "name": "player-30",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 2,
+      "blunder": 1,
+      "acpl": 57,
+      "accuracy": 82,
+      "phases": {
+       "opening": 98,
+       "middlegame": 79,
+       "endgame": 58
+      }
+     }
+    }
+   },
+   "moves": "c4 Nf6 g3 e6 Bg2 d5 Nf3 Be7 O-O O-O cxd5 exd5 d3 c5 d4 Nc6 Nc3 Bg4 Be3 Re8 dxc5 Bxf3 Bxf3 d4 Bxc6 dxe3 Bxe8 exf2+ Rxf2 Qxe8 Rf3 Bxc5+ Kh1 Rd8 Qb3 Bb6 Raf1 h6 e4 Qe5 Nd5 Nxd5 exd5 Rxd5 Rxf7 Kh7 Qc2+ Kg8 Rf8#",
+   "analysis": [
+    {
+     "eval": 12
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": -20
+    },
+    {
+     "eval": -7
+    },
+    {
+     "eval": -21
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 132,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 119
+    },
+    {
+     "eval": 252,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 245
+    },
+    {
+     "eval": 228
+    },
+    {
+     "eval": 238
+    },
+    {
+     "eval": 264
+    },
+    {
+     "eval": 223
+    },
+    {
+     "eval": 224
+    },
+    {
+     "eval": 246
+    },
+    {
+     "eval": 217
+    },
+    {
+     "eval": 212
+    },
+    {
+     "eval": 209
+    },
+    {
+     "eval": 196
+    },
+    {
+     "eval": 220
+    },
+    {
+     "eval": 228
+    },
+    {
+     "eval": 267
+    },
+    {
+     "eval": 203
+    },
+    {
+     "eval": 164
+    },
+    {
+     "eval": 108
+    },
+    {
+     "eval": 209,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 207
+    },
+    {
+     "eval": 306,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 300
+    },
+    {
+     "eval": 407,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 348
+    },
+    {
+     "mate": 6,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": 5
+    },
+    {
+     "mate": 1
+    }
+   ]
+  },
+  {
+   "id": "lichess-16",
+   "speed": "bullet",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 4,
+   "opening": {
+    "eco": "D31",
+    "name": "Queen's Gambit Declined: Queen's Knight Variation",
+    "ply": 5
+   },
+   "division": {
+    "middle": 19
+   },
+   "players": {
+    "white": {
+     "name": "player-31",
+     "analysis": {
+      "inaccuracy": 4,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 24,
+      "accuracy": 89,
+      "phases": {
+       "opening": 87,
+       "middlegame": 86
+      }
+     }
+    },
+    "black": {
+     "name": "player-32",
+     "analysis": {
+      "inaccuracy": 5,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 25,
+      "accuracy": 90,
+      "phases": {
+       "opening": 87,
+       "middlegame": 88
+      }
+     }
+    }
+   },
+   "moves": "d4 d5 c4 e6 Nc3 Bb4 cxd5 exd5 Qc2 h6 Bf4 c5 dxc5 Nf6 e3 O-O Bd3 Nbd7 Ne2 Nxc5 O-O Nxd3 Qxd3 Be6 Rfd1 Rc8 Rac1 Qb6 Na4 Qa5 Nac3 Qb6 Na4 Qa5 Nac3 Rfd8 h3 Qb6 Na4 Qa5 Nac3 Qb6 Na4 Qa5 Nac3",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 74
+    },
+    {
+     "eval": 73
+    },
+    {
+     "eval": 129
+    },
+    {
+     "eval": 27,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": 72,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 44
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 44
+    },
+    {
+     "eval": 54
+    },
+    {
+     "eval": 55
+    },
+    {
+     "eval": 57
+    },
+    {
+     "eval": 59
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 107,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 26,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 96,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 0,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 80,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 44
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 87,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 18,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-17",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "black",
+   "windowSize": 4,
+   "opening": {
+    "eco": "A05",
+    "name": "King's Indian Attack: Symmetrical Defense",
+    "ply": 4
+   },
+   "division": {
+    "middle": 24
+   },
+   "players": {
+    "white": {
+     "name": "player-33",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 0,
+      "blunder": 4,
+      "acpl": 99,
+      "accuracy": 59,
+      "phases": {
+       "opening": 92,
+       "middlegame": 40
+      }
+     }
+    },
+    "black": {
+     "name": "player-34",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 2,
+      "acpl": 72,
+      "accuracy": 67,
+      "phases": {
+       "opening": 94,
+       "middlegame": 40
+      }
+     }
+    }
+   },
+   "moves": "Nf3 Nf6 g3 g6 Bg2 Bg7 O-O O-O d4 d6 Re1 Nc6 c3 e5 dxe5 Nxe5 Nxe5 dxe5 Nd2 c6 Nb3 Qe7 Qc2 Bf5 e4 Be6 Be3 Ng4 Bc5 Qc7 Bxf8 Bxf8 Rad1 a5 a4 Qb6 Na1 h5 h3 Nxf2 Rd2 Nxe4+ Kh2 Nxd2 Qxd2 Bg7 Re2 Rd8",
+   "analysis": [
+    {
+     "eval": 10
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 13
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": -14
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": -28,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -17
+    },
+    {
+     "eval": -35
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -18
+    },
+    {
+     "eval": -16
+    },
+    {
+     "eval": -37
+    },
+    {
+     "eval": -22
+    },
+    {
+     "eval": -472,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 140,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 144
+    },
+    {
+     "eval": 145
+    },
+    {
+     "eval": 117
+    },
+    {
+     "eval": 131
+    },
+    {
+     "eval": -260,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -285
+    },
+    {
+     "eval": -666,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 0,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -578,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -586
+    },
+    {
+     "eval": -824,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -748
+    },
+    {
+     "eval": -761
+    },
+    {
+     "eval": -745
+    },
+    {
+     "eval": -754
+    },
+    {
+     "eval": -648
+    },
+    {
+     "eval": -696
+    },
+    {
+     "eval": -648
+    }
+   ]
+  },
+  {
+   "id": "lichess-18",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "black",
+   "windowSize": 4,
+   "opening": {
+    "eco": "C24",
+    "name": "Bishop's Opening: Vienna Hybrid",
+    "ply": 7
+   },
+   "division": {
+    "middle": 18
+   },
+   "players": {
+    "white": {
+     "name": "player-35",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 0,
+      "blunder": 3,
+      "acpl": 79,
+      "accuracy": 77,
+      "phases": {
+       "opening": 95,
+       "middlegame": 61
+      }
+     }
+    },
+    "black": {
+     "name": "player-36",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 38,
+      "accuracy": 90,
+      "phases": {
+       "opening": 96,
+       "middlegame": 83
+      }
+     }
+    }
+   },
+   "moves": "e4 e5 Nc3 Nc6 Bc4 Nf6 d3 Bc5 f4 d6 Nf3 a6 f5 Nd4 Bg5 c6 a3 b5 Ba2 a5 Ne2 Nxf3+ gxf3 Qb6 Qd2 Nh5 b4 Bf2+ Kf1 h6 Nc3 Bd4 Bh4 O-O f6 Be6 fxg7 Kxg7 Ke2 Nf4+ Kd1 axb4 axb4 Ra3 Bg3 Bxc3",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": -22
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": -16
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": -36,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 102,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -168,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -165
+    },
+    {
+     "eval": -155
+    },
+    {
+     "eval": -131
+    },
+    {
+     "eval": -404,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -371
+    },
+    {
+     "eval": -345
+    },
+    {
+     "eval": -282
+    },
+    {
+     "eval": -807,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -482,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -520
+    },
+    {
+     "eval": -488
+    },
+    {
+     "eval": -761,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -727
+    },
+    {
+     "eval": -721
+    },
+    {
+     "eval": -701
+    },
+    {
+     "eval": -734
+    },
+    {
+     "eval": -652
+    },
+    {
+     "eval": -894
+    },
+    {
+     "eval": -868
+    }
+   ]
+  },
+  {
+   "id": "lichess-19",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "white",
+   "windowSize": 4,
+   "opening": {
+    "eco": "C05",
+    "name": "French Defense: Tarrasch Variation, Closed Variation",
+    "ply": 6
+   },
+   "division": {
+    "middle": 31
+   },
+   "players": {
+    "white": {
+     "name": "player-37",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 10,
+      "accuracy": 97,
+      "phases": {
+       "opening": 96,
+       "middlegame": 100
+      }
+     }
+    },
+    "black": {
+     "name": "player-38",
+     "analysis": {
+      "inaccuracy": 6,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 48,
+      "accuracy": 88,
+      "phases": {
+       "opening": 83,
+       "middlegame": 96
+      }
+     }
+    }
+   },
+   "moves": "e4 e6 d4 d5 Nd2 Nf6 e5 Ne4 Nxe4 dxe4 c3 Nc6 Qc2 f5 exf6 gxf6 Qxe4 e5 Be2 Qe7 Bh5+ Kd8 d5 Nb8 Nf3 c6 c4 Bd7 O-O Qc5 Be3 Qb4 Rfd1 cxd5 Qxd5 Qe7 Qxb7 Qg7 Qxa8 Rg8 Qxb8+ Ke7 Rxd7+ Kxd7 Rd1+ Ke6 Qc8+ Ke7 Qd7#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 38
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 42
+    },
+    {
+     "eval": 33
+    },
+    {
+     "eval": 93,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 96
+    },
+    {
+     "eval": 92
+    },
+    {
+     "eval": 54
+    },
+    {
+     "eval": 156,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 162
+    },
+    {
+     "eval": 237,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 276
+    },
+    {
+     "eval": 251
+    },
+    {
+     "eval": 255
+    },
+    {
+     "eval": 325
+    },
+    {
+     "eval": 284
+    },
+    {
+     "eval": 327
+    },
+    {
+     "eval": 320
+    },
+    {
+     "eval": 305
+    },
+    {
+     "eval": 341
+    },
+    {
+     "eval": 330
+    },
+    {
+     "eval": 321
+    },
+    {
+     "eval": 391
+    },
+    {
+     "eval": 312
+    },
+    {
+     "eval": 438,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 471
+    },
+    {
+     "eval": 655,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 642
+    },
+    {
+     "eval": 720
+    },
+    {
+     "eval": 728
+    },
+    {
+     "eval": 770
+    },
+    {
+     "eval": 741
+    },
+    {
+     "eval": 1062
+    },
+    {
+     "eval": 1071
+    },
+    {
+     "eval": 1742
+    },
+    {
+     "eval": 1590
+    },
+    {
+     "mate": 7,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": 6
+    },
+    {
+     "mate": 6
+    },
+    {
+     "mate": 5
+    },
+    {
+     "mate": 4
+    },
+    {
+     "mate": 3
+    },
+    {
+     "mate": 2
+    },
+    {
+     "mate": 1
+    },
+    {
+     "mate": 1
+    },
+    {
+     "mate": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-20",
+   "speed": "bullet",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 4,
+   "opening": {
+    "eco": "B10",
+    "name": "Caro-Kann Defense: Hillbilly Attack, Schaeffer Gambit",
+    "ply": 7
+   },
+   "division": {
+    "middle": 28
+   },
+   "players": {
+    "white": {
+     "name": "player-39",
+     "analysis": {
+      "inaccuracy": 5,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 42,
+      "accuracy": 91,
+      "phases": {
+       "opening": 90,
+       "middlegame": 84
+      }
+     }
+    },
+    "black": {
+     "name": "player-40",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 60,
+      "accuracy": 76,
+      "phases": {
+       "opening": 65,
+       "middlegame": 84
+      }
+     }
+    }
+   },
+   "moves": "e4 c6 Bc4 d5 Bb3 dxe4 Qh5 g6 Qe5 Nf6 Nc3 Bd7 Nxe4 Bg7 Nd6+ Kf8 Nxf7 Qe8 Nxh8 Bxh8 d4 Bg7 Nf3 Nd5 Qg3 e6 Ne5 Bxe5 dxe5 Qf7 h4 Nf4 h5 Nxh5 Rxh5 gxh5 Bh6+ Ke8 O-O-O Na6 Bg5",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": -28,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -20
+    },
+    {
+     "eval": -81,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -79
+    },
+    {
+     "eval": -64
+    },
+    {
+     "eval": -82
+    },
+    {
+     "eval": -147,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -143
+    },
+    {
+     "eval": -169
+    },
+    {
+     "eval": 183,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 214
+    },
+    {
+     "eval": 377,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 371
+    },
+    {
+     "eval": 378
+    },
+    {
+     "eval": 363
+    },
+    {
+     "eval": 382
+    },
+    {
+     "eval": 394
+    },
+    {
+     "eval": 472
+    },
+    {
+     "eval": 454
+    },
+    {
+     "eval": 449
+    },
+    {
+     "eval": 456
+    },
+    {
+     "eval": 457
+    },
+    {
+     "eval": 459
+    },
+    {
+     "eval": 521
+    },
+    {
+     "eval": 441
+    },
+    {
+     "eval": 533
+    },
+    {
+     "eval": 466
+    },
+    {
+     "eval": 498
+    },
+    {
+     "eval": 476
+    },
+    {
+     "eval": 689,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 529,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 526
+    },
+    {
+     "eval": 427
+    },
+    {
+     "eval": 407
+    },
+    {
+     "eval": 452
+    },
+    {
+     "eval": 449
+    },
+    {
+     "eval": 408
+    },
+    {
+     "eval": 565,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 399,
+     "judgment": "Inaccuracy"
+    }
+   ]
+  },
+  {
+   "id": "lichess-21",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "black",
+   "windowSize": 4,
+   "opening": {
+    "eco": "E70",
+    "name": "King's Indian Defense: Normal Variation",
+    "ply": 7
+   },
+   "division": {
+    "middle": 19,
+    "end": 38
+   },
+   "players": {
+    "white": {
+     "name": "player-41",
+     "analysis": {
+      "inaccuracy": 4,
+      "mistake": 0,
+      "blunder": 2,
+      "acpl": 61,
+      "accuracy": 79,
+      "phases": {
+       "opening": 71,
+       "middlegame": 75,
+       "endgame": 100
+      }
+     }
+    },
+    "black": {
+     "name": "player-42",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 14,
+      "accuracy": 97,
+      "phases": {
+       "opening": 95,
+       "middlegame": 96,
+       "endgame": 100
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 g6 Nc3 Bg7 e4 O-O Nf3 d6 Be2 Bg4 O-O Nc6 d5 Bxf3 dxc6 Bxe2 Qxe2 bxc6 f4 Nd7 e5 dxe5 fxe5 Nxe5 Bf4 Qd4+ Be3 Qxc4 Qf2 Ng4 Qf3 Nxe3 Qxe3 Bd4 Qxd4 Qxd4+ Kh1 Rab8",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 44
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 71
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 82
+    },
+    {
+     "eval": 107
+    },
+    {
+     "eval": 112
+    },
+    {
+     "eval": -118,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -109
+    },
+    {
+     "eval": -106
+    },
+    {
+     "eval": -107
+    },
+    {
+     "eval": -132
+    },
+    {
+     "eval": -106
+    },
+    {
+     "eval": -314,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -319
+    },
+    {
+     "eval": -429,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -383
+    },
+    {
+     "eval": -480,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -445
+    },
+    {
+     "eval": -568,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -539
+    },
+    {
+     "eval": -851,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -846
+    },
+    {
+     "eval": -900
+    },
+    {
+     "eval": -904
+    },
+    {
+     "eval": -889
+    },
+    {
+     "eval": -900
+    },
+    {
+     "eval": -912
+    },
+    {
+     "eval": -901
+    },
+    {
+     "eval": -914
+    },
+    {
+     "eval": -891
+    }
+   ]
+  },
+  {
+   "id": "lichess-22",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "black",
+   "windowSize": 5,
+   "opening": {
+    "eco": "C55",
+    "name": "Italian Game: Two Knights Defense, Modern Bishop's Opening",
+    "ply": 7
+   },
+   "division": {
+    "middle": 37
+   },
+   "players": {
+    "white": {
+     "name": "player-43",
+     "analysis": {
+      "inaccuracy": 4,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 51,
+      "accuracy": 84,
+      "phases": {
+       "opening": 89,
+       "middlegame": 72
+      }
+     }
+    },
+    "black": {
+     "name": "player-44",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 17,
+      "accuracy": 97,
+      "phases": {
+       "opening": 98,
+       "middlegame": 96
+      }
+     }
+    }
+   },
+   "moves": "e4 e5 Nf3 Nc6 Bc4 Nf6 d3 h6 c3 d6 a4 g6 Qb3 Qe7 a5 Bg7 Nbd2 O-O Nf1 Nd8 Ne3 c6 O-O Ne6 g3 Rd8 Qc2 d5 Ba2 dxe4 dxe4 Nc5 Nc4 Nfxe4 b4 Nd3 Qe2 Nxc3 Qc2 Nxa2 Qxa2 e4 Nh4 Nxb4 Qb1 Nd3 Be3 Qf6 Ra4 Bh3 Rd1 g5 Nd2 gxh4 Nxe4 Qf3 Rxd3 Qg2#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": -12
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": -12
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": -43
+    },
+    {
+     "eval": -47
+    },
+    {
+     "eval": -47
+    },
+    {
+     "eval": -55
+    },
+    {
+     "eval": -61
+    },
+    {
+     "eval": -61
+    },
+    {
+     "eval": -63
+    },
+    {
+     "eval": -64
+    },
+    {
+     "eval": -129,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -134
+    },
+    {
+     "eval": -252,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -241
+    },
+    {
+     "eval": -711,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -661
+    },
+    {
+     "eval": -690
+    },
+    {
+     "eval": -661
+    },
+    {
+     "eval": -669
+    },
+    {
+     "eval": -665
+    },
+    {
+     "eval": -761
+    },
+    {
+     "eval": -640
+    },
+    {
+     "eval": -674
+    },
+    {
+     "eval": -688
+    },
+    {
+     "eval": -705
+    },
+    {
+     "eval": -662
+    },
+    {
+     "eval": -697
+    },
+    {
+     "eval": -664
+    },
+    {
+     "eval": -827
+    },
+    {
+     "eval": -839
+    },
+    {
+     "eval": -799
+    },
+    {
+     "eval": -727
+    },
+    {
+     "eval": -1892,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -1820
+    },
+    {
+     "mate": -1,
+     "judgment": "Inaccuracy"
+    }
+   ]
+  },
+  {
+   "id": "lichess-23",
+   "speed": "blitz",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 5,
+   "opening": {
+    "eco": "B01",
+    "name": "Scandinavian Defense: Modern Variation",
+    "ply": 4
+   },
+   "division": {
+    "middle": 24
+   },
+   "players": {
+    "white": {
+     "name": "player-45",
+     "analysis": {
+      "inaccuracy": 4,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 25,
+      "accuracy": 91,
+      "phases": {
+       "opening": 89,
+       "middlegame": 88
+      }
+     }
+    },
+    "black": {
+     "name": "player-46",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 26,
+      "accuracy": 88,
+      "phases": {
+       "opening": 88,
+       "middlegame": 82
+      }
+     }
+    }
+   },
+   "moves": "e4 d5 exd5 Nf6 Nf3 Nxd5 d4 Nc6 c4 Nf6 h3 Bf5 a3 e6 Nc3 Be7 Be2 O-O O-O h6 Be3 Re8 b4 a6 Qb3 Ne4 Rfd1 Bf6 Rac1 Ne7 Ne5 c6 Na4 b5 Nc5 Nxc5 dxc5 Qc7 Nd7 bxc4 Nxf6+ gxf6 Bxc4 Kh7 Rd6 Rg8 Bd3 Rg6 Bf4 Bxd3 Qxd3 Nd5 Bg3 Qc8 h4 f5",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 54
+    },
+    {
+     "eval": 51
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 49
+    },
+    {
+     "eval": 64
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 95
+    },
+    {
+     "eval": 116
+    },
+    {
+     "eval": 105
+    },
+    {
+     "eval": 56
+    },
+    {
+     "eval": 137,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 50,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 58
+    },
+    {
+     "eval": 65
+    },
+    {
+     "eval": 93
+    },
+    {
+     "eval": 34,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 55
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 63
+    },
+    {
+     "eval": 42
+    },
+    {
+     "eval": 75
+    },
+    {
+     "eval": 82
+    },
+    {
+     "eval": 96
+    },
+    {
+     "eval": 94
+    },
+    {
+     "eval": 78
+    },
+    {
+     "eval": 76
+    },
+    {
+     "eval": 71
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 85
+    },
+    {
+     "eval": 71
+    },
+    {
+     "eval": 72
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 49
+    },
+    {
+     "eval": 56
+    },
+    {
+     "eval": 57
+    },
+    {
+     "eval": 51
+    },
+    {
+     "eval": 51
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 333,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 344
+    },
+    {
+     "eval": 326
+    },
+    {
+     "eval": 274
+    },
+    {
+     "eval": 313
+    },
+    {
+     "eval": 300
+    },
+    {
+     "eval": 302
+    },
+    {
+     "eval": 161,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 141
+    },
+    {
+     "eval": 137
+    },
+    {
+     "eval": 128
+    },
+    {
+     "eval": 134
+    },
+    {
+     "eval": 161
+    },
+    {
+     "eval": 64,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 125,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 53,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 57
+    }
+   ]
+  },
+  {
+   "id": "lichess-24",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "black",
+   "windowSize": 5,
+   "opening": {
+    "eco": "E61",
+    "name": "King's Indian Defense",
+    "ply": 5
+   },
+   "division": {
+    "middle": 25,
+    "end": 41
+   },
+   "players": {
+    "white": {
+     "name": "player-47",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 47,
+      "accuracy": 74,
+      "phases": {
+       "opening": 90,
+       "middlegame": 46,
+       "endgame": 100
+      }
+     }
+    },
+    "black": {
+     "name": "player-48",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 18,
+      "accuracy": 95,
+      "phases": {
+       "opening": 91,
+       "middlegame": 94,
+       "endgame": 100
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 g6 Nc3 Bg7 Nf3 O-O e3 c5 dxc5 Na6 Na4 Nxc5 Nxc5 Qa5+ Bd2 Qxc5 Be2 b6 O-O Ne4 Rb1 Nxd2 Qxd2 Bb7 Qxd7 Be4 Bd3 Rad8 Qxa7 Bxd3 Rfd1 Bxb1 Rxb1 Qxc4 Qxb6 Qxa2 Re1 Qxb2 Qxb2 Bxb2 Re2 Rd1+ Re1 Rfd8 Kf1 Bc3 Rxd1 Rxd1+ Ke2 Rh1 Kd3 Rc1",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -32
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -9
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": -14
+    },
+    {
+     "eval": -9
+    },
+    {
+     "eval": -63
+    },
+    {
+     "eval": -12
+    },
+    {
+     "eval": -33
+    },
+    {
+     "eval": -33
+    },
+    {
+     "eval": -63
+    },
+    {
+     "eval": -13
+    },
+    {
+     "eval": -17
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": -580,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -541
+    },
+    {
+     "eval": -749,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -775
+    },
+    {
+     "eval": -814
+    },
+    {
+     "eval": -814
+    },
+    {
+     "eval": -786
+    },
+    {
+     "eval": -779
+    },
+    {
+     "eval": -808
+    },
+    {
+     "eval": -784
+    },
+    {
+     "eval": -847
+    },
+    {
+     "eval": -794
+    },
+    {
+     "eval": -796
+    },
+    {
+     "eval": -771
+    },
+    {
+     "eval": -794
+    },
+    {
+     "eval": -794
+    },
+    {
+     "eval": -801
+    },
+    {
+     "eval": -793
+    },
+    {
+     "eval": -794
+    },
+    {
+     "eval": -795
+    },
+    {
+     "eval": -777
+    },
+    {
+     "eval": -763
+    },
+    {
+     "eval": -759
+    },
+    {
+     "eval": -758
+    },
+    {
+     "eval": -742
+    },
+    {
+     "eval": -741
+    }
+   ]
+  },
+  {
+   "id": "lichess-25",
+   "speed": "bullet",
+   "status": "resign",
+   "winner": "white",
+   "windowSize": 5,
+   "opening": {
+    "eco": "A16",
+    "name": "English Opening: Anglo-Indian Defense, Queen's Knight Variation",
+    "ply": 3
+   },
+   "division": {
+    "middle": 23,
+    "end": 41
+   },
+   "players": {
+    "white": {
+     "name": "player-49",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 16,
+      "accuracy": 95,
+      "phases": {
+       "opening": 95,
+       "middlegame": 90,
+       "endgame": 98
+      }
+     }
+    },
+    "black": {
+     "name": "player-50",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 47,
+      "accuracy": 80,
+      "phases": {
+       "opening": 94,
+       "middlegame": 92,
+       "endgame": 50
+      }
+     }
+    }
+   },
+   "moves": "c4 Nf6 Nc3 b6 d4 Bb7 f3 d5 cxd5 Nxd5 e4 Nxc3 bxc3 e5 Bb5+ Nd7 Ne2 exd4 cxd4 Bb4+ Bd2 Bxd2+ Qxd2 O-O O-O c5 Rad1 cxd4 Bxd7 Qxd7 Nxd4 Rfd8 Qb2 Qe7 Nf5 Qf8 h4 h6 g4 Rxd1 Rxd1 Bc8 Rd8 Bxf5 Rxf8+ Rxf8 gxf5 Rd8 Kf2 Kf8 e5 f6 exf6",
+   "analysis": [
+    {
+     "eval": 12
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 65
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 36
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 63
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 76
+    },
+    {
+     "eval": 74
+    },
+    {
+     "eval": 70
+    },
+    {
+     "eval": 58
+    },
+    {
+     "eval": 93
+    },
+    {
+     "eval": 95
+    },
+    {
+     "eval": 119
+    },
+    {
+     "eval": 74
+    },
+    {
+     "eval": 70
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 36
+    },
+    {
+     "eval": 69
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 537,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 486
+    },
+    {
+     "eval": 575
+    },
+    {
+     "eval": 570
+    },
+    {
+     "eval": 569
+    },
+    {
+     "eval": 556
+    },
+    {
+     "eval": 559
+    },
+    {
+     "eval": 579
+    },
+    {
+     "eval": 669
+    },
+    {
+     "eval": 647
+    },
+    {
+     "eval": 848
+    },
+    {
+     "eval": 821
+    }
+   ]
+  },
+  {
+   "id": "lichess-26",
+   "speed": "bullet",
+   "status": "mate",
+   "winner": "black",
+   "windowSize": 5,
+   "opening": {
+    "eco": "C15",
+    "name": "French Defense: Winawer Variation, Alekhine-Maróczy Gambit",
+    "ply": 7
+   },
+   "division": {
+    "middle": 22,
+    "end": 52
+   },
+   "players": {
+    "white": {
+     "name": "player-51",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 0,
+      "blunder": 3,
+      "acpl": 66,
+      "accuracy": 76,
+      "phases": {
+       "opening": 96,
+       "middlegame": 67,
+       "endgame": 71
+      }
+     }
+    },
+    "black": {
+     "name": "player-52",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 31,
+      "accuracy": 86,
+      "phases": {
+       "opening": 96,
+       "middlegame": 83,
+       "endgame": 89
+      }
+     }
+    }
+   },
+   "moves": "e4 e6 d4 d5 Nc3 Bb4 Ne2 dxe4 a3 Be7 Nxe4 Nf6 Nxf6+ Bxf6 Be3 b6 Qd2 Bb7 O-O-O Nc6 Nc3 Qe7 d5 O-O-O Bc4 Ne5 Ba2 Ng4 Rhe1 Nxe3 Rxe3 Bg5 Rde1 Kb8 Kb1 Bxe3 Qxe3 Rhe8 dxe6 fxe6 Bxe6 Qf6 f4 Bxg2 f5 g6 Qg3 gxf5 Nb5 f4 Qxg2 Rxe6 Rxe6 Qxe6 Qg7 Rd1#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 62
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 250,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -56,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -46
+    },
+    {
+     "eval": -158,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 1,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -41
+    },
+    {
+     "eval": -43
+    },
+    {
+     "eval": -276,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -276
+    },
+    {
+     "eval": -344
+    },
+    {
+     "eval": -259,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -319
+    },
+    {
+     "eval": -314
+    },
+    {
+     "eval": -337
+    },
+    {
+     "eval": -271
+    },
+    {
+     "eval": -284
+    },
+    {
+     "eval": -275
+    },
+    {
+     "eval": -395,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -408
+    },
+    {
+     "eval": -408
+    },
+    {
+     "eval": -393
+    },
+    {
+     "eval": -396
+    },
+    {
+     "eval": -381
+    },
+    {
+     "eval": -464
+    },
+    {
+     "eval": -472
+    },
+    {
+     "eval": -503
+    },
+    {
+     "eval": -510
+    },
+    {
+     "eval": -506
+    },
+    {
+     "eval": -503
+    },
+    {
+     "eval": -720,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -569
+    },
+    {
+     "mate": -1,
+     "judgment": "Blunder"
+    }
+   ]
+  },
+  {
+   "id": "lichess-27",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 5,
+   "opening": {
+    "eco": "D37",
+    "name": "Queen's Gambit Declined: Three Knights Variation",
+    "ply": 7
+   },
+   "division": {
+    "middle": 17
+   },
+   "players": {
+    "white": {
+     "name": "player-53",
+     "analysis": {
+      "inaccuracy": 7,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 32,
+      "accuracy": 88,
+      "phases": {
+       "opening": 99,
+       "middlegame": 85
+      }
+     }
+    },
+    "black": {
+     "name": "player-54",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 2,
+      "blunder": 2,
+      "acpl": 59,
+      "accuracy": 79,
+      "phases": {
+       "opening": 98,
+       "middlegame": 73
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 e6 Nf3 d5 Nc3 Be7 Bg5 O-O e3 c6 a3 Nbd7 Qc2 dxc4 Bxc4 Nb6 Ba2 Nfd5 Bxe7 Qxe7 O-O Bd7 Rad1 Rac8 Bb1 g6 Ne4 Be8 Qc5 Qxc5 dxc5 Nd7 b4 Rc7 Rc1 a5 bxa5 Ne7 Bd3 Kg7 Rc3 Nf6 Nxf6 Kxf6 e4 Kg7 Rb1 f5 Rcb3 Nc8 Rxb7 Rff7 a6",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 33
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 62
+    },
+    {
+     "eval": 139,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 153
+    },
+    {
+     "eval": 148
+    },
+    {
+     "eval": 142
+    },
+    {
+     "eval": 145
+    },
+    {
+     "eval": 76,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 158,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 67,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 181,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 92,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 92
+    },
+    {
+     "eval": 36,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 179,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 112,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 140
+    },
+    {
+     "eval": 163
+    },
+    {
+     "eval": 169
+    },
+    {
+     "eval": 114
+    },
+    {
+     "eval": 109
+    },
+    {
+     "eval": 88
+    },
+    {
+     "eval": 104
+    },
+    {
+     "eval": 107
+    },
+    {
+     "eval": 387,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 245,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 302
+    },
+    {
+     "eval": 273
+    },
+    {
+     "eval": 465,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 336,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 357
+    },
+    {
+     "eval": 316
+    },
+    {
+     "eval": 345
+    },
+    {
+     "eval": 281
+    },
+    {
+     "eval": 612,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 603
+    },
+    {
+     "eval": 749
+    },
+    {
+     "eval": 761
+    },
+    {
+     "eval": 786
+    },
+    {
+     "eval": 784
+    }
+   ]
+  },
+  {
+   "id": "lichess-28",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "black",
+   "windowSize": 5,
+   "opening": {
+    "eco": "A05",
+    "name": "Zukertort Opening: Nimzo-Larsen Variation",
+    "ply": 3
+   },
+   "division": {
+    "middle": 20,
+    "end": 41
+   },
+   "players": {
+    "white": {
+     "name": "player-55",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 37,
+      "accuracy": 85,
+      "phases": {
+       "opening": 98,
+       "middlegame": 67,
+       "endgame": 100
+      }
+     }
+    },
+    "black": {
+     "name": "player-56",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 3,
+      "accuracy": 99,
+      "phases": {
+       "opening": 97,
+       "middlegame": 100,
+       "endgame": 100
+      }
+     }
+    }
+   },
+   "moves": "Nf3 Nf6 b3 g6 Bb2 Bg7 d4 O-O Nbd2 c5 dxc5 Qa5 e3 Qxc5 Be2 d5 O-O Nc6 c4 Bf5 cxd5 Qxd5 Bxf6 Bxf6 Rc1 Rfd8 Qe1 Qa5 e4 Bg4 a4 Bc3 Rc2 Bxf3 Bxf3 Bxd2 Qe2 Nd4 Qxd2 Nxf3+ gxf3 Rxd2 Rc4 Qg5+ Kh1 Rad8 Rcc1 Qf4 Kg2 R8d3 Rc8+ Kg7 Rc4 Qxf3+ Kg1 Rxf2 Rxf2 Rd1+",
+   "analysis": [
+    {
+     "eval": 10
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -12
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": -13
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": -4
+    },
+    {
+     "eval": -128,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -128
+    },
+    {
+     "eval": -128
+    },
+    {
+     "eval": -117
+    },
+    {
+     "eval": -175
+    },
+    {
+     "eval": -173
+    },
+    {
+     "eval": -175
+    },
+    {
+     "eval": -184
+    },
+    {
+     "eval": -611,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -615
+    },
+    {
+     "eval": -747
+    },
+    {
+     "eval": -751
+    },
+    {
+     "eval": -730
+    },
+    {
+     "eval": -744
+    },
+    {
+     "eval": -829
+    },
+    {
+     "eval": -825
+    },
+    {
+     "eval": -1041
+    },
+    {
+     "eval": -1006
+    },
+    {
+     "eval": -1003
+    },
+    {
+     "eval": -1011
+    },
+    {
+     "eval": -1601
+    },
+    {
+     "mate": -11
+    },
+    {
+     "eval": -1950
+    },
+    {
+     "eval": -1584
+    },
+    {
+     "mate": -8,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -1446,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": -7,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -1984
+    },
+    {
+     "mate": -6,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": -5
+    },
+    {
+     "mate": -4
+    },
+    {
+     "mate": -3
+    },
+    {
+     "mate": -3
+    },
+    {
+     "mate": -2
+    },
+    {
+     "mate": -2
+    },
+    {
+     "mate": -1
+    }
+   ]
+  },
+  {
+   "id": "lichess-29",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "black",
+   "windowSize": 6,
+   "opening": {
+    "eco": "A00",
+    "name": "Hungarian Opening: Symmetrical Variation",
+    "ply": 2
+   },
+   "division": {
+    "middle": 26,
+    "end": 62
+   },
+   "players": {
+    "white": {
+     "name": "player-57",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 3,
+      "blunder": 1,
+      "acpl": 60,
+      "accuracy": 81,
+      "phases": {
+       "opening": 79,
+       "middlegame": 76,
+       "endgame": 100
+      }
+     }
+    },
+    "black": {
+     "name": "player-58",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 27,
+      "accuracy": 90,
+      "phases": {
+       "opening": 90,
+       "middlegame": 82,
+       "endgame": 100
+      }
+     }
+    }
+   },
+   "moves": "g3 g6 Bg2 Bg7 e3 Nf6 Ne2 O-O O-O d5 d4 c6 b3 Re8 Ba3 e5 Nd2 e4 c4 h5 c5 h4 Nf4 hxg3 fxg3 Ng4 Qe2 Qg5 h4 Qh6 Bh3 f5 Bxg4 fxg4 Qf2 Rf8 h5 g5 Qh2 gxf4 exf4 Rf5 Qh4 Bxd4+ Kg2 Bf6 Qxg4+ Kf7 Qxf5 Bxf5 Rh1 Bxa1 Rxa1 e3 Nf3 Be4 Re1 d4 Bb2 Qxh5 Bxd4 Qxf3+ Kh3 Qh5#",
+   "analysis": [
+    {
+     "eval": 10
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": -21
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -23
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": -26
+    },
+    {
+     "eval": -22
+    },
+    {
+     "eval": -12
+    },
+    {
+     "eval": 4
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": -30
+    },
+    {
+     "eval": -18
+    },
+    {
+     "eval": -159,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -157
+    },
+    {
+     "eval": -151
+    },
+    {
+     "eval": -141
+    },
+    {
+     "eval": -247,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -212
+    },
+    {
+     "eval": -366,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -251,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -249
+    },
+    {
+     "eval": -237
+    },
+    {
+     "eval": -257
+    },
+    {
+     "eval": -256
+    },
+    {
+     "eval": -426,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -429
+    },
+    {
+     "eval": -501
+    },
+    {
+     "eval": -72,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -68
+    },
+    {
+     "eval": -57
+    },
+    {
+     "eval": -115,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -109
+    },
+    {
+     "eval": -629,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -600
+    },
+    {
+     "eval": -687
+    },
+    {
+     "eval": -672
+    },
+    {
+     "eval": -871
+    },
+    {
+     "eval": -868
+    },
+    {
+     "eval": -851
+    },
+    {
+     "eval": -749
+    },
+    {
+     "eval": -741
+    },
+    {
+     "eval": -759
+    },
+    {
+     "eval": -744
+    },
+    {
+     "eval": -741
+    },
+    {
+     "eval": -1054
+    },
+    {
+     "eval": -1042
+    },
+    {
+     "eval": -1117
+    },
+    {
+     "eval": -1119
+    },
+    {
+     "eval": -1437
+    },
+    {
+     "eval": -1076
+    },
+    {
+     "eval": -1085
+    },
+    {
+     "eval": -1065
+    },
+    {
+     "eval": -1126
+    },
+    {
+     "eval": -1076
+    },
+    {
+     "mate": -7,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": -6
+    },
+    {
+     "mate": -2
+    },
+    {
+     "mate": -1
+    },
+    {
+     "mate": -1
+    },
+    {
+     "mate": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-30",
+   "speed": "blitz",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 6,
+   "opening": {
+    "eco": "B22",
+    "name": "Sicilian Defense: Alapin Variation, Smith-Morra Declined",
+    "ply": 8
+   },
+   "division": {
+    "middle": 19,
+    "end": 37
+   },
+   "players": {
+    "white": {
+     "name": "player-59",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 2,
+      "blunder": 1,
+      "acpl": 38,
+      "accuracy": 83,
+      "phases": {
+       "opening": 97,
+       "middlegame": 60,
+       "endgame": 83
+      }
+     }
+    },
+    "black": {
+     "name": "player-60",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 39,
+      "accuracy": 75,
+      "phases": {
+       "opening": 99,
+       "middlegame": 87,
+       "endgame": 44
+      }
+     }
+    }
+   },
+   "moves": "e4 c5 c3 Nf6 e5 Nd5 d4 cxd4 cxd4 d6 Nf3 Nc6 Nc3 dxe5 dxe5 Nxc3 Qxd8+ Nxd8 bxc3 Nc6 Bb5 Bd7 Bd3 g6 Be3 Bg7 Bf4 Bg4 Be2 Rc8 O-O-O Nxe5 Bd2 Nxf3 Bxf3 Bxf3 gxf3 Bxc3 Kb1 f6 Rc1 Kf7 Rxc3 Rxc3 Bxc3 Rc8 Kb2 Rc4 Re1 Rh4 Rh1 Rf4 Rd1 Rxf3 Bd4 b6 Be3 Ke8 Rc1 Kd7 Rd1+",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": -4
+    },
+    {
+     "eval": -12
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": -4
+    },
+    {
+     "eval": -31
+    },
+    {
+     "eval": -22
+    },
+    {
+     "eval": -52
+    },
+    {
+     "eval": -51
+    },
+    {
+     "eval": -51
+    },
+    {
+     "eval": -31
+    },
+    {
+     "eval": -60
+    },
+    {
+     "eval": -52
+    },
+    {
+     "eval": -182,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -68,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -511,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -506
+    },
+    {
+     "eval": -571
+    },
+    {
+     "eval": -568
+    },
+    {
+     "eval": -557
+    },
+    {
+     "eval": -549
+    },
+    {
+     "eval": -563
+    },
+    {
+     "eval": 223,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 193
+    },
+    {
+     "eval": 182
+    },
+    {
+     "eval": 195
+    },
+    {
+     "eval": 173
+    },
+    {
+     "eval": 190
+    },
+    {
+     "eval": 184
+    },
+    {
+     "eval": 46,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 1
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 87,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 13,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 58
+    },
+    {
+     "eval": 0,
+     "judgment": "Inaccuracy"
+    }
+   ]
+  },
+  {
+   "id": "lichess-31",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 6,
+   "opening": {
+    "eco": "C41",
+    "name": "Philidor Defense",
+    "ply": 6
+   },
+   "division": {
+    "middle": 21,
+    "end": 41
+   },
+   "players": {
+    "white": {
+     "name": "player-61",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 25,
+      "accuracy": 91,
+      "phases": {
+       "opening": 88,
+       "middlegame": 78,
+       "endgame": 99
+      }
+     }
+    },
+    "black": {
+     "name": "player-62",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 2,
+      "blunder": 1,
+      "acpl": 46,
+      "accuracy": 83,
+      "phases": {
+       "opening": 81,
+       "middlegame": 61,
+       "endgame": 90
+      }
+     }
+    }
+   },
+   "moves": "e4 e5 Nf3 d6 Bc4 Be7 d4 exd4 Nxd4 Nf6 Nc3 Nxe4 Nxe4 d5 Bd3 dxe4 Bxe4 c5 Nb5 Qxd1+ Kxd1 Na6 Bf4 Bd8 Nd6+ Kd7 Nxb7 Bc7 Be3 Rb8 Nxc5+ Nxc5 Bxc5 Rxb2 Bd4 Rb4 c3 Rc4 Bd3 Rxd4 cxd4 Bb6 Bf5+ Ke7 Re1+ Kf6 Bxc8 Rxc8 Re4 Rd8 Ke2 Rxd4 Rxd4 Bxd4 Rc1 Kf5 Rc7 Kg6 Rd7 Bc5 f3",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 55
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 121,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 30,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 147,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 95
+    },
+    {
+     "eval": 94
+    },
+    {
+     "eval": 93
+    },
+    {
+     "eval": 90
+    },
+    {
+     "eval": 95
+    },
+    {
+     "eval": 648,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 602
+    },
+    {
+     "eval": 684
+    },
+    {
+     "eval": 315,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 314
+    },
+    {
+     "eval": 291
+    },
+    {
+     "eval": 290
+    },
+    {
+     "eval": 281
+    },
+    {
+     "eval": 235
+    },
+    {
+     "eval": 232
+    },
+    {
+     "eval": 251
+    },
+    {
+     "eval": 240
+    },
+    {
+     "eval": 231
+    },
+    {
+     "eval": 237
+    },
+    {
+     "eval": 396,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 389
+    },
+    {
+     "eval": 383
+    },
+    {
+     "eval": 374
+    },
+    {
+     "eval": 547,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 534
+    },
+    {
+     "eval": 571
+    },
+    {
+     "eval": 565
+    },
+    {
+     "eval": 550
+    },
+    {
+     "eval": 563
+    },
+    {
+     "eval": 556
+    },
+    {
+     "eval": 559
+    },
+    {
+     "eval": 579
+    },
+    {
+     "eval": 543
+    },
+    {
+     "eval": 603
+    },
+    {
+     "eval": 587
+    },
+    {
+     "eval": 557
+    },
+    {
+     "eval": 542
+    },
+    {
+     "eval": 543
+    },
+    {
+     "eval": 564
+    },
+    {
+     "eval": 564
+    },
+    {
+     "eval": 571
+    },
+    {
+     "eval": 578
+    },
+    {
+     "eval": 571
+    }
+   ]
+  },
+  {
+   "id": "lichess-32",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "white",
+   "windowSize": 6,
+   "opening": {
+    "eco": "A53",
+    "name": "Old Indian Defense",
+    "ply": 4
+   },
+   "division": {
+    "middle": 25,
+    "end": 61
+   },
+   "players": {
+    "white": {
+     "name": "player-63",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 8,
+      "accuracy": 100,
+      "phases": {
+       "opening": 100,
+       "middlegame": 100,
+       "endgame": 99
+      }
+     }
+    },
+    "black": {
+     "name": "player-64",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 2,
+      "blunder": 1,
+      "acpl": 36,
+      "accuracy": 88,
+      "phases": {
+       "opening": 76,
+       "middlegame": 100,
+       "endgame": 98
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 d6 Nf3 Bf5 Nc3 h6 g3 e6 Bg2 Nc6 d5 Ne5 Nd4 Nxc4 Qa4+ Qd7 Qxc4 exd5 Nxd5 Nxd5 Qxd5 c6 Qxf5 Qxf5 Nxf5 O-O-O e4 g6 Ne3 Bg7 Rb1 Rhe8 O-O a6 Rd1 Kc7 Nc4 b5 Ne3 Be5 Bd2 Rb8 Ba5+ Kd7 f4 Bg7 Rd3 b4 Rbd1 Rb5 Rxd6+ Ke7 Nc4 c5 e5 Kf8 Bc6 Rxa5 Nxa5 Rb8 Rd7",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 67
+    },
+    {
+     "eval": 71
+    },
+    {
+     "eval": 73
+    },
+    {
+     "eval": 96
+    },
+    {
+     "eval": 91
+    },
+    {
+     "eval": 91
+    },
+    {
+     "eval": 126
+    },
+    {
+     "eval": 259,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 318
+    },
+    {
+     "eval": 732,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 720
+    },
+    {
+     "eval": 767
+    },
+    {
+     "eval": 758
+    },
+    {
+     "eval": 847
+    },
+    {
+     "eval": 838
+    },
+    {
+     "eval": 815
+    },
+    {
+     "eval": 764
+    },
+    {
+     "eval": 857
+    },
+    {
+     "eval": 852
+    },
+    {
+     "eval": 842
+    },
+    {
+     "eval": 838
+    },
+    {
+     "eval": 843
+    },
+    {
+     "eval": 856
+    },
+    {
+     "eval": 859
+    },
+    {
+     "eval": 857
+    },
+    {
+     "eval": 845
+    },
+    {
+     "eval": 838
+    },
+    {
+     "eval": 857
+    },
+    {
+     "eval": 866
+    },
+    {
+     "eval": 860
+    },
+    {
+     "eval": 861
+    },
+    {
+     "eval": 856
+    },
+    {
+     "eval": 855
+    },
+    {
+     "eval": 867
+    },
+    {
+     "eval": 867
+    },
+    {
+     "eval": 875
+    },
+    {
+     "eval": 885
+    },
+    {
+     "eval": 900
+    },
+    {
+     "eval": 912
+    },
+    {
+     "eval": 904
+    },
+    {
+     "eval": 909
+    },
+    {
+     "eval": 919
+    },
+    {
+     "eval": 882
+    },
+    {
+     "eval": 916
+    },
+    {
+     "eval": 911
+    },
+    {
+     "eval": 902
+    },
+    {
+     "eval": 921
+    },
+    {
+     "eval": 914
+    },
+    {
+     "eval": 921
+    },
+    {
+     "eval": 978
+    },
+    {
+     "eval": 967
+    },
+    {
+     "eval": 935
+    },
+    {
+     "eval": 966
+    },
+    {
+     "eval": 1132
+    },
+    {
+     "eval": 929
+    },
+    {
+     "mate": 7,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 990,
+     "judgment": "Mistake"
+    }
+   ]
+  },
+  {
+   "id": "lichess-33",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "white",
+   "windowSize": 6,
+   "opening": {
+    "eco": "B32",
+    "name": "Sicilian Defense: Accelerated Dragon",
+    "ply": 8
+   },
+   "division": {
+    "middle": 30,
+    "end": 57
+   },
+   "players": {
+    "white": {
+     "name": "player-65",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 2,
+      "acpl": 33,
+      "accuracy": 88,
+      "phases": {
+       "opening": 70,
+       "middlegame": 97,
+       "endgame": 99
+      }
+     }
+    },
+    "black": {
+     "name": "player-66",
+     "analysis": {
+      "inaccuracy": 4,
+      "mistake": 2,
+      "blunder": 2,
+      "acpl": 65,
+      "accuracy": 80,
+      "phases": {
+       "opening": 95,
+       "middlegame": 63,
+       "endgame": 89
+      }
+     }
+    }
+   },
+   "moves": "e4 c5 Nf3 Nc6 d4 cxd4 Nxd4 g6 c4 Nf6 Nc3 Bg7 Nc2 O-O Be2 d6 O-O Nd7 Qd2 a5 Rb1 Nc5 f3 f5 exf5 Bxf5 Kh1 Nb4 Nd4 Bxb1 Nxb1 Nxa2 Nb5 Kh8 Qc2 Nxc1 Rxc1 Bh6 Rf1 e5 N1c3 Rf4 Nd5 Rh4 g3 Rh5 Kg2 Ne6 f4 exf4 Bxh5 gxh5 Qf5 fxg3 Qxe6 gxh2 Qxh6 Qh4 Rf8+ Rxf8 Qxf8#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 38
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 57
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 38
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 36
+    },
+    {
+     "eval": -23,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -13
+    },
+    {
+     "eval": -45
+    },
+    {
+     "eval": -28
+    },
+    {
+     "eval": -45
+    },
+    {
+     "eval": -30
+    },
+    {
+     "eval": -316,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -297
+    },
+    {
+     "eval": -612,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -624
+    },
+    {
+     "eval": -606
+    },
+    {
+     "eval": -591
+    },
+    {
+     "eval": -595
+    },
+    {
+     "eval": -604
+    },
+    {
+     "eval": -613
+    },
+    {
+     "eval": -582
+    },
+    {
+     "eval": -593
+    },
+    {
+     "eval": -532
+    },
+    {
+     "eval": -585
+    },
+    {
+     "eval": -408,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -417
+    },
+    {
+     "eval": -281,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -315
+    },
+    {
+     "eval": -165,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -152
+    },
+    {
+     "eval": -163
+    },
+    {
+     "eval": -179
+    },
+    {
+     "eval": 0,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 58,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 69
+    },
+    {
+     "eval": 65
+    },
+    {
+     "eval": 492,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 513
+    },
+    {
+     "eval": 737,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 710
+    },
+    {
+     "mate": 2,
+     "judgment": "Mistake"
+    },
+    {
+     "mate": 1
+    },
+    {
+     "mate": 1
+    }
+   ]
+  },
+  {
+   "id": "lichess-34",
+   "speed": "bullet",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 6,
+   "opening": {
+    "eco": "C48",
+    "name": "Four Knights Game: Spanish Variation, Classical Variation",
+    "ply": 8
+   },
+   "division": {
+    "middle": 17,
+    "end": 60
+   },
+   "players": {
+    "white": {
+     "name": "player-67",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 2,
+      "acpl": 45,
+      "accuracy": 83,
+      "phases": {
+       "opening": 97,
+       "middlegame": 74,
+       "endgame": 100
+      }
+     }
+    },
+    "black": {
+     "name": "player-68",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 0,
+      "blunder": 1,
+      "acpl": 46,
+      "accuracy": 80,
+      "phases": {
+       "opening": 97,
+       "middlegame": 91,
+       "endgame": 31
+      }
+     }
+    }
+   },
+   "moves": "e4 e5 Nc3 Nc6 Nf3 Nf6 Bb5 Bc5 Bxc6 dxc6 d3 O-O h3 Nd7 Be3 Re8 Qd2 a5 O-O b6 Rad1 f6 d4 exd4 Nxd4 Ne5 b3 Ba6 Rfe1 Qc8 Nf5 Bf8 Bd4 Qe6 Qf4 Rad8 Qg3 Kh8 Bxe5 Qxe5 Rxd8 Rxd8 f4 Qc5+ Kh2 g6 Nh4 Bh6 e5 Qf8 e6 Qd6 Re4 f5 Nxg6+ hxg6 Qxg6 Bxf4+ Kg1 fxe4 Qf6+ Kh7 Qf7+ Kh8 Qf6+ Kg8 Qf7+ Kh8 Qf6+",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 4
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": -8
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": -4
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": -8
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": -12
+    },
+    {
+     "eval": -7
+    },
+    {
+     "eval": -36
+    },
+    {
+     "eval": 27,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 38
+    },
+    {
+     "eval": 42
+    },
+    {
+     "eval": -73,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -86
+    },
+    {
+     "eval": -106
+    },
+    {
+     "eval": 0,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -7
+    },
+    {
+     "eval": 68,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 49
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": -162,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -165
+    },
+    {
+     "eval": -292,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -273
+    },
+    {
+     "eval": -254
+    },
+    {
+     "eval": -179
+    },
+    {
+     "mate": -4,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 0,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-35",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 6,
+   "opening": {
+    "eco": "A60",
+    "name": "Benoni Defense: Modern Variation",
+    "ply": 6
+   },
+   "division": {
+    "middle": 26,
+    "end": 56
+   },
+   "players": {
+    "white": {
+     "name": "player-69",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 13,
+      "accuracy": 95,
+      "phases": {
+       "opening": 86,
+       "middlegame": 97,
+       "endgame": 100
+      }
+     }
+    },
+    "black": {
+     "name": "player-70",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 2,
+      "blunder": 0,
+      "acpl": 31,
+      "accuracy": 89,
+      "phases": {
+       "opening": 94,
+       "middlegame": 79,
+       "endgame": 98
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 c5 d5 e6 Nc3 exd5 cxd5 d6 e4 g6 Bb5+ Bd7 a4 Bg7 Nf3 Bxb5 axb5 Nbd7 Nd2 O-O O-O a6 Qc2 Qc7 bxa6 Rxa6 Rxa6 bxa6 Nc4 Nb6 Ne3 Re8 Bd2 Nbd7 Ra1 Qb7 Nc4 Bf8 Bf4 Ne5 Bxe5 dxe5 Qa4 Ra8 Qc6 Ra7 Qxf6 Qb4 Ra4 Qb3 g3 Bg7 Qb6 Qxb6 Nxb6 f5 Nb5 Rf7 Rxa6 fxe4 Ra8+ Bf8 d6 Kg7 d7 Be7 Nd5",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 56
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 82
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 70
+    },
+    {
+     "eval": 90
+    },
+    {
+     "eval": 61
+    },
+    {
+     "eval": 68
+    },
+    {
+     "eval": 64
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": -81,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 55,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 36
+    },
+    {
+     "eval": 104,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 104
+    },
+    {
+     "eval": 128
+    },
+    {
+     "eval": 104
+    },
+    {
+     "eval": 142
+    },
+    {
+     "eval": 125
+    },
+    {
+     "eval": 219,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 210
+    },
+    {
+     "eval": 208
+    },
+    {
+     "eval": 210
+    },
+    {
+     "eval": 372,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 347
+    },
+    {
+     "eval": 498,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 499
+    },
+    {
+     "eval": 513
+    },
+    {
+     "eval": 512
+    },
+    {
+     "eval": 549
+    },
+    {
+     "eval": 521
+    },
+    {
+     "eval": 558
+    },
+    {
+     "eval": 582
+    },
+    {
+     "eval": 577
+    },
+    {
+     "eval": 574
+    },
+    {
+     "eval": 589
+    },
+    {
+     "eval": 582
+    },
+    {
+     "eval": 611
+    },
+    {
+     "eval": 601
+    },
+    {
+     "eval": 624
+    },
+    {
+     "eval": 605
+    },
+    {
+     "eval": 636
+    },
+    {
+     "eval": 665
+    },
+    {
+     "eval": 657
+    },
+    {
+     "eval": 648
+    },
+    {
+     "eval": 660
+    },
+    {
+     "eval": 651
+    }
+   ]
+  },
+  {
+   "id": "lichess-36",
+   "speed": "bullet",
+   "status": "mate",
+   "winner": "black",
+   "windowSize": 7,
+   "opening": {
+    "eco": "B27",
+    "name": "Sicilian Defense: Hyperaccelerated Dragon",
+    "ply": 5
+   },
+   "division": {
+    "middle": 21,
+    "end": 43
+   },
+   "players": {
+    "white": {
+     "name": "player-71",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 0,
+      "blunder": 4,
+      "acpl": 45,
+      "accuracy": 83,
+      "phases": {
+       "opening": 99,
+       "middlegame": 93,
+       "endgame": 70
+      }
+     }
+    },
+    "black": {
+     "name": "player-72",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 2,
+      "blunder": 0,
+      "acpl": 19,
+      "accuracy": 92,
+      "phases": {
+       "opening": 98,
+       "middlegame": 92,
+       "endgame": 88
+      }
+     }
+    }
+   },
+   "moves": "e4 c5 Nf3 g6 d4 cxd4 Nxd4 Nf6 Nc3 d6 Be3 Nc6 f3 h5 Qd2 Nxd4 Bxd4 Bh6 Be3 Bxe3 Qxe3 Be6 Be2 Qa5 O-O O-O Rfd1 Rac8 a3 Qc5 Qxc5 Rxc5 Kf2 Rfc8 Rd2 h4 Rad1 Kg7 Ke3 g5 g3 Rxc3+ bxc3 Rxc3+ Bd3 hxg3 hxg3 Rxa3 f4 b5 fxg5 Ng4+ Kf4 Ne5 Rb1 a6 Rh2 Bc4 Rbh1 Ng6+ Ke3 e6 Rh7+ Kg8 R7h2 a5 Rf1 Ne5 Rd1 Ng4+ Kf4 Nxh2 Bxc4 Rf3#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 43
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 38
+    },
+    {
+     "eval": 44
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 43
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 54
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 51
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 13
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": -15
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": -24
+    },
+    {
+     "eval": -8
+    },
+    {
+     "eval": -20
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -24
+    },
+    {
+     "eval": -25
+    },
+    {
+     "eval": -18
+    },
+    {
+     "eval": -20
+    },
+    {
+     "eval": -18
+    },
+    {
+     "eval": -15
+    },
+    {
+     "eval": -27
+    },
+    {
+     "eval": -31
+    },
+    {
+     "eval": -43
+    },
+    {
+     "eval": -33
+    },
+    {
+     "eval": -43
+    },
+    {
+     "eval": 19,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 36
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": -32,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -194,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -212
+    },
+    {
+     "eval": -210
+    },
+    {
+     "eval": -87,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -200,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -63,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -81
+    },
+    {
+     "eval": -111
+    },
+    {
+     "eval": -104
+    },
+    {
+     "eval": -62
+    },
+    {
+     "eval": -60
+    },
+    {
+     "eval": -21
+    },
+    {
+     "eval": -22
+    },
+    {
+     "eval": -25
+    },
+    {
+     "eval": -36
+    },
+    {
+     "eval": -50
+    },
+    {
+     "eval": -249,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -198
+    },
+    {
+     "eval": -513,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -515
+    },
+    {
+     "eval": -527
+    },
+    {
+     "eval": -524
+    },
+    {
+     "mate": -1,
+     "judgment": "Blunder"
+    }
+   ]
+  },
+  {
+   "id": "lichess-37",
+   "speed": "blitz",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 7,
+   "opening": {
+    "eco": "A42",
+    "name": "Modern Defense: Averbakh System",
+    "ply": 7
+   },
+   "division": {
+    "middle": 23,
+    "end": 68
+   },
+   "players": {
+    "white": {
+     "name": "player-73",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 21,
+      "accuracy": 92,
+      "phases": {
+       "opening": 97,
+       "middlegame": 87,
+       "endgame": 100
+      }
+     }
+    },
+    "black": {
+     "name": "player-74",
+     "analysis": {
+      "inaccuracy": 5,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 21,
+      "accuracy": 93,
+      "phases": {
+       "opening": 88,
+       "middlegame": 91,
+       "endgame": 100
+      }
+     }
+    }
+   },
+   "moves": "d4 g6 c4 Bg7 Nc3 d6 e4 Nd7 Nge2 e5 d5 Ne7 h4 h6 h5 g5 g4 Nc5 Ng3 c6 Be3 cxd5 cxd5 O-O b4 Na6 a3 Bd7 Be2 Rc8 Qb3 Qc7 Rc1 Qb8 f3 Rc7 Kf2 Nc8 Nb5 Rxc1 Rxc1 Nb6 a4 Rc8 Rxc8+ Nxc8 Qc3 Bf8 a5 b6 Qc4 bxa5 bxa5 Nc5 Nf5 a6 Nc3 Qb2 Bxc5 dxc5 Na4 Qa3 Nb6 Bb5 Qc2 Nd6 Nxd6 Bxd6 Nc4 Bxc4 Qxc4 Qxa5 Qxa6",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 57
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 51
+    },
+    {
+     "eval": 49
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 43
+    },
+    {
+     "eval": 62
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 119,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 115
+    },
+    {
+     "eval": 132
+    },
+    {
+     "eval": 183
+    },
+    {
+     "eval": 181
+    },
+    {
+     "eval": 166
+    },
+    {
+     "eval": 175
+    },
+    {
+     "eval": 185
+    },
+    {
+     "eval": 254,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 243
+    },
+    {
+     "eval": 224
+    },
+    {
+     "eval": 217
+    },
+    {
+     "eval": 223
+    },
+    {
+     "eval": 229
+    },
+    {
+     "eval": 235
+    },
+    {
+     "eval": 229
+    },
+    {
+     "eval": 280
+    },
+    {
+     "eval": 273
+    },
+    {
+     "eval": 281
+    },
+    {
+     "eval": 283
+    },
+    {
+     "eval": 275
+    },
+    {
+     "eval": 179,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 307,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 188,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 291,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 232
+    },
+    {
+     "eval": 245
+    },
+    {
+     "eval": 239
+    },
+    {
+     "eval": 267
+    },
+    {
+     "eval": 283
+    },
+    {
+     "eval": 372,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 192,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 199
+    },
+    {
+     "eval": 171
+    },
+    {
+     "eval": 195
+    },
+    {
+     "eval": 187
+    },
+    {
+     "eval": 189
+    },
+    {
+     "eval": 148
+    },
+    {
+     "eval": 144
+    },
+    {
+     "eval": 139
+    },
+    {
+     "eval": 121
+    },
+    {
+     "eval": 115
+    },
+    {
+     "eval": 120
+    },
+    {
+     "eval": 125
+    },
+    {
+     "eval": 97
+    },
+    {
+     "eval": 38,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 49
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 8
+    }
+   ]
+  },
+  {
+   "id": "lichess-38",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 7,
+   "opening": {
+    "eco": "A45",
+    "name": "Indian Defense: Accelerated London System",
+    "ply": 3
+   },
+   "division": {
+    "middle": 23,
+    "end": 59
+   },
+   "players": {
+    "white": {
+     "name": "player-75",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 2,
+      "blunder": 5,
+      "acpl": 65,
+      "accuracy": 74,
+      "phases": {
+       "opening": 97,
+       "middlegame": 65,
+       "endgame": 55
+      }
+     }
+    },
+    "black": {
+     "name": "player-76",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 4,
+      "blunder": 5,
+      "acpl": 77,
+      "accuracy": 68,
+      "phases": {
+       "opening": 91,
+       "middlegame": 52,
+       "endgame": 60
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 Bf4 d6 Nc3 g6 e4 Bg7 Qd2 O-O O-O-O Re8 Nf3 Bg4 Qe3 c6 Bh6 Bh8 h3 Bxf3 Qxf3 Qa5 Bc4 b5 Bb3 b4 Ne2 d5 exd5 cxd5 Nf4 e6 Rhe1 Nbd7 Nd3 Rac8 Qf4 Ne4 f3 Nef6 g4 Nb6 Ne5 Nc4 Bxc4 dxc4 Kb1 b3 cxb3 cxb3 a3 Rc2 g5 Rec8 Rc1 Rxc1+ Rxc1 Rxc1+ Qxc1 Ne8 Qd1 Bxe5 dxe5 Qd5 Qxd5 exd5 Kc1 Nc7 Kd2 Ne6 Kc3 Nf4 Kxb3 d4 Kc4",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 36
+    },
+    {
+     "eval": 71
+    },
+    {
+     "eval": 99
+    },
+    {
+     "eval": 92
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 78
+    },
+    {
+     "eval": 62
+    },
+    {
+     "eval": 70
+    },
+    {
+     "eval": 65
+    },
+    {
+     "eval": 137,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 125
+    },
+    {
+     "eval": 110
+    },
+    {
+     "eval": 128
+    },
+    {
+     "eval": 122
+    },
+    {
+     "eval": 41,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 68
+    },
+    {
+     "eval": 71
+    },
+    {
+     "eval": 62
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 250,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 113,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 93
+    },
+    {
+     "eval": 83
+    },
+    {
+     "eval": 75
+    },
+    {
+     "eval": -110,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -101
+    },
+    {
+     "eval": -264,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -112,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -168
+    },
+    {
+     "eval": 24,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": -169,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -2,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -66,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -41
+    },
+    {
+     "eval": -258,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -202
+    },
+    {
+     "eval": -281,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 30,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": -17
+    },
+    {
+     "eval": -20
+    },
+    {
+     "eval": -610,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 177,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 213
+    },
+    {
+     "eval": 211
+    },
+    {
+     "eval": 213
+    },
+    {
+     "eval": 218
+    },
+    {
+     "eval": 213
+    },
+    {
+     "eval": 199
+    },
+    {
+     "eval": -246,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -231
+    },
+    {
+     "eval": -218
+    },
+    {
+     "eval": 79,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 72
+    },
+    {
+     "eval": 4
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": 87
+    },
+    {
+     "eval": 72
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 91
+    },
+    {
+     "eval": 237,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 186
+    },
+    {
+     "eval": 398,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 402
+    }
+   ]
+  },
+  {
+   "id": "lichess-39",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "black",
+   "windowSize": 7,
+   "opening": {
+    "eco": "E60",
+    "name": "King's Indian Defense: Normal Variation, King's Knight Variation",
+    "ply": 5
+   },
+   "division": {
+    "middle": 21
+   },
+   "players": {
+    "white": {
+     "name": "player-77",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 26,
+      "accuracy": 89,
+      "phases": {
+       "opening": 97,
+       "middlegame": 84
+      }
+     }
+    },
+    "black": {
+     "name": "player-78",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 9,
+      "accuracy": 98,
+      "phases": {
+       "opening": 96,
+       "middlegame": 99
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 Nf3 g6 c4 Bg7 Nc3 O-O e4 d6 Be2 Bg4 O-O Nc6 Be3 e5 d5 Bxf3 Bxf3 Nd4 Nb5 Nxf3+ Qxf3 a6 Nc3 Nd7 Qe2 f5 f3 Qh4 Qf2 Qh5 Qd2 Nf6 Rac1 fxe4 Nxe4 Nxe4 fxe4 Qh4 Qc2 Bh6 Bxh6 Qxh6 Qe2 b6 Rxf8+ Rxf8 Rf1 Rxf1+ Qxf1 Qe3+ Kh1 Qxe4 h3 Qf4 Qd3 Qc1+ Kh2 Qxb2 c5 b5 cxd6 cxd6 Qe3 Qd4 Qf3 Qf4+ Qxf4 exf4 Kg1 Kg7 Kf2 Kf6 Kf3 Kf5",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 44
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 71
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 82
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 62
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 51
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 42
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 45
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 43
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 36
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 5
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": -4
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -28
+    },
+    {
+     "eval": -39
+    },
+    {
+     "eval": -375,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -417
+    },
+    {
+     "eval": -390
+    },
+    {
+     "eval": -405
+    },
+    {
+     "eval": -405
+    },
+    {
+     "eval": -417
+    },
+    {
+     "eval": -444
+    },
+    {
+     "eval": -449
+    },
+    {
+     "eval": -422
+    },
+    {
+     "eval": -426
+    },
+    {
+     "eval": -413
+    },
+    {
+     "eval": -387
+    },
+    {
+     "eval": -547,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -538
+    },
+    {
+     "eval": -493
+    },
+    {
+     "eval": -412
+    },
+    {
+     "eval": -682,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -674
+    },
+    {
+     "eval": -670
+    },
+    {
+     "eval": -643
+    },
+    {
+     "eval": -638
+    },
+    {
+     "eval": -666
+    },
+    {
+     "eval": -664
+    },
+    {
+     "eval": -652
+    },
+    {
+     "eval": -654
+    },
+    {
+     "eval": -642
+    }
+   ]
+  },
+  {
+   "id": "lichess-40",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "black",
+   "windowSize": 7,
+   "opening": {
+    "eco": "C21",
+    "name": "Danish Gambit",
+    "ply": 5
+   },
+   "division": {
+    "middle": 18,
+    "end": 50
+   },
+   "players": {
+    "white": {
+     "name": "player-79",
+     "analysis": {
+      "inaccuracy": 6,
+      "mistake": 2,
+      "blunder": 5,
+      "acpl": 97,
+      "accuracy": 65,
+      "phases": {
+       "opening": 85,
+       "middlegame": 63,
+       "endgame": 44
+      }
+     }
+    },
+    "black": {
+     "name": "player-80",
+     "analysis": {
+      "inaccuracy": 0,
+      "mistake": 2,
+      "blunder": 6,
+      "acpl": 71,
+      "accuracy": 73,
+      "phases": {
+       "opening": 84,
+       "middlegame": 59,
+       "endgame": 55
+      }
+     }
+    }
+   },
+   "moves": "e4 e5 d4 exd4 c3 Nc6 cxd4 d5 exd5 Qxd5 Nf3 Bg4 Nc3 Bb4 Bd2 Bxc3 Bxc3 Nf6 Be2 O-O O-O Rad8 Qd3 Rfe8 Rfe1 h6 h3 Bf5 Qd2 Ne4 Qf4 g5 Qxc7 Re7 Qh2 f6 h4 g4 Nd2 Nxd2 Bxd2 Nxd4 Be3 Nxe2+ Rxe2 h5 Rd2 Qa5 Rxd8+ Qxd8 Qf4 Qd5 Rc1 Kf7 Qh6 a6 Qxh5+ Ke6 Qh6 Be4 Bg5 Qf5 Be3 Bc6 Qf4 Rh7 Rd1 Qxf4 Bxf4 Rxh4 g3 Rh1#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": -11
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -28
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -17
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -89,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 30,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -50,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -44
+    },
+    {
+     "eval": -46
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -18
+    },
+    {
+     "eval": -19
+    },
+    {
+     "eval": -31
+    },
+    {
+     "eval": -34
+    },
+    {
+     "eval": -34
+    },
+    {
+     "eval": -31
+    },
+    {
+     "eval": -31
+    },
+    {
+     "eval": -19
+    },
+    {
+     "eval": -23
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -15
+    },
+    {
+     "eval": -15
+    },
+    {
+     "eval": -177,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -8,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -8
+    },
+    {
+     "eval": 165,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 14,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": -279,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -13,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -28
+    },
+    {
+     "eval": -15
+    },
+    {
+     "eval": -89,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -55
+    },
+    {
+     "eval": -78
+    },
+    {
+     "eval": 50,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 628,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 10,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 54
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 432,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 423
+    },
+    {
+     "eval": 451
+    },
+    {
+     "eval": 343,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 378
+    },
+    {
+     "eval": 235,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 236
+    },
+    {
+     "eval": 42,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 82
+    },
+    {
+     "eval": 15,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 334,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -1,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": 0
+    },
+    {
+     "mate": -1,
+     "judgment": "Blunder"
+    }
+   ]
+  },
+  {
+   "id": "lichess-41",
+   "speed": "bullet",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 7,
+   "opening": {
+    "eco": "C02",
+    "name": "French Defense: Advance Variation",
+    "ply": 8
+   },
+   "division": {
+    "middle": 20,
+    "end": 49
+   },
+   "players": {
+    "white": {
+     "name": "player-81",
+     "analysis": {
+      "inaccuracy": 6,
+      "mistake": 0,
+      "blunder": 3,
+      "acpl": 51,
+      "accuracy": 79,
+      "phases": {
+       "opening": 98,
+       "middlegame": 60,
+       "endgame": 71
+      }
+     }
+    },
+    "black": {
+     "name": "player-82",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 1,
+      "blunder": 3,
+      "acpl": 52,
+      "accuracy": 78,
+      "phases": {
+       "opening": 96,
+       "middlegame": 65,
+       "endgame": 54
+      }
+     }
+    }
+   },
+   "moves": "e4 e6 d4 d5 e5 c5 c3 Nc6 Nf3 Bd7 Na3 Nge7 Nc2 cxd4 cxd4 Nf5 Bd3 Qb6 O-O Be7 g4 Nh4 Nxh4 Bxh4 g5 Ne7 Qg4 Ng6 b4 Bb5 Rd1 Rc8 Bxb5+ Qxb5 Ne3 h5 Qf3 Bxg5 a4 Qd7 b5 Bxe3 Bxe3 Ne7 Bg5 Nf5 Rac1 Rxc1 Rxc1 O-O Qxh5 Rc8 Rd1 Rc4 Be3 Rxa4 Kh1 Qxb5 Rg1 Qd3 Bh6 Qxd4 Bxg7 Nxg7 Rxg7+ Kxg7 Qg5+ Kf8 Qd8+ Kg7 Qg5+ Kh7 Qh5+ Kg7 Qg5+",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 43
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 59
+    },
+    {
+     "eval": 63
+    },
+    {
+     "eval": 61
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 101
+    },
+    {
+     "eval": 101
+    },
+    {
+     "eval": 271,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 274
+    },
+    {
+     "eval": 264
+    },
+    {
+     "eval": 232
+    },
+    {
+     "eval": 339,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 287
+    },
+    {
+     "eval": 266
+    },
+    {
+     "eval": 33,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": -392,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 20,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -51,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -53
+    },
+    {
+     "eval": -55
+    },
+    {
+     "eval": -63
+    },
+    {
+     "eval": -133,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -124
+    },
+    {
+     "eval": -174
+    },
+    {
+     "eval": -164
+    },
+    {
+     "eval": -156
+    },
+    {
+     "eval": -137
+    },
+    {
+     "eval": -213,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -126,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -133
+    },
+    {
+     "eval": -141
+    },
+    {
+     "eval": -236,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -236
+    },
+    {
+     "eval": -202
+    },
+    {
+     "eval": -241
+    },
+    {
+     "eval": -232
+    },
+    {
+     "eval": -205
+    },
+    {
+     "eval": -242
+    },
+    {
+     "eval": 0,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -309,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -296
+    },
+    {
+     "eval": -442,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -408
+    },
+    {
+     "eval": -483
+    },
+    {
+     "eval": -459
+    },
+    {
+     "eval": -643,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 0,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-42",
+   "speed": "bullet",
+   "status": "outoftime",
+   "winner": "black",
+   "windowSize": 7,
+   "opening": {
+    "eco": "A40",
+    "name": "Englund Gambit",
+    "ply": 2
+   },
+   "division": {
+    "middle": 23,
+    "end": 49
+   },
+   "players": {
+    "white": {
+     "name": "player-83",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 3,
+      "acpl": 59,
+      "accuracy": 75,
+      "phases": {
+       "opening": 76,
+       "middlegame": 48,
+       "endgame": 93
+      }
+     }
+    },
+    "black": {
+     "name": "player-84",
+     "analysis": {
+      "inaccuracy": 4,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 44,
+      "accuracy": 82,
+      "phases": {
+       "opening": 77,
+       "middlegame": 62,
+       "endgame": 97
+      }
+     }
+    }
+   },
+   "moves": "d4 e5 c4 exd4 Qxd4 Nc6 Qd1 Nf6 Nf3 Bb4+ Nbd2 Ne4 Qc2 f5 e3 O-O Bd3 d6 O-O Qf6 a3 Bxd2 Bxd2 Nxd2 Qxd2 Qh6 Nd4 f4 exf4 Nxd4 Bxh7+ Qxh7 Qxd4 Bd7 g3 Bc6 c5 Qh5 f3 dxc5 Qc4+ Kh7 Qe2 Rad8 Qf2 Rfe8 Rae1 Qh3 Rxe8 Rxe8 g4 Rf8 Qg3 Qxg3+ hxg3 Rd8 Rf2 Rd3 Kg2 c4 g5 b5 f5 Kg8 g6 a5 g4 Rxf3 Rxf3 Bxf3+",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 113,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 0,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -43
+    },
+    {
+     "eval": 13,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -26
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": -25
+    },
+    {
+     "eval": 47,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 195,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 10,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 56
+    },
+    {
+     "eval": -438,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 54,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -403,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -408
+    },
+    {
+     "eval": -397
+    },
+    {
+     "eval": -325
+    },
+    {
+     "eval": -332
+    },
+    {
+     "eval": -236,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -382,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -389
+    },
+    {
+     "eval": -419
+    },
+    {
+     "eval": -453
+    },
+    {
+     "eval": -459
+    },
+    {
+     "eval": -406
+    },
+    {
+     "eval": -408
+    },
+    {
+     "eval": -404
+    },
+    {
+     "eval": -425
+    },
+    {
+     "eval": -411
+    },
+    {
+     "eval": -474
+    },
+    {
+     "eval": -422
+    },
+    {
+     "eval": -486
+    },
+    {
+     "eval": -403
+    },
+    {
+     "eval": -417
+    },
+    {
+     "eval": -417
+    },
+    {
+     "eval": -429
+    },
+    {
+     "eval": -396
+    },
+    {
+     "eval": -432
+    },
+    {
+     "eval": -451
+    },
+    {
+     "eval": -437
+    },
+    {
+     "eval": -419
+    },
+    {
+     "eval": -503
+    },
+    {
+     "eval": -517
+    },
+    {
+     "eval": -508
+    },
+    {
+     "eval": -455
+    },
+    {
+     "eval": -483
+    },
+    {
+     "eval": -472
+    },
+    {
+     "eval": -467
+    },
+    {
+     "eval": -446
+    },
+    {
+     "eval": -482
+    },
+    {
+     "eval": -495
+    },
+    {
+     "eval": -594
+    },
+    {
+     "eval": -578
+    },
+    {
+     "eval": -580
+    },
+    {
+     "eval": -575
+    }
+   ]
+  },
+  {
+   "id": "lichess-43",
+   "speed": "blitz",
+   "status": "mate",
+   "winner": "white",
+   "windowSize": 8,
+   "opening": {
+    "eco": "D10",
+    "name": "Slav Defense",
+    "ply": 4
+   },
+   "division": {
+    "middle": 21,
+    "end": 46
+   },
+   "players": {
+    "white": {
+     "name": "player-85",
+     "analysis": {
+      "inaccuracy": 6,
+      "mistake": 2,
+      "blunder": 2,
+      "acpl": 64,
+      "accuracy": 81,
+      "phases": {
+       "opening": 93,
+       "middlegame": 72,
+       "endgame": 77
+      }
+     }
+    },
+    "black": {
+     "name": "player-86",
+     "analysis": {
+      "inaccuracy": 6,
+      "mistake": 2,
+      "blunder": 6,
+      "acpl": 84,
+      "accuracy": 78,
+      "phases": {
+       "opening": 92,
+       "middlegame": 66,
+       "endgame": 74
+      }
+     }
+    }
+   },
+   "moves": "d4 d5 c4 c6 e3 Nf6 Nc3 Nbd7 Nf3 e6 b3 Be7 Bb2 O-O g3 Qc7 Rc1 Qb8 Bg2 Rd8 Qe2 e5 dxe5 Nxe5 Nxe5 Qxe5 Nxd5 Qe6 Nxe7+ Qxe7 O-O Bg4 f3 Bf5 Rcd1 h6 e4 Be6 Rxd8+ Rxd8 Rd1 Rd7 Kf1 Qd8 Rxd7 Qxd7 Ke1 Bh3 Bh1 Be6 Qd2 Qc8 g4 b5 c5 Nd7 Qd4 f6 h3 Qf8 Qd6 Qxd6 cxd6 Kf7 f4 Ke8 Kd2 c5 Bf3 Nb6 Be2 a6 h4 Kd7 e5 fxe5 Bxe5 c4 Bxg7 cxb3 axb3 Nd5 Bxh6 Kxd6 h5 Ke7 Bg5+ Kf7 h6 Kg6 Bd3+ Kf7 f5 Bd7 Bh4 Nf4 g5 Nxd3 g6+ Kg8 f6 Bf5 h7+ Kh8 f7 Kg7 h8=Q+ Kxh8 f8=Q#",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 13
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 12
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 37
+    },
+    {
+     "eval": 40
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 20
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 43
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 226,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 223
+    },
+    {
+     "eval": 231
+    },
+    {
+     "eval": 225
+    },
+    {
+     "eval": 215
+    },
+    {
+     "eval": 204
+    },
+    {
+     "eval": 210
+    },
+    {
+     "eval": 212
+    },
+    {
+     "eval": 194
+    },
+    {
+     "eval": 203
+    },
+    {
+     "eval": 657,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 233,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 260
+    },
+    {
+     "eval": 221
+    },
+    {
+     "eval": 247
+    },
+    {
+     "eval": 254
+    },
+    {
+     "eval": 281
+    },
+    {
+     "eval": 169,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 187
+    },
+    {
+     "eval": 171
+    },
+    {
+     "eval": 210
+    },
+    {
+     "eval": 107,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 235,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 223
+    },
+    {
+     "eval": 223
+    },
+    {
+     "eval": 129,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 146
+    },
+    {
+     "eval": 133
+    },
+    {
+     "eval": 234,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 246
+    },
+    {
+     "eval": 273
+    },
+    {
+     "eval": 103,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 180,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 137
+    },
+    {
+     "eval": 128
+    },
+    {
+     "eval": 123
+    },
+    {
+     "eval": 184,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 48,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 235,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 195
+    },
+    {
+     "eval": 187
+    },
+    {
+     "eval": 163
+    },
+    {
+     "eval": 442,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 440
+    },
+    {
+     "eval": 511
+    },
+    {
+     "eval": 455
+    },
+    {
+     "eval": 456
+    },
+    {
+     "eval": 349,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 445,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 403
+    },
+    {
+     "eval": 418
+    },
+    {
+     "eval": 396
+    },
+    {
+     "eval": 441
+    },
+    {
+     "eval": 286,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 425,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 267,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 538,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 527
+    },
+    {
+     "eval": 553
+    },
+    {
+     "eval": 519
+    },
+    {
+     "eval": 617
+    },
+    {
+     "eval": 565
+    },
+    {
+     "eval": 605
+    },
+    {
+     "eval": 537
+    },
+    {
+     "eval": 625
+    },
+    {
+     "eval": 616
+    },
+    {
+     "eval": 617
+    },
+    {
+     "eval": 585
+    },
+    {
+     "eval": 943,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 947
+    },
+    {
+     "eval": 909
+    },
+    {
+     "eval": 863
+    },
+    {
+     "eval": 1014
+    },
+    {
+     "eval": 838
+    },
+    {
+     "eval": 1220
+    },
+    {
+     "eval": 888
+    },
+    {
+     "eval": 1066
+    },
+    {
+     "eval": 939
+    },
+    {
+     "mate": 4,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 0,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": 5,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": 4
+    },
+    {
+     "mate": 4
+    },
+    {
+     "mate": 3
+    },
+    {
+     "mate": 3
+    },
+    {
+     "mate": 2
+    },
+    {
+     "mate": 1
+    },
+    {
+     "mate": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-44",
+   "speed": "blitz",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 8,
+   "opening": {
+    "eco": "A06",
+    "name": "Nimzo-Larsen Attack: Classical Variation",
+    "ply": 3
+   },
+   "division": {
+    "middle": 25,
+    "end": 47
+   },
+   "players": {
+    "white": {
+     "name": "player-87",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 1,
+      "blunder": 1,
+      "acpl": 21,
+      "accuracy": 90,
+      "phases": {
+       "opening": 93,
+       "middlegame": 80,
+       "endgame": 91
+      }
+     }
+    },
+    "black": {
+     "name": "player-88",
+     "analysis": {
+      "inaccuracy": 5,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 20,
+      "accuracy": 91,
+      "phases": {
+       "opening": 94,
+       "middlegame": 79,
+       "endgame": 94
+      }
+     }
+    }
+   },
+   "moves": "Nf3 d5 b3 c5 Bb2 Nc6 e3 Nf6 Bb5 Qb6 a4 a6 a5 Qc7 Bxc6+ Qxc6 d3 g6 Nbd2 Bg7 e4 O-O exd5 Nxd5 Bxg7 Kxg7 O-O f6 d4 Bf5 c4 Nf4 d5 Qd6 Re1 e5 dxe6 Nxe6 Ne4 Qxd1 Raxd1 Rad8 Nd6 Bg4 Nxb7 Rxd1 Rxd1 Rb8 Rd7+ Kh6 h3 Bxf3 gxf3 Nd4 Nxc5 Nxb3 Nxb3 Rxb3 Rd6 Rxf3 Rxa6 Rxh3 Rxf6 Ra3 a6 Kg5 Rb6 Kf5 Rd6 Ke5 c5 Ra5 Rd7 Rxa6 Rxh7 Rc6 Kg2 Rxc5 Rf7 Ke6 Rf3 Rf5 Rxf5 Kxf5 Kf3 g5 Kg3 g4 f3 gxf3 Kxf3",
+   "analysis": [
+    {
+     "eval": 10
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 26
+    },
+    {
+     "eval": 4
+    },
+    {
+     "eval": 35
+    },
+    {
+     "eval": 28
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 56
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 76
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 42
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 23
+    },
+    {
+     "eval": -6
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": -74,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -23
+    },
+    {
+     "eval": -54
+    },
+    {
+     "eval": 55,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 34
+    },
+    {
+     "eval": 109,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 44,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 118,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 6,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 75,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 143,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 48,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 85
+    },
+    {
+     "eval": 87
+    },
+    {
+     "eval": 186,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 232
+    },
+    {
+     "eval": 290
+    },
+    {
+     "eval": 50,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 31
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 32
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": 49
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 1
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 4
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-45",
+   "speed": "bullet",
+   "status": "outoftime",
+   "winner": "white",
+   "windowSize": 8,
+   "opening": {
+    "eco": "A00",
+    "name": "Anderssen's Opening",
+    "ply": 1
+   },
+   "division": {
+    "middle": 20,
+    "end": 53
+   },
+   "players": {
+    "white": {
+     "name": "player-89",
+     "analysis": {
+      "inaccuracy": 5,
+      "mistake": 3,
+      "blunder": 4,
+      "acpl": 54,
+      "accuracy": 79,
+      "phases": {
+       "opening": 85,
+       "middlegame": 68,
+       "endgame": 78
+      }
+     }
+    },
+    "black": {
+     "name": "player-90",
+     "analysis": {
+      "inaccuracy": 6,
+      "mistake": 6,
+      "blunder": 2,
+      "acpl": 70,
+      "accuracy": 60,
+      "phases": {
+       "opening": 87,
+       "middlegame": 82,
+       "endgame": 50
+      }
+     }
+    }
+   },
+   "moves": "a3 g6 h3 Bg7 Nf3 c5 Nc3 Nc6 Na2 d5 Nh2 e5 e3 f5 b4 Be6 bxc5 Qe7 Rb1 Nf6 d4 Ne4 Nf3 O-O Nb4 f4 Nxc6 bxc6 Rb3 fxe3 Bxe3 exd4 Nxd4 Bd7 Be2 Nxc5 Rc3 Ne4 Rd3 c5 Nf3 d4 O-O Bb5 Bc1 Nc3 Rxc3 Bxe2 Re3 Qxe3 fxe3 Bxd1 Rxd1 Rad8 e4 c4 e5 d3 cxd3 cxd3 Be3 Rfe8 Bxa7 Bxe5 Kf1 Bf4 Bc5 d2 Bb4 Rd3 Nxd2 Red8 Ke2 Re3+ Kf2 g5 Rb1 Red3 Nf3 Re3 g3 Rde8 gxf4 Re2+ Kf1 gxf4 Re1 R2e3 Rxe3 fxe3 Ke2 Re4 Nd4 Re6 Nxe6 Kf7 Nf4 h5 Kxe3 h4 Kf3 Kf6 Kg4 Ke5 Kxh4 Ke4 Kh5 Kd4 Kg6 Kc4 h4 Kb3 h5 Ka4 h6 Kb3 h7 Ka4 h8=Q Kb3 Qd4 Ka4 Nd5 Kb5 Qd3+ Ka4 Qc3",
+   "analysis": [
+    {
+     "eval": -6
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -12
+    },
+    {
+     "eval": -7
+    },
+    {
+     "eval": -30
+    },
+    {
+     "eval": -9
+    },
+    {
+     "eval": -25
+    },
+    {
+     "eval": -37
+    },
+    {
+     "eval": -133,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -107
+    },
+    {
+     "eval": -191,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -188
+    },
+    {
+     "eval": -193
+    },
+    {
+     "eval": -161
+    },
+    {
+     "eval": -176
+    },
+    {
+     "eval": -101,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -124
+    },
+    {
+     "eval": -54,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -68
+    },
+    {
+     "eval": -63
+    },
+    {
+     "eval": -49
+    },
+    {
+     "eval": -47
+    },
+    {
+     "eval": -118,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -102
+    },
+    {
+     "eval": -658,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -339,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -374
+    },
+    {
+     "eval": -324
+    },
+    {
+     "eval": -306
+    },
+    {
+     "eval": -138,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -144
+    },
+    {
+     "eval": -141
+    },
+    {
+     "eval": -319,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -316
+    },
+    {
+     "eval": -314
+    },
+    {
+     "eval": -319
+    },
+    {
+     "eval": -498,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -480
+    },
+    {
+     "eval": -520
+    },
+    {
+     "eval": -502
+    },
+    {
+     "eval": -514
+    },
+    {
+     "eval": -304,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -352
+    },
+    {
+     "eval": -281
+    },
+    {
+     "eval": -608,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -585
+    },
+    {
+     "eval": -602
+    },
+    {
+     "eval": -600
+    },
+    {
+     "eval": -584
+    },
+    {
+     "eval": -589
+    },
+    {
+     "eval": -586
+    },
+    {
+     "eval": -576
+    },
+    {
+     "eval": -586
+    },
+    {
+     "eval": -577
+    },
+    {
+     "eval": -592
+    },
+    {
+     "eval": -582
+    },
+    {
+     "eval": -589
+    },
+    {
+     "eval": -625
+    },
+    {
+     "eval": -641
+    },
+    {
+     "eval": -494,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -489
+    },
+    {
+     "eval": -435
+    },
+    {
+     "eval": -532
+    },
+    {
+     "eval": -525
+    },
+    {
+     "eval": -536
+    },
+    {
+     "eval": -508
+    },
+    {
+     "eval": -621
+    },
+    {
+     "eval": -541
+    },
+    {
+     "eval": -506
+    },
+    {
+     "eval": -486
+    },
+    {
+     "eval": -562
+    },
+    {
+     "eval": -546
+    },
+    {
+     "eval": -574
+    },
+    {
+     "eval": -568
+    },
+    {
+     "eval": -526
+    },
+    {
+     "eval": -307,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -331
+    },
+    {
+     "eval": -262
+    },
+    {
+     "eval": -277
+    },
+    {
+     "eval": -267
+    },
+    {
+     "eval": -549,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 157,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 111
+    },
+    {
+     "eval": 232,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 97,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 106
+    },
+    {
+     "eval": -7,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": 98,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 70
+    },
+    {
+     "eval": 210,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -393,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": 12,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 1288
+    },
+    {
+     "eval": 977
+    },
+    {
+     "eval": 921
+    },
+    {
+     "eval": 6744
+    },
+    {
+     "eval": 1095
+    },
+    {
+     "eval": 7320
+    },
+    {
+     "eval": 9165
+    },
+    {
+     "mate": 9,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": 13
+    },
+    {
+     "mate": 11
+    },
+    {
+     "mate": 15
+    },
+    {
+     "mate": 11
+    },
+    {
+     "eval": 1493,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": 11,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "mate": 11
+    },
+    {
+     "mate": 10
+    },
+    {
+     "mate": 9
+    },
+    {
+     "mate": 9
+    },
+    {
+     "mate": 8
+    },
+    {
+     "mate": 8
+    },
+    {
+     "mate": 7
+    },
+    {
+     "mate": 6
+    },
+    {
+     "mate": 5
+    },
+    {
+     "mate": 5
+    },
+    {
+     "mate": 4
+    },
+    {
+     "mate": 4
+    },
+    {
+     "mate": 4
+    },
+    {
+     "mate": 4
+    },
+    {
+     "mate": 3
+    },
+    {
+     "mate": 3
+    },
+    {
+     "mate": 3
+    },
+    {
+     "mate": 1
+    },
+    {
+     "mate": 3
+    }
+   ]
+  },
+  {
+   "id": "lichess-46",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "white",
+   "windowSize": 8,
+   "opening": {
+    "eco": "A50",
+    "name": "Queen's Indian Accelerated",
+    "ply": 4
+   },
+   "division": {
+    "middle": 24,
+    "end": 74
+   },
+   "players": {
+    "white": {
+     "name": "player-91",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 1,
+      "blunder": 3,
+      "acpl": 41,
+      "accuracy": 84,
+      "phases": {
+       "opening": 94,
+       "middlegame": 76,
+       "endgame": 99
+      }
+     }
+    },
+    "black": {
+     "name": "player-92",
+     "analysis": {
+      "inaccuracy": 9,
+      "mistake": 0,
+      "blunder": 3,
+      "acpl": 65,
+      "accuracy": 79,
+      "phases": {
+       "opening": 90,
+       "middlegame": 71,
+       "endgame": 92
+      }
+     }
+    }
+   },
+   "moves": "d4 Nf6 c4 b6 Nc3 Bb7 Nf3 g6 d5 Bg7 e4 d6 Bd3 O-O O-O Nbd7 h3 a5 Re1 e5 Bc2 Nc5 a3 Qd7 Be3 Nh5 b4 Na6 Rb1 axb4 axb4 Bc8 Ba4 Qe7 Bc6 Rb8 Bb5 f5 Qd3 fxe4 Nxe4 Rxf3 gxf3 Qh4 Kf1 Bxh3+ Ke2 Bg2 Rg1 Nxb4 Rxb4 Qh2 Rbb1 Rf8 Nd2 e4 Nxe4 Bxf3+ Kd2 Ra8 Kc2 Nf4 Bxf4 Qxf4 Nc3 Bxc3 Qxc3 Be4+ Kb3 Qxf2 Ra1 Rf8 Rgf1 Qxf1 Rxf1 Rxf1 Qd2 Rf3+ Kb4 Bf5 Qg5 Bc2 Qd8+ Kg7 Qxc7+ Kh6 Ba4 Rb3+ Bxb3 Bf5 Qxd6",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 41
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 65
+    },
+    {
+     "eval": 13
+    },
+    {
+     "eval": 72,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 56
+    },
+    {
+     "eval": 59
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 61
+    },
+    {
+     "eval": 67
+    },
+    {
+     "eval": 47
+    },
+    {
+     "eval": 89
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 95
+    },
+    {
+     "eval": 92
+    },
+    {
+     "eval": 110
+    },
+    {
+     "eval": 105
+    },
+    {
+     "eval": 163,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 168
+    },
+    {
+     "eval": 254,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 278
+    },
+    {
+     "eval": 269
+    },
+    {
+     "eval": 281
+    },
+    {
+     "eval": 303
+    },
+    {
+     "eval": 286
+    },
+    {
+     "eval": 416,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 406
+    },
+    {
+     "eval": 380
+    },
+    {
+     "eval": 389
+    },
+    {
+     "eval": 426
+    },
+    {
+     "eval": 394
+    },
+    {
+     "eval": 423
+    },
+    {
+     "eval": 252,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 355,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 335
+    },
+    {
+     "eval": 332
+    },
+    {
+     "eval": 379
+    },
+    {
+     "eval": 413
+    },
+    {
+     "eval": 274,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 372,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 349
+    },
+    {
+     "eval": 400
+    },
+    {
+     "eval": 354
+    },
+    {
+     "eval": 470,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 470
+    },
+    {
+     "eval": 442
+    },
+    {
+     "eval": 293,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 271
+    },
+    {
+     "eval": -111,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -24
+    },
+    {
+     "eval": -69
+    },
+    {
+     "eval": -64
+    },
+    {
+     "eval": -62
+    },
+    {
+     "eval": 6,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 402,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 408
+    },
+    {
+     "eval": 345
+    },
+    {
+     "eval": 38,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 251,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 41,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 551,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 543
+    },
+    {
+     "eval": 613
+    },
+    {
+     "eval": 613
+    },
+    {
+     "eval": 573
+    },
+    {
+     "eval": 552
+    },
+    {
+     "eval": 505
+    },
+    {
+     "eval": 526
+    },
+    {
+     "eval": 554
+    },
+    {
+     "eval": 531
+    },
+    {
+     "eval": 725,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 738
+    },
+    {
+     "eval": 773
+    },
+    {
+     "eval": 798
+    },
+    {
+     "eval": 789
+    },
+    {
+     "eval": 763
+    },
+    {
+     "eval": 780
+    },
+    {
+     "eval": 749
+    },
+    {
+     "eval": 1040
+    },
+    {
+     "eval": 970
+    },
+    {
+     "eval": 1124
+    },
+    {
+     "eval": 1123
+    }
+   ]
+  },
+  {
+   "id": "lichess-47",
+   "speed": "bullet",
+   "status": "mate",
+   "winner": "black",
+   "windowSize": 8,
+   "opening": {
+    "eco": "B06",
+    "name": "Modern Defense: Standard Defense",
+    "ply": 6
+   },
+   "division": {
+    "middle": 30,
+    "end": 83
+   },
+   "players": {
+    "white": {
+     "name": "player-93",
+     "analysis": {
+      "inaccuracy": 2,
+      "mistake": 1,
+      "blunder": 3,
+      "acpl": 49,
+      "accuracy": 77,
+      "phases": {
+       "opening": 70,
+       "middlegame": 69,
+       "endgame": 96
+      }
+     }
+    },
+    "black": {
+     "name": "player-94",
+     "analysis": {
+      "inaccuracy": 3,
+      "mistake": 2,
+      "blunder": 1,
+      "acpl": 30,
+      "accuracy": 89,
+      "phases": {
+       "opening": 71,
+       "middlegame": 91,
+       "endgame": 100
+      }
+     }
+    }
+   },
+   "moves": "e4 g6 d4 Bg7 Nc3 d6 Be3 a6 f3 b5 Qd2 Nd7 O-O-O Bb7 Kb1 Rc8 g4 c5 h4 h5 gxh5 Rxh5 Nce2 Nb6 Ng3 cxd4 Bxd4 Bxd4 Nxh5 Bxb2 Kxb2 Na4+ Kc1 Nc3 Nf4 Qa5 Qd3 Nxa2+ Kb2 Rc3 Ra1 Qa3+ Kb1 Qc1+ Kxa2 Rxc2+ Qxc2 Qxc2+ Ka3 Qc3+ Ka2 Qd2+ Kb1 Qxf4 Bd3 Nf6 Bc2 d5 e5 Qxe5 Nh3 d4 Ng5 Qe3 Rd1 Nd5 Rd3 Qe1+ Kb2 Qb4+ Rb3 Qd6 Rd1 Nc3 Rd3 Bd5 Rxd4 Na4+ Kc1 Qc5 Rbd3 Nc3 Rxc3 Qxd4 Rd3 Qxh4 Kb2 Qxg5 f4 Qf6+ Rc3 e6 Bb3 b4 Bxd5 Ke7 Kb1 Qxc3 f5 a5 f6+ Kxf6 Ba2 a4 Bb3 Qxb3+ Kc1 Qc3+ Kd1 a3 Ke2 a2 Kf2 a1=Q Kg2 Qab2+ Kf1 Qcc1#",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 55
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 48
+    },
+    {
+     "eval": 51
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 46
+    },
+    {
+     "eval": 50
+    },
+    {
+     "eval": 43
+    },
+    {
+     "eval": 54
+    },
+    {
+     "eval": 58
+    },
+    {
+     "eval": 60
+    },
+    {
+     "eval": 57
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 67
+    },
+    {
+     "eval": 75
+    },
+    {
+     "eval": 66
+    },
+    {
+     "eval": 79
+    },
+    {
+     "eval": 71
+    },
+    {
+     "eval": 72
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": 65
+    },
+    {
+     "eval": 57
+    },
+    {
+     "eval": 152,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 123
+    },
+    {
+     "eval": 493,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 86,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 74
+    },
+    {
+     "eval": -30,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 73,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 62
+    },
+    {
+     "eval": 188,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 98,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 211,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -525,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -527
+    },
+    {
+     "eval": -547
+    },
+    {
+     "eval": -532
+    },
+    {
+     "eval": -481
+    },
+    {
+     "eval": -460
+    },
+    {
+     "mate": -4,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": -3
+    },
+    {
+     "mate": -3
+    },
+    {
+     "eval": -869,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -873
+    },
+    {
+     "eval": -879
+    },
+    {
+     "eval": -859
+    },
+    {
+     "eval": -845
+    },
+    {
+     "eval": -845
+    },
+    {
+     "eval": -826
+    },
+    {
+     "eval": -760
+    },
+    {
+     "eval": -733
+    },
+    {
+     "eval": -762
+    },
+    {
+     "eval": -779
+    },
+    {
+     "eval": -839
+    },
+    {
+     "eval": -741
+    },
+    {
+     "eval": -804
+    },
+    {
+     "eval": -759
+    },
+    {
+     "eval": -822
+    },
+    {
+     "eval": -782
+    },
+    {
+     "eval": -778
+    },
+    {
+     "eval": -752
+    },
+    {
+     "eval": -778
+    },
+    {
+     "eval": -789
+    },
+    {
+     "eval": -805
+    },
+    {
+     "eval": -805
+    },
+    {
+     "eval": -802
+    },
+    {
+     "eval": -781
+    },
+    {
+     "eval": -782
+    },
+    {
+     "eval": -732
+    },
+    {
+     "eval": -743
+    },
+    {
+     "eval": -739
+    },
+    {
+     "eval": -764
+    },
+    {
+     "eval": -769
+    },
+    {
+     "eval": -814
+    },
+    {
+     "eval": -771
+    },
+    {
+     "eval": -733
+    },
+    {
+     "eval": -637
+    },
+    {
+     "eval": -623
+    },
+    {
+     "eval": -629
+    },
+    {
+     "eval": -615
+    },
+    {
+     "eval": -605
+    },
+    {
+     "eval": -812
+    },
+    {
+     "eval": -805
+    },
+    {
+     "eval": -796
+    },
+    {
+     "eval": -718
+    },
+    {
+     "eval": -950
+    },
+    {
+     "eval": -935
+    },
+    {
+     "eval": -950
+    },
+    {
+     "eval": -921
+    },
+    {
+     "mate": -7,
+     "judgment": "Mistake"
+    },
+    {
+     "mate": -9
+    },
+    {
+     "mate": -8
+    },
+    {
+     "mate": -7
+    },
+    {
+     "mate": -5
+    },
+    {
+     "mate": -10
+    },
+    {
+     "mate": -9
+    },
+    {
+     "mate": -8
+    },
+    {
+     "mate": -5
+    },
+    {
+     "mate": -7
+    },
+    {
+     "mate": -7
+    },
+    {
+     "mate": -6
+    },
+    {
+     "mate": -3
+    },
+    {
+     "mate": -2
+    },
+    {
+     "mate": -2
+    },
+    {
+     "mate": -4
+    },
+    {
+     "mate": -4
+    },
+    {
+     "mate": -4
+    },
+    {
+     "mate": -4
+    },
+    {
+     "mate": -4
+    },
+    {
+     "mate": -4
+    },
+    {
+     "mate": -3
+    },
+    {
+     "mate": -3
+    },
+    {
+     "mate": -2
+    },
+    {
+     "mate": -2
+    },
+    {
+     "mate": -1
+    },
+    {
+     "mate": -1
+    }
+   ]
+  },
+  {
+   "id": "lichess-48",
+   "speed": "bullet",
+   "status": "draw",
+   "winner": null,
+   "windowSize": 8,
+   "opening": {
+    "eco": "C50",
+    "name": "Italian Game: Paris Defense",
+    "ply": 6
+   },
+   "division": {
+    "middle": 17,
+    "end": 59
+   },
+   "players": {
+    "white": {
+     "name": "player-95",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 7,
+      "accuracy": 97,
+      "phases": {
+       "opening": 94,
+       "middlegame": 93,
+       "endgame": 99
+      }
+     }
+    },
+    "black": {
+     "name": "player-96",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 0,
+      "blunder": 0,
+      "acpl": 7,
+      "accuracy": 97,
+      "phases": {
+       "opening": 96,
+       "middlegame": 95,
+       "endgame": 98
+      }
+     }
+    }
+   },
+   "moves": "e4 e5 Nf3 Nc6 Bc4 d6 d3 Na5 O-O Nxc4 dxc4 Nf6 Nc3 Be7 Bg5 O-O Qd3 Be6 Rad1 Nd7 Be3 a6 Qe2 Qe8 Nd5 Bxd5 cxd5 f5 exf5 Rxf5 Qc4 Rc8 Nd2 Rf8 Ne4 h6 f3 Kh7 Qd3 Qg6 c4 Nf6 Nc3 Qxd3 Rxd3 g5 b4 c6 Rc1 Kg6 a4 Rc7 Bb6 Rcc8 a5 cxd5 Nxd5 Nxd5 Rxd5 Kf7 c5 Ke6 Rcd1 dxc5 bxc5 Rc6 Rd7 Bxc5+ Bxc5 Rxc5 g4 Rc6 Kg2 e4 fxe4 Rc2+ R1d2 Rxd2+ Rxd2 Ke5 Rb2 Rf7 Rb6 Kxe4 Rxh6 Kf4 h3 Rc7 Rf6+ Ke4 Rf5 Rc2+ Kf1 Rc3 Ke2 Rxh3 Rxg5 Rh2+ Kd1 Ra2 Rf5 Rb2 Ke1 Rg2 Rf7 Rxg4 Rxb7 Rg5 Kd2 Rxa5 Kc3 Kd5 Rh7 Rc5+ Kb4 Rc6 Ka4 Kd6 Rh6+ Kc7 Rh5 Rd6 Rh7+ Rd7 Rh6 Kd8 Rxa6 Kc7 Kb5 Kd8 Rc6 Rc7 Rc5 Rxc5+ Kxc5",
+   "analysis": [
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 36
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": -30
+    },
+    {
+     "eval": -36
+    },
+    {
+     "eval": -35
+    },
+    {
+     "eval": -14
+    },
+    {
+     "eval": -9
+    },
+    {
+     "eval": -11
+    },
+    {
+     "eval": -25
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": -31
+    },
+    {
+     "eval": -19
+    },
+    {
+     "eval": -27
+    },
+    {
+     "eval": -28
+    },
+    {
+     "eval": -60
+    },
+    {
+     "eval": -24
+    },
+    {
+     "eval": -58
+    },
+    {
+     "eval": -24
+    },
+    {
+     "eval": -29
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 17
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 24
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 25
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 21
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 9
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 8
+    },
+    {
+     "eval": 30
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": 11
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": 3
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": -56,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -47
+    },
+    {
+     "eval": -80
+    },
+    {
+     "eval": -71
+    },
+    {
+     "eval": -64
+    },
+    {
+     "eval": 0,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -10
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": -9
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -2
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": -3
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -15
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -4
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -5
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 0
+    }
+   ]
+  },
+  {
+   "id": "lichess-49",
+   "speed": "blitz",
+   "status": "outoftime",
+   "winner": "black",
+   "windowSize": 8,
+   "opening": {
+    "eco": "D00",
+    "name": "Queen's Pawn Game: Accelerated London System",
+    "ply": 3
+   },
+   "division": {
+    "middle": 22,
+    "end": 85
+   },
+   "players": {
+    "white": {
+     "name": "player-97",
+     "analysis": {
+      "inaccuracy": 5,
+      "mistake": 2,
+      "blunder": 6,
+      "acpl": 79,
+      "accuracy": 64,
+      "phases": {
+       "opening": 95,
+       "middlegame": 51,
+       "endgame": 80
+      }
+     }
+    },
+    "black": {
+     "name": "player-98",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 7,
+      "blunder": 9,
+      "acpl": 94,
+      "accuracy": 65,
+      "phases": {
+       "opening": 87,
+       "middlegame": 54,
+       "endgame": 73
+      }
+     }
+    }
+   },
+   "moves": "d4 d5 Bf4 Nf6 e3 e6 Nf3 c5 Nbd2 Nc6 c3 cxd4 exd4 Nh5 Be3 Bd6 Ne5 g6 f4 Nf6 Bd3 Qc7 O-O O-O Rf3 Ne7 Rh3 Nf5 Bf2 h5 Qe2 Bd7 Rf1 Bxe5 fxe5 Ng4 Be1 b5 Rf4 Ngh6 Nf3 b4 Nh4 bxc3 Bxc3 Rab8 Nxf5 exf5 Rfh4 Rb6 Qd2 Ng4 Rf3 Rc6 h3 Qd8 g3 Nf6 exf6 Qxf6 Rhf4 Re8 g4 hxg4 hxg4 Qg5 Rf2 Rce6 Kf1 Qh4 Kg2 Re1 Bf1 R8e3 R2f3 Rxf3 Rxf3 fxg4 Rg3 Re4 Qf2 Bf5 Bd3 Re6 Bxf5 gxf5 Qxf5 Rg6 Qf4 Qh5 Bd2 Qh4 Qe5 Qf6 Qxd5 Qe6 Qxe6 fxe6 Re3 Kf7 Re4 Rf6 Kg3 Rf5 Rf4 Kf6 Rxf5+ Kxf5 Bf4 Ke4 Be5 Kd5 b4 Ke4 a4 Kd5 b5 a5 b6 Kc6 b7 Kxb7 Kxg4 Kc6 Kf4 Kd5 Bd6 Kc6 Ke5 Kd7 Bc5 Kc6 Kxe6 Kc7 d5 Kb7 d6 Ka6 d7 Kb7",
+   "analysis": [
+    {
+     "eval": 15
+    },
+    {
+     "eval": 27
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 4
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 0
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 10
+    },
+    {
+     "eval": 14
+    },
+    {
+     "eval": 22
+    },
+    {
+     "eval": 18
+    },
+    {
+     "eval": 16
+    },
+    {
+     "eval": 15
+    },
+    {
+     "eval": 13
+    },
+    {
+     "eval": 19
+    },
+    {
+     "eval": 29
+    },
+    {
+     "eval": -15
+    },
+    {
+     "eval": 97,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 107
+    },
+    {
+     "eval": 108
+    },
+    {
+     "eval": 99
+    },
+    {
+     "eval": 102
+    },
+    {
+     "eval": 96
+    },
+    {
+     "eval": 117
+    },
+    {
+     "eval": 83
+    },
+    {
+     "eval": 82
+    },
+    {
+     "eval": 83
+    },
+    {
+     "eval": 87
+    },
+    {
+     "eval": 64
+    },
+    {
+     "eval": 88
+    },
+    {
+     "eval": 29,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 236,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 242
+    },
+    {
+     "eval": 226
+    },
+    {
+     "eval": 168
+    },
+    {
+     "eval": 439,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 362
+    },
+    {
+     "eval": 594,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 179,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 195
+    },
+    {
+     "eval": 186
+    },
+    {
+     "eval": 184
+    },
+    {
+     "eval": 159
+    },
+    {
+     "eval": 190
+    },
+    {
+     "eval": 156
+    },
+    {
+     "eval": 154
+    },
+    {
+     "eval": 117
+    },
+    {
+     "eval": 192,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 143
+    },
+    {
+     "eval": 598,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 86,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 508,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 446
+    },
+    {
+     "eval": 545
+    },
+    {
+     "eval": 545
+    },
+    {
+     "eval": 537
+    },
+    {
+     "eval": 527
+    },
+    {
+     "eval": 520
+    },
+    {
+     "eval": 512
+    },
+    {
+     "eval": 541
+    },
+    {
+     "eval": 458
+    },
+    {
+     "eval": 463
+    },
+    {
+     "eval": 455
+    },
+    {
+     "eval": 464
+    },
+    {
+     "eval": 320,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 311
+    },
+    {
+     "eval": -151,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -19,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -152,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 0,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": -515,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -497
+    },
+    {
+     "eval": -470
+    },
+    {
+     "eval": 192,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 180
+    },
+    {
+     "eval": 449,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": -536,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 271,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 173,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 331,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 278
+    },
+    {
+     "eval": 308
+    },
+    {
+     "eval": 320
+    },
+    {
+     "eval": 314
+    },
+    {
+     "eval": 196,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 585,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 577
+    },
+    {
+     "eval": 590
+    },
+    {
+     "eval": 594
+    },
+    {
+     "eval": 585
+    },
+    {
+     "eval": 361,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 680,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 635
+    },
+    {
+     "eval": 711
+    },
+    {
+     "eval": 679
+    },
+    {
+     "eval": 654
+    },
+    {
+     "eval": 649
+    },
+    {
+     "eval": 635
+    },
+    {
+     "eval": 650
+    },
+    {
+     "eval": 642
+    },
+    {
+     "eval": 645
+    },
+    {
+     "eval": 650
+    },
+    {
+     "eval": 632
+    },
+    {
+     "eval": 710
+    },
+    {
+     "eval": 622
+    },
+    {
+     "eval": 724
+    },
+    {
+     "eval": 723
+    },
+    {
+     "eval": 723
+    },
+    {
+     "eval": 761
+    },
+    {
+     "eval": 758
+    },
+    {
+     "eval": 758
+    },
+    {
+     "eval": 758
+    },
+    {
+     "eval": 758
+    },
+    {
+     "eval": 805
+    },
+    {
+     "eval": 777
+    },
+    {
+     "mate": 14,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 1416,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 1224
+    },
+    {
+     "mate": 16
+    },
+    {
+     "mate": 16
+    },
+    {
+     "mate": 16
+    },
+    {
+     "eval": 1169
+    },
+    {
+     "eval": 919
+    },
+    {
+     "eval": 887
+    },
+    {
+     "eval": 0,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": 10,
+     "judgment": "Blunder"
+    },
+    {
+     "mate": 9
+    },
+    {
+     "mate": 9
+    },
+    {
+     "mate": 9
+    },
+    {
+     "mate": 9
+    },
+    {
+     "mate": 8
+    },
+    {
+     "mate": 8
+    },
+    {
+     "mate": 7
+    },
+    {
+     "mate": 7
+    },
+    {
+     "mate": 6
+    },
+    {
+     "mate": 3
+    },
+    {
+     "mate": 2
+    },
+    {
+     "mate": 2
+    }
+   ]
+  },
+  {
+   "id": "lichess-50",
+   "speed": "blitz",
+   "status": "resign",
+   "winner": "white",
+   "windowSize": 3,
+   "opening": {
+    "eco": "A00",
+    "name": "Mieses Opening: Reversed Rat",
+    "ply": 2
+   },
+   "division": {
+    "middle": 16
+   },
+   "players": {
+    "white": {
+     "name": "player-99",
+     "analysis": {
+      "inaccuracy": 1,
+      "mistake": 1,
+      "blunder": 0,
+      "acpl": 31,
+      "accuracy": 90,
+      "phases": {
+       "opening": 86,
+       "middlegame": 85
+      }
+     }
+    },
+    "black": {
+     "name": "player-100",
+     "analysis": {
+      "inaccuracy": 4,
+      "mistake": 0,
+      "blunder": 2,
+      "acpl": 83,
+      "accuracy": 71,
+      "phases": {
+       "opening": 84,
+       "middlegame": 62
+      }
+     }
+    }
+   },
+   "moves": "d3 e5 Nf3 Nc6 a3 Bd6 b4 Qf6 Bb2 Nge7 Nbd2 b6 Ne4 Qe6 g4 Bb7 Nfg5 Qg6 h4 f5 h5 Qh6 gxf5 Nxf5 Bc1 O-O c3 g6 Qb3+ Kh8 Nf7+ Rxf7 Bxh6",
+   "analysis": [
+    {
+     "eval": -15
+    },
+    {
+     "eval": 6
+    },
+    {
+     "eval": 7
+    },
+    {
+     "eval": 2
+    },
+    {
+     "eval": -27
+    },
+    {
+     "eval": 36,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 38
+    },
+    {
+     "eval": 99,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 119
+    },
+    {
+     "eval": 194,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 147
+    },
+    {
+     "eval": 183
+    },
+    {
+     "eval": 126
+    },
+    {
+     "eval": 121
+    },
+    {
+     "eval": 41,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": 53
+    },
+    {
+     "eval": -64,
+     "judgment": "Mistake"
+    },
+    {
+     "eval": 23,
+     "judgment": "Inaccuracy"
+    },
+    {
+     "eval": -1
+    },
+    {
+     "eval": 52
+    },
+    {
+     "eval": 39
+    },
+    {
+     "eval": 68
+    },
+    {
+     "eval": 70
+    },
+    {
+     "eval": 62
+    },
+    {
+     "eval": 58
+    },
+    {
+     "eval": 288,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 257
+    },
+    {
+     "eval": 737,
+     "judgment": "Blunder"
+    },
+    {
+     "eval": 730
+    },
+    {
+     "eval": 916
+    },
+    {
+     "eval": 906
+    },
+    {
+     "eval": 881
+    },
+    {
+     "eval": 815
+    }
+   ]
+  }
+ ]
+}
