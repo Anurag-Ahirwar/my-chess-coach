@@ -13,7 +13,7 @@ import { fixtureText, pastePgn } from "./helpers";
 
 const RAW = JSON.parse(readFileSync(join(import.meta.dirname, "..", "fixtures", "review", "raw", "14-blitz.standard.json"), "utf8")) as { id: string };
 
-const panel = (page: Page) => page.getByRole("region", { name: "Engine analysis (debug view)" });
+const panel = (page: Page) => page.getByRole("region", { name: "Analysis", exact: true });
 const reviewStatus = (page: Page) => page.getByTestId("review-status");
 
 async function saveAnalysis(page: Page, raw: unknown) {
@@ -44,7 +44,12 @@ async function timings(page: Page) {
   };
 }
 
-test("a saved analysis is reviewed in the Worker, then from the cache, without main-thread long tasks", async ({ page, browserName }) => {
+test.beforeEach(async ({ page }) => {
+  // review-status is in the debug view.
+  await page.addInitScript(() => localStorage.setItem("chess-coach.debug", "1"));
+});
+
+test("a saved analysis is reviewed in the Worker, then from the cache, without main-thread long tasks", { tag: "@perf" }, async ({ page, browserName }) => {
   test.setTimeout(120_000);
   await page.addInitScript(() => {
     const w = window as unknown as { __longTasks: number[]; __recording: boolean };
@@ -87,6 +92,11 @@ test("a saved analysis is reviewed in the Worker, then from the cache, without m
   // 3. Navigating the 207 plies quickly while the review is shown.
   await page.getByRole("heading", { level: 1 }).click();
   for (let i = 0; i < 60; i++) await page.keyboard.press("ArrowRight");
+  // 4. 40 clicks across the evaluation graph (the full review UI re-renders each time).
+  const graph = page.getByTestId("eval-graph");
+  const box = (await graph.boundingBox())!;
+  for (let i = 0; i < 40; i++) await graph.click({ position: { x: ((i * 37) % 40) * (box.width / 40) + 2, y: box.height / 2 } });
+  await expect(graph).toHaveAttribute("aria-valuenow", /\d+/);
   await record(false);
 
   test.info().annotations.push({ type: "timing", description: JSON.stringify({ browserName, cold, cached }) });

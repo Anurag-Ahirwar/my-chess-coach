@@ -1,0 +1,102 @@
+[
+ {
+  "name": "@dnd-kit/accessibility",
+  "version": "3.1.1",
+  "licence": "MIT"
+ },
+ {
+  "name": "@dnd-kit/core",
+  "version": "6.3.1",
+  "licence": "MIT"
+ },
+ {
+  "name": "@dnd-kit/modifiers",
+  "version": "9.0.0",
+  "licence": "MIT"
+ },
+ {
+  "name": "@dnd-kit/utilities",
+  "version": "3.2.2",
+  "licence": "MIT"
+ },
+ {
+  "name": "@remix-run/route-pattern",
+  "version": "0.22.1",
+  "licence": "MIT"
+ },
+ {
+  "name": "@types/react",
+  "version": "19.3.0",
+  "licence": "MIT"
+ },
+ {
+  "name": "@types/react-dom",
+  "version": "19.3.0",
+  "licence": "MIT"
+ },
+ {
+  "name": "chess.js",
+  "version": "1.4.0",
+  "licence": "BSD-2-Clause"
+ },
+ {
+  "name": "cookie-es",
+  "version": "3.1.1",
+  "licence": "MIT"
+ },
+ {
+  "name": "csstype",
+  "version": "3.2.3",
+  "licence": "MIT"
+ },
+ {
+  "name": "dexie",
+  "version": "4.4.7",
+  "licence": "Apache-2.0"
+ },
+ {
+  "name": "react",
+  "version": "19.3.1",
+  "licence": "MIT"
+ },
+ {
+  "name": "react-chessboard",
+  "version": "5.12.1",
+  "licence": "MIT"
+ },
+ {
+  "name": "react-dom",
+  "version": "19.3.1",
+  "licence": "MIT"
+ },
+ {
+  "name": "react-router",
+  "version": "8.5.1",
+  "licence": "MIT"
+ },
+ {
+  "name": "scheduler",
+  "version": "0.28.0",
+  "licence": "MIT"
+ },
+ {
+  "name": "stockfish",
+  "version": "19.0.1",
+  "licence": "GPL-3.0"
+ },
+ {
+  "name": "tslib",
+  "version": "2.9.1",
+  "licence": "0BSD"
+ },
+ {
+  "name": "zod",
+  "version": "4.6.7",
+  "licence": "MIT"
+ },
+ {
+  "name": "zustand",
+  "version": "5.0.16",
+  "licence": "MIT"
+ }
+]

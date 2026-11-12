@@ -1,31 +1,17 @@
-import { useEffect, useId } from "react";
-import { useAnalysis, type AnalysisViewStatus } from "@/app/analysis/analysisStore";
-import { resolvePoolSize } from "@/app/analysis/engine";
-import { usePreferences, type WorkerCountPreference } from "@/app/prefs";
+import { useEffect } from "react";
+import { useAnalysis } from "@/app/analysis/analysisStore";
+import { usePreferences } from "@/app/prefs";
 import { startReviewSync, useReview } from "@/app/review/reviewStore";
 import { replayUciLine } from "@/core/chess/position";
 import type { PositionResult } from "@/core/engine/analysis";
-import type { PresetName } from "@/core/engine/types";
 import type { GameRecord } from "@/core/game/types";
 import { formatScore } from "@/ui/format";
-import { Button, Card } from "../primitives";
+import { Card } from "../primitives";
 
 /**
- * TEMPORARY Phase 2 debug view (docs/DEVELOPMENT_ROADMAP.md Phase 2): raw engine output per
- * position. The eval bar, graph, labels and accuracy replace it in Phase 3.
+ * Debug view (Phase 2, kept behind ?debug=1 by Phase 3 decision Q4): raw engine output per
+ * position. The analysis controls moved to AnalysisControls.
  */
-
-const PRESET_LABELS: Record<PresetName, string> = { quick: "Quick", standard: "Standard", deep: "Deep" };
-const STATUS_LABELS: Record<AnalysisViewStatus, string> = {
-  none: "Not analysed",
-  saved: "Saved",
-  pending: "Starting…",
-  running: "Running",
-  completed: "Completed",
-  incomplete: "Finished with failed positions",
-  cancelled: "Stopped",
-  failed: "Failed",
-};
 
 export interface AnalysisDebugPanelProps {
   game: GameRecord;
@@ -35,102 +21,14 @@ export interface AnalysisDebugPanelProps {
 }
 
 export function AnalysisDebugPanel({ game, ply, onSelect }: AnalysisDebugPanelProps) {
-  const presetId = useId();
-  const enginesId = useId();
   const preset = usePreferences((state) => state.analysisPreset);
-  const workerCount = usePreferences((state) => state.workerCount);
-  const updatePrefs = usePreferences((state) => state.update);
   const view = useAnalysis((state) => state.view);
-  const show = useAnalysis((state) => state.show);
-  const start = useAnalysis((state) => state.start);
-  const stop = useAnalysis((state) => state.stop);
-
   const current = view && view.gameId === game.id && view.preset === preset ? view : undefined;
-  const running = current?.status === "running" || current?.status === "pending";
   const analysis = current?.analysis;
-  const total = analysis?.totalCount ?? game.plies.length + 1;
-  const done = analysis?.completedCount ?? 0;
-  const failedCount = analysis?.positions.filter((p) => p?.status === "failed").length ?? 0;
-
-  useEffect(() => {
-    void show(game, preset);
-  }, [game, preset, show]);
-
-  const startLabel = analysis && done > 0 && done < total ? "Resume analysis" : "Analyse game";
 
   return (
     <Card title="Engine analysis (debug view)">
-      <p className="mb-3 text-xs text-muted">
-        Temporary view of raw engine output (White&apos;s perspective). Move labels and accuracy arrive in Phase 3.
-      </p>
-
-      <div className="flex flex-wrap items-end gap-3">
-        <label htmlFor={presetId} className="flex flex-col gap-1 text-sm text-muted">
-          Preset
-          <select
-            id={presetId}
-            value={preset}
-            disabled={running}
-            onChange={(event) => updatePrefs({ analysisPreset: event.target.value as PresetName })}
-            className="rounded-md border border-border bg-surface px-2 py-1 text-text"
-          >
-            {(Object.keys(PRESET_LABELS) as PresetName[]).map((name) => (
-              <option key={name} value={name}>
-                {PRESET_LABELS[name]}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label htmlFor={enginesId} className="flex flex-col gap-1 text-sm text-muted">
-          Engines
-          <select
-            id={enginesId}
-            value={String(workerCount)}
-            disabled={running}
-            onChange={(event) => {
-              const value = event.target.value;
-              updatePrefs({ workerCount: value === "auto" ? "auto" : (Number(value) as WorkerCountPreference) });
-            }}
-            className="rounded-md border border-border bg-surface px-2 py-1 text-text"
-          >
-            <option value="auto">Auto ({resolvePoolSize("auto")})</option>
-            {[1, 2, 3, 4].map((n) => (
-              <option key={n} value={n}>
-                {n}
-              </option>
-            ))}
-          </select>
-        </label>
-        {running ? (
-          <Button onClick={() => void stop()}>Stop</Button>
-        ) : (
-          <Button variant="primary" onClick={() => void start(game, preset)}>
-            {startLabel}
-          </Button>
-        )}
-      </div>
-
-      <div className="mt-3 flex flex-col gap-1 text-sm" aria-live="polite">
-        <p>
-          <span className="font-medium" data-testid="analysis-status">
-            {STATUS_LABELS[current?.status ?? "none"]}
-          </span>
-          <span className="text-muted" data-testid="analysis-progress">
-            {" "}
-            · {done} / {total} positions
-          </span>
-          {failedCount > 0 && <span className="text-danger"> · {failedCount} failed</span>}
-        </p>
-        <progress className="h-2 w-full" max={total} value={done} aria-label="Analysis progress" />
-        {current?.reused && <p className="text-muted">Showing the saved analysis — no engine work was needed.</p>}
-        {current?.status === "saved" && done < total && <p className="text-muted">A partial analysis is saved; resuming analyses only the missing positions.</p>}
-        {current?.error && (
-          <p className="text-danger" role="alert">
-            {current.error}
-          </p>
-        )}
-      </div>
-
+      <p className="mb-3 text-xs text-muted">Raw engine output per position (White&apos;s perspective). Shown only with ?debug=1.</p>
       <ReviewStatus />
       <CurrentPosition game={game} ply={ply} result={analysis?.positions[ply] ?? null} />
       <EvalList game={game} ply={ply} positions={analysis?.positions ?? []} onSelect={onSelect} />

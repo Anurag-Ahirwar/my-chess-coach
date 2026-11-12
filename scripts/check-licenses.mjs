@@ -1,6 +1,9 @@
 // Fails if any runtime (production) dependency has a licence outside the allow-list.
 // docs/TESTING_STRATEGY.md §1; the list of dependencies is documented in docs/DEPENDENCIES.md.
+// It also keeps src/ui/about/licences.json (the list on the About / Licences screen) in step:
+// `npm run licenses -- --write` updates it, and the check fails if it is out of date.
 import { execFileSync } from "node:child_process";
+import { readFileSync, writeFileSync } from "node:fs";
 
 const ALLOWED = new Set([
   "MIT",
@@ -39,3 +42,25 @@ if (rejected.length > 0) {
   process.exit(1);
 }
 console.log(`\nAll ${packages.length} runtime dependencies have allowed licences.`);
+
+const LIST = new URL("../src/ui/about/licences.json", import.meta.url);
+const list = `${JSON.stringify(
+  packages.map((pkg) => ({ name: pkg.name, version: pkg.version, licence: licenceOf(pkg) })).sort((a, b) => a.name.localeCompare(b.name)),
+  null,
+  1,
+)}\n`;
+if (process.argv.includes("--write")) {
+  writeFileSync(LIST, list);
+  console.log("Updated src/ui/about/licences.json.");
+} else {
+  let current = "";
+  try {
+    current = readFileSync(LIST, "utf8").replace(/\r\n/g, "\n");
+  } catch {
+    // missing: reported below
+  }
+  if (current !== list) {
+    console.error("src/ui/about/licences.json is out of date: run npm run licenses -- --write");
+    process.exit(1);
+  }
+}

@@ -52,6 +52,11 @@ jobs:
       - run: npx playwright test --project=${{ matrix.browser }}
         env:
           CI: "true"
+      # Performance gates (@perf) run alone, after the rest, so other tests can't starve the page.
+      - if: matrix.browser == 'chromium'
+        run: npx playwright test --project=chromium-perf --workers=1
+        env:
+          CI: "true"
       - if: failure()
         uses: actions/upload-artifact@v4
         with:

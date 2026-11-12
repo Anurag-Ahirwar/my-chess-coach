@@ -15,6 +15,13 @@ export interface Preferences {
   analysisPreset: PresetName;
   /** Number of engines analysing in parallel (docs/TECHNICAL_ARCHITECTURE.md D7, user-configurable). */
   workerCount: WorkerCountPreference;
+  /**
+   * Show the experimental labels Great and Brilliant (Phase 3 Stage 2 decision). Display only: when
+   * off they are shown as Best; the stored review and accuracy are the same either way.
+   */
+  showExperimentalLabels: boolean;
+  /** Show Chess.com's reported accuracy next to ours when the game has it (F4.7, decision U6). */
+  showChesscomAccuracy: boolean;
 }
 
 interface PreferencesStore extends Preferences {
@@ -28,6 +35,8 @@ const DEFAULTS: Preferences = {
   chesscomUsername: "",
   analysisPreset: "standard",
   workerCount: "auto",
+  showExperimentalLabels: false,
+  showChesscomAccuracy: false,
 };
 
 /** Reads saved preferences; storage may be unavailable (private mode, blocked site data). */
@@ -46,6 +55,8 @@ function load(): Preferences {
         ? saved.analysisPreset!
         : DEFAULTS.analysisPreset,
       workerCount: (["auto", 1, 2, 3, 4] as unknown[]).includes(saved.workerCount) ? saved.workerCount! : DEFAULTS.workerCount,
+      showExperimentalLabels: typeof saved.showExperimentalLabels === "boolean" ? saved.showExperimentalLabels : DEFAULTS.showExperimentalLabels,
+      showChesscomAccuracy: typeof saved.showChesscomAccuracy === "boolean" ? saved.showChesscomAccuracy : DEFAULTS.showChesscomAccuracy,
     };
   } catch {
     return DEFAULTS;
@@ -64,7 +75,7 @@ export const usePreferences = create<PreferencesStore>((set, get) => ({
   ...load(),
   update: (patch) => {
     set(patch);
-    const { theme, boardOrientation, chesscomUsername, analysisPreset, workerCount } = get();
-    save({ theme, boardOrientation, chesscomUsername, analysisPreset, workerCount });
+    const { theme, boardOrientation, chesscomUsername, analysisPreset, workerCount, showExperimentalLabels, showChesscomAccuracy } = get();
+    save({ theme, boardOrientation, chesscomUsername, analysisPreset, workerCount, showExperimentalLabels, showChesscomAccuracy });
   },
 }));

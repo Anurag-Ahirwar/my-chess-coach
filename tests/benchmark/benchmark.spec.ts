@@ -72,7 +72,7 @@ async function analyse(
 ): Promise<RunResult> {
   const context = await browser.newContext();
   const page = await openGame(context, opts.file, opts.pgnText ?? pgn(opts.file));
-  const panel = page.getByRole("region", { name: "Engine analysis (debug view)" });
+  const panel = page.getByRole("region", { name: "Analysis", exact: true }); // Phase 3: the controls' card
   await panel.getByLabel("Preset").selectOption({ label: opts.preset });
   await panel.getByLabel("Engines").selectOption(String(opts.engines));
   if (opts.cpuThrottle && opts.cpuThrottle > 1) {

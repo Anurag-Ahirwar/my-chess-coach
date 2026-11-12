@@ -369,7 +369,9 @@ export interface Preferences {
   aiProvider?: "gemini" | "claude" | "openai"; // type is provider-independent; only "gemini" is selectable until Phase 4b
   aiModel?: string;
   sendPlayerNames: boolean;    // default false
-  showChesscomAccuracy: boolean;
+  showChesscomAccuracy: boolean;  // implemented in Phase 3; default false (U6: opt-in)
+  showExperimentalLabels: boolean; // Phase 3: default false. Display only: Great and Brilliant are shown as Best
+                                   // and counted as Best; stored reviews, labels and accuracy never change.
 }
 
 // IndexedDB table "secrets": ONLY when the user opts in to "remember key"

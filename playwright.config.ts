@@ -16,7 +16,13 @@ export default defineConfig({
     trace: "retain-on-failure",
   },
   projects: [
-    { name: "chromium", use: { ...devices["Desktop Chrome"] } },
+    // Main-thread performance gates (tests tagged @perf: no long task over 50 ms) are only valid
+    // without CPU contention from other tests, so in Chromium they run in their own project, alone:
+    //   npx playwright test --project=chromium               (everything else, in parallel)
+    //   npx playwright test --project=chromium-perf --workers=1
+    // Firefox has no Long Tasks API; it runs the @perf tests' functional checks with the rest.
+    { name: "chromium", use: { ...devices["Desktop Chrome"] }, grepInvert: /@perf/ },
+    { name: "chromium-perf", use: { ...devices["Desktop Chrome"] }, grep: /@perf/ },
     { name: "firefox", use: { ...devices["Desktop Firefox"] } },
   ],
   webServer: {

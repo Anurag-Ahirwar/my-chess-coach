@@ -64,6 +64,35 @@
   --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Menlo, Consolas, monospace;
 }
 
+/*
+ * Move labels (Phase 3). White text on each colour meets WCAG AA (≥ 4.5:1) in both themes; the
+ * label's symbol and name always accompany the colour.
+ */
+.label-brilliant { --label: #13636b; }
+.label-great { --label: #2a5a96; }
+.label-best { --label: #2d6a30; }
+.label-excellent { --label: #3c6b36; }
+.label-good { --label: #556427; }
+.label-book { --label: #75562a; }
+.label-forced { --label: #55534c; }
+.label-inaccuracy { --label: #7f5900; }
+.label-mistake { --label: #a03f00; }
+.label-miss { --label: #8a2c6a; }
+.label-blunder { --label: #a8261b; }
+
+.label-chip {
+  background: var(--label);
+  color: #ffffff;
+}
+
+.label-text {
+  color: var(--label);
+}
+
+:root[data-theme="dark"] .label-text {
+  color: color-mix(in srgb, var(--label) 35%, #ffffff);
+}
+
 html,
 body {
   background: var(--bg);

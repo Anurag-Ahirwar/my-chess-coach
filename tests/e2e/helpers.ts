@@ -90,3 +90,43 @@ export async function mockChessCom(page: Page, options: MockApiOptions): Promise
 
 export const archiveUrl = (user: string, year: number, month: number) =>
   `${API}/${user}/games/${year}/${String(month).padStart(2, "0")}`;
+
+/**
+ * Puts a recorded RawAnalysis (tests/fixtures/review/raw) into the app's IndexedDB, so a review can
+ * be shown without running the engine. The app must have opened its database already (e.g. after
+ * an import); reload afterwards so the analysis store picks it up.
+ */
+export async function seedAnalysis(page: Page, raw: unknown): Promise<void> {
+  await page.evaluate(async (record) => {
+    const db = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open("chess-coach");
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(new Error(String(request.error)));
+    });
+    await new Promise<void>((resolve, reject) => {
+      const tx = db.transaction("rawAnalyses", "readwrite");
+      tx.objectStore("rawAnalyses").put(record);
+      tx.oncomplete = () => resolve();
+      tx.onerror = () => reject(new Error(String(tx.error)));
+    });
+    db.close();
+  }, raw);
+}
+
+/** Every record of one IndexedDB store, as JSON text (to compare before and after). */
+export async function storeContents(page: Page, store: "reviews" | "rawAnalyses"): Promise<string> {
+  return page.evaluate(async (name) => {
+    const db = await new Promise<IDBDatabase>((resolve, reject) => {
+      const request = indexedDB.open("chess-coach");
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(new Error(String(request.error)));
+    });
+    const rows = await new Promise<unknown[]>((resolve, reject) => {
+      const request = db.transaction(name, "readonly").objectStore(name).getAll();
+      request.onsuccess = () => resolve(request.result);
+      request.onerror = () => reject(new Error(String(request.error)));
+    });
+    db.close();
+    return JSON.stringify(rows);
+  }, store);
+}

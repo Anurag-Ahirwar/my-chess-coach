@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from "react-router";
+import { AboutPage } from "./pages/AboutPage";
 import { HomePage } from "./pages/HomePage";
 import { NotFoundPage } from "./pages/NotFoundPage";
 import { ReviewPage } from "./pages/ReviewPage";
@@ -22,7 +23,12 @@ export function App() {
             <img src="/favicon.svg" alt="" width={24} height={24} />
             Chess Coach
           </Link>
-          <ThemeSelect />
+          <div className="flex items-center gap-4">
+            <Link to="/about" className="text-sm text-accent underline">
+              About
+            </Link>
+            <ThemeSelect />
+          </div>
         </div>
       </header>
       <StorageBanner />
@@ -30,6 +36,7 @@ export function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/review/:gameId" element={<ReviewPage />} />
+          <Route path="/about" element={<AboutPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>

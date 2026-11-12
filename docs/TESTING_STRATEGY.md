@@ -220,6 +220,8 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
 9. Accessibility smoke test (axe): no critical violations on Home and Review.
 10. Retry a mistake: a wrong move gives feedback, the correct move is accepted, and the SRS schedule updates.
 
+**Phase 3 (Stage 2, Milestone 3)** (`tests/e2e/review-ui.spec.ts`, recorded Standard analyses put into IndexedDB, so no engine time): experimental labels hidden by default and shown on request, with accuracy, the cached review and the raw analysis byte-identical either way, and the preference surviving a reload; the eval bar's sign for a position good for White and one good for Black; graph click and keyboard navigation; the board badge, arrows and move panel following navigation; a partial analysis showing no final numbers and not cached; a failed position's "not included" note; axe (light and dark) and 375 px with a review shown; the About / Licences page. The analysis controls moved to the "Analysis" card and the raw debug view is shown only with `?debug=1` or localStorage `chess-coach.debug = "1"` (decision Q4), so the Phase 2 specs below find the controls in that card and turn the debug view on; their checks are unchanged.
+
 **Implemented in Phase 2** (`tests/e2e/analysis.spec.ts`, real engine in browser Workers), covering items 2, 5 and 6 for the debug view:
 - a whole game analysed with the raw evaluation per position, mate shown as `M1` and the final checkmate resolved by rules;
 - keyboard navigation while analysis runs;
@@ -250,7 +252,9 @@ Raw results are committed in `docs/benchmarks/*.json`. The summary is in `docs/B
   2. opening the longest regression game (207 plies) with and without a cached review;
   3. 40 clicks on graph points plus 60 arrow-key presses sent rapidly.
 
-  Pass means zero long tasks over 50 ms apart from the control. The Long Tasks API exists only in Chromium; Firefox records "not measurable". The Event Timing API's maximum and 95th-percentile interaction duration are recorded too, report-only, in both browsers.
+  Pass means zero long tasks over 50 ms apart from the control. The Long Tasks API exists only in Chromium; Firefox records "not measurable".
+
+  These gates are tagged `@perf` and run in their own Playwright project, **alone**: `npx playwright test --project=chromium-perf --workers=1` (a separate CI step after the main Chromium run). Found in Stage 2: with the full review UI, a step through a 207-ply game costs a few milliseconds of work, but when other tests run Stockfish in parallel the starved page crosses 50 ms. That is contention, not the page, so the measurement is isolated rather than the threshold loosened. The navigation path was also made cheaper (memoised move cells, graph drawing, board and summary; the arriving review rendered with `useDeferredValue`). The Event Timing API's maximum and 95th-percentile interaction duration are recorded too, report-only, in both browsers.
 - **Total derivation time (report only).** The target is set from the numbers at the Phase 3 Stage 2 checkpoint, with the owner's approval.
   - **Node** (`vitest bench`): `deriveReview` on the 10 regression games and a synthetic 300-ply game; 5 warm-up and 30 measured runs; median, 95th percentile and maximum; split into SAN conversion, classification, accuracy and phases.
   - **Browser** (`npm run bench`): `performance.mark`/`measure` for worker start, opening-index load, the worker round trip, the cached-review read and the first paint; short, typical and long games; 10 runs each, cold and warm; plus a 4× CPU-throttled run (main thread only, BENCHMARKS §2.6).

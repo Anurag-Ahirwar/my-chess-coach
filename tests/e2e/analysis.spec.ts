@@ -6,7 +6,9 @@ const SCHOLARS_MATE = '[Event "Scholar"]\n[White "A"]\n[Black "B"]\n\n1. e4 e5 2
 
 const status = (page: Page) => page.getByTestId("analysis-status");
 const progress = (page: Page) => page.getByTestId("analysis-progress");
-const panel = (page: Page) => page.getByRole("region", { name: "Engine analysis (debug view)" });
+// Phase 3 (decision Q4): the analysis controls moved to the "Analysis" card, and the raw per-position
+// data (eval-N, current-eval, line-N-score) is in the debug view, shown with the debug flag.
+const panel = (page: Page) => page.getByRole("region", { name: "Analysis", exact: true });
 
 async function choose(page: Page, preset: "Quick" | "Standard" | "Deep", engines: "1" | "2" | "3" | "4" | "auto" = "auto") {
   await panel(page).getByLabel("Preset").selectOption({ label: preset });
@@ -19,6 +21,10 @@ async function doneCount(page: Page): Promise<number> {
 }
 
 test.describe("engine analysis debug view", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => localStorage.setItem("chess-coach.debug", "1"));
+  });
+
   test("analyses a whole game and shows the raw evaluation per position", async ({ page }) => {
     await pastePgn(page, SCHOLARS_MATE);
     await choose(page, "Quick");
@@ -114,7 +120,7 @@ test.describe("engine analysis debug view", () => {
     await expect(page.getByRole("alert").filter({ hasText: "isn't letting the app save data" })).toBeVisible();
   });
 
-  test("no main-thread task over 50 ms while a full game is analysed", async ({ page, browserName }) => {
+  test("no main-thread task over 50 ms while a full game is analysed", { tag: "@perf" }, async ({ page, browserName }) => {
     test.skip(browserName !== "chromium", "The Long Tasks API is Chromium-only.");
     test.setTimeout(180_000);
     await page.addInitScript(() => {
