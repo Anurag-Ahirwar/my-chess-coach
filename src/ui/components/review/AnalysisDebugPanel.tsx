@@ -2,6 +2,7 @@ import { useEffect, useId } from "react";
 import { useAnalysis, type AnalysisViewStatus } from "@/app/analysis/analysisStore";
 import { resolvePoolSize } from "@/app/analysis/engine";
 import { usePreferences, type WorkerCountPreference } from "@/app/prefs";
+import { startReviewSync, useReview } from "@/app/review/reviewStore";
 import { replayUciLine } from "@/core/chess/position";
 import type { PositionResult } from "@/core/engine/analysis";
 import type { PresetName } from "@/core/engine/types";
@@ -130,9 +131,37 @@ export function AnalysisDebugPanel({ game, ply, onSelect }: AnalysisDebugPanelPr
         )}
       </div>
 
+      <ReviewStatus />
       <CurrentPosition game={game} ply={ply} result={analysis?.positions[ply] ?? null} />
       <EvalList game={game} ply={ply} positions={analysis?.positions ?? []} onSelect={onSelect} />
     </Card>
+  );
+}
+
+/**
+ * TEMPORARY (Phase 3 Stage 2, Milestone 2): the review derived in the Worker, as data only, so it
+ * can be checked before the review UI exists (Milestone 3).
+ */
+function ReviewStatus() {
+  const { status, review, source, timings, error } = useReview();
+  useEffect(() => startReviewSync(), []);
+  const graded = review?.moves.filter((m) => m.graded).length ?? 0;
+  return (
+    <p
+      className="mt-2 text-sm text-muted"
+      data-testid="review-status"
+      data-status={status}
+      data-source={source ?? ""}
+      data-complete={review ? String(review.coverage.complete) : ""}
+      data-total-ms={timings ? timings.totalMs.toFixed(1) : ""}
+      data-derive-ms={timings?.deriveMs !== undefined ? timings.deriveMs.toFixed(1) : ""}
+      data-index-ms={timings?.indexMs !== undefined ? timings.indexMs.toFixed(1) : ""}
+      data-round-trip-ms={timings?.roundTripMs !== undefined ? timings.roundTripMs.toFixed(1) : ""}
+    >
+      Review: {status}
+      {review && ` · ${graded} of ${review.moves.length} moves labelled · ${review.coverage.complete ? "complete" : "partial"} · ${source === "cache" ? "from the cache" : "derived"}`}
+      {error && ` · ${error}`}
+    </p>
   );
 }
 

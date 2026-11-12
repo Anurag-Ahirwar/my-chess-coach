@@ -1,10 +1,11 @@
-import { copyFileSync, existsSync, mkdirSync, statSync } from "node:fs";
+import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath, URL } from "node:url";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import type { Plugin } from "vite";
 import { defineConfig } from "vitest/config";
+import { PINNED, buildOpeningIndex, readDataset } from "./scripts/build-openings.mjs";
 
 /**
  * Content-Security-Policy for production builds (docs/TECHNICAL_ARCHITECTURE.md §10).
@@ -56,8 +57,33 @@ function engineFiles(): Plugin {
   };
 }
 
+/**
+ * Generates the opening index (docs/CHESS_ANALYSIS_METHODOLOGY.md §5.8, Phase 3 decision Q7)
+ * from the pinned dataset in data/openings/ into public/openings/index.json. Generated and
+ * git-ignored like the engine files; rebuilt only when it is missing, from another dataset commit,
+ * or older than the build script. The review Worker loads it lazily, outside the main bundle.
+ */
+function openingIndex(): Plugin {
+  return {
+    name: "opening-index",
+    buildStart() {
+      const out = fileURLToPath(new URL("./public/openings/index.json", import.meta.url));
+      const script = fileURLToPath(new URL("./scripts/build-openings.mjs", import.meta.url));
+      if (existsSync(out) && statSync(out).mtimeMs >= statSync(script).mtimeMs) {
+        try {
+          if ((JSON.parse(readFileSync(out, "utf8")) as { commit?: string }).commit === PINNED.commit) return;
+        } catch {
+          // unreadable: rebuild below
+        }
+      }
+      mkdirSync(join(out, ".."), { recursive: true });
+      writeFileSync(out, JSON.stringify(buildOpeningIndex(readDataset())));
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [engineFiles(), react(), tailwindcss(), contentSecurityPolicy()],
+  plugins: [engineFiles(), openingIndex(), react(), tailwindcss(), contentSecurityPolicy()],
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),

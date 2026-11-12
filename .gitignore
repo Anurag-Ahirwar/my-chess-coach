@@ -15,5 +15,8 @@ Thumbs.db
 # Generated: copied from node_modules/stockfish at build time (vite.config.ts, engine-files)
 public/engine/
 
+# Generated: the opening index, built from data/openings at build time (vite.config.ts, opening-index)
+public/openings/
+
 # The owner's local notes and prompts (decision D15)
 Claude outputs/
