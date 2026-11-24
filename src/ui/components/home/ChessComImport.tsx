@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import { useNavigate } from "react-router";
-import { useGames } from "@/app/games";
+import { addGamesWithin } from "@/app/games";
 import {
   GameImportError,
   chessComClient,
@@ -29,7 +29,6 @@ export function ChessComImport() {
   const inputId = useId();
   const monthId = useId();
   const navigate = useNavigate();
-  const addGames = useGames((state) => state.add);
   const savedUsername = usePreferences((state) => state.chesscomUsername);
   const updatePrefs = usePreferences((state) => state.update);
 
@@ -100,8 +99,8 @@ export function ChessComImport() {
     setError(undefined);
     try {
       const record = await importChessComGame(summary.game);
-      // Wait for the save before navigating (see PgnImport). addGames never throws.
-      await addGames([record]);
+      // Wait for the save before navigating, up to a limit (see PgnImport). Never throws.
+      await addGamesWithin([record]);
       void navigate(`/review/${encodeURIComponent(record.id)}`);
     } catch (e) {
       setError(errorText(e));

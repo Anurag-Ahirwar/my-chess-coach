@@ -12,6 +12,8 @@ export function HomePage() {
   const listLoaded = useGames((state) => state.listLoaded);
   const loadAll = useGames((state) => state.loadAll);
   const storageMode = useStorageStatus((state) => state.mode);
+  const unsaved = useGames((state) => state.unsaved);
+  const unsavedStates = order.map((id) => unsaved[id]);
   const games = order.map((id) => byId[id]).filter((game) => game !== undefined);
 
   useEffect(() => {
@@ -34,7 +36,11 @@ export function HomePage() {
           <p className="mt-2 text-sm text-muted">
             {storageMode === "memory"
               ? "Saving isn't available in this browser, so these games are kept until you close the tab."
-              : "Saved in this browser."}
+              : unsavedStates.includes("saving")
+                ? "Still saving… don't close or reload this tab yet."
+                : unsavedStates.includes("failed")
+                  ? "Some of these games couldn't be saved and may be gone after you close or reload this tab."
+                  : "Saved in this browser."}
           </p>
         </Card>
       )}

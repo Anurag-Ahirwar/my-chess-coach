@@ -192,6 +192,8 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
   - `persist()` is asked once and its answer recorded;
   - games are kept in memory when saving fails;
   - games load after a reload, and unknown ids are marked missing.
+- **Slow or stalled storage on import** (owner decision, 2026-11-25; `tests/unit/app/saveWait.test.ts`, `tests/e2e/slow-storage.spec.ts`). Found by Firefox/Windows in CI (run 45457517299): the trace shows an import waiting over 5 s for its save, silently; why storage was slow there is unknown. Since `f05827f` an import waited without limit. Now it waits at most 3 s (`SAVE_WAIT_MS`), then opens the review with "Still saving this game…" while the save goes on. Accepted trade-off: a reload during that message can lose the game. "Saved in this browser." appears only when every listed game is stored. Covered: normal, slow, never-answering and failing storage, several games, and repeated saves of one game; three of the four E2E tests fail on the previous code.
+  - **Known gap, not fixed:** starting an analysis and Chess.com month imports also wait for storage without a limit.
 - **Analysis controller:**
   - throttled saves (fewer than one per result, always a final one);
   - resume after a reload, where only unanalysed positions are searched;

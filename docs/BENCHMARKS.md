@@ -153,6 +153,7 @@ Converting engine lines to SAN with chess.js dominates (73–81% of the total); 
 
 ### 6.3 Reliability of the long-task gates
 - Run alone (`chromium-perf`, one worker): **10 of 10 passed** (both gates, five times).
+- **That was on a quiet machine.** Later the same day, with other programs running (41% CPU load when sampled), isolated runs failed too: 1 of 2 tests on the import change (53 ms), then, alternating, 2 of 6 on the previous commit (54 and 52 ms) and 0 of 12 on the import change. The margin below 50 ms is thin on this laptop.
 - Run in parallel with the rest of the Chromium suite, as Phase 2 did: **2 of 3 full runs failed** (76 and 77 ms).
 
 ### 6.4 Not done as planned

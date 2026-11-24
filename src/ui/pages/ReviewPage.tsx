@@ -126,6 +126,7 @@ function Review({ game }: { game: GameRecord }) {
   return (
     <div className="flex flex-col gap-4">
       <GameHeader game={game} />
+      <SavingNotice gameId={game.id} />
       <div className="grid gap-4 lg:grid-cols-[minmax(0,34rem)_minmax(16rem,1fr)_minmax(16rem,1fr)]">
         <div className="flex min-w-0 flex-col gap-3">
           <div className="flex items-stretch gap-2">
@@ -180,6 +181,19 @@ function Review({ game }: { game: GameRecord }) {
         </div>
       </div>
     </div>
+  );
+}
+
+/** Shown while (or if) the game isn't in storage, e.g. when an import stopped waiting for a slow save. */
+function SavingNotice({ gameId }: { gameId: string }) {
+  const unsaved = useGames((state) => state.unsaved[gameId]);
+  if (!unsaved) return null;
+  return (
+    <p role="status" data-testid="saving-notice" className="rounded-md border border-border bg-surface-2 px-3 py-2 text-sm">
+      {unsaved === "saving"
+        ? "Still saving this game… don't close or reload this tab yet, or the game may be lost."
+        : "This import couldn't be saved. The game may be gone after you close or reload this tab."}
+    </p>
   );
 }
 

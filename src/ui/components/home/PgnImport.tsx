@@ -1,6 +1,6 @@
 import { useId, useState } from "react";
 import { useNavigate } from "react-router";
-import { useGames } from "@/app/games";
+import { addGamesWithin } from "@/app/games";
 import { importPgnText } from "@/app/importService";
 import type { GameRecord } from "@/core/game/types";
 import { describePgnError, type PgnError } from "@/core/pgn";
@@ -13,7 +13,6 @@ export function PgnImport() {
   const textId = useId();
   const fileId = useId();
   const navigate = useNavigate();
-  const addGames = useGames((state) => state.add);
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
   const [errors, setErrors] = useState<PgnError[]>([]);
@@ -32,8 +31,9 @@ export function PgnImport() {
         return;
       }
       // Wait for the save before navigating: a reload or tab close right after an import must not
-      // lose the game (found by Firefox E2E in CI). addGames never throws; it reports storage problems.
-      await addGames(records);
+      // lose the game (found by Firefox E2E in CI). The wait is capped: if storage is slow or stalled the
+      // review opens anyway and says the game is still being saved. Never throws.
+      await addGamesWithin(records);
       if (records.length === 1 && parseErrors.length === 0) void navigate(`/review/${encodeURIComponent(records[0]!.id)}`);
       else setChoices(records);
     } finally {
