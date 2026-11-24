@@ -84,7 +84,7 @@ describe("phase divider rules (methodology §7, M12)", () => {
   });
 });
 
-describe("hand-annotated games (tests/fixtures/phases)", () => {
+describe("annotated games (tests/fixtures/phases)", () => {
   const { games } = fixtureJson<{ games: Annotation[] }>("phases", "annotations.json");
   for (const annotation of games) {
     it(`${annotation.pgn} with last Book position ${String(annotation.lastBookPosition)}`, async () => {

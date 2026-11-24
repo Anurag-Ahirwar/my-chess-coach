@@ -140,6 +140,7 @@ test.describe("review UI", () => {
     await page.getByRole("button", { name: "White: Nh4", exact: true }).click();
     for (const scheme of ["light", "dark"] as const) {
       await page.emulateMedia({ colorScheme: scheme });
+      await page.waitForTimeout(600); // let the theme's colour transitions finish before measuring contrast
       const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
       const serious = results.violations.filter((v) => v.impact === "critical" || v.impact === "serious").map((v) => `${v.id}: ${v.help}`);
       expect(serious, scheme).toEqual([]);

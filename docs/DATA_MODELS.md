@@ -238,7 +238,7 @@ export interface MotifTag {
 }
 ```
 
-`GameReview` is cached in the `reviews` table keyed by `[rawAnalysisId, methodologyVersion]`. On load: if the methodology version matches, the cached review is used. Otherwise it is re-derived from `RawAnalysis` in a few milliseconds.
+`GameReview` is cached in the `reviews` table keyed by `[rawAnalysisId, methodologyVersion]`. On load: if the methodology version matches, the cached review is used. Otherwise it is re-derived from `RawAnalysis` in the review Worker, which takes about 50 ms to 0.5 s depending on the game's length (BENCHMARKS §6; the Phase 0 draft said "a few milliseconds").
 
 **Phase 3 decisions (Stage 0, approved 2026-11-13):**
 - `derivedAt` was dropped from `GameReview` so that the same raw analysis and config always give an identical object (determinism, regression snapshots). The cache record carries the time instead (§11).

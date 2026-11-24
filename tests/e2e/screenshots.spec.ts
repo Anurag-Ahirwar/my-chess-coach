@@ -23,6 +23,7 @@ test("desktop, light and dark, a Blunder selected", async ({ page }) => {
   await page.getByRole("button", { name: "White: Nh4", exact: true }).click();
   for (const scheme of ["light", "dark"] as const) {
     await page.emulateMedia({ colorScheme: scheme });
+    await page.waitForTimeout(600); // after the colour transitions
     await page.screenshot({ path: join(DIR!, `review-desktop-${scheme}.png`), fullPage: true });
   }
 });

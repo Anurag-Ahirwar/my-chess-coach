@@ -23,6 +23,7 @@
     "test:engine": "vitest run --project engine",
     "record:engine": "node scripts/record-engine-fixtures.mjs",
     "bench": "playwright test -c playwright.bench.config.ts",
+    "bench:review": "vitest run --project engine tests/engine/benchReview.test.ts",
     "bench:builds": "node scripts/benchmark-engine-builds.mjs"
   },
   "dependencies": {

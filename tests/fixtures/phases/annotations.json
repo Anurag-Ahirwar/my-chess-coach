@@ -1,5 +1,5 @@
 {
-  "comment": "Hand-annotated phase boundaries (methodology §7, M12). Position k = after ply k. lastBookPosition is an input here (null = no Book position, so the 12-move guard is position 24). Each boundary names the move that causes it.",
+  "comment": "Annotated phase boundaries (methodology §7, M12). Not annotated by a person: computed by a throwaway script and confirmed by a second, independent one (docs/TESTING_STRATEGY.md §3); owner review open. Position k = after ply k. lastBookPosition is an input here (null = no Book position, so the 12-move guard is position 24). Each boundary names the move that causes it.",
   "games": [
     {
       "pgn": "chesscom/06-blitz.pgn",

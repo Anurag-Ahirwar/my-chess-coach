@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | v0.5 — **Phase 1 accepted**: follow-ups F1 and F2 are both closed. **Phase 2 accepted**: 16 of 16 acceptance items PASS, CI green in all jobs, merged into `main` on 2026-11-11 (`4b3fcbb`). Phase 3 not started; it waits for the owner's explicit approval. |
+| Status | v0.5 — **Phase 1 accepted**: follow-ups F1 and F2 are both closed. **Phase 2 accepted**: 16 of 16 acceptance items PASS, CI green in all jobs, merged into `main` on 2026-11-11 (`4b3fcbb`). **Phase 3 in progress** on branch `phase-3`: Stage 1 and Stage 2 Milestones 1–3 approved; Milestone 4 awaiting review. Not merged. |
 | Date | 2026-11-03 |
 
 ---
@@ -187,7 +187,7 @@ Implemented on branch `phase-2` in four commits (Stages 1–4). The approved Sta
 
 **Phase 2 follow-ups:**
 - **F1** (Firefox E2E): **closed 2026-11-11.** Firefox passes in CI on Ubuntu and Windows (item 14).
-- **F3:** add an E2E test for an analysis *in progress* across a reload with the real engine, i.e. a reload *during* a run rather than after Stop. Optional: the controller-level test covers the interrupted-save case.
+- **F3** (**closed 2026-11-25** by `tests/e2e/review-engine.spec.ts`): add an E2E test for an analysis *in progress* across a reload with the real engine, i.e. a reload *during* a run rather than after Stop. Optional: the controller-level test covers the interrupted-save case.
 ### Phase 3 — Game review system → **M1**
 
 **Build**

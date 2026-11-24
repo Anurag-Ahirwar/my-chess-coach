@@ -112,3 +112,49 @@ Node child processes, same 33 positions (every 8th position of 02-blitz and 21-d
 - **Memory on low-RAM devices:** 4 engines ≈ 0.6 GB. A future improvement could cap the "auto" engine count by `navigator.deviceMemory` (Chromium only). This is not in Phase 2 scope; it's recorded as a risk in the roadmap.
 - Firefox was not benchmarked: Playwright's Firefox can't start on this machine (R14).
 - Re-run `npm run bench` after any engine, preset or pool change, and update this file.
+
+## 6. Review derivation and the review page (Phase 3, 2026-11-25)
+
+Machine: 11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz, 12 logical cores, Node v24.22.1, Chromium 156.0.8078.4. Report only: no target is set yet (it is set from these numbers with the owner's approval). Raw data: `docs/benchmarks/2026-11-25-review-node.json` and `2026-11-25-review-browser.json`.
+
+### 6.1 Derivation in Node (`BENCH_REVIEW=<file> npm run bench:review`)
+5 warm-up and 30 measured runs, milliseconds. The last four columns are medians of separate measurements of each part, so they don't add up to the total: "SAN" converts one line per position only, and "classify" uses Standard settings with a fixed legal-move count.
+
+| Game | Plies | Median | p95 | Max | SAN | Classify | Accuracy | Phases |
+|---|---|---|---|---|---|---|---|---|
+| 23-daily | 20 | 36.5 | 39.4 | 40.1 | 28.8 | 1.3 | 0 | 0.1 |
+| 07-bullet | 38 | 70.3 | 76 | 81.3 | 55.8 | 3.4 | 0.1 | 0.1 |
+| 06-blitz | 68 | 118.2 | 128.2 | 140.9 | 91.2 | 4.6 | 0.1 | 0.2 |
+| 02-blitz | 76 | 204.1 | 225 | 225.6 | 165.9 | 5.7 | 0.1 | 0.3 |
+| 21-daily | 86 | 192.1 | 208.3 | 217.4 | 154.4 | 7.1 | 0.1 | 0.3 |
+| 10-bullet | 133 | 304.4 | 320.6 | 325.5 | 239.9 | 12 | 0.2 | 0.3 |
+| 19-rapid | 134 | 297 | 307 | 315.8 | 236.1 | 15.4 | 0.2 | 0.3 |
+| 12-blitz | 139 | 348.2 | 360.4 | 366.4 | 269.4 | 18.7 | 0.2 | 0.4 |
+| 16-rapid | 160 | 458 | 472.6 | 509.5 | 365.3 | 15.5 | 0.2 | 0.4 |
+| 14-blitz | 207 | 497.8 | 550.3 | 958.5 | 366.5 | 27.5 | 0.3 | 0.5 |
+| synthetic-300 | 300 | 814.7 | 832.8 | 852.3 | 591.7 | 101.2 | 0.4 | 0.8 |
+
+Converting engine lines to SAN with chess.js dominates (73–81% of the total); classification is next, and accuracy and phases are negligible. `synthetic-300` is 300 seeded random legal moves with random scores, so it is not representative of a real game.
+
+### 6.2 In the browser (`npm run bench -- review`)
+10 runs per row, each in a fresh context, medians in milliseconds unless noted. "Other" is the Worker round trip minus derivation and index (Worker start and message copying; not measured separately). "Shown" is from the start of a page reload to the first frame after the final summary appears, so it includes loading the app. CPU throttling slows only the main thread (§2.6).
+
+| Plies | CPU | Derived: total (median / p95) | Derive | Index | Other | Shown | Cached: total | Shown | Key press (median / p95 / max) | Long tasks per 40 key presses |
+|---|---|---|---|---|---|---|---|---|---|---|
+| 20 | 1× | 114.9 / 153.7 | 51 | 31.1 | 22.1 | 241.1 | 4.7 | 102.6 | 24 / 32 / 32 | 0–0 (max 0) |
+| 20 | 4× | 141.5 / 171.8 | 50.6 | 31.8 | 25.5 | 847.5 | 18.4 | 605.2 | 64 / 96 / 112 | 5–9 (max 96) |
+| 76 | 1× | 218.8 / 239 | 156.3 | 31.7 | 22.6 | 357.6 | 5.7 | 108 | 16 / 24 / 32 | 0–0 (max 0) |
+| 76 | 4× | 261.9 / 273.5 | 159.4 | 32.1 | 28.5 | 1084.6 | 24.5 | 753.3 | 80 / 88 / 120 | 6–16 (max 87) |
+| 207 | 1× | 466 / 506.4 | 393.3 | 32 | 23.3 | 651.2 | 9.2 | 136.7 | 24 / 32 / 40 | 0–0 (max 0) |
+| 207 | 4× | 524.1 / 570.8 | 409.7 | 31.7 | 34 | 1605.9 | 43.7 | 1053.5 | 96 / 120 / 152 | 17–25 (max 103) |
+
+- The key-press durations come from the Event Timing API, which rounds to 8 ms and reports only events of at least 16 ms.
+- **Unthrottled: no long task in any run. At 4× throttle every run had long tasks**, so on a much slower machine stepping through a reviewed game would not meet the 50 ms target.
+
+### 6.3 Reliability of the long-task gates
+- Run alone (`chromium-perf`, one worker): **10 of 10 passed** (both gates, five times).
+- Run in parallel with the rest of the Chromium suite, as Phase 2 did: **2 of 3 full runs failed** (76 and 77 ms).
+
+### 6.4 Not done as planned
+- The Node benchmark is a gated test in the `engine` project rather than `vitest bench`, which can't report the split and the 95th percentile together.
+- The app has no `performance.mark` calls; the timings the review store already keeps are read instead, so Worker start isn't separated from message copying, and Event Timing was measured in Chromium only.

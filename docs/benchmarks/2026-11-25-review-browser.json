@@ -1,0 +1,429 @@
+{
+ "browser": "156.0.8078.4",
+ "cpu": "11th Gen Intel(R) Core(TM) i5-11400H @ 2.70GHz",
+ "cores": 12,
+ "runs": 10,
+ "unit": "ms",
+ "rows": [
+  {
+   "name": "23-daily",
+   "plies": 20,
+   "cpuThrottle": 1,
+   "derived": {
+    "totalMs": {
+     "median": 114.9,
+     "p95": 153.7,
+     "max": 153.7,
+     "n": 10
+    },
+    "deriveMs": {
+     "median": 51,
+     "p95": 56,
+     "max": 56,
+     "n": 10
+    },
+    "indexMs": {
+     "median": 31.1,
+     "p95": 35.5,
+     "max": 35.5,
+     "n": 10
+    },
+    "otherRoundTripMs": {
+     "median": 22.1,
+     "p95": 57.8,
+     "max": 57.8,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 241.1,
+     "p95": 324,
+     "max": 324,
+     "n": 10
+    }
+   },
+   "cached": {
+    "totalMs": {
+     "median": 4.7,
+     "p95": 8.4,
+     "max": 8.4,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 102.6,
+     "p95": 120.8,
+     "max": 120.8,
+     "n": 10
+    }
+   },
+   "keydownMs": {
+    "median": 24,
+    "p95": 32,
+    "max": 32,
+    "n": 335
+   },
+   "longTasksPerRun": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "longestTaskMs": 0
+  },
+  {
+   "name": "23-daily",
+   "plies": 20,
+   "cpuThrottle": 4,
+   "derived": {
+    "totalMs": {
+     "median": 141.5,
+     "p95": 171.8,
+     "max": 171.8,
+     "n": 10
+    },
+    "deriveMs": {
+     "median": 50.6,
+     "p95": 60.4,
+     "max": 60.4,
+     "n": 10
+    },
+    "indexMs": {
+     "median": 31.8,
+     "p95": 36.2,
+     "max": 36.2,
+     "n": 10
+    },
+    "otherRoundTripMs": {
+     "median": 25.5,
+     "p95": 34.9,
+     "max": 34.9,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 847.5,
+     "p95": 887.9,
+     "max": 887.9,
+     "n": 10
+    }
+   },
+   "cached": {
+    "totalMs": {
+     "median": 18.4,
+     "p95": 24.5,
+     "max": 24.5,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 605.2,
+     "p95": 649.7,
+     "max": 649.7,
+     "n": 10
+    }
+   },
+   "keydownMs": {
+    "median": 64,
+    "p95": 96,
+    "max": 112,
+    "n": 382
+   },
+   "longTasksPerRun": [
+    7,
+    9,
+    6,
+    6,
+    9,
+    7,
+    9,
+    5,
+    7,
+    7
+   ],
+   "longestTaskMs": 96
+  },
+  {
+   "name": "02-blitz",
+   "plies": 76,
+   "cpuThrottle": 1,
+   "derived": {
+    "totalMs": {
+     "median": 218.8,
+     "p95": 239,
+     "max": 239,
+     "n": 10
+    },
+    "deriveMs": {
+     "median": 156.3,
+     "p95": 170.8,
+     "max": 170.8,
+     "n": 10
+    },
+    "indexMs": {
+     "median": 31.7,
+     "p95": 35.7,
+     "max": 35.7,
+     "n": 10
+    },
+    "otherRoundTripMs": {
+     "median": 22.6,
+     "p95": 24.7,
+     "max": 24.7,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 357.6,
+     "p95": 384.6,
+     "max": 384.6,
+     "n": 10
+    }
+   },
+   "cached": {
+    "totalMs": {
+     "median": 5.7,
+     "p95": 11.1,
+     "max": 11.1,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 108,
+     "p95": 114.3,
+     "max": 114.3,
+     "n": 10
+    }
+   },
+   "keydownMs": {
+    "median": 16,
+    "p95": 24,
+    "max": 32,
+    "n": 399
+   },
+   "longTasksPerRun": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "longestTaskMs": 0
+  },
+  {
+   "name": "02-blitz",
+   "plies": 76,
+   "cpuThrottle": 4,
+   "derived": {
+    "totalMs": {
+     "median": 261.9,
+     "p95": 273.5,
+     "max": 273.5,
+     "n": 10
+    },
+    "deriveMs": {
+     "median": 159.4,
+     "p95": 170.3,
+     "max": 170.3,
+     "n": 10
+    },
+    "indexMs": {
+     "median": 32.1,
+     "p95": 37.9,
+     "max": 37.9,
+     "n": 10
+    },
+    "otherRoundTripMs": {
+     "median": 28.5,
+     "p95": 34.7,
+     "max": 34.7,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 1084.6,
+     "p95": 1131.6,
+     "max": 1131.6,
+     "n": 10
+    }
+   },
+   "cached": {
+    "totalMs": {
+     "median": 24.5,
+     "p95": 33.2,
+     "max": 33.2,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 753.3,
+     "p95": 794.7,
+     "max": 794.7,
+     "n": 10
+    }
+   },
+   "keydownMs": {
+    "median": 80,
+    "p95": 88,
+    "max": 120,
+    "n": 400
+   },
+   "longTasksPerRun": [
+    12,
+    14,
+    8,
+    12,
+    6,
+    10,
+    9,
+    9,
+    16,
+    13
+   ],
+   "longestTaskMs": 87
+  },
+  {
+   "name": "14-blitz",
+   "plies": 207,
+   "cpuThrottle": 1,
+   "derived": {
+    "totalMs": {
+     "median": 466,
+     "p95": 506.4,
+     "max": 506.4,
+     "n": 10
+    },
+    "deriveMs": {
+     "median": 393.3,
+     "p95": 425.3,
+     "max": 425.3,
+     "n": 10
+    },
+    "indexMs": {
+     "median": 32,
+     "p95": 39.7,
+     "max": 39.7,
+     "n": 10
+    },
+    "otherRoundTripMs": {
+     "median": 23.3,
+     "p95": 27.5,
+     "max": 27.5,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 651.2,
+     "p95": 707.4,
+     "max": 707.4,
+     "n": 10
+    }
+   },
+   "cached": {
+    "totalMs": {
+     "median": 9.2,
+     "p95": 11.2,
+     "max": 11.2,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 136.7,
+     "p95": 165.3,
+     "max": 165.3,
+     "n": 10
+    }
+   },
+   "keydownMs": {
+    "median": 24,
+    "p95": 32,
+    "max": 40,
+    "n": 400
+   },
+   "longTasksPerRun": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "longestTaskMs": 0
+  },
+  {
+   "name": "14-blitz",
+   "plies": 207,
+   "cpuThrottle": 4,
+   "derived": {
+    "totalMs": {
+     "median": 524.1,
+     "p95": 570.8,
+     "max": 570.8,
+     "n": 10
+    },
+    "deriveMs": {
+     "median": 409.7,
+     "p95": 445.4,
+     "max": 445.4,
+     "n": 10
+    },
+    "indexMs": {
+     "median": 31.7,
+     "p95": 40.3,
+     "max": 40.3,
+     "n": 10
+    },
+    "otherRoundTripMs": {
+     "median": 34,
+     "p95": 47,
+     "max": 47,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 1605.9,
+     "p95": 1702,
+     "max": 1702,
+     "n": 10
+    }
+   },
+   "cached": {
+    "totalMs": {
+     "median": 43.7,
+     "p95": 70.3,
+     "max": 70.3,
+     "n": 10
+    },
+    "reloadToShownMs": {
+     "median": 1053.5,
+     "p95": 1391.6,
+     "max": 1391.6,
+     "n": 10
+    }
+   },
+   "keydownMs": {
+    "median": 96,
+    "p95": 120,
+    "max": 152,
+    "n": 400
+   },
+   "longTasksPerRun": [
+    21,
+    23,
+    23,
+    21,
+    20,
+    25,
+    21,
+    17,
+    25,
+    19
+   ],
+   "longestTaskMs": 103
+  }
+ ]
+}
