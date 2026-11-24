@@ -2,7 +2,7 @@
 
 | | |
 |---|---|
-| Status | v0.5 — **Phase 1 accepted**: follow-ups F1 and F2 are both closed. **Phase 2 accepted**: 16 of 16 acceptance items PASS, CI green in all jobs, merged into `main` on 2026-11-11 (`4b3fcbb`). **Phase 3 in progress** on branch `phase-3`: Stage 1 and Stage 2 Milestones 1–3 approved; Milestone 4 awaiting review. Not merged. |
+| Status | v0.5 — **Phase 1 accepted**: follow-ups F1 and F2 are both closed. **Phase 2 accepted**: 16 of 16 acceptance items PASS, CI green in all jobs, merged into `main` on 2026-11-11 (`4b3fcbb`). **Phase 3 in progress** on branch `phase-3`: Stage 1 and Stage 2 (Milestones 1–4) accepted. Stage 3 not started; it needs the owner's approval. Not merged. |
 | Date | 2026-11-03 |
 
 ---
@@ -231,6 +231,18 @@ Implemented on branch `phase-2` in four commits (Stages 1–4). The approved Sta
 | M5–M15, D1–D7 | Methodology clarifications, recorded in the methodology changelog (1.0.0, clarified 2026-11-13). D5: ACPL is an internal validation gate, not a compatibility claim. D7: Lichess phase accuracy is reported first. |
 | Modules | `core/{methodology,eval,classify,accuracy,phases,openings,review}`, SEE and material in `core/chess`, `infra/openings`, `app/review`. Scripts: `build-openings.mjs`, `fetch-lichess-evals.mjs`. |
 
+**Stage 2 accepted by the owner on 2026-11-25** at `578969e`, with CI green in all four jobs (run 45476024740). Stage 3 and the merge into `main` each need separate approval. Open items carried into Stage 3:
+
+| # | Open item | Needs |
+|---|---|---|
+| O1 | Keep the `@perf` gates isolated, or run them in parallel and make the page faster (TESTING_STRATEGY §5) | Owner decision |
+| O2 | Review of the five phase-fixture boundaries (Phase 3 DoD 7) | Owner review |
+| O3 | Target for total derivation time (proposed: 1 s for a 207-ply game) | Owner decision |
+| O4 | Browser storage on the Firefox/Windows CI runner sometimes stalls for 12 s or more (runs 45457517299 and 45473095298). Cause unknown; it can fail other tests with short waits. | Investigation if it recurs |
+| O5 | Opening a stored game and the Home list wait for storage without a limit (TESTING_STRATEGY §4.8b) | Owner decision |
+
+Already planned for Stage 3: the owner's 10 games, the blunder threshold (U2), the Chess.com accuracy comparison, how often Great is awarded, the 36...Qf3 case, and the Phase 3 acceptance record.
+
 ### Phase 4 — AI coach (Gemini) → **M2**
 
 **Build**
@@ -344,4 +356,4 @@ M1 (a usable free reviewer) is about 12–19 days in.
 
 ## 7. Immediate next step
 
-Phase 1 is accepted: F1 (Firefox E2E) closed on 2026-11-11 and F2 (the owner's own games) on 2026-11-13. Phase 2 passes all 16 acceptance items and was merged into `main` on 2026-11-11. **Next: Phase 3. It does not start until the owner explicitly approves it.**
+Phase 1 is accepted: F1 (Firefox E2E) closed on 2026-11-11 and F2 (the owner's own games) on 2026-11-13. Phase 2 passes all 16 acceptance items and was merged into `main` on 2026-11-11. Phase 3 Stages 1 and 2 are accepted on branch `phase-3` (§ Phase 3). **Next: Phase 3 Stage 3. It does not start until the owner explicitly approves it.**
