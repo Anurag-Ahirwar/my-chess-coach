@@ -1,5 +1,5 @@
 import { expect, test, type Page } from "@playwright/test";
-import { fixtureText, pastePgn } from "./helpers";
+import { archiveUrl, fixtureJson, fixtureText, mockChessCom, pastePgn } from "./helpers";
 
 /**
  * Imports with slow, stalled or failing browser storage (found by Firefox/Windows in CI, run
@@ -77,4 +77,47 @@ test("a normal import shows no saving notice, and a reload the moment the review
   await page.goto("/");
   await expect(page.getByRole("list", { name: "Your games" }).getByRole("link")).toHaveCount(1);
   await expect(page.getByText("Saved in this browser.")).toBeVisible();
+});
+
+const SCHOLARS_MATE = '[White "A"]\n[Black "B"]\n\n1. e4 e5 2. Bc4 Nc6 3. Qh5 Nf6 4. Qxf7# 1-0';
+const controls = (page: Page) => page.getByRole("region", { name: "Analysis", exact: true });
+
+test("storage that never answers doesn't block an analysis or its review", async ({ page }) => {
+  test.setTimeout(90_000);
+  await page.addInitScript(delayStorage, null);
+  await pastePgn(page, SCHOLARS_MATE);
+  await expect(moves(page)).toBeVisible({ timeout: 8000 });
+  await controls(page).getByLabel("Preset").selectOption({ label: "Quick" });
+  await controls(page).getByRole("button", { name: "Analyse game" }).click();
+  await expect(page.getByTestId("analysis-status")).toHaveText("Completed", { timeout: 45_000 });
+  await expect(controls(page)).toContainText("Browser storage is slow");
+  await expect(page.getByTestId("game-summary")).toHaveAttribute("data-final", "true", { timeout: 15_000 });
+  await expect(page.getByTestId("accuracy-white")).toBeVisible();
+});
+
+test("an analysis started while storage is slow is saved once it answers", async ({ page }) => {
+  test.setTimeout(120_000);
+  await page.addInitScript(delayStorage, 12_000);
+  await pastePgn(page, SCHOLARS_MATE);
+  await expect(moves(page)).toBeVisible({ timeout: 8000 });
+  await controls(page).getByLabel("Preset").selectOption({ label: "Quick" });
+  await controls(page).getByRole("button", { name: "Analyse game" }).click();
+  await expect(page.getByTestId("analysis-status")).toHaveText("Completed", { timeout: 45_000 });
+  await expect(controls(page).getByText("Browser storage is slow")).toHaveCount(0, { timeout: 30_000 });
+  await expect(notice(page)).toHaveCount(0);
+  await page.reload();
+  await expect(page.getByTestId("analysis-status")).toHaveText("Saved", { timeout: 40_000 });
+  await expect(page.getByTestId("analysis-progress")).toContainText("8 / 8");
+});
+
+test("storage that never answers doesn't block a Chess.com import", async ({ page }) => {
+  test.setTimeout(60_000);
+  await page.addInitScript(delayStorage, null);
+  const games = fixtureJson<{ games: unknown[] }>("chesscom", "api", "month-hikaru.json").games;
+  await mockChessCom(page, { archives: { hikaru: [archiveUrl("hikaru", 2026, 9)] }, months: { "hikaru/2026/09": games } });
+  await page.goto("/");
+  await page.getByLabel("Chess.com username").fill("hikaru");
+  await page.getByRole("button", { name: "Find games" }).click();
+  const list = page.getByRole("list", { name: "Chess.com games" }).getByRole("listitem");
+  await expect(list).toHaveCount(games.length, { timeout: 15_000 });
 });

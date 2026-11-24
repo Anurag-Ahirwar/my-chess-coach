@@ -9,6 +9,8 @@ export type StorageProblemKind =
   | "closed"
   /** A stored record failed validation; it is left untouched. */
   | "invalid_record"
+  /** Storage hasn't answered within the app's waiting limit; it may still answer later. */
+  | "slow"
   | "unknown";
 
 export class StorageError extends Error {
@@ -27,6 +29,7 @@ const MESSAGES: Record<StorageProblemKind, string> = {
   blocked: "The app is open in another tab with an older version. Close the other tab to keep saving.",
   closed: "The app was updated in another tab. Reload this page to keep saving.",
   invalid_record: "A saved record couldn't be read. It was left untouched and isn't shown.",
+  slow: "Browser storage is slow or not answering. The app carries on; recent work may not be saved yet, so keep this tab open for now.",
   unknown: "Saving failed for an unexpected reason. Changes are kept until you close this tab.",
 };
 

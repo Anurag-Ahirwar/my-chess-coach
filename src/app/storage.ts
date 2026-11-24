@@ -74,6 +74,27 @@ export function resetRepositoriesForTests(next?: Promise<Repositories>): void {
   persistenceRequested = false;
 }
 
+/** How long the app waits for browser storage before carrying on without it (owner decision, 2026-11-25). */
+export const STORAGE_WAIT_MS = 3000;
+
+/**
+ * Waits for a storage operation, but at most `waitMs`: storage problems never block the app. On the
+ * limit it rejects with a "slow" StorageError; the operation itself is not cancelled.
+ */
+export async function withinStorageWait<T>(operation: Promise<T>, waitMs: number = STORAGE_WAIT_MS): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const limit = new Promise<never>((_resolve, reject) => {
+    timer = setTimeout(() => reject(new StorageError("slow", `Browser storage did not answer within ${waitMs} ms.`)), waitMs);
+  });
+  try {
+    return await Promise.race([operation, limit]);
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+export const isSlowStorage = (error: unknown): boolean => error instanceof StorageError && error.kind === "slow";
+
 let persistenceRequested = false;
 
 /**

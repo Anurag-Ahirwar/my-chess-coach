@@ -41,7 +41,9 @@ const browserLocks = (): LockManagerLike | undefined => {
 };
 
 let controller: AnalysisController | undefined;
-let active: { gameId: string; preset: PresetName } | undefined;
+let active: { gameId: string; preset: PresetName; request: number } | undefined;
+/** Counts show() and start() calls, so a slow storage answer can't replace a newer view. */
+let requests = 0;
 
 function getController(set: (view: AnalysisView) => void): AnalysisController {
   controller ??= new AnalysisController({
@@ -51,6 +53,7 @@ function getController(set: (view: AnalysisView) => void): AnalysisController {
     locks: browserLocks(),
     onState: (state) => {
       if (!active || state.gameId !== active.gameId) return;
+      if (state.late && active.request !== requests) return; // something else is shown since the run ended
       set({
         gameId: state.gameId,
         preset: active.preset,
@@ -71,6 +74,7 @@ export const useAnalysis = create<AnalysisStore>((set, get) => ({
   show: async (game, preset) => {
     const running = get().view;
     if (running && running.gameId === game.id && (running.status === "running" || running.status === "pending")) return;
+    const request = ++requests;
     const id = analysisId(game.id, LITE_SINGLE_ENGINE, await settingsHash(PRESETS[preset]));
     let analysis: RawAnalysis | undefined;
     try {
@@ -78,13 +82,14 @@ export const useAnalysis = create<AnalysisStore>((set, get) => ({
     } catch (error) {
       reportStorageError(error);
     }
+    if (request !== requests) return; // a newer show() or start() took over while storage was answering
     set({
       view: { gameId: game.id, preset, analysisId: id, status: analysis ? "saved" : "none", analysis, reused: false },
     });
   },
 
   start: async (game, preset) => {
-    active = { gameId: game.id, preset };
+    active = { gameId: game.id, preset, request: ++requests };
     const instance = getController((view) => set({ view }));
     await instance.start(game, PRESETS[preset]);
   },

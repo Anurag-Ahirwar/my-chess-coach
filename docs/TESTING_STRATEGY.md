@@ -193,7 +193,14 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
   - games are kept in memory when saving fails;
   - games load after a reload, and unknown ids are marked missing.
 - **Slow or stalled storage on import** (owner decision, 2026-11-25; `tests/unit/app/saveWait.test.ts`, `tests/e2e/slow-storage.spec.ts`). Found by Firefox/Windows in CI (run 45457517299): the trace shows an import waiting over 5 s for its save, silently; why storage was slow there is unknown. Since `f05827f` an import waited without limit. Now it waits at most 3 s (`SAVE_WAIT_MS`), then opens the review with "Still saving this game…" while the save goes on. Accepted trade-off: a reload during that message can lose the game. "Saved in this browser." appears only when every listed game is stored. Covered: normal, slow, never-answering and failing storage, several games, and repeated saves of one game; three of the four E2E tests fail on the previous code.
-  - **Known gap, not fixed:** starting an analysis and Chess.com month imports also wait for storage without a limit.
+- **Slow or stalled storage during analysis, review and Chess.com imports** (owner decision, 2026-11-25; `tests/unit/app/stalledStorage.test.ts`, `tests/e2e/slow-storage.spec.ts`). These waited without limit; the same 3 s limit (`STORAGE_WAIT_MS`) now applies.
+  - An analysis starts in memory with a notice, and is saved when storage answers, even after the run. Only one save runs at a time, and a run ends without waiting for a stalled one.
+  - Stored results found late are kept: the run's own result is used only where nothing as strong is stored. A late answer never replaces a newer view.
+  - If what is stored turns out to be unreadable, the run isn't saved over it.
+  - The review cache and the Chess.com month cache count as empty when they don't answer.
+  - Two of the three E2E tests fail on the previous code (the analysis stays on "Starting…"; the games list stays empty). The third, "saved once it answers", also passes there, because that code waited. 19 deliberate faults in the new code were each caught by the unit tests.
+  - Accepted trade-off: closing the tab while the notice shows loses the unsaved results.
+  - **Known gap, not fixed:** opening a stored game ("Loading game…") and the Home page list still wait for storage without a limit. They have nothing to show without it, but they don't say why they are waiting.
 - **Analysis controller:**
   - throttled saves (fewer than one per result, always a final one);
   - resume after a reload, where only unanalysed positions are searched;

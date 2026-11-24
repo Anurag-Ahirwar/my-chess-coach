@@ -3,12 +3,29 @@ import type { Color } from "@/core/chess/types";
 import type { GameRecord } from "@/core/game/types";
 import { describePgnError, parsePgn, type PgnError } from "@/core/pgn";
 import { ChessComClient, type ChessComGame, type PastMonthCache } from "@/infra/chesscom";
-import { getRepositories } from "./storage";
+import { getRepositories, isSlowStorage, withinStorageWait } from "./storage";
 
-/** Past months are kept in IndexedDB (decision D5), or in memory if storage is unavailable. */
-const storedPastMonths: PastMonthCache = {
-  get: async (url) => (await getRepositories()).pastMonths.get(url),
-  set: async (url, body) => (await getRepositories()).pastMonths.set(url, body),
+/**
+ * Past months are kept in IndexedDB (decision D5), or in memory if storage is unavailable. Storage
+ * that doesn't answer in time counts as "not cached": the month is fetched (again), and a store that
+ * is still running finishes in the background. It is only a cache, so nothing is lost.
+ */
+export const storedPastMonths: PastMonthCache = {
+  get: async (url) => {
+    try {
+      return await withinStorageWait(getRepositories().then((r) => r.pastMonths.get(url)));
+    } catch (error) {
+      if (isSlowStorage(error)) return undefined;
+      throw error;
+    }
+  },
+  set: async (url, body) => {
+    try {
+      await withinStorageWait(getRepositories().then((r) => r.pastMonths.set(url, body)));
+    } catch (error) {
+      if (!isSlowStorage(error)) throw error;
+    }
+  },
 };
 
 export const chessComClient = new ChessComClient({ pastMonthCache: storedPastMonths });

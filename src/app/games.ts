@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { GameRecord } from "@/core/game/types";
-import { getRepositories, reportStorageError, requestPersistenceOnce } from "./storage";
+import { STORAGE_WAIT_MS, getRepositories, reportStorageError, requestPersistenceOnce } from "./storage";
 
 /**
  * Imported games. Saved in IndexedDB (Phase 2, approved change A10) and mirrored here for the UI.
@@ -27,7 +27,7 @@ interface GamesStore {
 }
 
 /** How long an import waits for its save before opening the review anyway (owner decision, 2026-11-25). */
-export const SAVE_WAIT_MS = 3000;
+export const SAVE_WAIT_MS = STORAGE_WAIT_MS;
 
 /** Saves in progress per game, so an earlier save finishing can't hide a later one of the same game. */
 const savesInProgress = new Map<string, number>();
