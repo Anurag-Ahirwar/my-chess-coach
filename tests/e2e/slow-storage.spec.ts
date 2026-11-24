@@ -28,6 +28,8 @@ function delayStorage(delay: number | null) {
 }
 
 test("slow storage: the review opens after the cap, says it is saving, and the game ends up saved", async ({ page }) => {
+  // Two injected 9 s delays, plus the runner's own storage: CI run 45473095298 added 12 s (Firefox/Windows).
+  test.setTimeout(120_000);
   await page.addInitScript(delayStorage, 9000);
   await pastePgn(page, PGN);
   await expect(moves(page)).toBeVisible({ timeout: 8000 });
@@ -35,11 +37,11 @@ test("slow storage: the review opens after the cap, says it is saving, and the g
   await page.getByRole("link", { name: "Chess Coach" }).click();
   await expect(page.getByText("Still saving…")).toBeVisible();
   await expect(page.getByText("Saved in this browser.")).toHaveCount(0);
-  await expect(page.getByText("Saved in this browser.")).toBeVisible({ timeout: 20_000 });
+  await expect(page.getByText("Saved in this browser.")).toBeVisible({ timeout: 40_000 });
   await page.getByRole("list", { name: "Your games" }).getByRole("link").click();
   await expect(notice(page)).toHaveCount(0);
   await page.reload(); // the saved copy is really there (storage is slow again, so allow time)
-  await expect(moves(page)).toBeVisible({ timeout: 20_000 });
+  await expect(moves(page)).toBeVisible({ timeout: 40_000 });
 });
 
 test("storage that never answers doesn't block the import, and the page never claims the game is saved", async ({ page }) => {

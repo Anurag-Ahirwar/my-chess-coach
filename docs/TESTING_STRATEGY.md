@@ -200,6 +200,7 @@ The key enabler is **recorded engine transcripts**. A script runs real Stockfish
   - The review cache and the Chess.com month cache count as empty when they don't answer.
   - Two of the three E2E tests fail on the previous code (the analysis stays on "Starting…"; the games list stays empty). The third, "saved once it answers", also passes there, because that code waited. 19 deliberate faults in the new code were each caught by the unit tests.
   - Accepted trade-off: closing the tab while the notice shows loses the unsaved results.
+  - **Existing test changed:** "the review opens after the cap…" has a 120 s limit (was the default 30 s) and 40 s waits for the save and the reload (were 20 s). No assertion changed; the 8 s limit on the review opening stays. Reason: it failed on Firefox/Windows (CI run 45473095298) because real storage there added about 12 s to its two injected 9 s delays. A 21 s delay reproduces the failure in Chromium on the old limits. Why that runner's storage stalls is still unknown; in the same run another test's direct IndexedDB write took 15 s.
   - **Known gap, not fixed:** opening a stored game ("Loading game…") and the Home page list still wait for storage without a limit. They have nothing to show without it, but they don't say why they are waiting.
 - **Analysis controller:**
   - throttled saves (fewer than one per result, always a final one);
